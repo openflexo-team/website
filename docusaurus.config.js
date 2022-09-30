@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Openflexo',
   tagline: "You're at the right place to discover Openflexo technical infrastructure and research project. You will find here support, documentation and resources.",
-  url: 'https://docusaurus.openflexo.org',
+  url: 'https://openflexo.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

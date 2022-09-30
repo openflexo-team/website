@@ -144,8 +144,8 @@
                     "ta": ["Diagram", "M/S PowerPoint"],
                     "downloadUrl":{
                         "mac": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Mac/Openflexo%20FreeModelling%201.9.0.dmg",
-                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20FreeModelling%201.9.0.tar.gz",
-                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20FreeModelling%201.9.0.zip"
+                        "linux": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Linux/Openflexo%20FreeModelling%201.9.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Windows/Openflexo%20FreeModelling%201.9.0.zip"
                     }
                 },
                 {
@@ -154,9 +154,9 @@
                     "modules": ["FreeModellingEditor", "OpenflexoModeller module", "EAModule"],
                     "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
                     "downloadUrl":{
-                        "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Mac/Openflexo%20Designer%201.9.0.dmg",
-                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20Designer%201.9.0.tar.gz",
-                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20Designer%201.9.0.zip"
+                        "mac": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Mac/Openflexo%20Designer%201.9.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Linux/Openflexo%20Designer%201.9.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Windows/Openflexo%20Designer%201.9.0.zip"
                     }
                 },
                 {
@@ -164,9 +164,9 @@
                     "description": "This packaging contains the mode federation core framework packaged to be used headless. It contains command-line terminal as well as various technology adapters suitable for many contexts",
                     "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
                     "downloadUrl":{
-                        "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Mac/Openflexo%20Headless%201.9.0.dmg",
-                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20Headless%201.9.0.tar.gz",
-                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20Headless%201.9.0.zip"
+                        "mac": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Mac/Openflexo%20Headless%201.9.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Linux/Openflexo%20Headless%201.9.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Windows/Openflexo%20Headless%201.9.0.zip"
                     }
                 },
                 {
@@ -175,9 +175,9 @@
                     "modules": ["FreeModellingEditor", "OpenflexoModeller module", "EAModule"],
                     "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
                     "downloadUrl":{
-                        "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Mac/Openflexo%20FlexoMaintainer%201.9.0.dmg",
-                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20FlexoMaintainer%201.9.0.tar.gz",
-                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20FlexoMaintainer%201.9.0.zip"
+                        "mac": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Mac/Openflexo%20FlexoMaintainer%201.9.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Linux/Openflexo%20FlexoMaintainer%201.9.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Windows/Openflexo%20FlexoMaintainer%201.9.0.zip"
                     }
                 }
             ]
