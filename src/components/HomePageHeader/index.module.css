@@ -1,0 +1,17 @@
+
+.heroBanner {
+    padding: 2rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.heroBannerHr {
+    position: absolute;
+    height: 3px;
+    width: 120px;
+    background-color: var(--ifm-color-primary);
+    top: 70px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+}

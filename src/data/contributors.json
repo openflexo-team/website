@@ -1,0 +1,109 @@
+{
+    "primary": [
+        {
+            "name": "Ali Koudri",
+            "role": "Searcher",
+            "image": "/img/team/AliKoudri.jpg"
+        },
+        {
+            "name": "Antoine Beugnard",
+            "role": "Searcher",
+            "image": "/img/team/AntoineBeugnard.jpg"
+        },
+        {
+            "name": "Christophe Guychard",
+            "role": "Searcher",
+            "image": "/img/team/ChristopheGuychard.jpg"
+        },
+        {
+            "name": "Fabien Dagnat",
+            "role": "Searcher",
+            "image": "/img/team/FabienDagnat.jpg"
+        },
+        {
+            "name": "Guillaume Polet",
+            "role": "Searcher",
+            "image": "/img/team/GuillaumePolet.jpg"
+        },
+        {
+            "name": "Gilles Godet",
+            "role": "Searcher",
+            "image": "/img/team/GillesGodet.png"
+        },
+        {
+            "name": "Jean-Charles Roger",
+            "role": "Searcher",
+            "image": "/img/team/JeanCharlesRoger.jpeg"
+        },
+        {
+            "name": "Julien Carette",
+            "role": "Searcher",
+            "image": "/img/team/JulienCarette.jpg"
+        },
+        {
+            "name": "Sylvain Guerin",
+            "role": "Searcher",
+            "image": "/img/team/SylvainGuerin.jpg"
+        },
+        {
+            "name": "Vincent Leilde",
+            "role": "Searcher",
+            "image": "/img/team/VincentLeilde.jpg"
+        },
+        {
+            "name": "Philippe Bonnet",
+            "role": "Searcher",
+            "image": "/img/team/1.jpg"
+        }
+    ],
+    "secondary": [
+        {
+            "name": "Dominique Snyers"
+        },
+        {
+            "name": "Frederic Van Der Vaeren"
+        },
+        {
+            "name": "Bernard Penhoet"
+        },
+        {
+            "name": "Pierre Trémenbert"
+        },
+        {
+            "name": "Luka Leroux"
+        },
+        {
+            "name": "Gilles Besançon"
+        },
+        {
+            "name": "Laurent Wouters"
+        },
+        {
+            "name": "Etienne Louboutin"
+        },
+        {
+            "name": "Alexandre Manoury"
+        },
+        {
+            "name": "Axel Baudot"
+        },
+        {
+            "name": "Fahad Golra"
+        },
+        {
+            "name": "Wei Jiang"
+        },
+        {
+            "name": "Peiqi Shi,"
+        },
+        {
+            "name": "Shuting Wang"
+        },
+        {
+            "name": "Benoit Mangez"
+        },
+        {
+            "name": "Kevin Vermeulen"
+        }
+    ]
+}

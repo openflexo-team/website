@@ -1,0 +1,38 @@
+[
+    {
+      "name": "telecom bretagne",
+      "image": "/img/partners/telecom-bretagne.png"
+    },
+    {
+      "name": "brest metropole",
+      "image": "/img/partners/brest-metropole.png"
+    },
+    {
+      "name": "anr",
+      "image": "/img/partners/anr.png"
+    },
+    {
+      "name": "bpi france",
+      "image": "/img/partners/bpifrance.png"
+    },
+    {
+      "name": "ensta",
+      "image": "/img/partners/ensta.png"
+    },
+    {
+      "name": "systemx",
+      "image": "/img/partners/systemx.png"
+    },
+    {
+      "name": "tbi",
+      "image": "/img/partners/tbi.png"
+    },
+    {
+      "name": "thales",
+      "image": "/img/partners/thales.png"
+    },
+    {
+      "name": "urscop",
+      "image": "/img/partners/urscop.png"
+    }
+]

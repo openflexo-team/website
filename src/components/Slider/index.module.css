@@ -1,0 +1,38 @@
+.sliderStyle{
+    margin-bottom: 50px;
+}
+
+.containerStyle {
+    position: relative;
+}
+
+.imgStyle {
+    width: 100%;
+    height: 780px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.textWrapperStyle {
+    height: 200px;
+    position: absolute;
+    top: 250px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--docusaurus-highlighted-code-slider-bg);
+}
+
+.h1Style {
+    font-size: 45pt;
+    opacity: 1
+}
+
+.h3Style {
+    font-size: 20pt;
+    font-weight: 300
+}

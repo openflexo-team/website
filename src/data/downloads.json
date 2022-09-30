@@ -1,0 +1,186 @@
+{
+    "modules": [
+        {
+            "name": "FreeModellingEditor",
+            "description": "Design graphical free models",
+            "logo": "/img/components/modules/FME/fme20x20.png",
+            "url": "https://openflexo-modules.openflexo.org/SNAPSHOT/free-modelling-editor/index.html"
+        },
+        {
+            "name": "OpenflexoModeller module",
+            "description": "Define and execute model federation",
+            "logo": "/img/components/modules/OM/om20x20.png",
+            "url": "https://openflexo-modules.openflexo.org/SNAPSHOT/openflexo-modeller/index.html"
+        },
+        {
+            "name": "EAModule",
+            "description": "Design with out-of-box models",
+            "logo": "/img/components/modules/EAM/eam20x20.png",
+            "url": "https://openflexo-modules.openflexo.org/SNAPSHOT/enterprise-architecture-module/index.html"
+        }
+    ],
+    "technology_adapters": [
+        {
+            "name": "Diagram",
+            "description": "Openflexo diagramming technology",
+            "logo": "/img/components/ta/diagram_ta/Diagram20x20.png",
+            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/flexodiagram/index.html"
+        },
+        {
+            "name": "M/S PowerPoint",
+            "description": "MS/PowerPoint documents import",
+            "logo": "/img/components/ta/ppt_ta/PowerPoint20x20.png",
+            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/powerpointconnector/index.html"
+        },
+        {
+            "name": "EMF",
+            "description": "Eclipse Modelling Framework technology",
+            "logo": "/img/components/ta/emf_ta/EMF20x20.png",
+            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/emfconnector/index.html"
+        },
+        {
+            "name": "XML/XSD",
+            "description": "XML and XSD files",
+            "logo": "/img/components/ta/xml_xsd_ta/XMLXSD20x20.png",
+            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/xmlconnector/index.html"
+        },
+        {
+            "name": "OWL ontologies",
+            "description": "OWL2 ontologies",
+            "logo": "/img/components/ta/owl_ta/OWL20x20.png",
+            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/owlconnector/index.html"
+        },
+        {
+            "name": "M/S Word",
+            "description": "Microsoft word documents (.doc,.docx)",
+            "logo": "/img/components/ta/word_ta/Word20x20.png",
+            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/docxconnector/index.html"
+        },
+        {
+            "name": "M/S Excel",
+            "description": "Microsoft excel documents (.xls,.xlsx)",
+            "logo": "/img/components/ta/excel_ta/Excel20x20.png",
+            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/excelconnector/index.html"
+        },
+        {
+            "name": "PDF",
+            "description": "PDF documents",
+            "logo": "/img/components/ta/pdf_ta/PDF20x20.png",
+            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/pdfconnector/index.html"
+        },
+        {
+            "name": "JDBC",
+            "description": "JDBC relational database support",
+            "logo": "/img/components/ta/jdbc_ta/JDBC20x20.png",
+            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/jdbcconnector/index.html"
+        },
+        {
+            "name": "OSLC",
+            "description": "OSLC support",
+            "logo": "/img/components/ta/oslc_ta/OSLC20x20.png",
+            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/oslcconnector/index.html"
+        }
+    ],
+    "versions": [
+        {
+            "version": "Infrastructure version 2.0.0",
+            "label": "Last stable version, released on june 2020",
+            "packages":
+            [
+                {
+                    "name": "FreeModellingEditor",
+                    "description": "This packaging contains only the  FreeModellingEditor module. This metamodelling tool is used to make concept emergence from a simple drawing or from a PowerPoint slide.",
+                    "modules": ["FreeModellingEditor"],
+                    "ta": ["Diagram", "M/S PowerPoint"],
+                    "downloadUrl":{
+                        "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Mac/Openflexo%20FreeModelling%202.0.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20FreeModelling%202.0.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20FreeModelling%202.0.0.zip"
+                    }
+                },
+                {
+                    "name": "Openflexo Designer",
+                    "description": "This packaging contains the  OpenflexoModeller, the  FreeModellingEditor and the  EnterpriseArchitectureModule. This packaging also contains various technology adapters suitable for many contexts. The purpose of this packaging is to offer base features for most users of Openflexo model federation infrastructure. This packaging contains the  OpenflexoModeller, a modelling tool allowing to build model federation by using the FlexoModellingLanguage (FML), and to execute it with generic interfaces.",
+                    "modules": ["FreeModellingEditor", "OpenflexoModeller module", "EAModule"],
+                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
+                    "downloadUrl":{
+                        "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Mac/Openflexo%20Designer%202.0.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20Designer%202.0.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20Designer%202.0.0.zip"
+                    }
+                },
+                {
+                    "name": "Openflexo Headless",
+                    "description": "This packaging contains the mode federation core framework packaged to be used headless. It contains command-line terminal as well as various technology adapters suitable for many contexts",
+                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
+                    "downloadUrl":{
+                        "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Mac/Openflexo%20Headless%202.0.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20Headless%202.0.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20Headless%202.0.0.zip"
+                    }
+                },
+                {
+                    "name": "Openflexo Maintainer",
+                    "description": "This packaging contains all modules and all all technology adapters developed at Openflexo. The purpose of this packaging is to offer full features for developers of Openflexo model federation infrastructure. This packaging is configured to enable all developers tools.",
+                    "modules": ["FreeModellingEditor", "OpenflexoModeller module", "EAModule"],
+                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
+                    "downloadUrl":{
+                        "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Mac/Openflexo%20FlexoMaintainer%202.0.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20FlexoMaintainer%202.0.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20FlexoMaintainer%202.0.0.zip"
+                    }
+                }
+            ]
+        },
+        {
+            "version": "Infrastructure version 1.9.0",
+            "label": "Version released on october 2018",
+            "packages":
+            [
+                {
+                    "name": "FreeModellingEditor",
+                    "description": "This packaging contains only the  FreeModellingEditor module. This metamodelling tool is used to make concept emergence from a simple drawing or from a PowerPoint slide.",
+                    "modules": ["FreeModellingEditor"],
+                    "ta": ["Diagram", "M/S PowerPoint"],
+                    "downloadUrl":{
+                        "mac": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Mac/Openflexo%20FreeModelling%201.9.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20FreeModelling%201.9.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20FreeModelling%201.9.0.zip"
+                    }
+                },
+                {
+                    "name": "Openflexo Designer",
+                    "description": "This packaging contains the  OpenflexoModeller, the  FreeModellingEditor and the  EnterpriseArchitectureModule. This packaging also contains various technology adapters suitable for many contexts. The purpose of this packaging is to offer base features for most users of Openflexo model federation infrastructure. This packaging contains the  OpenflexoModeller, a modelling tool allowing to build model federation by using the FlexoModellingLanguage (FML), and to execute it with generic interfaces.",
+                    "modules": ["FreeModellingEditor", "OpenflexoModeller module", "EAModule"],
+                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
+                    "downloadUrl":{
+                        "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Mac/Openflexo%20Designer%201.9.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20Designer%201.9.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20Designer%201.9.0.zip"
+                    }
+                },
+                {
+                    "name": "Openflexo Headless",
+                    "description": "This packaging contains the mode federation core framework packaged to be used headless. It contains command-line terminal as well as various technology adapters suitable for many contexts",
+                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
+                    "downloadUrl":{
+                        "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Mac/Openflexo%20Headless%201.9.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20Headless%201.9.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20Headless%201.9.0.zip"
+                    }
+                },
+                {
+                    "name": "Openflexo Maintainer",
+                    "description": "This packaging contains all modules and all all technology adapters developed at Openflexo. The purpose of this packaging is to offer full features for developers of Openflexo model federation infrastructure. This packaging is configured to enable all developers tools.",
+                    "modules": ["FreeModellingEditor", "OpenflexoModeller module", "EAModule"],
+                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
+                    "downloadUrl":{
+                        "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Mac/Openflexo%20FlexoMaintainer%201.9.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Linux/Openflexo%20FlexoMaintainer%201.9.0.tar.gz",
+                        "windows": "https://downloads.openflexo.org/openflexo/2.0.0/2020-06-23/Windows/Openflexo%20FlexoMaintainer%201.9.0.zip"
+                    }
+                }
+            ]
+        }
+    ]
+}
