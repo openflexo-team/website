@@ -16,7 +16,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', pamelaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', pamelaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -100,7 +100,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/18] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', ginaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', ginaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -217,7 +217,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/22] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', dianaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', dianaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -358,7 +358,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/13] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', connieRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', connieRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -448,7 +448,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', diagramRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', diagramRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -532,7 +532,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', emfRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', emfRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -616,7 +616,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', httpRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', httpRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -700,7 +700,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', jdbcRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', jdbcRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -784,7 +784,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', kafkaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', kafkaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -868,7 +868,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', owlRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', owlRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -952,7 +952,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', pdfRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', pdfRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -1036,7 +1036,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/14] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', utilsRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', utilsRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -1131,7 +1131,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/28] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', coreRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
@@ -1303,7 +1303,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [2/24] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', taRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/', 
+                        commandLine 'cp', '-r', taRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/'
                     }
 
                     exec {
