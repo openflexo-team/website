@@ -952,7 +952,7 @@ task buildWebsite{
 
                         exec {
                             println '\n [2/12] Copying root documentation markdown files \n'
-                            commandLine 'cp', '-r', pdfRepo + 'src/site/markdown/.', "/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-" +  {System.getenv("UPSTREAM")} + "/"
+                            commandLine 'cp', '-r', pdfRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-' + UPSTREAM + '/'
                         }
 
                         exec {
@@ -970,26 +970,26 @@ task buildWebsite{
 
                         exec {
                             println '\n [4/12] Copying pdf-ta documentation markdown files \n'
-                            commandLine 'cp', '-r', pdfRepo + 'pdf-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-${System.getenv("UPSTREAM")}/pdf-ta/'
+                            commandLine 'cp', '-r', pdfRepo + 'pdf-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-' + UPSTREAM + '/pdf-ta/'
                         }
 
                         exec {
                             println '\n [5/12] Copying pdf-ta-ui documentation markdown files \n'
-                            commandLine 'cp', '-r', pdfRepo + 'pdf-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-${System.getenv("UPSTREAM")}/pdf-ta-ui/'
+                            commandLine 'cp', '-r', pdfRepo + 'pdf-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-' + UPSTREAM + '/pdf-ta-ui/'
                         }
 
                         exec {
                             ignoreExitValue true
                             println '\n [6/12] Building pdf-ta javadoc \n'
                             workingDir pdfRepo
-                            commandLine 'javadoc', '-d', 'javadoc/${System.getenv("UPSTREAM")}/pdf-ta', '-sourcepath', 'pdf-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                            commandLine 'javadoc', '-d', 'javadoc/' + UPSTREAM + '/pdf-ta', '-sourcepath', 'pdf-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta ' + UPSTREAM + ' API', '--ignore-source-errors'
                         }
 
                         exec {
                             ignoreExitValue true
                             println '\n [7/12] Building pdf-ta-ui javadoc \n'
                             workingDir pdfRepo
-                            commandLine 'javadoc', '-d', 'javadoc/${System.getenv("UPSTREAM")}/pdf-ta-ui', '-sourcepath', 'pdf-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                            commandLine 'javadoc', '-d', 'javadoc/' + UPSTREAM + '/pdf-ta-ui', '-sourcepath', 'pdf-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta-ui ' + UPSTREAM + ' API', '--ignore-source-errors'
                         }
 
                         exec {
