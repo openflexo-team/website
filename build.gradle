@@ -1,1458 +1,1458 @@
 task buildWebsite{
-    
-    switch (System.getenv('WEBSITE')) { 
-        case 'pamela': 
-            String pamelaRepo = "/home/jenkins/jenkins-agent/workspace/pamela-${System.getenv("UPSTREAM")}/"
-            println pamelaRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+    if (System.getenv('WEBSITE')){
+        switch (System.getenv('WEBSITE')) { 
+            case 'pamela': 
+                String pamelaRepo = "/home/jenkins/jenkins-agent/workspace/pamela-${System.getenv("UPSTREAM")}/"
+                println pamelaRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/12] Pulling changes from Github \n'
-                        workingDir pamelaRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
-                    }
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/12] Pulling changes from Github \n'
+                            workingDir pamelaRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
 
-                    exec {
-                        println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', pamelaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
+                        exec {
+                            println '\n [2/12] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', pamelaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
 
-                    exec {
-                        println '\n [3/12] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', pamelaRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/static/', ' 2>/dev/null'
-                    }
+                        exec {
+                            println '\n [3/12] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', pamelaRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/static/', ' 2>/dev/null'
+                        }
 
-                    exec {
-                        commandLine 'cp', '-r', pamelaRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/pamela/', ' 2>/dev/null'
-                    }
+                        exec {
+                            commandLine 'cp', '-r', pamelaRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/pamela/', ' 2>/dev/null'
+                        }
 
-                    exec {
-                        commandLine 'cp', '-r', pamelaRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/pamela/', ' 2>/dev/null'
-                    }
+                        exec {
+                            commandLine 'cp', '-r', pamelaRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/pamela/', ' 2>/dev/null'
+                        }
 
-                    exec {
-                        println '\n [4/12] Copying pamela-core documentation markdown files \n'
-                        commandLine 'cp', '-r', pamelaRepo + 'pamela-core/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/versioned_docs/version-${System.getenv("UPSTREAM")}/pamela-core/', ' 2>/dev/null'
-                    }
+                        exec {
+                            println '\n [4/12] Copying pamela-core documentation markdown files \n'
+                            commandLine 'cp', '-r', pamelaRepo + 'pamela-core/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/versioned_docs/version-${System.getenv("UPSTREAM")}/pamela-core/', ' 2>/dev/null'
+                        }
 
-                    exec {
-                        println '\n [5/12] Copying pamela-security-patterns documentation markdown files \n'
-                        commandLine 'cp', '-r', pamelaRepo + 'pamela-security-patterns/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/versioned_docs/version-${System.getenv("UPSTREAM")}/pamela-security-patterns/', ' 2>/dev/null'
-                    }
+                        exec {
+                            println '\n [5/12] Copying pamela-security-patterns documentation markdown files \n'
+                            commandLine 'cp', '-r', pamelaRepo + 'pamela-security-patterns/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/versioned_docs/version-${System.getenv("UPSTREAM")}/pamela-security-patterns/', ' 2>/dev/null'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [6/12] Building pamela-core javadoc \n'
-                        commandLine 'javadoc', '-d', pamelaRepo + 'javadoc/${System.getenv("UPSTREAM")}/pamela-core', '-sourcepath', 'pamela-core/src/main/java', '-subpackages', 'org', '-doctitle', 'Pamela-core ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [6/12] Building pamela-core javadoc \n'
+                            commandLine 'javadoc', '-d', pamelaRepo + 'javadoc/${System.getenv("UPSTREAM")}/pamela-core', '-sourcepath', 'pamela-core/src/main/java', '-subpackages', 'org', '-doctitle', 'Pamela-core ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [7/12] Building pamela-security-patterns javadoc \n'
-                        commandLine 'javadoc', '-d', pamelaRepo + 'javadoc/${System.getenv("UPSTREAM")}/pamela-security-patterns', '-sourcepath', 'pamela-security-patterns/src/main/java', '-subpackages', 'org', '-doctitle', 'Pamela-Security-Patterns ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [7/12] Building pamela-security-patterns javadoc \n'
+                            commandLine 'javadoc', '-d', pamelaRepo + 'javadoc/${System.getenv("UPSTREAM")}/pamela-security-patterns', '-sourcepath', 'pamela-security-patterns/src/main/java', '-subpackages', 'org', '-doctitle', 'Pamela-Security-Patterns ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        println '\n [8/12] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/'
-                        commandLine 'npm', 'run', 'build'
-                    }
+                        exec {
+                            println '\n [8/12] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/'
+                            commandLine 'npm', 'run', 'build'
+                        }
 
-                    exec {
-                        println '\n [9/12] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/'
-                        commandLine 'mv', 'build', 'pamela'
-                    }
+                        exec {
+                            println '\n [9/12] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/'
+                            commandLine 'mv', 'build', 'pamela'
+                        }
 
-                    exec {
-                        println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
+                        exec {
+                            println '\n [10/12] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
 
-                    exec {
-                        println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', pamelaRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/pamela/javadoc/'
-                    }
+                        exec {
+                            println '\n [11/12] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', pamelaRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/pamela/javadoc/'
+                        }
 
-                    exec {
-                        println '\n [12/12] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela'
+                        exec {
+                            println '\n [12/12] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'gina': 
-            String ginaRepo = "/home/jenkins/jenkins-agent/workspace/gina-${System.getenv("UPSTREAM")}/"
-            println ginaRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'gina': 
+                String ginaRepo = "/home/jenkins/jenkins-agent/workspace/gina-${System.getenv("UPSTREAM")}/"
+                println ginaRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/18] Pulling changes from Github \n'
-                        workingDir ginaRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/18] Pulling changes from Github \n'
+                            workingDir ginaRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/18] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', ginaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/18] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', ginaRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/static/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', ginaRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/gina/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', ginaRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/gina/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [4/18] Copying gina-core documentation markdown files \n'
+                            commandLine 'cp', '-r', ginaRepo + 'gina-core/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/gina-core/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [5/18] Copying gina-events documentation markdown files \n'
+                            commandLine 'cp', '-r', ginaRepo + 'gina-events/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/gina-core/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [6/18] Copying gina-replay documentation markdown files \n'
+                            commandLine 'cp', '-r', ginaRepo + 'gina-replay/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/gina-replay/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [7/18] Copying gina-swing documentation markdown files \n'
+                            commandLine 'cp', '-r', ginaRepo + 'gina-swing/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/gina-swing/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [8/18] Copying gina-swing-editor documentation markdown files \n'
+                            commandLine 'cp', '-r', ginaRepo + 'gina-swing-editor/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/gina-swing-editor/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [9/18] Building gina-core javadoc \n'
+                            commandLine 'javadoc', '-d', ginaRepo + 'javadoc/${System.getenv("UPSTREAM")}/gina-core', '-sourcepath', 'gina-core/src/main/java', '-subpackages', 'org', '-doctitle', 'gina-core ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [10/18] Building gina-events javadoc \n'
+                            commandLine 'javadoc', '-d', ginaRepo + 'javadoc/${System.getenv("UPSTREAM")}/gina-events', '-sourcepath', 'gina-events/src/main/java', '-subpackages', 'org', '-doctitle', 'gina-events ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [11/18] Building gina-replay javadoc \n'
+                            commandLine 'javadoc', '-d', ginaRepo + 'javadoc/${System.getenv("UPSTREAM")}/gina-replay', '-sourcepath', 'gina-replay/src/main/java', '-subpackages', 'org', '-doctitle', 'gina-replay ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [12/18] Building gina-swing javadoc \n'
+                            commandLine 'javadoc', '-d', ginaRepo + 'javadoc/${System.getenv("UPSTREAM")}/gina-swing', '-sourcepath', 'gina-swing/src/main/java', '-subpackages', 'org', '-doctitle', 'gina-swing ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [13/18] Building gina-swing-editor javadoc \n'
+                            commandLine 'javadoc', '-d', ginaRepo + 'javadoc/${System.getenv("UPSTREAM")}/gina-swing-editor', '-sourcepath', 'gina-swing-editor/src/main/java', '-subpackages', 'org', '-doctitle', 'gina-swing-editor ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [14/18] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/gina/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [15/18] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/gina/'
+                            commandLine 'mv', 'build', 'gina'
+                        }
+
+                        exec {
+                            println '\n [16/18] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/gina', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [17/18] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', ginaRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/gina/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [18/18] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/gina'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-
-                    exec {
-                        println '\n [2/18] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', ginaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/18] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', ginaRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', ginaRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/gina/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', ginaRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/gina/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/18] Copying gina-core documentation markdown files \n'
-                        commandLine 'cp', '-r', ginaRepo + 'gina-core/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/gina-core/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/18] Copying gina-events documentation markdown files \n'
-                        commandLine 'cp', '-r', ginaRepo + 'gina-events/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/gina-core/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [6/18] Copying gina-replay documentation markdown files \n'
-                        commandLine 'cp', '-r', ginaRepo + 'gina-replay/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/gina-replay/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [7/18] Copying gina-swing documentation markdown files \n'
-                        commandLine 'cp', '-r', ginaRepo + 'gina-swing/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/gina-swing/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [8/18] Copying gina-swing-editor documentation markdown files \n'
-                        commandLine 'cp', '-r', ginaRepo + 'gina-swing-editor/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/versioned_docs/version-${System.getenv("UPSTREAM")}/gina-swing-editor/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [9/18] Building gina-core javadoc \n'
-                        commandLine 'javadoc', '-d', ginaRepo + 'javadoc/${System.getenv("UPSTREAM")}/gina-core', '-sourcepath', 'gina-core/src/main/java', '-subpackages', 'org', '-doctitle', 'gina-core ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [10/18] Building gina-events javadoc \n'
-                        commandLine 'javadoc', '-d', ginaRepo + 'javadoc/${System.getenv("UPSTREAM")}/gina-events', '-sourcepath', 'gina-events/src/main/java', '-subpackages', 'org', '-doctitle', 'gina-events ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [11/18] Building gina-replay javadoc \n'
-                        commandLine 'javadoc', '-d', ginaRepo + 'javadoc/${System.getenv("UPSTREAM")}/gina-replay', '-sourcepath', 'gina-replay/src/main/java', '-subpackages', 'org', '-doctitle', 'gina-replay ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [12/18] Building gina-swing javadoc \n'
-                        commandLine 'javadoc', '-d', ginaRepo + 'javadoc/${System.getenv("UPSTREAM")}/gina-swing', '-sourcepath', 'gina-swing/src/main/java', '-subpackages', 'org', '-doctitle', 'gina-swing ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [13/18] Building gina-swing-editor javadoc \n'
-                        commandLine 'javadoc', '-d', ginaRepo + 'javadoc/${System.getenv("UPSTREAM")}/gina-swing-editor', '-sourcepath', 'gina-swing-editor/src/main/java', '-subpackages', 'org', '-doctitle', 'gina-swing-editor ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [14/18] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/gina/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [15/18] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/gina/'
-                        commandLine 'mv', 'build', 'gina'
-                    }
-
-                    exec {
-                        println '\n [16/18] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/gina', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [17/18] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', ginaRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/gina/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [18/18] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/gina'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'diana': 
-            String dianaRepo = "/home/jenkins/jenkins-agent/workspace/diana-${System.getenv("UPSTREAM")}/"
-            println dianaRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'diana': 
+                String dianaRepo = "/home/jenkins/jenkins-agent/workspace/diana-${System.getenv("UPSTREAM")}/"
+                println dianaRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/22] Pulling changes from Github \n'
-                        workingDir dianaRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/22] Pulling changes from Github \n'
+                            workingDir dianaRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/22] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', dianaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/22] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', dianaRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/static/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', dianaRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/diana/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', dianaRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/diana/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [4/22] Copying diana-api documentation markdown files \n'
+                            commandLine 'cp', '-r', dianaRepo + 'diana-api/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-api/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [5/22] Copying diana-core documentation markdown files \n'
+                            commandLine 'cp', '-r', dianaRepo + 'diana-core/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-core/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [6/22] Copying diana-drawing-editor documentation markdown files \n'
+                            commandLine 'cp', '-r', dianaRepo + 'diana-drawing-editor/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-drawing-editor/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [7/22] Copying diana-geom documentation markdown files \n'
+                            commandLine 'cp', '-r', dianaRepo + 'diana-geom/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-geom/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [8/22] Copying diana-geomedit documentation markdown files \n'
+                            commandLine 'cp', '-r', dianaRepo + 'diana-geomedit/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-geomedit/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [9/22] Copying diana-ppt-editor documentation markdown files \n'
+                            commandLine 'cp', '-r', dianaRepo + 'diana-ppt-editor/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-ppt-editor/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [10/22] Copying diana-swing documentation markdown files \n'
+                            commandLine 'cp', '-r', dianaRepo + 'diana-swing/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-swing/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [11/22] Building diana-api javadoc \n'
+                            commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-api', '-sourcepath', 'diana-api/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-api ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [12/22] Building diana-core javadoc \n'
+                            commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-core', '-sourcepath', 'diana-core/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-core ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [13/22] Building diana-drawing-editor javadoc \n'
+                            commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-drawing-editor', '-sourcepath', 'diana-drawing-editor/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-drawing-editor ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [14/22] Building diana-geom javadoc \n'
+                            commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-geom', '-sourcepath', 'diana-geom/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-geom ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [15/22] Building diana-geomedit javadoc \n'
+                            commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-geomedit', '-sourcepath', 'diana-geomedit/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-geomedit ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [16/22] Building diana-ppt-editor javadoc \n'
+                            commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-ppt-editor', '-sourcepath', 'diana-ppt-editor/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-ppt-editor ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [17/22] Building diana-swing javadoc \n'
+                            commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-swing', '-sourcepath', 'diana-swing/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-swing ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [18/22] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/diana/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [19/22] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/diana/'
+                            commandLine 'mv', 'build', 'diana'
+                        }
+
+                        exec {
+                            println '\n [20/22] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/diana', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [21/22] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', dianaRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/diana/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [22/22] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/diana'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-
-                    exec {
-                        println '\n [2/22] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', dianaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/22] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', dianaRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', dianaRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/diana/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', dianaRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/diana/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/22] Copying diana-api documentation markdown files \n'
-                        commandLine 'cp', '-r', dianaRepo + 'diana-api/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-api/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/22] Copying diana-core documentation markdown files \n'
-                        commandLine 'cp', '-r', dianaRepo + 'diana-core/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-core/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [6/22] Copying diana-drawing-editor documentation markdown files \n'
-                        commandLine 'cp', '-r', dianaRepo + 'diana-drawing-editor/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-drawing-editor/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [7/22] Copying diana-geom documentation markdown files \n'
-                        commandLine 'cp', '-r', dianaRepo + 'diana-geom/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-geom/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [8/22] Copying diana-geomedit documentation markdown files \n'
-                        commandLine 'cp', '-r', dianaRepo + 'diana-geomedit/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-geomedit/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [9/22] Copying diana-ppt-editor documentation markdown files \n'
-                        commandLine 'cp', '-r', dianaRepo + 'diana-ppt-editor/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-ppt-editor/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [10/22] Copying diana-swing documentation markdown files \n'
-                        commandLine 'cp', '-r', dianaRepo + 'diana-swing/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/versioned_docs/version-${System.getenv("UPSTREAM")}/diana-swing/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [11/22] Building diana-api javadoc \n'
-                        commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-api', '-sourcepath', 'diana-api/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-api ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [12/22] Building diana-core javadoc \n'
-                        commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-core', '-sourcepath', 'diana-core/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-core ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [13/22] Building diana-drawing-editor javadoc \n'
-                        commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-drawing-editor', '-sourcepath', 'diana-drawing-editor/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-drawing-editor ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [14/22] Building diana-geom javadoc \n'
-                        commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-geom', '-sourcepath', 'diana-geom/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-geom ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [15/22] Building diana-geomedit javadoc \n'
-                        commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-geomedit', '-sourcepath', 'diana-geomedit/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-geomedit ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [16/22] Building diana-ppt-editor javadoc \n'
-                        commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-ppt-editor', '-sourcepath', 'diana-ppt-editor/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-ppt-editor ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [17/22] Building diana-swing javadoc \n'
-                        commandLine 'javadoc', '-d', dianaRepo + 'javadoc/${System.getenv("UPSTREAM")}/diana-swing', '-sourcepath', 'diana-swing/src/main/java', '-subpackages', 'org', '-doctitle', 'diana-swing ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [18/22] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/diana/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [19/22] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/diana/'
-                        commandLine 'mv', 'build', 'diana'
-                    }
-
-                    exec {
-                        println '\n [20/22] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/diana', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [21/22] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', dianaRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/diana/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [22/22] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/diana'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
 
 
-        case 'connie': 
-            String pamelaRepo = "/home/jenkins/jenkins-agent/workspace/connie-${System.getenv("UPSTREAM")}/"
-            println connieRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'connie': 
+                String pamelaRepo = "/home/jenkins/jenkins-agent/workspace/connie-${System.getenv("UPSTREAM")}/"
+                println connieRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/13] Pulling changes from Github \n'
-                        workingDir connieRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/13] Pulling changes from Github \n'
+                            workingDir connieRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/13] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', connieRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/13] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', connieRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/static/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', connieRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/connie/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', connieRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/connie/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [4/13] Copying connie-core documentation markdown files \n'
+                            commandLine 'cp', '-r', connieRepo + 'connie-core/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/versioned_docs/version-${System.getenv("UPSTREAM")}/connie-core/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [5/13] Copying connie-utils documentation markdown files \n'
+                            commandLine 'cp', '-r', connieRepo + 'connie-utils/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/versioned_docs/version-${System.getenv("UPSTREAM")}/connie-utils/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [6/13] Building connie-core javadoc \n'
+                            commandLine 'javadoc', '-d', connieRepo + 'javadoc/${System.getenv("UPSTREAM")}/connie-core', '-sourcepath', 'connie-core/src/main/java', '-subpackages', 'org', '-doctitle', 'connie-core ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [7/13] Building connie-utils javadoc \n'
+                            commandLine 'javadoc', '-d', connieRepo + 'javadoc/${System.getenv("UPSTREAM")}/connie-utils', '-sourcepath', 'connie-utils/src/main/java', '-subpackages', 'org', '-doctitle', 'connie-utils ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [8/13] Building connie-parser javadoc \n'
+                            commandLine 'javadoc', '-d', connieRepo + 'javadoc/${System.getenv("UPSTREAM")}/connie-parser', '-sourcepath', 'connie-parser/src/main/java', '-subpackages', 'org', '-doctitle', 'connie-parser ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [9/13] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/connie/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [10/13] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/connie/'
+                            commandLine 'mv', 'build', 'connie'
+                        }
+
+                        exec {
+                            println '\n [11/13] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/connie', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [12/13] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', connieRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/connie/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [13/13] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/connie'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-
-                    exec {
-                        println '\n [2/13] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', connieRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/13] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', connieRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', connieRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/connie/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', connieRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/connie/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/13] Copying connie-core documentation markdown files \n'
-                        commandLine 'cp', '-r', connieRepo + 'connie-core/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/versioned_docs/version-${System.getenv("UPSTREAM")}/connie-core/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/13] Copying connie-utils documentation markdown files \n'
-                        commandLine 'cp', '-r', connieRepo + 'connie-utils/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/versioned_docs/version-${System.getenv("UPSTREAM")}/connie-utils/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [6/13] Building connie-core javadoc \n'
-                        commandLine 'javadoc', '-d', connieRepo + 'javadoc/${System.getenv("UPSTREAM")}/connie-core', '-sourcepath', 'connie-core/src/main/java', '-subpackages', 'org', '-doctitle', 'connie-core ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [7/13] Building connie-utils javadoc \n'
-                        commandLine 'javadoc', '-d', connieRepo + 'javadoc/${System.getenv("UPSTREAM")}/connie-utils', '-sourcepath', 'connie-utils/src/main/java', '-subpackages', 'org', '-doctitle', 'connie-utils ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [8/13] Building connie-parser javadoc \n'
-                        commandLine 'javadoc', '-d', connieRepo + 'javadoc/${System.getenv("UPSTREAM")}/connie-parser', '-sourcepath', 'connie-parser/src/main/java', '-subpackages', 'org', '-doctitle', 'connie-parser ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [9/13] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/connie/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [10/13] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/connie/'
-                        commandLine 'mv', 'build', 'connie'
-                    }
-
-                    exec {
-                        println '\n [11/13] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/connie', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [12/13] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', connieRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/connie/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [13/13] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/connie'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'openflexo-diagram': 
-            String diagramRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-diagram-${System.getenv("UPSTREAM")}/"
-            println diagramRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'openflexo-diagram': 
+                String diagramRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-diagram-${System.getenv("UPSTREAM")}/"
+                println diagramRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/12] Pulling changes from Github \n'
-                        workingDir diagramRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/12] Pulling changes from Github \n'
+                            workingDir diagramRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/12] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', diagramRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/12] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', diagramRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/static/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', diagramRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-diagram/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', diagramRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-diagram/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [4/12] Copying diagram-ta documentation markdown files \n'
+                            commandLine 'cp', '-r', diagramRepo + 'diagram-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/versioned_docs/version-${System.getenv("UPSTREAM")}/diagram-ta/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [5/12] Copying diagram-ta-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', diagramRepo + 'diagram-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/versioned_docs/version-${System.getenv("UPSTREAM")}/diagram-ta-ui/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [6/12] Building diagram-ta javadoc \n'
+                            commandLine 'javadoc', '-d', diagramRepo + 'javadoc/${System.getenv("UPSTREAM")}/diagram-ta', '-sourcepath', 'diagram-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'diagram-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [7/12] Building diagram-ta-ui javadoc \n'
+                            commandLine 'javadoc', '-d', diagramRepo + 'javadoc/${System.getenv("UPSTREAM")}/diagram-ta-ui', '-sourcepath', 'diagram-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'diagram-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [8/12] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [9/12] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/'
+                            commandLine 'mv', 'build', 'openflexo-diagram'
+                        }
+
+                        exec {
+                            println '\n [10/12] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [11/12] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', diagramRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-diagram/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [12/12] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-
-                    exec {
-                        println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', diagramRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/12] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', diagramRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', diagramRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-diagram/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', diagramRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-diagram/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/12] Copying diagram-ta documentation markdown files \n'
-                        commandLine 'cp', '-r', diagramRepo + 'diagram-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/versioned_docs/version-${System.getenv("UPSTREAM")}/diagram-ta/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/12] Copying diagram-ta-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', diagramRepo + 'diagram-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/versioned_docs/version-${System.getenv("UPSTREAM")}/diagram-ta-ui/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [6/12] Building diagram-ta javadoc \n'
-                        commandLine 'javadoc', '-d', diagramRepo + 'javadoc/${System.getenv("UPSTREAM")}/diagram-ta', '-sourcepath', 'diagram-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'diagram-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [7/12] Building diagram-ta-ui javadoc \n'
-                        commandLine 'javadoc', '-d', diagramRepo + 'javadoc/${System.getenv("UPSTREAM")}/diagram-ta-ui', '-sourcepath', 'diagram-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'diagram-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [8/12] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [9/12] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/'
-                        commandLine 'mv', 'build', 'openflexo-diagram'
-                    }
-
-                    exec {
-                        println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', diagramRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-diagram/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [12/12] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'openflexo-emf': 
-            String emfRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-emf-${System.getenv("UPSTREAM")}/"
-            println emfRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'openflexo-emf': 
+                String emfRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-emf-${System.getenv("UPSTREAM")}/"
+                println emfRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/12] Pulling changes from Github \n'
-                        workingDir emfRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/12] Pulling changes from Github \n'
+                            workingDir emfRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/12] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', emfRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/12] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', emfRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/static/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', emfRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-emf/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', emfRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-emf/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [4/12] Copying emf-ta documentation markdown files \n'
+                            commandLine 'cp', '-r', emfRepo + 'emf-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/versioned_docs/version-${System.getenv("UPSTREAM")}/emf-ta/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [5/12] Copying emf-ta-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', emfRepo + 'emf-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/versioned_docs/version-${System.getenv("UPSTREAM")}/emf-ta-ui/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [6/12] Building emf-ta javadoc \n'
+                            commandLine 'javadoc', '-d', emfRepo + 'javadoc/${System.getenv("UPSTREAM")}/emf-ta', '-sourcepath', 'emf-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'emf-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [7/12] Building emf-ta-ui javadoc \n'
+                            commandLine 'javadoc', '-d', emfRepo + 'javadoc/${System.getenv("UPSTREAM")}/emf-ta-ui', '-sourcepath', 'emf-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'emf-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [8/12] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [9/12] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/'
+                            commandLine 'mv', 'build', 'openflexo-emf'
+                        }
+
+                        exec {
+                            println '\n [10/12] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [11/12] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', emfRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-emf/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [12/12] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-
-                    exec {
-                        println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', emfRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/12] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', emfRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', emfRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-emf/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', emfRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-emf/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/12] Copying emf-ta documentation markdown files \n'
-                        commandLine 'cp', '-r', emfRepo + 'emf-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/versioned_docs/version-${System.getenv("UPSTREAM")}/emf-ta/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/12] Copying emf-ta-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', emfRepo + 'emf-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/versioned_docs/version-${System.getenv("UPSTREAM")}/emf-ta-ui/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [6/12] Building emf-ta javadoc \n'
-                        commandLine 'javadoc', '-d', emfRepo + 'javadoc/${System.getenv("UPSTREAM")}/emf-ta', '-sourcepath', 'emf-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'emf-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [7/12] Building emf-ta-ui javadoc \n'
-                        commandLine 'javadoc', '-d', emfRepo + 'javadoc/${System.getenv("UPSTREAM")}/emf-ta-ui', '-sourcepath', 'emf-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'emf-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [8/12] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [9/12] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/'
-                        commandLine 'mv', 'build', 'openflexo-emf'
-                    }
-
-                    exec {
-                        println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', emfRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-emf/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [12/12] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'openflexo-http': 
-            String httpRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-http-${System.getenv("UPSTREAM")}/"
-            println httpRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'openflexo-http': 
+                String httpRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-http-${System.getenv("UPSTREAM")}/"
+                println httpRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/12] Pulling changes from Github \n'
-                        workingDir httpRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/12] Pulling changes from Github \n'
+                            workingDir httpRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/12] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', httpRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/12] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', httpRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/static/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', httpRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-http/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', httpRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-http/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [4/12] Copying http-ta documentation markdown files \n'
+                            commandLine 'cp', '-r', httpRepo + 'http-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/versioned_docs/version-${System.getenv("UPSTREAM")}/http-ta/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [5/12] Copying http-ta-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', httpRepo + 'http-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/versioned_docs/version-${System.getenv("UPSTREAM")}/http-ta-ui/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [6/12] Building http-ta javadoc \n'
+                            commandLine 'javadoc', '-d', httpRepo + 'javadoc/${System.getenv("UPSTREAM")}/http-ta', '-sourcepath', 'http-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'http-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [7/12] Building http-ta-ui javadoc \n'
+                            commandLine 'javadoc', '-d', httpRepo + 'javadoc/${System.getenv("UPSTREAM")}/http-ta-ui', '-sourcepath', 'http-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'http-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [8/12] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [9/12] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/'
+                            commandLine 'mv', 'build', 'openflexo-http'
+                        }
+
+                        exec {
+                            println '\n [10/12] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [11/12] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', httpRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-http/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [12/12] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-
-                    exec {
-                        println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', httpRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/12] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', httpRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', httpRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-http/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', httpRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-http/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/12] Copying http-ta documentation markdown files \n'
-                        commandLine 'cp', '-r', httpRepo + 'http-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/versioned_docs/version-${System.getenv("UPSTREAM")}/http-ta/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/12] Copying http-ta-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', httpRepo + 'http-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/versioned_docs/version-${System.getenv("UPSTREAM")}/http-ta-ui/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [6/12] Building http-ta javadoc \n'
-                        commandLine 'javadoc', '-d', httpRepo + 'javadoc/${System.getenv("UPSTREAM")}/http-ta', '-sourcepath', 'http-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'http-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [7/12] Building http-ta-ui javadoc \n'
-                        commandLine 'javadoc', '-d', httpRepo + 'javadoc/${System.getenv("UPSTREAM")}/http-ta-ui', '-sourcepath', 'http-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'http-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [8/12] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [9/12] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/'
-                        commandLine 'mv', 'build', 'openflexo-http'
-                    }
-
-                    exec {
-                        println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', httpRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-http/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [12/12] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'openflexo-jdbc': 
-            String jdbcRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-jdbc-${System.getenv("UPSTREAM")}/"
-            println jdbcRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'openflexo-jdbc': 
+                String jdbcRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-jdbc-${System.getenv("UPSTREAM")}/"
+                println jdbcRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/12] Pulling changes from Github \n'
-                        workingDir jdbcRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/12] Pulling changes from Github \n'
+                            workingDir jdbcRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/12] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', jdbcRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/12] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', jdbcRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/static/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', jdbcRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-jdbc/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', jdbcRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-jdbc/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [4/12] Copying jdbc-ta documentation markdown files \n'
+                            commandLine 'cp', '-r', jdbcRepo + 'jdbc-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/versioned_docs/version-${System.getenv("UPSTREAM")}/jdbc-ta/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [5/12] Copying jdbc-ta-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', jdbcRepo + 'jdbc-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/versioned_docs/version-${System.getenv("UPSTREAM")}/jdbc-ta-ui/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [6/12] Building jdbc-ta javadoc \n'
+                            commandLine 'javadoc', '-d', jdbcRepo + 'javadoc/${System.getenv("UPSTREAM")}/jdbc-ta', '-sourcepath', 'jdbc-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'jdbc-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [7/12] Building jdbc-ta-ui javadoc \n'
+                            commandLine 'javadoc', '-d', jdbcRepo + 'javadoc/${System.getenv("UPSTREAM")}/jdbc-ta-ui', '-sourcepath', 'jdbc-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'jdbc-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [8/12] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [9/12] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/'
+                            commandLine 'mv', 'build', 'openflexo-jdbc'
+                        }
+
+                        exec {
+                            println '\n [10/12] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [11/12] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', jdbcRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-jdbc/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [12/12] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-
-                    exec {
-                        println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', jdbcRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/12] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', jdbcRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', jdbcRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-jdbc/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', jdbcRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-jdbc/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/12] Copying jdbc-ta documentation markdown files \n'
-                        commandLine 'cp', '-r', jdbcRepo + 'jdbc-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/versioned_docs/version-${System.getenv("UPSTREAM")}/jdbc-ta/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/12] Copying jdbc-ta-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', jdbcRepo + 'jdbc-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/versioned_docs/version-${System.getenv("UPSTREAM")}/jdbc-ta-ui/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [6/12] Building jdbc-ta javadoc \n'
-                        commandLine 'javadoc', '-d', jdbcRepo + 'javadoc/${System.getenv("UPSTREAM")}/jdbc-ta', '-sourcepath', 'jdbc-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'jdbc-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [7/12] Building jdbc-ta-ui javadoc \n'
-                        commandLine 'javadoc', '-d', jdbcRepo + 'javadoc/${System.getenv("UPSTREAM")}/jdbc-ta-ui', '-sourcepath', 'jdbc-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'jdbc-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [8/12] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [9/12] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/'
-                        commandLine 'mv', 'build', 'openflexo-jdbc'
-                    }
-
-                    exec {
-                        println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', jdbcRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-jdbc/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [12/12] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'openflexo-kafka': 
-            String kafkaRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-kafka-${System.getenv("UPSTREAM")}/"
-            println kafkaRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'openflexo-kafka': 
+                String kafkaRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-kafka-${System.getenv("UPSTREAM")}/"
+                println kafkaRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/12] Pulling changes from Github \n'
-                        workingDir kafkaRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/12] Pulling changes from Github \n'
+                            workingDir kafkaRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/12] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', kafkaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/12] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', kafkaRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/static/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', kafkaRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-kafka/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', kafkaRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-kafka/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [4/12] Copying kafka-ta documentation markdown files \n'
+                            commandLine 'cp', '-r', kafkaRepo + 'kafka-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/versioned_docs/version-${System.getenv("UPSTREAM")}/kafka-ta/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [5/12] Copying kafka-ta-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', kafkaRepo + 'kafka-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/versioned_docs/version-${System.getenv("UPSTREAM")}/kafka-ta-ui/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [6/12] Building kafka-ta javadoc \n'
+                            commandLine 'javadoc', '-d', kafkaRepo + 'javadoc/${System.getenv("UPSTREAM")}/kafka-ta', '-sourcepath', 'kafka-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'kafka-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [7/12] Building kafka-ta-ui javadoc \n'
+                            commandLine 'javadoc', '-d', kafkaRepo + 'javadoc/${System.getenv("UPSTREAM")}/kafka-ta-ui', '-sourcepath', 'kafka-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'kafka-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [8/12] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [9/12] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/'
+                            commandLine 'mv', 'build', 'openflexo-kafka'
+                        }
+
+                        exec {
+                            println '\n [10/12] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [11/12] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', kafkaRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-kafka/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [12/12] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-
-                    exec {
-                        println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', kafkaRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/12] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', kafkaRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', kafkaRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-kafka/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', kafkaRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-kafka/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/12] Copying kafka-ta documentation markdown files \n'
-                        commandLine 'cp', '-r', kafkaRepo + 'kafka-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/versioned_docs/version-${System.getenv("UPSTREAM")}/kafka-ta/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/12] Copying kafka-ta-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', kafkaRepo + 'kafka-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/versioned_docs/version-${System.getenv("UPSTREAM")}/kafka-ta-ui/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [6/12] Building kafka-ta javadoc \n'
-                        commandLine 'javadoc', '-d', kafkaRepo + 'javadoc/${System.getenv("UPSTREAM")}/kafka-ta', '-sourcepath', 'kafka-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'kafka-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [7/12] Building kafka-ta-ui javadoc \n'
-                        commandLine 'javadoc', '-d', kafkaRepo + 'javadoc/${System.getenv("UPSTREAM")}/kafka-ta-ui', '-sourcepath', 'kafka-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'kafka-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [8/12] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [9/12] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/'
-                        commandLine 'mv', 'build', 'openflexo-kafka'
-                    }
-
-                    exec {
-                        println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', kafkaRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-kafka/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [12/12] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'openflexo-owl': 
-            String owlRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-owl-${System.getenv("UPSTREAM")}/"
-            println owlRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'openflexo-owl': 
+                String owlRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-owl-${System.getenv("UPSTREAM")}/"
+                println owlRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/12] Pulling changes from Github \n'
-                        workingDir owlRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/12] Pulling changes from Github \n'
+                            workingDir owlRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/12] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', owlRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/12] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', owlRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/static/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', owlRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-owl/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', owlRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-owl/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [4/12] Copying owl-ta documentation markdown files \n'
+                            commandLine 'cp', '-r', owlRepo + 'owl-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/versioned_docs/version-${System.getenv("UPSTREAM")}/owl-ta/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [5/12] Copying owl-ta-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', owlRepo + 'owl-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/versioned_docs/version-${System.getenv("UPSTREAM")}/owl-ta-ui/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [6/12] Building owl-ta javadoc \n'
+                            commandLine 'javadoc', '-d', owlRepo + 'javadoc/${System.getenv("UPSTREAM")}/owl-ta', '-sourcepath', 'owl-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'owl-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [7/12] Building owl-ta-ui javadoc \n'
+                            commandLine 'javadoc', '-d', owlRepo + 'javadoc/${System.getenv("UPSTREAM")}/owl-ta-ui', '-sourcepath', 'owl-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'owl-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [8/12] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [9/12] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/'
+                            commandLine 'mv', 'build', 'openflexo-owl'
+                        }
+
+                        exec {
+                            println '\n [10/12] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [11/12] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', owlRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-owl/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [12/12] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-
-                    exec {
-                        println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', owlRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/12] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', owlRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', owlRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-owl/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', owlRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-owl/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/12] Copying owl-ta documentation markdown files \n'
-                        commandLine 'cp', '-r', owlRepo + 'owl-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/versioned_docs/version-${System.getenv("UPSTREAM")}/owl-ta/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/12] Copying owl-ta-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', owlRepo + 'owl-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/versioned_docs/version-${System.getenv("UPSTREAM")}/owl-ta-ui/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [6/12] Building owl-ta javadoc \n'
-                        commandLine 'javadoc', '-d', owlRepo + 'javadoc/${System.getenv("UPSTREAM")}/owl-ta', '-sourcepath', 'owl-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'owl-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [7/12] Building owl-ta-ui javadoc \n'
-                        commandLine 'javadoc', '-d', owlRepo + 'javadoc/${System.getenv("UPSTREAM")}/owl-ta-ui', '-sourcepath', 'owl-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'owl-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [8/12] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [9/12] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/'
-                        commandLine 'mv', 'build', 'openflexo-owl'
-                    }
-
-                    exec {
-                        println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', owlRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-owl/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [12/12] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'openflexo-pdf': 
-            String pdfRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-pdf-${System.getenv("UPSTREAM")}/"
-            println pdfRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'openflexo-pdf': 
+                String pdfRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-pdf-${System.getenv("UPSTREAM")}/"
+                println pdfRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/12] Pulling changes from Github \n'
-                        workingDir pdfRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/12] Pulling changes from Github \n'
+                            workingDir pdfRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/12] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', pdfRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/12] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', pdfRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/static/'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', pdfRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-pdf/'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', pdfRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-pdf/'
+                        }
+
+                        exec {
+                            println '\n [4/12] Copying pdf-ta documentation markdown files \n'
+                            commandLine 'cp', '-r', pdfRepo + 'pdf-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-${System.getenv("UPSTREAM")}/pdf-ta/'
+                        }
+
+                        exec {
+                            println '\n [5/12] Copying pdf-ta-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', pdfRepo + 'pdf-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-${System.getenv("UPSTREAM")}/pdf-ta-ui/'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [6/12] Building pdf-ta javadoc \n'
+                            commandLine 'javadoc', '-d', pdfRepo + 'javadoc/${System.getenv("UPSTREAM")}/pdf-ta', '-sourcepath', 'pdf-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [7/12] Building pdf-ta-ui javadoc \n'
+                            commandLine 'javadoc', '-d', pdfRepo + 'javadoc/${System.getenv("UPSTREAM")}/pdf-ta-ui', '-sourcepath', 'pdf-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [8/12] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [9/12] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/'
+                            commandLine 'mv', 'build', 'openflexo-pdf'
+                        }
+
+                        exec {
+                            println '\n [10/12] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [11/12] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', pdfRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-pdf/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [12/12] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-
-                    exec {
-                        println '\n [2/12] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', pdfRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/12] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', pdfRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', pdfRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-pdf/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', pdfRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-pdf/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/12] Copying pdf-ta documentation markdown files \n'
-                        commandLine 'cp', '-r', pdfRepo + 'pdf-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-${System.getenv("UPSTREAM")}/pdf-ta/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/12] Copying pdf-ta-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', pdfRepo + 'pdf-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-${System.getenv("UPSTREAM")}/pdf-ta-ui/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [6/12] Building pdf-ta javadoc \n'
-                        commandLine 'javadoc', '-d', pdfRepo + 'javadoc/${System.getenv("UPSTREAM")}/pdf-ta', '-sourcepath', 'pdf-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [7/12] Building pdf-ta-ui javadoc \n'
-                        commandLine 'javadoc', '-d', pdfRepo + 'javadoc/${System.getenv("UPSTREAM")}/pdf-ta-ui', '-sourcepath', 'pdf-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [8/12] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [9/12] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/'
-                        commandLine 'mv', 'build', 'openflexo-pdf'
-                    }
-
-                    exec {
-                        println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', pdfRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-pdf/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [12/12] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'openflexo-utils': 
-            String utilsRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-utils-${System.getenv("UPSTREAM")}/"
-            println utilsRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'openflexo-utils': 
+                String utilsRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-utils-${System.getenv("UPSTREAM")}/"
+                println utilsRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/14] Pulling changes from Github \n'
-                        workingDir utilsRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/14] Pulling changes from Github \n'
+                            workingDir utilsRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/14] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', utilsRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/14] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', utilsRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/static/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', utilsRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-utils/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', utilsRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-utils/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [4/14] Copying flexo-p2pp documentation markdown files \n'
+                            commandLine 'cp', '-r', utilsRepo + 'flexo-p2pp/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-p2pp/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [5/14] Copying flexo-utils documentation markdown files \n'
+                            commandLine 'cp', '-r', utilsRepo + 'flexo-utils/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-utils/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [6/14] Copying flexohelp documentation markdown files \n'
+                            commandLine 'cp', '-r', utilsRepo + 'flexohelp/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/versioned_docs/version-${System.getenv("UPSTREAM")}/flexohelp/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [7/14] Building flexo-p2pp javadoc \n'
+                            commandLine 'javadoc', '-d', utilsRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-p2pp', '-sourcepath', 'flexo-p2pp/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-p2pp ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [8/14] Building flexo-utils javadoc \n'
+                            commandLine 'javadoc', '-d', utilsRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-utils', '-sourcepath', 'flexo-utils/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-utils ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [9/14] Building flexohelp javadoc \n'
+                            commandLine 'javadoc', '-d', utilsRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexohelp', '-sourcepath', 'flexohelp/src/main/java', '-subpackages', 'org', '-doctitle', 'flexohelp ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [10/14] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [11/14] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/'
+                            commandLine 'mv', 'build', 'openflexo-utils'
+                        }
+
+                        exec {
+                            println '\n [12/14] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [13/14] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', utilsRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-utils/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [14/14] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-
-                    exec {
-                        println '\n [2/14] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', utilsRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/14] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', utilsRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', utilsRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-utils/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', utilsRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-utils/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/14] Copying flexo-p2pp documentation markdown files \n'
-                        commandLine 'cp', '-r', utilsRepo + 'flexo-p2pp/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-p2pp/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/14] Copying flexo-utils documentation markdown files \n'
-                        commandLine 'cp', '-r', utilsRepo + 'flexo-utils/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-utils/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [6/14] Copying flexohelp documentation markdown files \n'
-                        commandLine 'cp', '-r', utilsRepo + 'flexohelp/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/versioned_docs/version-${System.getenv("UPSTREAM")}/flexohelp/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [7/14] Building flexo-p2pp javadoc \n'
-                        commandLine 'javadoc', '-d', utilsRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-p2pp', '-sourcepath', 'flexo-p2pp/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-p2pp ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [8/14] Building flexo-utils javadoc \n'
-                        commandLine 'javadoc', '-d', utilsRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-utils', '-sourcepath', 'flexo-utils/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-utils ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [9/14] Building flexohelp javadoc \n'
-                        commandLine 'javadoc', '-d', utilsRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexohelp', '-sourcepath', 'flexohelp/src/main/java', '-subpackages', 'org', '-doctitle', 'flexohelp ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [10/14] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [11/14] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/'
-                        commandLine 'mv', 'build', 'openflexo-utils'
-                    }
-
-                    exec {
-                        println '\n [12/14] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [13/14] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', utilsRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-utils/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [14/14] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'openflexo-core': 
-            String coreRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-core-${System.getenv("UPSTREAM")}/"
-            println coreRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'openflexo-core': 
+                String coreRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-core-${System.getenv("UPSTREAM")}/"
+                println coreRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/28] Pulling changes from Github \n'
-                        workingDir coreRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
-                    }
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/28] Pulling changes from Github \n'
+                            workingDir coreRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
 
-                    exec {
-                        println '\n [2/28] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
+                        exec {
+                            println '\n [2/28] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', coreRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
 
-                    exec {
-                        println '\n [3/28] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', coreRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/static/', ' 2>/dev/null'
-                    }
+                        exec {
+                            println '\n [3/28] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', coreRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/static/', ' 2>/dev/null'
+                        }
 
-                    exec {
-                        commandLine 'cp', '-r', coreRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-core/', ' 2>/dev/null'
-                    }
+                        exec {
+                            commandLine 'cp', '-r', coreRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-core/', ' 2>/dev/null'
+                        }
 
-                    exec {
-                        commandLine 'cp', '-r', coreRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-core/', ' 2>/dev/null'
-                    }
+                        exec {
+                            commandLine 'cp', '-r', coreRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-core/', ' 2>/dev/null'
+                        }
 
-                    exec {
-                        println '\n [4/28] Copying flexo-documentation-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'flexo-documentation-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-documentation-ui/', ' 2>/dev/null'
-                    }
-                    
-                    exec {
-                        println '\n [5/28] Copying flexo-documentation documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'flexo-documentation/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-documentation/', ' 2>/dev/null'
-                    }
+                        exec {
+                            println '\n [4/28] Copying flexo-documentation-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', coreRepo + 'flexo-documentation-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-documentation-ui/', ' 2>/dev/null'
+                        }
+                        
+                        exec {
+                            println '\n [5/28] Copying flexo-documentation documentation markdown files \n'
+                            commandLine 'cp', '-r', coreRepo + 'flexo-documentation/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-documentation/', ' 2>/dev/null'
+                        }
 
-                    exec {
-                        println '\n [6/28] Copying flexo-foundation-rm documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'flexo-foundation-rm/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-foundation-rm/', ' 2>/dev/null'
-                    }
-                    
-                    exec {
-                        println '\n [7/28] Copying flexo-foundation documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'flexo-foundation/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-foundation/', ' 2>/dev/null'
-                    }
+                        exec {
+                            println '\n [6/28] Copying flexo-foundation-rm documentation markdown files \n'
+                            commandLine 'cp', '-r', coreRepo + 'flexo-foundation-rm/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-foundation-rm/', ' 2>/dev/null'
+                        }
+                        
+                        exec {
+                            println '\n [7/28] Copying flexo-foundation documentation markdown files \n'
+                            commandLine 'cp', '-r', coreRepo + 'flexo-foundation/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-foundation/', ' 2>/dev/null'
+                        }
 
-                    exec {
-                        println '\n [8/28] Copying flexo-ontology-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'flexo-ontology-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-ontology-ui/', ' 2>/dev/null'
-                    }
-                    
-                    exec {
-                        println '\n [9/28] Copying flexo-ontology documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'flexo-ontology/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-ontology/', ' 2>/dev/null'
-                    }
-                    
-                    exec {
-                        println '\n [10/28] Copying flexo-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'flexo-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-ui/', ' 2>/dev/null'
-                    }
-                    
-                    exec {
-                        println '\n [11/28] Copying fml-parser documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'fml-parser/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/fml-parser/', ' 2>/dev/null'
-                    }
-                    
-                    exec {
-                        println '\n [12/28] Copying fml-rt-technologyadapter-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'fml-rt-technologyadapter-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/fml-rt-technologyadapter-ui/', ' 2>/dev/null'
-                    }
-                    
-                    exec {
-                        println '\n [13/28] Copying fml-technologyadapter-ui documentation markdown files \n'
-                        commandLine 'cp', '-r', coreRepo + 'fml-technologyadapter-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/fml-technologyadapter-ui/', ' 2>/dev/null'
-                    }
+                        exec {
+                            println '\n [8/28] Copying flexo-ontology-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', coreRepo + 'flexo-ontology-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-ontology-ui/', ' 2>/dev/null'
+                        }
+                        
+                        exec {
+                            println '\n [9/28] Copying flexo-ontology documentation markdown files \n'
+                            commandLine 'cp', '-r', coreRepo + 'flexo-ontology/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-ontology/', ' 2>/dev/null'
+                        }
+                        
+                        exec {
+                            println '\n [10/28] Copying flexo-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', coreRepo + 'flexo-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/flexo-ui/', ' 2>/dev/null'
+                        }
+                        
+                        exec {
+                            println '\n [11/28] Copying fml-parser documentation markdown files \n'
+                            commandLine 'cp', '-r', coreRepo + 'fml-parser/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/fml-parser/', ' 2>/dev/null'
+                        }
+                        
+                        exec {
+                            println '\n [12/28] Copying fml-rt-technologyadapter-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', coreRepo + 'fml-rt-technologyadapter-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/fml-rt-technologyadapter-ui/', ' 2>/dev/null'
+                        }
+                        
+                        exec {
+                            println '\n [13/28] Copying fml-technologyadapter-ui documentation markdown files \n'
+                            commandLine 'cp', '-r', coreRepo + 'fml-technologyadapter-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/versioned_docs/version-${System.getenv("UPSTREAM")}/fml-technologyadapter-ui/', ' 2>/dev/null'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [14/28] Building flexo-documentation-ui javadoc \n'
-                        commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-documentation-ui', '-sourcepath', 'flexo-documentation-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-documentation-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [14/28] Building flexo-documentation-ui javadoc \n'
+                            commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-documentation-ui', '-sourcepath', 'flexo-documentation-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-documentation-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [15/28] Building flexo-documentation javadoc \n'
-                        commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-documentation', '-sourcepath', 'flexo-documentation/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-documentation ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [15/28] Building flexo-documentation javadoc \n'
+                            commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-documentation', '-sourcepath', 'flexo-documentation/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-documentation ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [16/28] Building flexo-foundation-rm javadoc \n'
-                        commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-foundation-rm', '-sourcepath', 'flexo-foundation-rm/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-foundation-rm ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [16/28] Building flexo-foundation-rm javadoc \n'
+                            commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-foundation-rm', '-sourcepath', 'flexo-foundation-rm/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-foundation-rm ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [17/28] Building flexo-foundation javadoc \n'
-                        commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-foundation', '-sourcepath', 'flexo-foundation/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-foundation ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [17/28] Building flexo-foundation javadoc \n'
+                            commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-foundation', '-sourcepath', 'flexo-foundation/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-foundation ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [18/28] Building flexo-ontology-ui javadoc \n'
-                        commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-ontology-ui', '-sourcepath', 'flexo-ontology-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-ontology-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [18/28] Building flexo-ontology-ui javadoc \n'
+                            commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-ontology-ui', '-sourcepath', 'flexo-ontology-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-ontology-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [19/28] Building flexo-ontology javadoc \n'
-                        commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-ontology', '-sourcepath', 'flexo-ontology/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-ontology ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [19/28] Building flexo-ontology javadoc \n'
+                            commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-ontology', '-sourcepath', 'flexo-ontology/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-ontology ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [20/28] Building flexo-ui javadoc \n'
-                        commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-ui', '-sourcepath', 'flexo-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [20/28] Building flexo-ui javadoc \n'
+                            commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/flexo-ui', '-sourcepath', 'flexo-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [21/28] Building fml-parser javadoc \n'
-                        commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/fml-parser', '-sourcepath', 'fml-parser/src/main/java', '-subpackages', 'org', '-doctitle', 'fml-parser ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [21/28] Building fml-parser javadoc \n'
+                            commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/fml-parser', '-sourcepath', 'fml-parser/src/main/java', '-subpackages', 'org', '-doctitle', 'fml-parser ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [22/28] Building fml-rt-technologyadapter-ui javadoc \n'
-                        commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/fml-rt-technologyadapter-ui', '-sourcepath', 'fml-rt-technologyadapter-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'fml-rt-technologyadapter-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [22/28] Building fml-rt-technologyadapter-ui javadoc \n'
+                            commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/fml-rt-technologyadapter-ui', '-sourcepath', 'fml-rt-technologyadapter-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'fml-rt-technologyadapter-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        ignoreExitValue true
-                        println '\n [23/28] Building fml-technologyadapter-ui javadoc \n'
-                        commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/fml-technologyadapter-ui', '-sourcepath', 'fml-technologyadapter-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'fml-technologyadapter-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
+                        exec {
+                            ignoreExitValue true
+                            println '\n [23/28] Building fml-technologyadapter-ui javadoc \n'
+                            commandLine 'javadoc', '-d', coreRepo + 'javadoc/${System.getenv("UPSTREAM")}/fml-technologyadapter-ui', '-sourcepath', 'fml-technologyadapter-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'fml-technologyadapter-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
 
-                    exec {
-                        println '\n [24/28] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/'
-                        commandLine 'npm', 'run', 'build'
-                    }
+                        exec {
+                            println '\n [24/28] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/'
+                            commandLine 'npm', 'run', 'build'
+                        }
 
-                    exec {
-                        println '\n [25/28] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/'
-                        commandLine 'mv', 'build', 'openflexo-core'
-                    }
+                        exec {
+                            println '\n [25/28] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/'
+                            commandLine 'mv', 'build', 'openflexo-core'
+                        }
 
-                    exec {
-                        println '\n [26/28] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
+                        exec {
+                            println '\n [26/28] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
 
-                    exec {
-                        println '\n [27/28] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', coreRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-core/javadoc/'
-                    }
+                        exec {
+                            println '\n [27/28] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', coreRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-core/javadoc/'
+                        }
 
-                    exec {
-                        println '\n [28/28] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core'
+                        exec {
+                            println '\n [28/28] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
-                } else {
-                    println('UPSTREAM version is required!')
                 }
-            }
 
-        case 'openflexo-technology-adapters': 
-            String taRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-technology-adapters-${System.getenv("UPSTREAM")}/"
-            println taRepo
-            doLast {
-                if (System.getenv('UPSTREAM')?.trim()) {
+            case 'openflexo-technology-adapters': 
+                String taRepo = "/home/jenkins/jenkins-agent/workspace/openflexo-technology-adapters-${System.getenv("UPSTREAM")}/"
+                println taRepo
+                doLast {
+                    if (System.getenv('UPSTREAM')?.trim()) {
 
-                    exec {
-                        println '\n ### Build Started ### \n'
-                        println '\n [1/24] Pulling changes from Github \n'
-                        workingDir taRepo
-                        commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        exec {
+                            println '\n ### Build Started ### \n'
+                            println '\n [1/24] Pulling changes from Github \n'
+                            workingDir taRepo
+                            commandLine 'git', 'pull', 'origin', System.getenv('UPSTREAM')
+                        }
+
+                        exec {
+                            println '\n [2/24] Copying root documentation markdown files \n'
+                            commandLine 'cp', '-r', taRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                        }
+
+                        exec {
+                            println '\n [3/24] Copying root documentation resources \n'
+                            commandLine 'cp', '-r', taRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/static/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', taRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-technology-adapters/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            commandLine 'cp', '-r', taRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-technology-adapters/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [4/24] Copying docxconnector documentation markdown files \n'
+                            commandLine 'cp', '-r', taRepo + 'docxconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/docxconnector/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [5/24] Copying dsl-ta documentation markdown files \n'
+                            commandLine 'cp', '-r', taRepo + 'dsl-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/dsl-ta/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [6/24] Copying excelconnector documentation markdown files \n'
+                            commandLine 'cp', '-r', taRepo + 'excelconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/excelconnector/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [7/24] Copying odtconnector documentation markdown files \n'
+                            commandLine 'cp', '-r', taRepo + 'odtconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/odtconnector/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [8/24] Copying oslcconnector documentation markdown files \n'
+                            commandLine 'cp', '-r', taRepo + 'oslcconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/oslcconnector/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [9/24] Copying powerpointconnector documentation markdown files \n'
+                            commandLine 'cp', '-r', taRepo + 'powerpointconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/powerpointconnector/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [10/24] Copying xmlconnector documentation markdown files \n'
+                            commandLine 'cp', '-r', taRepo + 'xmlconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/xmlconnector/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            println '\n [11/24] Copying xx-ta documentation markdown files \n'
+                            commandLine 'cp', '-r', taRepo + 'xx-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/xx-ta/', ' 2>/dev/null'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [12/24] Building docxconnector javadoc \n'
+                            commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/docxconnector', '-sourcepath', 'docxconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'docxconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [13/24] Building dsl-ta javadoc \n'
+                            commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/dsl-ta', '-sourcepath', 'dsl-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'dsl-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [14/24] Building excelconnector javadoc \n'
+                            commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/excelconnector', '-sourcepath', 'excelconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'excelconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [15/24] Building odtconnector javadoc \n'
+                            commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/odtconnector', '-sourcepath', 'odtconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'odtconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [16/24] Building oslcconnector javadoc \n'
+                            commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/oslcconnector', '-sourcepath', 'oslcconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'oslcconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [17/24] Building powerpointconnector javadoc \n'
+                            commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/powerpointconnector', '-sourcepath', 'powerpointconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'powerpointconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [18/24] Building xmlconnector javadoc \n'
+                            commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/xmlconnector', '-sourcepath', 'xmlconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'xmlconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            ignoreExitValue true
+                            println '\n [19/24] Building xx-ta javadoc \n'
+                            commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/xx-ta', '-sourcepath', 'xx-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'xx-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                        }
+
+                        exec {
+                            println '\n [20/24] Building static files \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/'
+                            commandLine 'npm', 'run', 'build'
+                        }
+
+                        exec {
+                            println '\n [21/24] Renamimg build folder \n'
+                            workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/'
+                            commandLine 'mv', 'build', 'openflexo-technology-adapters'
+                        }
+
+                        exec {
+                            println '\n [22/24] Copying static files via ssh \n'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                        }
+
+                        exec {
+                            println '\n [23/24] Copying javadoc files via ssh \n'
+                            commandLine 'rsync', '-r', taRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-technology-adapters/javadoc/'
+                        }
+
+                        exec {
+                            println '\n [24/24] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters'
+                        }
+                    } else {
+                        println('UPSTREAM version is required!')
                     }
+                }                
+        }
+    } else {
+        exec {
+            println '\n ### Starting the build ### \n'
+            println '\n [1/3] Pulling changes from Github \n'
+            workingDir './'
+            commandLine 'git', 'pull', 'origin', 'master'
+        }
+        exec {
+            println '\n [2/3] Building Static files \n'
+            commandLine 'npm', 'run', 'build'
+        }
 
-                    exec {
-                        println '\n [2/24] Copying root documentation markdown files \n'
-                        commandLine 'cp', '-r', taRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/'
-                    }
-
-                    exec {
-                        println '\n [3/24] Copying root documentation resources \n'
-                        commandLine 'cp', '-r', taRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/static/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', taRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-technology-adapters/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        commandLine 'cp', '-r', taRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-technology-adapters/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [4/24] Copying docxconnector documentation markdown files \n'
-                        commandLine 'cp', '-r', taRepo + 'docxconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/docxconnector/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [5/24] Copying dsl-ta documentation markdown files \n'
-                        commandLine 'cp', '-r', taRepo + 'dsl-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/dsl-ta/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [6/24] Copying excelconnector documentation markdown files \n'
-                        commandLine 'cp', '-r', taRepo + 'excelconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/excelconnector/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [7/24] Copying odtconnector documentation markdown files \n'
-                        commandLine 'cp', '-r', taRepo + 'odtconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/odtconnector/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [8/24] Copying oslcconnector documentation markdown files \n'
-                        commandLine 'cp', '-r', taRepo + 'oslcconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/oslcconnector/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [9/24] Copying powerpointconnector documentation markdown files \n'
-                        commandLine 'cp', '-r', taRepo + 'powerpointconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/powerpointconnector/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [10/24] Copying xmlconnector documentation markdown files \n'
-                        commandLine 'cp', '-r', taRepo + 'xmlconnector/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/xmlconnector/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        println '\n [11/24] Copying xx-ta documentation markdown files \n'
-                        commandLine 'cp', '-r', taRepo + 'xx-ta/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/versioned_docs/version-${System.getenv("UPSTREAM")}/xx-ta/', ' 2>/dev/null'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [12/24] Building docxconnector javadoc \n'
-                        commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/docxconnector', '-sourcepath', 'docxconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'docxconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [13/24] Building dsl-ta javadoc \n'
-                        commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/dsl-ta', '-sourcepath', 'dsl-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'dsl-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [14/24] Building excelconnector javadoc \n'
-                        commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/excelconnector', '-sourcepath', 'excelconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'excelconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [15/24] Building odtconnector javadoc \n'
-                        commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/odtconnector', '-sourcepath', 'odtconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'odtconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [16/24] Building oslcconnector javadoc \n'
-                        commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/oslcconnector', '-sourcepath', 'oslcconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'oslcconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [17/24] Building powerpointconnector javadoc \n'
-                        commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/powerpointconnector', '-sourcepath', 'powerpointconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'powerpointconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [18/24] Building xmlconnector javadoc \n'
-                        commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/xmlconnector', '-sourcepath', 'xmlconnector/src/main/java', '-subpackages', 'org', '-doctitle', 'xmlconnector ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [19/24] Building xx-ta javadoc \n'
-                        commandLine 'javadoc', '-d', taRepo + 'javadoc/${System.getenv("UPSTREAM")}/xx-ta', '-sourcepath', 'xx-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'xx-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        println '\n [20/24] Building static files \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/'
-                        commandLine 'npm', 'run', 'build'
-                    }
-
-                    exec {
-                        println '\n [21/24] Renamimg build folder \n'
-                        workingDir '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/'
-                        commandLine 'mv', 'build', 'openflexo-technology-adapters'
-                    }
-
-                    exec {
-                        println '\n [22/24] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
-                    }
-
-                    exec {
-                        println '\n [23/24] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', taRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-technology-adapters/javadoc/'
-                    }
-
-                    exec {
-                        println '\n [24/24] Cleaning up ... \n'
-                        commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters'
-                    }
-                } else {
-                    println('UPSTREAM version is required!')
-                }
-            }
-
-        default:
-            exec {
-                println '\n ### Starting the build ### \n'
-                println '\n [1/3] Pulling changes from Github \n'
-                workingDir './'
-                commandLine 'git', 'pull', 'origin', 'master'
-            }
-            exec {
-                println '\n [2/3] Building Static files \n'
-                commandLine 'npm', 'run', 'build'
-            }
-
-            exec {
-                println '\n [3/3] Copying static files via ssh \n'
-                commandLine 'rsync', '-r', 'build/.', 'jenkins@openflexo.org:/home/www/www/'
-            }
+        exec {
+            println '\n [3/3] Copying static files via ssh \n'
+            commandLine 'rsync', '-r', 'build/.', 'jenkins@openflexo.org:/home/www/www/'
+        }
     }
 } 
