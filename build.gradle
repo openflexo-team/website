@@ -1459,4 +1459,3 @@ task buildWebsite{
     }
 } 
 
-javadoc -d /home/jenkins/jenkins-agent/workspace/openflexo-pdf-2.0.1/javadoc/openflexo-pdf/pdf-ta -sourcepath pdf-ta/src/main/java -subpackages org -doctitle 'pdf-ta 2.0.1 API' --ignore-source-errors
