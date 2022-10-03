@@ -960,13 +960,13 @@ task buildWebsite{
                             commandLine 'cp', '-r', pdfRepo + 'src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/static/'
                         }
 
-                        exec {
-                            commandLine 'cp', '-r', pdfRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-pdf/'
-                        }
+                        // exec {
+                        //     commandLine 'cp', '-r', pdfRepo + 'src/site/resources/images/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/images/components/openflexo-pdf/'
+                        // }
 
-                        exec {
-                            commandLine 'cp', '-r', pdfRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-pdf/'
-                        }
+                        // exec {
+                        //     commandLine 'cp', '-r', pdfRepo + 'src/site/resources/examples/.', '/home/jenkins/jenkins-agent/docusaurus-sites/static/examples/components/openflexo-pdf/'
+                        // }
 
                         exec {
                             println '\n [4/12] Copying pdf-ta documentation markdown files \n'
