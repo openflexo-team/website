@@ -981,13 +981,15 @@ task buildWebsite{
                         exec {
                             ignoreExitValue true
                             println '\n [6/12] Building pdf-ta javadoc \n'
-                            commandLine 'javadoc', '-d', pdfRepo + 'javadoc/${System.getenv("UPSTREAM")}/pdf-ta', '-sourcepath', 'pdf-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                            workingDir pdfRepo
+                            commandLine 'javadoc', '-d', 'javadoc/${System.getenv("UPSTREAM")}/pdf-ta', '-sourcepath', 'pdf-ta/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
                         }
 
                         exec {
                             ignoreExitValue true
                             println '\n [7/12] Building pdf-ta-ui javadoc \n'
-                            commandLine 'javadoc', '-d', pdfRepo + 'javadoc/${System.getenv("UPSTREAM")}/pdf-ta-ui', '-sourcepath', 'pdf-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
+                            workingDir pdfRepo
+                            commandLine 'javadoc', '-d', 'javadoc/${System.getenv("UPSTREAM")}/pdf-ta-ui', '-sourcepath', 'pdf-ta-ui/src/main/java', '-subpackages', 'org', '-doctitle', 'pdf-ta-ui ${System.getenv("UPSTREAM")} API', '--ignore-source-errors'
                         }
 
                         exec {
@@ -1004,7 +1006,7 @@ task buildWebsite{
 
                         exec {
                             println '\n [10/12] Copying static files via ssh \n'
-                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf', 'jenkins@openflexo.org:/home/www/sites/docusaurus/'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf', 'jenkins@openflexo.org:/home/www/www/'
                         }
 
                         exec {
@@ -1012,10 +1014,10 @@ task buildWebsite{
                             commandLine 'rsync', '-r', pdfRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-pdf/javadoc/'
                         }
 
-                        exec {
-                            println '\n [12/12] Cleaning up ... \n'
-                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf'
-                        }
+                        // exec {
+                        //     println '\n [12/12] Cleaning up ... \n'
+                        //     commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/javadoc'
+                        // }
                     } else {
                         println('UPSTREAM version is required!')
                     }
@@ -1456,3 +1458,5 @@ task buildWebsite{
         }
     }
 } 
+
+javadoc -d /home/jenkins/jenkins-agent/workspace/openflexo-pdf-2.0.1/javadoc/openflexo-pdf/pdf-ta -sourcepath pdf-ta/src/main/java -subpackages org -doctitle 'pdf-ta 2.0.1 API' --ignore-source-errors
