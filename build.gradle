@@ -952,7 +952,7 @@ task buildWebsite{
 
                         exec {
                             println '\n [2/12] Copying root documentation markdown files \n'
-                            commandLine 'cp', '-r', pdfRepo + 'src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-${System.getenv("UPSTREAM")}/'
+                            commandLine 'cp', '-r', pdfRepo + 'src/site/markdown/.', "/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/versioned_docs/version-" +  {System.getenv("UPSTREAM")} + "/"
                         }
 
                         exec {
