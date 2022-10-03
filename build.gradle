@@ -1006,7 +1006,7 @@ task buildWebsite{
 
                         exec {
                             println '\n [10/12] Copying static files via ssh \n'
-                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf', 'jenkins@openflexo.org:/home/www/www/'
+                            commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/openflexo-pdf', 'jenkins@openflexo.org:/home/www/www/'
                         }
 
                         exec {
@@ -1014,10 +1014,10 @@ task buildWebsite{
                             commandLine 'rsync', '-r', pdfRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/sites/docusaurus/openflexo-pdf/javadoc/'
                         }
 
-                        // exec {
-                        //     println '\n [12/12] Cleaning up ... \n'
-                        //     commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/javadoc'
-                        // }
+                        exec {
+                            println '\n [12/12] Cleaning up ... \n'
+                            commandLine 'rm', '-rf', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/openflexo-pdf'
+                        }
                     } else {
                         println('UPSTREAM version is required!')
                     }
