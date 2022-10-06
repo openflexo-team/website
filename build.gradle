@@ -727,7 +727,7 @@ task buildWebsite{
 
                     exec {
                         println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', emfRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/openflexo-emf/javadoc/' + UPSTEAM
+                        commandLine 'rsync', '-r', emfRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/openflexo-emf/javadoc/' + UPSTREAM
                     }
 
                     exec {
