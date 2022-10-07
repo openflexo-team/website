@@ -108,6 +108,7 @@ const config = {
                 label: 'Sonar',
                 to: 'https://sonar.openflexo.org/',
               },
+              
             ],
           },
           {
@@ -115,19 +116,19 @@ const config = {
             items: [
               {
                 label: 'Pamela framework',
-                to: 'http://pamela.openflexo.org/SNAPSHOT',
+                to: 'http://openflexo.org/pamela',
               },
               {
                 label: 'Gina framework',
-                to: 'http://gina.openflexo.org/SNAPSHOT',
+                to: 'http://openflexo.org/gina',
               },
               {
                 label: 'Diana framework',
-                to: 'http://diana.openflexo.org/SNAPSHOT',
+                to: 'http://openflexo.org/diana',
               },
               {
                 label: 'Connie framework',
-                to: 'http://connie.openflexo.org/SNAPSHOT',
+                to: 'http://openflexo.org/connie',
               },
             ],
           },
@@ -136,11 +137,11 @@ const config = {
             items: [
               {
                 label: 'Openflexo FML-Core framework',
-                to: 'http://openflexo-core.openflexo.org/SNAPSHOT',
+                to: 'http://openflexo.org/openflexo-core',
               },
               {
                 label: 'Openflexo utils',
-                to: 'https://openflexo-utils.openflexo.org/SNAPSHOT/',
+                to: 'https://openflexo.org/openflexo-utils/',
               },
               {
                 label: 'Openflexo Production Environment',
@@ -152,6 +153,20 @@ const config = {
               },
             ],
           },
+          {
+            items: [
+              {
+                html: `
+                  <div class="tagline">
+                  <p>Something is broken? let us know</p>
+                    <a class="githubButton" href="https://github.com/openflexo-team/website/issues" target="_blank">
+                      <img alt="GitHub logo" height="22" src="/img/github.svg" title="GitHub" width="22">  Start a Github issue
+                    </a>
+                  </div>
+                  `,
+              },
+            ]
+          }
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Openflexo.`,
       },
