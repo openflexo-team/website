@@ -104,11 +104,6 @@ const config = {
                 label: 'Openflexo artifactory',
                 to: 'https://maven.openflexo.org/artifactory',
               },
-              {
-                label: 'Sonar',
-                to: 'https://sonar.openflexo.org/',
-              },
-              
             ],
           },
           {
@@ -133,38 +128,44 @@ const config = {
             ],
           },
           {
-            title: 'Openflexo Core Components',
+            title: 'Research',
             items: [
               {
-                label: 'Openflexo FML-Core framework',
-                to: 'http://openflexo.org/openflexo-core',
+                label: 'Formose Project',
+                to: 'http://formose.lacl.fr/',
               },
               {
-                label: 'Openflexo utils',
-                to: 'https://openflexo.org/openflexo-utils/',
+                label: 'Download Formose prototype',
+                to: 'http://downloads.openflexo.org/Formose',
               },
               {
-                label: 'Openflexo Production Environment',
-                to: 'https://openflexo-production.openflexo.org/SNAPSHOT/',
+                label: 'Cyber Threat Application',
+                to: '/Docs/Research/cta',
               },
               {
-                label: 'Openflexo Packaging Environment',
-                to: 'https://openflexo-packaging.openflexo.org/SNAPSHOT/',
+                label: 'Download CTA Application',
+                to: 'http://downloads.openflexo.org/CTA',
               },
             ],
           },
           {
+            title: 'Community',
             items: [
+              {
+                label: 'Contact us',
+                to: 'mailto:contact@openflexo.org',
+              },
               {
                 html: `
                   <div class="tagline">
                   <p>Something is broken? let us know</p>
                     <a class="githubButton" href="https://github.com/openflexo-team/website/issues" target="_blank">
-                      <img alt="GitHub logo" height="22" src="/img/github.svg" title="GitHub" width="22">  Start a Github issue
+                      <img alt="GitHub logo" height="22" src="/img/github.svg" title="GitHub" width="22">  Create an issue
                     </a>
                   </div>
                   `,
               },
+              
             ]
           }
         ],

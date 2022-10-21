@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 # Using Maven Archetype to create a new TechnologyAdapter in Openflexo

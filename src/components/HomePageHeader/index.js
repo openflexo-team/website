@@ -9,11 +9,11 @@ export default function HomepageHeader(props) {
         <div className="container">
           <h1 className="hero__title">{props.title}</h1>
           <hr className={styles.heroBannerHr} />
-          <p className="hero__subtitle">
+          <p className={styles.heroContent}>
             {props.content}
           </p>
           <br/>
-          <p className="hero__subtitle">
+          <p className={styles.heroContent}>
             {props.subcontent}
           </p>
         </div>
