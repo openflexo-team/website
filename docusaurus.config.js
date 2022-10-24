@@ -71,6 +71,11 @@ const config = {
             label: 'Documentation',
           },
           {
+            to: '/components', 
+            label: 'Components', 
+            position: 'left'
+          },
+          {
             to: '/contributors', 
             label: 'Contributors', 
             position: 'left'

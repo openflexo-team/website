@@ -43,3 +43,19 @@
 .technologyLogo{
   border-radius: 0;
 }
+
+.githubButton img{
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 2px;
+  margin-top: 8px;
+}
+
+.componentItems{
+  display: flex;
+  justify-content: space-between;
+}
+
+.componentItems a{
+  display: flex;
+}

@@ -1,0 +1,95 @@
+{
+    "generic": 
+    [
+        {
+            "name": "Pamela",
+            "logo": "/img/components/pamela/pamela_logo.png",
+            "source": "https://github.com/openflexo-team/pamela",
+            "url": "https://openflexo.org/pamela/"
+        },
+        {
+            "name": "Gina",
+            "logo": "/img/components/gina/gina_logo.png",
+            "source": "https://github.com/openflexo-team/gina",
+            "url": "https://openflexo.org/gina/"
+        },
+        {
+            "name": "Diana",
+            "logo": "/img/components/diana/diana_logo.png",
+            "source": "https://github.com/openflexo-team/diana",
+            "url": "https://openflexo.org/diana/"
+        },
+        {
+            "name": "Connie",
+            "logo": "/img/components/connie/connie_logo.png",
+            "source": "https://github.com/openflexo-team/connie",
+            "url": "https://openflexo.org/connie/"
+        }
+    ],
+    "core":
+    [
+        {
+            "name": "FML-Core Framework",
+            "logo": "/img/components/fml-core/FMLCore32x32.png",
+            "source": "https://github.com/openflexo-team/openflexo-core/",
+            "url": "https://openflexo.org/openflexo-core/"
+        },
+        {
+            "name": "Utils",
+            "logo": "/img/components/utils/Utils128x128.png",
+            "source": "https://github.com/openflexo-team/openflexo-utils/",
+            "url": "https://openflexo.org/openflexo-utils/"
+        },
+        {
+            "name": "Production Environment",
+            "logo": "/img/components/openflexo-production/openflexo-production_128x128.png",
+            "source": "https://github.com/openflexo-team/openflexo-production/",
+            "url": "#"
+        },
+        {
+            "name": "Packaging Environment",
+            "logo": "img/logo.png",
+            "source": "https://github.com/openflexo-team/openflexo-packaging/",
+            "url": "#"
+        }
+    ],
+    "ta": 
+    [
+        {
+            "name": "Diagram",
+            "logo": "/img/components/ta/diagram_ta/Diagram128x128.png",
+            "source": "https://github.com/openflexo-team/openflexo-diagram/",
+            "url": "https://openflexo.org/openflexo-diagram/"
+        },
+        {
+            "name": "EMF",
+            "logo": "/img/components/ta/emf_ta/emf_logo.png",
+            "source": "https://github.com/openflexo-team/openflexo-emf/",
+            "url": "https://openflexo.org/openflexo-emf/"
+        },
+        {
+            "name": "OWL",
+            "logo": "/img/components/ta/owl_ta/OWL128x128.png",
+            "source": "https://github.com/openflexo-team/openflexo-owl/",
+            "url": "https://openflexo.org/openflexo-owl/"
+        },
+        {
+            "name": "HTTP",
+            "logo": "/img/components/ta/http_ta/http_logo.png",
+            "source": "https://github.com/openflexo-team/openflexo-http/",
+            "url": "https://openflexo.org/openflexo-http/"
+        },
+        {
+            "name": "JDBC",
+            "logo": "/img/components/ta/jdbc_ta/ODBC_Administrator_icon.png",
+            "source": "https://github.com/openflexo-team/openflexo-jdbc/",
+            "url": "https://openflexo.org/openflexo-jdbc/"
+        },
+        {
+            "name": "PDF",
+            "logo": "/img/components/ta/pdf_ta/PDF-icon.png",
+            "source": "https://github.com/openflexo-team/openflexo-pdf/",
+            "url": "https://openflexo.org/openflexo-pdf/"
+        }
+    ]
+}
