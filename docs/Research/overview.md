@@ -106,7 +106,7 @@ modify the tools and maintain these modifications.
 
 
 
-![](/images/utils/dislikeemoticon.jpg){width="100"}
+![](/images/research/dislikeemoticon.jpg){width="100"}
 
 <p>
 <span style="border: 1px solid blue;background-color:azure;padding:4px">Free modeling: co-construction of the model and its definition language.</span>
