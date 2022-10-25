@@ -18,14 +18,9 @@ previous image illustrates this multiplicity of viewpoints on the example of a h
 project. Four examples of specific models are presented on the left of the image
 illustrating:
 
-    - the fact that they all model (denoted &mu; in the image) the same system
-    - the diversity of their form (3D image, plan, text, map in the image)
-    - the diversity of their intention (denoted <em><span
-style="color:blue">I<sub>i</sub></span></em> in the image), imagining for <em><span
-style="color:blue">I<sub>1</sub></span></em>, designing for <em><span
-style="color:blue">I<sub>2</sub></span></em>, selling for <em><span
-style="color:blue">I<sub>3</sub></span></em> and locating for <em><span
-style="color:blue">I<sub>5</sub></span></em>
+- the fact that they all model (denoted &mu; in the image) the same system
+- the diversity of their form (3D image, plan, text, map in the image)
+- the diversity of their intention (denoted <em><span style="color:blue">I<sub>i</sub></span></em> in the image),  imagining for <em><span style="color:blue">I<sub>1</sub></span></em>, designing for <em><span style="color:blue">I<sub>2</sub></span></em>,  selling for <em><span style="color:blue">I<sub>3</sub></span></em> and locating for <em><span style="color:blue">I<sub>5</sub></span></em>
 
 Moreover, each field of expertise use a set of specific
 Domain-Specific Modeling Languages, tools, methods, practices and
