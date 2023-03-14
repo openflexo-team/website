@@ -14,7 +14,8 @@ From requirements to implementation, the development of complex systems involves
 realization of several design and analysis activities relying on various domain
 expertises.
 
-![](/images/research/img-1.svg){width="700"}
+<img src="/images/research/img-1.svg" width="700"/>
+
 
 Every concern is analysed and studied by domain experts using specific tools to design and
 produce their point of view on a solution. Their work results in a set of models (text,
@@ -32,14 +33,14 @@ Moreover, each field of expertise use a set of specific
 Domain-Specific Modeling Languages, tools, methods, practices and
 conventions.
 
-![](/images/research/img-2.svg){width="700"}
+<img src="/images/research/img-2.svg" width="700"/>
 
 As everyone is working on the same system, collaboration is
 unavoidable and requires to share languages, metamodels, tools, data
 formats...
 ### Complex processes
 
-![](/images/research/img-3.svg){width="700"}
+<img src="/images/research/img-3.svg" width="700"/>
 
 Design processes generally follow complex flow of activities where
 models are results of tasks and inputs of other tasks. Moreover, each
@@ -82,7 +83,7 @@ The common practice is to twist the language or the tools (it is
 easier on a whiteboard, in a drawing program...) but it requires to
 modify the tools and maintain these modifications.
 
-![](/images/research/dislikeemoticon.jpg){width="100"}
+<img src="/images/research/dislikeemoticon.jpg" width="100"/>
 
 > **_The note content.Free modeling: co-construction of the model and its definition language._**
 
@@ -90,7 +91,7 @@ This approach rely on the separation of the language (or metamodel)
 layer in two concern: the **logical** (or business) concern and the
 **representation / interaction** concern.
 
-![](/images/research/img-4.svg){width="700"}
+<img src="/images/research/img-4.svg" width="700"/>
 
 In the image, elements of the model (the *instances*) may be
 built as instances of logical concepts, may be created without any
@@ -116,7 +117,7 @@ What happens when:
 
 In the usual approach to modeling, the concrete artefact corresponding to a model encapsulates all the **values** of its elements reifying it in a certain technology (*e.g.* an excel file, a XMI serialization of a UML model). Following the model federation approach [<a href="#Xguychard:hal-00905036">6</a>], a (federated) model is not required to **own** all its elements. Instead of containing the **value** of an element, it may define mechanisms to get it from another accessible model when it is needed.  In general, these mechanisms must cross technological frontiers between models (*e.g.* between excel and UML) and support exchange in both way.
 
-![](/images/research/img-5.svg){width="700"}
+<img src="/images/research/img-5.svg" width="700"/>
 
 ## Reading guide
 

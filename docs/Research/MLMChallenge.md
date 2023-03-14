@@ -1,4 +1,6 @@
-
+---
+sidebar_position: 3
+---
 # Multi-Level Modelling Challenge
 
 This challenge is intended to allow the demonstration of multi-level modeling techniques and enable the comparison of submissions, and hence framework/language capabilities. The multi-level modeling community is invited to respond to this challenge with submissions describing solutions to the challenge expressed in a technology of their choosing. Authors should emphasize the merits and limitations of their solution according to the criteria defined in this challenge description. This challenge closely follows the MULTI 2019/2020 Process Challenge with minor changes to Sections 1 and 3, and adds more specific presentation requirements.
