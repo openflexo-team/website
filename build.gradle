@@ -82,12 +82,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/pamela', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/pamela/pamela', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', pamelaRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www-test/www/pamela/javadoc/' + UPSTREAM
+                        commandLine 'rsync', '-r', pamelaRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/pamela/javadoc/' + UPSTREAM
                     }
 
                     exec {
@@ -232,12 +232,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [16/18] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/gina', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/gina/gina', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [17/18] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', ginaRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www-test/www/gina/javadoc/' + UPSTREAM
+                        commandLine 'rsync', '-r', ginaRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/gina/javadoc/' + UPSTREAM
                     }
 
                     exec {
@@ -415,12 +415,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [20/22] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/diana', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/diana/diana', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [21/22] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', dianaRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www-test/www/diana/javadoc/' + UPSTREAM
+                        commandLine 'rsync', '-r', dianaRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/diana/javadoc/' + UPSTREAM
                     }
 
                     exec {
@@ -520,12 +520,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [11/13] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/connie', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/connie/connie', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [12/13] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', connieRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www-test/www/connie/javadoc/' + UPSTREAM
+                        commandLine 'rsync', '-r', connieRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/connie/javadoc/' + UPSTREAM
                     }
 
                     exec {
@@ -621,12 +621,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/openflexo-diagram', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/openflexo-diagram', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', diagramRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www-test/www/openflexo-diagram/javadoc/' + UPSTREAM
+                        commandLine 'rsync', '-r', diagramRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/openflexo-diagram/javadoc/' + UPSTREAM
                     }
 
                     exec {
@@ -722,12 +722,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/openflexo-emf', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-emf/openflexo-emf', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', emfRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www-test/www/openflexo-emf/javadoc/' + UPSTREAM
+                        commandLine 'rsync', '-r', emfRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/openflexo-emf/javadoc/' + UPSTREAM
                     }
 
                     exec {
@@ -837,12 +837,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [12/14] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/openflexo-http', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-http/openflexo-http', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [13/14] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', httpRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www-test/www/openflexo-http/' + UPSTREAM
+                        commandLine 'rsync', '-r', httpRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/openflexo-http/' + UPSTREAM
                     }
 
                     exec {
@@ -936,12 +936,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/openflexo-jdbc', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-jdbc/openflexo-jdbc', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', jdbcRepo + 'javadoc', 'jenkins@openflexo.org:/home/www-test/www/openflexo-jdbc/javadoc/' + UPSTREAM
+                        commandLine 'rsync', '-r', jdbcRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/www/openflexo-jdbc/javadoc/' + UPSTREAM
                     }
 
                     exec {
@@ -1035,12 +1035,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/openflexo-kafka', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-kafka/openflexo-kafka', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', kafkaRepo + 'javadoc', 'jenkins@openflexo.org:/home/www-test/www/openflexo-kafka/javadoc/'
+                        commandLine 'rsync', '-r', kafkaRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/www/openflexo-kafka/javadoc/'
                     }
 
                     exec {
@@ -1134,12 +1134,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/openflexo-owl', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-owl/openflexo-owl', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', owlRepo + 'javadoc', 'jenkins@openflexo.org:/home/www-test/www/openflexo-owl/javadoc/'
+                        commandLine 'rsync', '-r', owlRepo + 'javadoc', 'jenkins@openflexo.org:/home/www/www/openflexo-owl/javadoc/'
                     }
 
                     exec {
@@ -1234,12 +1234,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [10/12] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/openflexo-pdf', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-pdf/openflexo-pdf', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [11/12] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', pdfRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www-test/www/openflexo-pdf/javadoc/' + UPSTREAM
+                        commandLine 'rsync', '-r', pdfRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/openflexo-pdf/javadoc/' + UPSTREAM
                     }
 
                     exec {
@@ -1349,12 +1349,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [12/14] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/openflexo-utils', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-utils/openflexo-utils', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [13/14] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', utilsRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www-test/www/openflexo-utils/javadoc/' + UPSTREAM
+                        commandLine 'rsync', '-r', utilsRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/openflexo-utils/javadoc/' + UPSTREAM
                     }
 
                     exec {
@@ -1585,12 +1585,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [26/28] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/openflexo-core', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-core/openflexo-core', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [27/28] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', coreRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www-test/www/openflexo-core/javadoc/' + UPSTREAM
+                        commandLine 'rsync', '-r', coreRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/openflexo-core/javadoc/' + UPSTREAM
                     }
 
                     exec {
@@ -1788,12 +1788,12 @@ task buildWebsite{
 
                     exec {
                         println '\n [22/24] Copying static files via ssh \n'
-                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/openflexo-technology-adapters', 'jenkins@openflexo.org:/home/www-test/www/'
+                        commandLine 'rsync', '-r', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-technology-adapters/openflexo-technology-adapters', 'jenkins@openflexo.org:/home/www/www/'
                     }
 
                     exec {
                         println '\n [23/24] Copying javadoc files via ssh \n'
-                        commandLine 'rsync', '-r', technologyadaptersRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www-test/www/openflexo-technology-adapters/javadoc/' + UPSTREAM
+                        commandLine 'rsync', '-r', technologyadaptersRepo + 'javadoc/.', 'jenkins@openflexo.org:/home/www/www/openflexo-technology-adapters/javadoc/' + UPSTREAM
                     }
 
                     exec {
@@ -1819,7 +1819,7 @@ task buildWebsite{
 
             exec {
                 println '\n [3/3] Copying static files via ssh \n'
-                commandLine 'rsync', '-r', 'build/.', 'jenkins@openflexo.org:/home/www-test/www/'
+                commandLine 'rsync', '-r', 'build/.', 'jenkins@openflexo.org:/home/www/www/'
             }
         break
     }
