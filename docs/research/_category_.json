@@ -1,0 +1,8 @@
+{
+  "label": "Research",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "This section of the website contains some information about the research projects done around model federation."
+  }
+}
