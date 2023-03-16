@@ -1,8 +1,8 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import styles from './index.module.css';
+import styles from '../index.module.css';
 import HomepageHeader from '@site/src/components/HomePageHeader';
-import components  from "../data/components.json";
+import components  from "../../data/components.json";
 
 function Component (props){
     return (
