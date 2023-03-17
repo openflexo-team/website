@@ -149,6 +149,10 @@ const config = {
                 to: '/Docs/Research/cta',
               },
               {
+                label: 'Papers',
+                to: '/papers',
+              },
+              {
                 label: 'Download CTA Application',
                 to: 'http://downloads.openflexo.org/CTA',
               },
