@@ -88,6 +88,11 @@
   font-size: 11pt;
   font-weight: 400;  
   padding: 10px;
+  text-align: center;
+}
+
+.downloadTable thead th {
+  text-align: left;
 }
 
 .downloadTable thead:first-child>tr  {

@@ -50,6 +50,8 @@ function openCloseAccordion(id) {
 }
 
 function Version(props) {
+    let version_index = props.index
+
     return (
         <div>
             <div className={`theme-doc-version-banner alert alert--info margin--md ${styles.versionHead}`} onClick={() => openCloseAccordion(props.version)}>
@@ -58,7 +60,7 @@ function Version(props) {
             </div>
             <div className={`col--12 download-table ${styles.hidden}`} id={props.version.replace(/ /g,'')}>
                 <table className={`margin-bottom--lg ${styles.downloadTable}`}>
-                    <thead>
+                    <thead>                
                         <tr>
                             <th></th>
                             <th>
@@ -67,7 +69,7 @@ function Version(props) {
                                         <h3>FreeModellingEditor</h3>
                                         <p>This metamodelling tool is used to make concept emergence from a simple drawing or from a PowerPoint slide.</p>
                                     </div>
-                                    <a href="#downloads" className="button button--primary">Download</a>
+                                    <a href="#" className="button button--primary">Details</a>
                                 </div>
                             </th>
                             <th>
@@ -76,7 +78,7 @@ function Version(props) {
                                         <h3>Openflexo Designer</h3>
                                         <p>This packaging also contains various technology adapters suitable for many contexts.</p>
                                     </div>
-                                    <a href="#downloads" className="button button--primary">Download</a>
+                                    <a href="#" className="button button--primary">Details</a>
                                 </div>
                             </th>
                             <th>
@@ -85,7 +87,7 @@ function Version(props) {
                                         <h3>Openflexo Headless</h3>
                                         <p>It contains command-line terminal as well as various technology adapters suitable for many contexts</p>
                                     </div>
-                                    <a href="#downloads" className="button button--primary">Download</a>
+                                    <a href="#" className="button button--primary">Details</a>
                                 </div>
                             </th>
                             <th>
@@ -94,8 +96,56 @@ function Version(props) {
                                         <h3>Openflexo Maintainer</h3>
                                         <p>The purpose of this packaging is to offer full features for developers of Openflexo model federation infrastructure.</p>
                                     </div>
-                                    <a href="#downloads" className="button button--primary">Download</a>
+                                    <a href="#" className="button button--primary">Details</a>
                                 </div>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th id="downloads">Download</th>
+                            <th>
+                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
+                                    Windows
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
+                                    macOS
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
+                                    Linux
+                                </a>
+                            </th> 
+                            <th>
+                                <a href={downloads_list.versions[version_index].packages[1].downloadUrl.windows} className={` ${styles.downloadButton}`}>
+                                    Windows
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[1].downloadUrl.mac} className={` ${styles.downloadButton}`}>
+                                    macOS
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[1].downloadUrl.linux} className={` ${styles.downloadButton}`}>
+                                    Linux
+                                </a>
+                            </th>
+                            <th>
+                                <a href={downloads_list.versions[version_index].packages[2].downloadUrl.windows} className={` ${styles.downloadButton}`}>
+                                    Windows
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[2].downloadUrl.mac} className={` ${styles.downloadButton}`}>
+                                    macOS
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[2].downloadUrl.linux} className={` ${styles.downloadButton}`}>
+                                    Linux
+                                </a>
+                            </th>
+                            <th>
+                                <a href={downloads_list.versions[version_index].packages[3].downloadUrl.windows} className={` ${styles.downloadButton}`}>
+                                    Windows
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[3].downloadUrl.mac} className={` ${styles.downloadButton}`}>
+                                    macOS
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[3].downloadUrl.linux} className={` ${styles.downloadButton}`}>
+                                    Linux
+                                </a>
                             </th>
                         </tr>
                     
@@ -110,7 +160,6 @@ function Version(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        
                         { downloads_list.modules.map((props, idx) => (
                             <tr>
                                 <th>
@@ -121,16 +170,16 @@ function Version(props) {
                                     
                                 </th>
                                 <th>
-                                    { has_feature(props.name, "FreeModellingEditor", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                    { has_feature(props.name, "FreeModellingEditor", version_index) ? (<CheckIcon />) : ( <CrossIcon /> ) }
                                 </th>
                                 <th>
-                                    { has_feature(props.name, "Openflexo Designer", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                    { has_feature(props.name, "Openflexo Designer", version_index) ? (<CheckIcon />) : ( <CrossIcon /> ) }
                                 </th>
                                 <th>
-                                    { has_feature(props.name, "Openflexo Headless", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                    { has_feature(props.name, "Openflexo Headless", version_index) ? (<CheckIcon />) : ( <CrossIcon /> ) }
                                 </th>
                                 <th>
-                                    { has_feature(props.name, "Openflexo Maintainer", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                    { has_feature(props.name, "Openflexo Maintainer", version_index) ? (<CheckIcon />) : ( <CrossIcon /> ) }
                                 </th>
                             </tr>
                         )) }
@@ -154,69 +203,20 @@ function Version(props) {
                                     </div>
                                 </th>
                                 <th>
-                                    { has_ta(props.name, "FreeModellingEditor", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                    { has_ta(props.name, "FreeModellingEditor", version_index) ? (<CheckIcon />) : ( <CrossIcon /> ) }
                                 </th>
                                 <th>
-                                    { has_ta(props.name, "Openflexo Designer", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                    { has_ta(props.name, "Openflexo Designer", version_index) ? (<CheckIcon />) : ( <CrossIcon /> ) }
                                 </th>
                                 <th>
-                                    { has_ta(props.name, "Openflexo Headless", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                    { has_ta(props.name, "Openflexo Headless", version_index) ? (<CheckIcon />) : ( <CrossIcon /> ) }
                                 </th>
                                 <th>
-                                    { has_ta(props.name, "Openflexo Maintainer", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                    { has_ta(props.name, "Openflexo Maintainer", version_index) ? (<CheckIcon />) : ( <CrossIcon /> ) }
                                 </th>
                             </tr>
                         )) }
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th id="downloads">Download</th>
-                            <th>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
-                                    Windows
-                                </a>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
-                                    macOS
-                                </a>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
-                                    Linux
-                                </a>
-                            </th>
-                            <th>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
-                                    Windows
-                                </a>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
-                                    macOS
-                                </a>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
-                                    Linux
-                                </a>
-                            </th>
-                            <th>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
-                                    Windows
-                                </a>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
-                                    macOS
-                                </a>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
-                                    Linux
-                                </a>
-                            </th>
-                            <th>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
-                                    Windows
-                                </a>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
-                                    macOS
-                                </a>
-                                <a href={downloads_list.versions[0].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
-                                    Linux
-                                </a>
-                            </th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>
@@ -228,7 +228,7 @@ export default function downloads() {
     return (
         <Layout title="Downloads" description="Openflexo is a model-federation infrastructure software.">
             <HomepageHeader title="DOWNLOAD OPENFLEXO INFRASTRUCTURE" />
-            <div className='container'>
+            <div className="container">
               <div>
                 <h1>About Openflexo Software...</h1>
                 <p>
@@ -254,7 +254,7 @@ export default function downloads() {
             </div>
             <div className="container padding-vert--lg">
                 { downloads_list.versions.map((props, idx) => (
-                    <Version key={idx} {...props} />
+                    <Version index={idx} {...props} />
                 ))}
             </div>
         </Layout>
