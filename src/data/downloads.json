@@ -7,7 +7,7 @@
             "url": "https://openflexo-modules.openflexo.org/SNAPSHOT/free-modelling-editor/index.html"
         },
         {
-            "name": "OpenflexoModeller module",
+            "name": "OpenflexoModeller",
             "description": "Define and execute model federation",
             "logo": "/img/components/modules/OM/om20x20.png",
             "url": "https://openflexo-modules.openflexo.org/SNAPSHOT/openflexo-modeller/index.html"
@@ -101,7 +101,7 @@
                 {
                     "name": "Openflexo Designer",
                     "description": "This packaging contains the  OpenflexoModeller, the  FreeModellingEditor and the  EnterpriseArchitectureModule. This packaging also contains various technology adapters suitable for many contexts. The purpose of this packaging is to offer base features for most users of Openflexo model federation infrastructure. This packaging contains the  OpenflexoModeller, a modelling tool allowing to build model federation by using the FlexoModellingLanguage (FML), and to execute it with generic interfaces.",
-                    "modules": ["FreeModellingEditor", "OpenflexoModeller module", "EAModule"],
+                    "modules": ["FreeModellingEditor", "OpenflexoModeller", "EAModule"],
                     "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
                     "downloadUrl":{
                         "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2021-03-27/Mac/Openflexo%20Designer%202.0.0.dmg",
@@ -122,7 +122,7 @@
                 {
                     "name": "Openflexo Maintainer",
                     "description": "This packaging contains all modules and all all technology adapters developed at Openflexo. The purpose of this packaging is to offer full features for developers of Openflexo model federation infrastructure. This packaging is configured to enable all developers tools.",
-                    "modules": ["FreeModellingEditor", "OpenflexoModeller module", "EAModule"],
+                    "modules": ["FreeModellingEditor", "OpenflexoModeller", "EAModule"],
                     "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
                     "downloadUrl":{
                         "mac": "https://downloads.openflexo.org/openflexo/2.0.0/2021-03-27/Mac/Openflexo%20FlexoMaintainer%202.0.0.dmg",
@@ -151,7 +151,7 @@
                 {
                     "name": "Openflexo Designer",
                     "description": "This packaging contains the  OpenflexoModeller, the  FreeModellingEditor and the  EnterpriseArchitectureModule. This packaging also contains various technology adapters suitable for many contexts. The purpose of this packaging is to offer base features for most users of Openflexo model federation infrastructure. This packaging contains the  OpenflexoModeller, a modelling tool allowing to build model federation by using the FlexoModellingLanguage (FML), and to execute it with generic interfaces.",
-                    "modules": ["FreeModellingEditor", "OpenflexoModeller module", "EAModule"],
+                    "modules": ["FreeModellingEditor", "OpenflexoModeller", "EAModule"],
                     "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
                     "downloadUrl":{
                         "mac": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Mac/Openflexo%20Designer%201.9.0.dmg",
@@ -172,7 +172,7 @@
                 {
                     "name": "Openflexo Maintainer",
                     "description": "This packaging contains all modules and all all technology adapters developed at Openflexo. The purpose of this packaging is to offer full features for developers of Openflexo model federation infrastructure. This packaging is configured to enable all developers tools.",
-                    "modules": ["FreeModellingEditor", "OpenflexoModeller module", "EAModule"],
+                    "modules": ["FreeModellingEditor", "OpenflexoModeller", "EAModule"],
                     "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
                     "downloadUrl":{
                         "mac": "https://downloads.openflexo.org/openflexo/1.9.0/2018-10-29/Mac/Openflexo%20FlexoMaintainer%201.9.0.dmg",

@@ -1,111 +1,230 @@
-import React from 'react';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import Layout from '@theme/Layout';
-import styles from './index.module.css';
-import HomepageHeader from '@site/src/components/HomePageHeader';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import downloads_list  from "../data/downloads.json";
+import React from 'react'
+import clsx from 'clsx'
+import Link from '@docusaurus/Link'
+import Layout from '@theme/Layout'
+import styles from './index.module.css'
+import HomepageHeader from '@site/src/components/HomePageHeader'
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import downloads_list  from "../data/downloads.json"
+import CheckIcon from '@site/src/components/svgIcons/CheckIcon'
+import CrossIcon from '@site/src/components/svgIcons/CrossIcon'
 
-function TechnologyCard (props){
-    return (
-        <div className="col col--4">
-            <div className="card margin-bottom--lg">
-                <div className="card__header">
-                    <div className="avatar">
-                        <img src={props.logo} alt={props.name} className={`avatar__photo ${styles.technologyLogo}`} />
-                        <div className="avatar__intro">
-                            <a href={props.url}>{props.name}</a>
-                            <p>{props.description}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+function has_feature (component, module, version) {
+    let res = false
+
+    downloads_list.versions[version].packages.map(pck => {
+        if (pck.name == module && pck.modules != null && pck.modules.includes(component)){
+            res = true
+        }
+    })
+
+    return res
 }
 
-function Package(props){
+function has_ta (component, ta, version) {
+    let res = false
 
-    let mdls = props.modules?.map(function(value) {
-        return downloads_list.modules.find(element => element.name == value)
-    });
+    downloads_list.versions[version].packages.map(pck => {
+        if (pck.name == ta && pck.ta != null && pck.ta.includes(component)){
+            res = true
+        }
+    })
 
-    let tas = props.ta.map(function(value) {
-        return downloads_list.technology_adapters.find(element => element.name == value)
-    });
+    return res
+}
 
-    return (
-        <div className='container margin-top--md'>
-            <h2>{props.name}</h2>
-            <p>{props.description}</p>
-            {
-                Array.isArray(mdls) && mdls.length ? (
-                <div className={styles.modulesWrapper}>
-                    <h3>Modules:</h3>
-                    <div className="row">
-                        { mdls.map((pps, idx) => (
-                            <TechnologyCard key={idx} {...pps} />
-                        )) }
-                    </div>
-                </div>
-                ) : ( '' )
-            }
-            <div className={styles.modulesWrapper}>
-                <h3>Technology adapters:</h3>
-                <div className="row">
-                    { tas.map((pps, idx) => (
-                        <TechnologyCard key={idx} {...pps} />
-                    )) }
-                </div>
-            </div>
-            <div className='text--center margin-bottom--lg'>
-                <h1>Download here:</h1>
-                <div className="row">
-                    <div className="col col--4">
-                        <img src="/img/downloads/os_mac.png" alt="macos" className={`margin--md ${styles.osImage}`} />
-                        <br/>
-                        <a href={props.downloadUrl.mac} className="button button--primary">macOS</a>
-                    </div>
-                    <div className="col col--4">
-                        <img src="/img/downloads/os_windows.png" alt="windows" className={`margin--md ${styles.osImage}`} />
-                        <br/>
-                        <a href={props.downloadUrl.windows} className="button button--primary">Windows</a>
-                    </div>
-                    <div className="col col--4">
-                        <img src="/img/downloads/os_linux.png" alt="linux" className={`margin--md ${styles.osImage}`} />
-                        <br/>
-                        <a href={props.downloadUrl.linux} className="button button--primary">Linux</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+function openCloseAccordion(id) {
+    let downloadTables = [...document.querySelectorAll(".download-table")]
+    downloadTables.forEach(m => {
+        m.classList.add(styles.hidden)
+    })
+
+    let classes = document.getElementById(id.replace(/ /g,'')).classList
+
+    if(classes.contains(styles.hidden)) {
+        document.getElementById(id.replace(/ /g,'')).classList.remove(styles.hidden)
+    } else {
+        document.getElementById(id.replace(/ /g,'')).classList.add(styles.hidden)
+    }
+    
 }
 
 function Version(props) {
-    const packages = props.packages;
-
     return (
-        <div className='container'>
-            <div className="theme-doc-version-banner alert alert--info">
+        <div>
+            <div className={`theme-doc-version-banner alert alert--info margin--md ${styles.versionHead}`} onClick={() => openCloseAccordion(props.version)}>
                 <h1>{props.version}</h1>
                 <h3>{props.label}</h3>
             </div>
-            
-            <div className="row">
-                <div>
-                    { packages.map((props, idx) => (
-                        <Package key={idx} {...props} />
-                    ))}
-                </div>
+            <div className={`col--12 download-table ${styles.hidden}`} id={props.version.replace(/ /g,'')}>
+                <table className={`margin-bottom--lg ${styles.downloadTable}`}>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <div className={` ${styles.moduleCardPackage}`}>
+                                    <div>
+                                        <h3>FreeModellingEditor</h3>
+                                        <p>This metamodelling tool is used to make concept emergence from a simple drawing or from a PowerPoint slide.</p>
+                                    </div>
+                                    <a href="#downloads" className="button button--primary">Download</a>
+                                </div>
+                            </th>
+                            <th>
+                                <div className={` ${styles.moduleCardPackage}`}>
+                                    <div>
+                                        <h3>Openflexo Designer</h3>
+                                        <p>This packaging also contains various technology adapters suitable for many contexts.</p>
+                                    </div>
+                                    <a href="#downloads" className="button button--primary">Download</a>
+                                </div>
+                            </th>
+                            <th>
+                                <div className={` ${styles.moduleCardPackage}`}>
+                                    <div>
+                                        <h3>Openflexo Headless</h3>
+                                        <p>It contains command-line terminal as well as various technology adapters suitable for many contexts</p>
+                                    </div>
+                                    <a href="#downloads" className="button button--primary">Download</a>
+                                </div>
+                            </th>
+                            <th>
+                                <div className={` ${styles.moduleCardPackage}`}>
+                                    <div>
+                                        <h3>Openflexo Maintainer</h3>
+                                        <p>The purpose of this packaging is to offer full features for developers of Openflexo model federation infrastructure.</p>
+                                    </div>
+                                    <a href="#downloads" className="button button--primary">Download</a>
+                                </div>
+                            </th>
+                        </tr>
+                    
+                        <tr>
+                            <th>
+                                Modules
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        { downloads_list.modules.map((props, idx) => (
+                            <tr>
+                                <th>
+                                    <div className={` ${styles.taComponent}`}>
+                                        <img src={props.logo} alt={props.name}  />
+                                        <span>{props.name}</span>
+                                    </div>
+                                    
+                                </th>
+                                <th>
+                                    { has_feature(props.name, "FreeModellingEditor", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                </th>
+                                <th>
+                                    { has_feature(props.name, "Openflexo Designer", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                </th>
+                                <th>
+                                    { has_feature(props.name, "Openflexo Headless", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                </th>
+                                <th>
+                                    { has_feature(props.name, "Openflexo Maintainer", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                </th>
+                            </tr>
+                        )) }
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th>Technology Adapters</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { downloads_list.technology_adapters.map((props, idx) => (
+                            <tr>
+                                <th>
+                                    <div className={` ${styles.taComponent}`}>
+                                        <img src={props.logo} alt={props.name} className={`${styles.technologyLogo}`} />
+                                            {props.name}
+                                    </div>
+                                </th>
+                                <th>
+                                    { has_ta(props.name, "FreeModellingEditor", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                </th>
+                                <th>
+                                    { has_ta(props.name, "Openflexo Designer", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                </th>
+                                <th>
+                                    { has_ta(props.name, "Openflexo Headless", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                </th>
+                                <th>
+                                    { has_ta(props.name, "Openflexo Maintainer", 0) ? (<CheckIcon />) : ( <CrossIcon /> ) }
+                                </th>
+                            </tr>
+                        )) }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th id="downloads">Download</th>
+                            <th>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
+                                    Windows
+                                </a>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
+                                    macOS
+                                </a>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
+                                    Linux
+                                </a>
+                            </th>
+                            <th>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
+                                    Windows
+                                </a>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
+                                    macOS
+                                </a>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
+                                    Linux
+                                </a>
+                            </th>
+                            <th>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
+                                    Windows
+                                </a>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
+                                    macOS
+                                </a>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
+                                    Linux
+                                </a>
+                            </th>
+                            <th>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
+                                    Windows
+                                </a>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
+                                    macOS
+                                </a>
+                                <a href={downloads_list.versions[0].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
+                                    Linux
+                                </a>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
     )
 }
 
 export default function downloads() {
-    const {siteConfig} = useDocusaurusContext();
+    const {siteConfig} = useDocusaurusContext()
     return (
         <Layout title="Downloads" description="Openflexo is a model-federation infrastructure software.">
             <HomepageHeader title="DOWNLOAD OPENFLEXO INFRASTRUCTURE" />
@@ -133,12 +252,10 @@ export default function downloads() {
                 </ul>
               </div>
             </div>
-            <div className="container">
-                <div>
-                    { downloads_list.versions.map((props, idx) => (
-                        <Version key={idx} {...props} />
-                    ))}
-                </div>
+            <div className="container padding-vert--lg">
+                { downloads_list.versions.map((props, idx) => (
+                    <Version key={idx} {...props} />
+                ))}
             </div>
         </Layout>
     )

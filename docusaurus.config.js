@@ -137,6 +137,10 @@ const config = {
             title: 'Research',
             items: [
               {
+                label: 'Papers',
+                to: '/papers',
+              },
+              {
                 label: 'Formose Project',
                 to: 'http://formose.lacl.fr/',
               },
@@ -147,10 +151,6 @@ const config = {
               {
                 label: 'Cyber Threat Application',
                 to: '/Docs/Research/cta',
-              },
-              {
-                label: 'Papers',
-                to: '/papers',
               },
               {
                 label: 'Download CTA Application',
