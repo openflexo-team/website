@@ -39,9 +39,25 @@ Model federation is a multi-model management approach based on the use of virtua
 
 ## 3. Download and installation instruction
 
-[Download Openflexo 2.0.1](https://downloads.openflexo.org/openflexo/2.0.1SNAPSHOT/2021-06-01/)
+Important notes:
+
+- Our toolset is not yet fully compatible with modern versions of Java, therefore Java 8 is needed.
+- For Mac users who encounter the error "unable to load JRE", we recommend to download the Linux version and to launch it from command line after configuring the current Java version.
+
+### 3.1 MULTI Process Challenge ported to Openflexo v2.99
+
+[Download Openflexo 2.99](https://downloads.openflexo.org/openflexo/2.99SNAPSHOT/2023-03-24/)
 
 [Download MULTI Process Challenge Prototype](/images/research/MLMChallenge/MULTIProcessChallenge.prj.zip)
+
+The code has been commented in order to clearly show which snippet of code
+implements which requirement.
+
+### 3.2 Original version of the Challenge (Openflexo v2.0.1)
+
+[Download Openflexo 2.0.1](https://downloads.openflexo.org/openflexo/2.0.1SNAPSHOT/2021-06-01/)
+
+[Download MULTI Process Challenge Prototype](/images/research/MLMChallenge/orig_MULTIProcessChallenge.prj.zip)
 
 
 
