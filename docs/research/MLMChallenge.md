@@ -43,6 +43,7 @@ Important notes:
 
 - Our toolset is not yet fully compatible with modern versions of Java, therefore Java 8 is needed.
 - For Mac users who encounter the error "unable to load JRE", we recommend to download the Linux version and to launch it from command line after configuring the current Java version.
+- To experiment the challenge, please choose the Designer or the Maintainer version.
 
 ### 3.1 MULTI Process Challenge ported to Openflexo v2.99
 
