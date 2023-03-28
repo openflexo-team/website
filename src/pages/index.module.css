@@ -65,7 +65,7 @@
 }
 
 .downloadTable {
-  overflow: scroll;
+  overflow-x: scroll;
 }
 
 .downloadTable th {

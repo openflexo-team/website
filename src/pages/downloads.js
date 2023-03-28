@@ -241,7 +241,7 @@ export default function downloads() {
                         Some generic component are part of Openflexo infrastructure (Connie, Pamela, Gina, Diana, ...). Those components are generally released as Maven artefacts to be used in any contexts (feel free to use them in your own environment).
                     </li>
                     <li>
-                        Some components are the core implementation of model federation (eg. Openflexo FML-Core framework). Those components version is the infrastructure generic version (current infrastructure version under development is 1.8.x)
+                        Some components are the core implementation of model federation (eg. Openflexo FML-Core framework). Those components version is the infrastructure generic version (current infrastructure version under development is 2.99)
                     </li>
                     <li>
                         Openflexo infrastructure also contains some technical components dedicated to handle a given technology. They are called Technology Adapters or connectors (eg.  OWL TechnologyAdapter,  EMF TechnologyAdapter or  M/S Word TechnologyAdapter).
