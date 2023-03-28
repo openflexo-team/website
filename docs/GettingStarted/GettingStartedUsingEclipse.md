@@ -16,7 +16,33 @@ As a preliminary phase, you should:
 * Get a recent __JVM__ (a __JVM 8__ or above is recommanded. Check the version compatibility here: https://support.openflexo.org/support/contribute/developers/ComponentsAndVersionsManagement.html) 
 *For the sake of this guide, we are going to use componenets version __2.0.1.__*
 
-![1-OpenflexoComponentsCompatibility](/images/getting_started/SetupDevelopmentEnvironmentUsingGradle/new/1-OpenflexoComponentsCompatibility.png)
+| Components (development versions)| &nbsp; &nbsp; 1.9.1 &nbsp; &nbsp; | &nbsp; &nbsp; 2.0.0 &nbsp; &nbsp; | &nbsp; &nbsp; 2.0.1 &nbsp; &nbsp;  | &nbsp; &nbsp; 2.0.2 &nbsp; &nbsp;  | &nbsp; &nbsp; 2.99 &nbsp; &nbsp;  | &nbsp; &nbsp; 3.0.0 &nbsp; &nbsp;  | &nbsp; &nbsp; 2.2.0 &nbsp; &nbsp;  |
+| -------------------------- |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+| __Java version__           | Java 8        | Java 8        | Java 8        | Java 8        | Java 8        | Java 11       | Java 11       |
+| __OpenflexoBuildConfig__   | 0.2           | 0.2           | 0.2           | 0.2           | 0.3           | 0.3           | 0.4 ? (modules) |
+| __OpenflexoBuildPlugin__   | 1.9.1         | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __OpenflexoProduction__    | 0.5           | 0.5           | 0.5           | 0.5           | 0.5           | 0.5           | 0.5           |
+| __Connie__                 | 1.4.2         | 1.5           | 1.5.0.1       | 1.5.0.2       | 2.0.0         | 2.1.0         | 2.2.0         |
+| __Pamela__                 | 1.4.2         | 1.5           | 1.5.0.1       | 1.5.0.2       | 1.6           | 1.6.1         | 1.7 ?         |
+| __Gina__                   | 2.1.2         | 2.2           | 2.2.0.1       | 2.2.0.2       | 2.3           | 2.4           | 2.5 ?         |
+| __Diana__                  | 1.4.2         | 1.5           | 1.5.0.1       | 1.5.0.2       | 1.6           | 1.7           | 1.8 ?         |
+| __OpenflexoUtils__         | 1.4.2         | 1.5           | 1.5.0.1       | 1.5.0.2       | 1.6           | 1.7           | 1.8 ?         |
+| __OpenflexoCore__          | 1.9.1         | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __TechnologyAdapters__     | 1.9.1         | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __OpenflexoDiagram__       | N/A           | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __OpenflexoOWL__           | N/A           | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __OpenflexoEMF__           | N/A           | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __OpenflexoHTTP__          | 1.9.1         | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __OpenflexoJDBC__          | 1.9.1         | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __OpenflexoKafka__         | 1.9.1         | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __OpenflexoOBP2__          | N/A           | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __OpenflexoRhapsody__      | N/A           | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __OpenflexoModules__       | 1.9.1         | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __OpenflexoPackaging__     | 1.9.1         | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __Modelers__ (optional)    | 1.9.1         | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+| __IntegrationTests__ (opt) | 1.9.1         | 2.0.0         | 2.0.1         | 2.0.2         | 2.99         | 3.0.0         | 2.2.0         |
+
+&nbsp;
 
 Because of the use of __Gradle__ as a build tool, you should verify if "BuildShip" comes with your __Eclipse__ release.
 
