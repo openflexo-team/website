@@ -1814,8 +1814,8 @@ task buildWebsite{
             }
 
             exec {
+                println '\n [2/4] Update papers \n'
                 workingDir './src/'
-                // commandLine '"test"', 
                 commandLine 'node', 'write_papers.js'
             }
 
