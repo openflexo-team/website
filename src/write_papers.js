@@ -1,9 +1,9 @@
 const fs    = require('fs');
 const path  = require('path');
 
-const start     = 'export const data_papers = `'
-const end       = '`'
-var content     = ''
+const start = 'export const data_papers = `'
+const end   = '`'
+var content = ''
 
 
 const directoryPath = 'publis/';

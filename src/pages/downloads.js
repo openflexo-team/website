@@ -104,17 +104,6 @@ function Version(props) {
                         <tr>
                             <th id="downloads">Download</th>
                             <th>
-                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
-                                    Windows
-                                </a>
-                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
-                                    macOS
-                                </a>
-                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
-                                    Linux
-                                </a>
-                            </th> 
-                            <th>
                                 <a href={downloads_list.versions[version_index].packages[1].downloadUrl.windows} className={` ${styles.downloadButton}`}>
                                     Windows
                                 </a>
@@ -124,7 +113,7 @@ function Version(props) {
                                 <a href={downloads_list.versions[version_index].packages[1].downloadUrl.linux} className={` ${styles.downloadButton}`}>
                                     Linux
                                 </a>
-                            </th>
+                            </th> 
                             <th>
                                 <a href={downloads_list.versions[version_index].packages[2].downloadUrl.windows} className={` ${styles.downloadButton}`}>
                                     Windows
@@ -144,6 +133,17 @@ function Version(props) {
                                     macOS
                                 </a>
                                 <a href={downloads_list.versions[version_index].packages[3].downloadUrl.linux} className={` ${styles.downloadButton}`}>
+                                    Linux
+                                </a>
+                            </th>
+                            <th>
+                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
+                                    Windows
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
+                                    macOS
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
                                     Linux
                                 </a>
                             </th>
