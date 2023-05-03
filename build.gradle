@@ -1808,17 +1808,24 @@ task buildWebsite{
         default:
             exec {
                 println '\n ### Starting the build ### \n'
-                println '\n [1/3] Pulling changes from Github \n'
+                println '\n [1/4] Pulling changes from Github \n'
                 workingDir './'
                 commandLine 'git', 'pull', 'origin', 'master'
             }
+
             exec {
-                println '\n [2/3] Building Static files \n'
+                println '\n [2/4] Update papers \n'
+                workingDir './src/'
+                commandLine 'node', 'write_papers.js'
+            }
+
+            exec {
+                println '\n [3/4] Building Static files \n'
                 commandLine 'npm', 'run', 'build'
             }
 
             exec {
-                println '\n [3/3] Copying static files via ssh \n'
+                println '\n [4/4] Copying static files via ssh \n'
                 commandLine 'rsync', '-r', 'build/.', 'jenkins@openflexo.org:/home/www/www/'
             }
         break

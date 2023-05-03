@@ -71,13 +71,14 @@ const config = {
             label: 'Documentation',
           },
           {
-            to: '/components', 
-            label: 'Components', 
-            position: 'left'
+            type: 'doc',
+            docId: '/category/research',
+            position: 'left',
+            label: 'Research',
           },
           {
-            to: '/contributors', 
-            label: 'Contributors', 
+            to: 'docs/components', 
+            label: 'Components', 
             position: 'left'
           },
           {
@@ -136,6 +137,10 @@ const config = {
             title: 'Research',
             items: [
               {
+                label: 'Papers',
+                to: '/papers',
+              },
+              {
                 label: 'Formose Project',
                 to: 'http://formose.lacl.fr/',
               },
@@ -156,6 +161,10 @@ const config = {
           {
             title: 'Community',
             items: [
+              {
+                to: '/contributors', 
+                label: 'Contributors', 
+              },
               {
                 label: 'Contact us',
                 to: 'mailto:contact@openflexo.org',

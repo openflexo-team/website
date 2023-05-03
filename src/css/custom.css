@@ -15,6 +15,7 @@
   --ifm-color-primary-lightest: #6791b5;
   --ifm-code-font-size: 95%;
   --ifm-custom-background-color: #f5f6f7;
+  --ifm-custom-table-background-color: #fff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --docusaurus-highlighted-code-slider-bg: rgba(255, 255, 255, .5);
 }
@@ -29,6 +30,7 @@
   --ifm-color-primary-lighter: #506f8a;
   --ifm-color-primary-lightest: #6791b5;
   --ifm-custom-background-color: #1c1e21;
+  --ifm-custom-table-background-color: #1c1e21;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --docusaurus-highlighted-code-slider-bg: rgba(0, 0, 0, .5);
 }
@@ -54,6 +56,6 @@
 }
 
 .tagline p{
-  margin: 15px 0 10px 0;
+  margin: 25px 0 10px 0;
   font-weight: bold;
 }
