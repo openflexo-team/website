@@ -1820,11 +1820,6 @@ task buildWebsite{
             }
 
             exec {
-
-                commandLine 'rm', 'lunr-index-*.json', '2>', '/dev/null'
-            }
-
-            exec {
                 println '\n [3/4] Building Static files \n'
                 commandLine 'npm', 'run', 'build'
             }
