@@ -39,6 +39,8 @@ export default function papers() {
     let  papers_data    = data_papers.replace(/{'e}/g, "é").replace(/{'i}/g, "í").replace(/{`e}/g, "è").replace(/{"e}/g, "ë").replace("{^i}", "î")
     let articles        = bibtexParse.toJSON(papers_data)
 
+    articles.sort((a, b) => a.entryTags.YEAR - b.entryTags.YEAR)
+    articles.reverse()
     return (
         <Layout
           title={`${siteConfig.title}`}
