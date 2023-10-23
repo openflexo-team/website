@@ -538,7 +538,7 @@ task buildWebsite{
             }
         break
         case 'openflexo-diagram': 
-            String SNAPSHOT     = '2.1.1-java-11'
+            String SNAPSHOT     = '2.99'
             String UPSTREAM     = System.getenv('UPSTREAM')?.trim()
             String BRANCH       = UPSTREAM - '-java-11'
             String diagramRepo  = "/home/jenkins/jenkins-agent/workspace/openflexo-diagram-${UPSTREAM}/"
@@ -570,8 +570,20 @@ task buildWebsite{
 
                     exec {
                         ignoreExitValue true
+                        println '\n [3/12] Copying root documentation resources \n'
+                        commandLine 'cp', '-r', diagramRepo + 'diagram-ta/src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/static/images/'
+                    }
+
+                    exec {
+                        ignoreExitValue true
                         println '\n [5/12] Copying diagram-ta-ui documentation markdown files \n'
                         commandLine 'cp', '-r', diagramRepo + 'diagram-ta-ui/src/site/markdown/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/versioned_docs/version-' + UPSTREAM + '/diagram-ta-ui/'
+                    }
+
+                    exec {
+                        ignoreExitValue true
+                        println '\n [3/12] Copying root documentation resources \n'
+                        commandLine 'cp', '-r', diagramRepo + 'diagram-ta-ui/src/site/resources/.', '/home/jenkins/jenkins-agent/docusaurus-sites/openflexo-diagram/static/images/'
                     }
 
                     if (SNAPSHOT == UPSTREAM) {
