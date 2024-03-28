@@ -7,6 +7,8 @@ sidebar_position: 3
 
 ### 1. Components
 
+Test
+
 Here are the main projects composing Openflexo infrastructure.
 
 Repositories and project URIs are available:
