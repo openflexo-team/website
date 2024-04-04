@@ -21,7 +21,7 @@ It is possible to create either:
 
 ## Naming scheme of distribution packages
 
-Installable packages of Openflexo software use the following name scheme: __${product.name} ${productSuffix} ${flexo_version}__
+Installable packages of Openflexo software use the following name scheme: __⟨product.name⟩⟨productSuffix⟩⟨flexo_version⟩__
 with following extension:
 
 * Linux: _.tar.gz_
