@@ -151,7 +151,7 @@ const config = {
               },
               {
                 label: 'Cyber Threat Application',
-                to: '/Docs/Research/cta',
+                to: '/docs/research/cta',
               },
               {
                 label: 'Download CTA Application',
