@@ -254,11 +254,13 @@ __Building 2.0__ supports now this as composite builds.
 
 To enable this, you should edit file "settings.gradle" located in __openflexo-packaging__ project, and uncomment following lines:
 
-    file('../').listFiles().each { File otherProject ->
-        if (!otherProject.equals(file('.')) && new File(otherProject, "build.gradle").exists()) {
-            includeBuild otherProject
-        }
+```gradle
+file('../').listFiles().each { File otherProject ->
+    if (!otherProject.equals(file('.')) && new File(otherProject, "build.gradle").exists()) {
+        includeBuild otherProject
     }
+}
+```
 
 Then right click on "openflexo-packaging" project, and right click: Gradle > Refresh gradle project
 

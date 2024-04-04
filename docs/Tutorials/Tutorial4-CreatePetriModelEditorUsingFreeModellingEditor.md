@@ -325,13 +325,13 @@ This edge can be activated if the number of tokens in source concept is greater 
 
 To implement this, declare those two behaviors in PlaceToTransitionEdge (as ActionScheme):
 
-> isActivable() {
+> isActivable() \{
 >   return (sourceConcept.tokensNb >= weight);
 > }
 
 and:
 
-> activate() {
+> activate() \{
 >   sourceConcept.tokensNb = (sourceConcept.tokensNb-weight);
 > }
 
