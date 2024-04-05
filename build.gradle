@@ -1827,7 +1827,7 @@ task buildWebsite{
 
             exec {
                 println '\n [2/5] Install node environment \n'
-                commandLine 'node', 'ci'
+                commandLine 'npm', 'ci'
             }
 
             exec {
