@@ -2,62 +2,62 @@
     "primary": [
         {
             "name": "Ali Koudri",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/AliKoudri.jpg"
         },
         {
             "name": "Antoine Beugnard",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/AntoineBeugnard.jpg"
         },
         {
             "name": "Christophe Guychard",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/ChristopheGuychard.jpg"
         },
         {
             "name": "Fabien Dagnat",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/FabienDagnat.jpg"
         },
         {
             "name": "Guillaume Polet",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/GuillaumePolet.jpg"
         },
         {
             "name": "Gilles Godet",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/GillesGodet.png"
         },
         {
             "name": "Ihab Benamer",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/IhabBenamer.png"
         },
         {
             "name": "Jean-Charles Roger",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/JeanCharlesRoger.jpeg"
         },
         {
             "name": "Julien Carette",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/JulienCarette.jpg"
         },
         {
             "name": "Sylvain Guerin",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/SylvainGuerin.jpg"
         },
         {
             "name": "Vincent Leilde",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/VincentLeilde.jpg"
         },
         {
             "name": "Philippe Bonnet",
-            "role": "Searcher",
+            "role": "Researcher",
             "image": "/img/team/1.jpg"
         }
     ],

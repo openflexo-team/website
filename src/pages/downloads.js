@@ -104,17 +104,6 @@ function Version(props) {
                         <tr>
                             <th id="downloads">Download</th>
                             <th>
-                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
-                                    Windows
-                                </a>
-                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
-                                    macOS
-                                </a>
-                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
-                                    Linux
-                                </a>
-                            </th> 
-                            <th>
                                 <a href={downloads_list.versions[version_index].packages[1].downloadUrl.windows} className={` ${styles.downloadButton}`}>
                                     Windows
                                 </a>
@@ -124,7 +113,7 @@ function Version(props) {
                                 <a href={downloads_list.versions[version_index].packages[1].downloadUrl.linux} className={` ${styles.downloadButton}`}>
                                     Linux
                                 </a>
-                            </th>
+                            </th> 
                             <th>
                                 <a href={downloads_list.versions[version_index].packages[2].downloadUrl.windows} className={` ${styles.downloadButton}`}>
                                     Windows
@@ -144,6 +133,17 @@ function Version(props) {
                                     macOS
                                 </a>
                                 <a href={downloads_list.versions[version_index].packages[3].downloadUrl.linux} className={` ${styles.downloadButton}`}>
+                                    Linux
+                                </a>
+                            </th>
+                            <th>
+                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.windows} className={` ${styles.downloadButton}`}>
+                                    Windows
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.mac} className={` ${styles.downloadButton}`}>
+                                    macOS
+                                </a>
+                                <a href={downloads_list.versions[version_index].packages[0].downloadUrl.linux} className={` ${styles.downloadButton}`}>
                                     Linux
                                 </a>
                             </th>
@@ -241,7 +241,7 @@ export default function downloads() {
                         Some generic component are part of Openflexo infrastructure (Connie, Pamela, Gina, Diana, ...). Those components are generally released as Maven artefacts to be used in any contexts (feel free to use them in your own environment).
                     </li>
                     <li>
-                        Some components are the core implementation of model federation (eg. Openflexo FML-Core framework). Those components version is the infrastructure generic version (current infrastructure version under development is 1.8.x)
+                        Some components are the core implementation of model federation (eg. Openflexo FML-Core framework). Those components version is the infrastructure generic version (current infrastructure version under development is 2.99)
                     </li>
                     <li>
                         Openflexo infrastructure also contains some technical components dedicated to handle a given technology. They are called Technology Adapters or connectors (eg.  OWL TechnologyAdapter,  EMF TechnologyAdapter or  M/S Word TechnologyAdapter).

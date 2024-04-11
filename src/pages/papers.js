@@ -12,11 +12,21 @@ function Article({entryTags}){
                 <h2 className={`margin-left--lg margin-top--md ${styles.articleYear}`}>{entryTags.YEAR}</h2>
                 <ul>
                     <li>
-                        <h3><a href={entryTags.URL}>{entryTags.TITLE}, </a></h3>
-                        {entryTags.AUTHOR}
+                        <h3><a href={entryTags.URL}>{entryTags.TITLE.substring(1, entryTags.TITLE.length -1)} </a></h3>
+                        <b>Authors : {entryTags.AUTHOR}</b>
                         <br/>
-                        In <i>{entryTags.JOURNAL}, {entryTags.MONTH}, {entryTags.YEAR}. </i> <a href={entryTags.PDF}>[PDF]</a>
-                        <p>Keywords: <b>{entryTags.KEYWORDS}</b></p>
+                        <i>
+                            {entryTags.BOOKTITLE ? 'In ' + entryTags.BOOKTITLE?.substring(1, entryTags.BOOKTITLE.length -1) + ', ' : ''}
+                            {entryTags.ADDRESS}
+                            {entryTags.JOURNAL ? 'In ' + entryTags.JOURNAL?.substring(1, entryTags.JOURNAL.length -1) + ', ' : ''} 
+                            {entryTags.NUMBER} {entryTags.PAGES ? 'pp. ' + entryTags.PAGES : '' } . 
+                            {entryTags.MONTH ? entryTags.MONTH + ', ': ''} {entryTags.YEAR}. 
+                        </i> 
+                        <a href={entryTags.PDF}>[PDF]</a>
+                        
+                        <p><b>{ entryTags.KEYWORDS ? 'Keywords: ' + entryTags.KEYWORDS : '' }</b></p>  
+                        <h4>{ entryTags.EDITOR ? entryTags.EDITOR : ''} { entryTags.PUBLISHER?.substring(1, entryTags.PUBLISHER.length -1) }</h4> 
+                        { entryTags.HAL_ID } { entryTags.HAL_VERSION }             
                     </li>
                 </ul>
             </div>
@@ -26,8 +36,11 @@ function Article({entryTags}){
 
 export default function papers() {
     const {siteConfig}  = useDocusaurusContext()
-    let articles        = bibtexParse.toJSON(data_papers)
-    
+    let  papers_data    = data_papers.replace(/{'e}/g, "é").replace(/{'i}/g, "í").replace(/{`e}/g, "è").replace(/{"e}/g, "ë").replace("{^i}", "î")
+    let articles        = bibtexParse.toJSON(papers_data)
+
+    articles.sort((a, b) => a.entryTags.YEAR - b.entryTags.YEAR)
+    articles.reverse()
     return (
         <Layout
           title={`${siteConfig.title}`}

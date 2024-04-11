@@ -13,10 +13,10 @@ function Banner( props) {
   return (
     <div className={styles.containerStyle}>
       <img className={styles.imgStyle} src={ props.img }/>
-      <div className={styles.textWrapperStyle} >
+      {/* <div className={styles.textWrapperStyle} >
         <h1 className={styles.h1Style}>{ props.title  }</h1>
         <h3 className={styles.h3Style}>{ props.header }</h3> 
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -25,12 +25,12 @@ export default function SimpleSlider() {
     var settings = {
       dots: true,
       infinite: true,
-      speed: 4000,
+      speed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
       autoplay: true,
-      autoplaySpeed: 5000,
+      autoplaySpeed: 1000,
     };
 
     return (
