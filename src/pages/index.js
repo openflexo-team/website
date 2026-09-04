@@ -18,7 +18,7 @@ export default function Home() {
       <SimpleSlider />
       
       <main>
-        <HomepageHeader title="WELCOME TO OPENFLEXO" content="You're at the right place to discover Openflexo technical infrastructure and research project. You will find here support, documentation and resources." />
+        <HomepageHeader title="WELCOME TO OPENFLEXO" content="You are at the right place to discover Openflexo technical infrastructure and research project. You will find here support, documentation and resources." />
         <HomepageFeatures />
         <HomepageHeader title="On model federation..." content="Model federation is one of those new paradigms: instead of managing complex transformation chains, we connect directely
 											to data in its original ecosystem. Openflexo's infrastructure provide components to retrieve, connect and represent
