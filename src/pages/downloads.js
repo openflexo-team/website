@@ -379,24 +379,42 @@ export default function downloads() {
               <div>
                 <h1>About Openflexo Software...</h1>
                 <p>
-                Openflexo is not a software ! 
-                <br/>
-                Openflexo in an infrastructure with generic components, and some other components dedicated to model federation.
+                    Openflexo is not a single application: it is an <b>infrastructure for model federation</b>.
+                    It lets you connect models that live in different technologies, such as spreadsheets, XML
+                    files, ontologies, databases or diagrams, and work with them through <b>FML</b>, the Flexo
+                    Modelling Language. It is made of several kinds of components:
                 </p>
                 <ul>
                     <li>
-                        Some generic component are part of Openflexo infrastructure (Connie, Pamela, Gina, Diana, ...). Those components are generally released as Maven artefacts to be used in any contexts (feel free to use them in your own environment).
+                        <b>Generic components</b>: Connie (expression language), Pamela (modelling framework),
+                        Gina (user interfaces) and Diana (diagrams). They do not depend on model federation. They
+                        are published as Maven artefacts on <a href="https://maven.openflexo.org/">maven.openflexo.org</a>,
+                        so you can use them in your own projects.
                     </li>
                     <li>
-                        Some components are the core implementation of model federation (eg. Openflexo FML-Core framework). Those components version is the infrastructure generic version (current infrastructure version under development is 2.99)
+                        <b>The model federation core</b> (FML-Core), which runs FML. Its version is the version of
+                        the whole infrastructure: 2.0.1 is the last stable release, and 2.99 is the one under
+                        development.
                     </li>
                     <li>
-                        Openflexo infrastructure also contains some technical components dedicated to handle a given technology. They are called Technology Adapters or connectors (eg.  OWL TechnologyAdapter,  EMF TechnologyAdapter or  M/S Word TechnologyAdapter).
+                        <b>Technology adapters</b> (also called connectors). Each one handles a single technology:
+                        Excel, Word, PowerPoint, EMF, OWL, JDBC, REST, and more.
                     </li>
                     <li>
-                        Openflexo infrastructure also contains some business-specific components which are defined as autonomous applications. They are called Modules (eg.  FreeModellingEditor,  OpenflexoModeller, or EnterpriseArchitectureModule)
+                        <b>Modules</b>: applications built for a specific job, such as FreeModellingEditor or the
+                        Enterprise Architecture module.
                     </li>
                 </ul>
+                <p>
+                    You don't download these components one by one. They come in <b>packages</b>, each one a
+                    ready-to-run mix of modules and technology adapters. The table below shows what each package
+                    contains, for each version. If you are not sure which one to pick, choose <b>Openflexo
+                    Designer</b>.
+                </p>
+                <p>
+                    All packages need <b>Java 8</b>. Read <a href="#install">Installing and running Openflexo</a>
+                    {' '}before you start.
+                </p>
               </div>
             </div>
             <div className="container padding-vert--lg">
