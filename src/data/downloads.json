@@ -75,10 +75,70 @@
             "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/jdbcconnector/index.html"
         },
         {
+            "name": "ODT",
+            "description": "OpenDocument text documents (.odt)",
+            "logo": "/img/components/ta/odt_ta/ODT128x128.png",
+            "url": "https://github.com/openflexo-team/openflexo-odt"
+        },
+        {
+            "name": "GINA",
+            "description": "GINA user interface components",
+            "logo": "/img/components/ta/gina_ta/GINA64x64.png",
+            "url": "https://github.com/openflexo-team/openflexo-gina"
+        },
+        {
+            "name": "Java",
+            "description": "Java source code",
+            "logo": "/img/components/ta/java_ta/Java128x128.png",
+            "url": "https://github.com/openflexo-team/openflexo-java"
+        },
+        {
+            "name": "Kafka",
+            "description": "Apache Kafka streams",
+            "logo": "/img/components/ta/kafka_ta/Kafka64x64.png",
+            "url": "https://github.com/openflexo-team/openflexo-kafka"
+        },
+        {
+            "name": "OPC-UA",
+            "description": "OPC-UA industrial servers",
+            "logo": "/img/components/ta/opcua_ta/OPCUA128x128.png",
+            "url": "https://github.com/openflexo-team/openflexo-opc-ua"
+        },
+        {
             "name": "OSLC",
             "description": "OSLC support",
             "logo": "/img/components/ta/oslc_ta/OSLC20x20.png",
             "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/oslcconnector/index.html"
+        },
+        {
+            "name": "REST",
+            "description": "REST APIs",
+            "logo": "/img/components/ta/rest_ta/REST128x128.png",
+            "url": "https://github.com/openflexo-team/openflexo-rest"
+        },
+        {
+            "name": "JSON",
+            "description": "JSON documents",
+            "logo": "/img/components/ta/json_ta/JSON128x128.png",
+            "url": "https://github.com/openflexo-team/openflexo-json"
+        },
+        {
+            "name": "XX",
+            "description": "Text files, line by line",
+            "logo": "/img/components/ta/xx_ta/XX128x128.png",
+            "url": "https://github.com/openflexo-team/openflexo-technology-adapters"
+        },
+        {
+            "name": "DSL",
+            "description": "Textual domain-specific languages",
+            "logo": "/img/components/ta/dsl_ta/DSL128x128.png",
+            "url": "https://github.com/openflexo-team/openflexo-technology-adapters"
+        },
+        {
+            "name": "Rhapsody",
+            "description": "IBM Rhapsody models",
+            "logo": "/img/components/ta/rhapsody_ta/Rhapsody16x16.png",
+            "url": "https://github.com/openflexo-team/openflexo-rhapsody"
         }
     ],
     "versions": [
@@ -135,13 +195,14 @@
         {
             "version": "Infrastructure version 2.99",
             "label": "Latest snapshot version, packaged on September 17, 2026",
+            "expanded": true,
             "packages":
             [
                 {
                     "name": "Openflexo Maintainer",
                     "description": "This packaging contains all modules and all all technology adapters developed at Openflexo. The purpose of this packaging is to offer full features for developers of Openflexo model federation infrastructure. This packaging is configured to enable all developers tools.",
                     "modules": ["FreeModellingEditor", "OpenflexoModeller", "EAModule"],
-                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
+                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "ODT", "PDF", "GINA", "JDBC", "Kafka", "Java", "OPC-UA", "REST", "OSLC", "JSON", "XX", "DSL", "Rhapsody"],
                     "downloadUrl":{
                         "mac": "https://downloads.openflexo.org/openflexo/2.99SNAPSHOT/2026-09-17/Mac/Openflexo%20FlexoMaintainer%202.99SNAPSHOT.dmg",
                         "linux": "https://downloads.openflexo.org/openflexo/2.99SNAPSHOT/2026-09-17/Linux/Openflexo%20FlexoMaintainer%202.99SNAPSHOT.tar.gz",
@@ -163,7 +224,7 @@
                     "name": "Openflexo Designer",
                     "description": "This packaging contains the  OpenflexoModeller, the  FreeModellingEditor and the  EnterpriseArchitectureModule. This packaging also contains various technology adapters suitable for many contexts. The purpose of this packaging is to offer base features for most users of Openflexo model federation infrastructure. This packaging contains the  OpenflexoModeller, a modelling tool allowing to build model federation by using the FlexoModellingLanguage (FML), and to execute it with generic interfaces.",
                     "modules": ["FreeModellingEditor", "OpenflexoModeller", "EAModule"],
-                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
+                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "ODT", "PDF", "GINA", "JDBC", "Kafka", "Java", "OPC-UA"],
                     "downloadUrl":{
                         "mac": "https://downloads.openflexo.org/openflexo/2.99SNAPSHOT/2026-09-17/Mac/Openflexo%20Designer%202.99SNAPSHOT.dmg",
                         "linux": "https://downloads.openflexo.org/openflexo/2.99SNAPSHOT/2026-09-17/Linux/Openflexo%20Designer%202.99SNAPSHOT.tar.gz",
@@ -173,7 +234,7 @@
                 {
                     "name": "Openflexo Headless",
                     "description": "This packaging contains the mode federation core framework packaged to be used headless. It contains command-line terminal as well as various technology adapters suitable for many contexts",
-                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "PDF", "JDBC", "OSLC"],
+                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "ODT", "PDF", "GINA", "JDBC", "Kafka"],
                     "downloadUrl":{
                         "mac": "https://downloads.openflexo.org/openflexo/2.99SNAPSHOT/2026-09-17/Mac/Openflexo%20Headless%202.99SNAPSHOT.dmg",
                         "linux": "https://downloads.openflexo.org/openflexo/2.99SNAPSHOT/2026-09-17/Linux/Openflexo%20Headless%202.99SNAPSHOT.tar.gz",

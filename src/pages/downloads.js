@@ -37,19 +37,18 @@ function has_ta (component, ta, version) {
 }
 
 function openCloseAccordion(id) {
+    const table = document.getElementById(id.replace(/ /g,''))
+    // Read the state before hiding every table: otherwise a click on an open table reopens it at once.
+    const wasHidden = table.classList.contains(styles.hidden)
+
     let downloadTables = [...document.querySelectorAll(".download-table")]
     downloadTables.forEach(m => {
         m.classList.add(styles.hidden)
     })
 
-    let classes = document.getElementById(id.replace(/ /g,'')).classList
-
-    if(classes.contains(styles.hidden)) {
-        document.getElementById(id.replace(/ /g,'')).classList.remove(styles.hidden)
-    } else {
-        document.getElementById(id.replace(/ /g,'')).classList.add(styles.hidden)
+    if (wasHidden) {
+        table.classList.remove(styles.hidden)
     }
-    
 }
 
 function Version(props) {
@@ -61,7 +60,7 @@ function Version(props) {
                 <h1>{props.version}</h1>
                 <h3>{props.label}</h3>
             </div>
-            <div className={`col--12 download-table ${styles.hidden}`} id={props.version.replace(/ /g,'')}>
+            <div className={`col--12 download-table ${props.expanded ? '' : styles.hidden}`} id={props.version.replace(/ /g,'')}>
                 <table className={`margin-bottom--lg ${styles.downloadTable}`}>
                     <thead>                
                         <tr>
