@@ -2,7 +2,7 @@ task buildWebsite{
     // Roots on the Jenkins agent: component workspaces are siblings of this job's own
     // WORKSPACE; the Docusaurus skeletons live outside any workspace (DOCUSAURUS_SITES).
     String WORKSPACES = new File(System.getenv('WORKSPACE') ?: System.getProperty('user.dir')).parent
-    String SITES      = System.getenv('DOCUSAURUS_SITES') ?: '/home/jenkins/jenkins-agent/docusaurus-sites'
+    String SITES      = System.getenv('DOCUSAURUS_SITES') ?: '/home/jenkins/agent/agent/docusaurus-sites'
 
     switch (System.getenv('WEBSITE')) { 
         case 'pamela': 
