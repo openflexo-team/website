@@ -1,18 +1,17 @@
 [
     {
-        "title": "TOO MANY TOOLS ?",
-        "header": "Lost in your tools and data ? Stuck with inconsistent data ? Bored by too many copy/paste ?",
-        "img": "/img/slides/slide1.png"
+        "title": "Many models, many tools",
+        "header": "Requirements, plans, measurements and analyses each live in their own tool and format.",
+        "img": "/img/slides/illustration-1.png"
     },
     {
-        "title": "SIMPLIFY AND ADAPT !",
-        "header": "Connect your data and existing tools without duplication. Keep your existing environment and adapt it.",
-        "img": "/img/slides/slide2.png"
+        "title": "Models stay where they are",
+        "header": "Each keeps its tool, its format and its owner. Openflexo connects them instead of converting them.",
+        "img": "/img/slides/illustration-2.png"
     },
     {
-        "title": "MODEL FEDERATION ?",
-        "header": "Openflexo infrastructure is the right infrastructure to design model federation.",
-        "img": "/img/slides/slide3.png"
+        "title": "Model federation",
+        "header": "An open-source infrastructure, born from research, to work with models across technologies.",
+        "img": "/img/slides/illustration-3.png"
     }
-    
 ]

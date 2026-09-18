@@ -8,15 +8,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-function Banner( props) {
-
+function Banner(props) {
   return (
-    <div className={styles.containerStyle}>
-      <img className={styles.imgStyle} src={ props.img }/>
-      {/* <div className={styles.textWrapperStyle} >
-        <h1 className={styles.h1Style}>{ props.title  }</h1>
-        <h3 className={styles.h3Style}>{ props.header }</h3> 
-      </div> */}
+    <div className={styles.slide}>
+      <div className={styles.text}>
+        <h2 className={styles.title}>{props.title}</h2>
+        <p className={styles.header}>{props.header}</p>
+      </div>
+      <img className={styles.illustration} src={props.img} alt="" />
     </div>
   );
 }
@@ -25,20 +24,19 @@ export default function SimpleSlider() {
     var settings = {
       dots: true,
       infinite: true,
-      speed: 5000,
+      speed: 600,
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
       autoplay: true,
-      autoplaySpeed: 1000,
+      autoplaySpeed: 7000,
     };
 
     return (
       <Slider {...settings} className={styles.sliderStyle}>
         {sliders.map((props, idx) => (
-          <Banner img={props.img} title={props.title} header={props.header} />
+          <Banner key={idx} img={props.img} title={props.title} header={props.header} />
         ))}
-        
       </Slider>
     );
   }
