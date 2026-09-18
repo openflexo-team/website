@@ -106,7 +106,7 @@ export default function Home() {
               Openflexo is an open-source infrastructure for model federation. Its approach is to
               consider everything as a model: any source of information (a spreadsheet, an XML file, a
               database, a drawing...) can be interpreted as a model, as soon as you tell Openflexo how
-              to read it. Your models then stay in their original tools and formats: Openflexo
+              to interpret it. Your models then stay in their original tools and formats: Openflexo
               connects them instead of converting them, keeps them consistent, and lets you work with
               them together and build graphical views and editors on top of them.
             </span>
