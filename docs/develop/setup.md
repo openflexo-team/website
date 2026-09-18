@@ -18,10 +18,12 @@ snapshot.
 git clone https://github.com/openflexo-team/openflexo-dev.git
 ```
 
-Its `settings.gradle` declares one `includeBuild '../<project>'` per repository, all commented out.
-Clone the projects you intend to work on as siblings of `openflexo-dev`, then un-comment the
-matching `includeBuild` line for each. Projects you do *not* include are resolved as published jars
-from the Openflexo Artifactory instead of local source.
+Its `settings.gradle` declares one `includeBuild '../<project>'` per repository — most already
+active, a handful commented out (research prototypes, or a technology not everyone builds locally;
+see the [repository map](./repository-map) for which). Clone the projects you intend to work on as
+siblings of `openflexo-dev`; for a project whose line is commented out, un-comment it. A cloned
+project whose `includeBuild` line stays commented, or a project you never clone at all, is resolved
+as a published jar from the Openflexo Artifactory instead of local source.
 
 ### 2. Generate the parsers, once, before the first compile
 

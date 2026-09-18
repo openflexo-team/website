@@ -34,6 +34,24 @@ fabricated mini-site URL. **Not done**: wiring the registry into `downloads.json
 that page is explicitly hand-maintained by decision, so the registry instead becomes something the
 check script (WEB-F-4) cross-references it against, not something it renders from at runtime.
 
+## WEB-F-8 — repository map generated from openflexo-dev/settings.gradle
+
+**Status:** DONE (2026-09-18)
+
+The old `ComponentsAndVersionsManagement.md` also listed every repository in the ecosystem (its
+"1. Components" section) — deleted in the phase-1 move without a replacement, an oversight caught
+by the user 2026-09-18. Fixed with `scripts/generate_repository_map.py` (Python stdlib, same
+pattern as `generate_version_table.py`): parses `openflexo-dev`'s committed `settings.gradle`
+(`git show HEAD:...`, not the working tree — a contributor's own local includeBuild toggles must
+not leak into a page describing the shared default), cross-references
+`technology-adapters.json` for a status badge, and writes `docs/develop/repository-map.md`.
+Redirect from the old URL retargeted there. Caught and fixed two bugs while building it: the
+`gina`/`openflexo-gina` name-collision trap (they are different repositories with different
+release jobs — documented in the `release-openflexo` skill's Jenkins API reference, and this
+script fell into it on its first version), and a stale claim already sitting in
+`docs/develop/setup.md` ("settings.gradle ... all commented out") that turned out to be wrong once
+the real file was actually read — corrected there too.
+
 ## WEB-F-7 — confirm status of three unclassified technology adapters
 
 **Status:** TODO — needs the user
