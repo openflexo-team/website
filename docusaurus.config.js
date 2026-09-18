@@ -262,6 +262,7 @@ const config = {
             {from: '/docs/F.A.Q/HowToTestOpenflexo', to: '/docs/discover/faq'},
             {from: '/docs/F.A.Q/WhatAreRequiredComputerSkills', to: '/docs/discover/faq'},
             {from: '/docs/GettingStarted/ComponentsAndVersionsManagement', to: '/docs/develop/repository-map'},
+            {from: '/docs/get-started/versions', to: '/docs/develop/component-versions'},
             {from: '/docs/GettingStarted/GettingStartedUsingEclipse', to: '/docs/develop/setup'},
             {from: '/docs/GettingStarted/GettingStartedUsingIntellij', to: '/docs/develop/setup'},
             {from: '/docs/GettingStarted/UsingModuleCreationArchetype', to: '/docs/develop/'},

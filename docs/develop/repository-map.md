@@ -15,7 +15,7 @@ Layering is strict, bottom-up: Connie, then Pamela, then Gina and Diana, then th
 (`openflexo-core`), the user interface, the technology adapters, the server and finally the
 applications. A layer never depends on a higher one, and a technology adapter never depends on
 another one. See [Set up your workspace](./setup) to check them out and build them together, and
-[Component versions](/docs/get-started/versions) for which version of each goes with a release.
+[Component versions](/docs/develop/component-versions) for which version of each goes with a release.
 
 ## Core and frameworks
 

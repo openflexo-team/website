@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate docs/get-started/versions.md from openflexo-buildplugin's buildconfig.
+"""Regenerate docs/develop/component-versions.md from openflexo-buildplugin's buildconfig.
 
 Source of truth: each branch of openflexo-buildplugin sets the version of every independently
 versioned component in one file,
@@ -105,7 +105,7 @@ def render_notes(refs: list) -> str:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--buildplugin-dir", type=Path, default=Path(__file__).resolve().parents[2] / "openflexo-buildplugin")
-    parser.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "docs" / "get-started" / "versions.md")
+    parser.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "docs" / "develop" / "component-versions.md")
     args = parser.parse_args()
 
     if not args.buildplugin_dir.is_dir():
@@ -116,7 +116,7 @@ def main():
     all_refs = ", ".join(ref for _, ref, _ in CURRENT_REFS + FORMER_REFS)
 
     page = f"""---
-sidebar_position: 2
+sidebar_position: 3
 title: Component versions
 ---
 

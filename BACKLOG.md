@@ -25,7 +25,7 @@ alongside the other research projects.
   description, logo, repository, status). The Components page renders from it, grouped by status.
   `downloads.json` stays hand-maintained; the check script (WEB-F-4) cross-references it against
   the registry.
-* `scripts/generate_version_table.py`: regenerates `docs/get-started/versions.md` from the
+* `scripts/generate_version_table.py`: regenerates `docs/develop/component-versions.md` from the
   `buildconfig` of `openflexo-buildplugin`, one column per release branch (Python standard library
   only, nothing runs at site build time). Re-run it when a branch's `buildconfig` changes or a
   release branch is added.
