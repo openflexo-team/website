@@ -272,24 +272,24 @@ const config = {
             },
             {
               from: '/docs/Tutorials/Tutorial1-GettingStartedWithFreeModelingEditor',
-              to: '/docs/guide/tutorials/01-first-free-model',
+              to: '/docs/guide/tutorials/first-free-model',
             },
             {
               from: '/docs/Tutorials/Tutorial2-CreateDiagramEditorUsingFreeModellingEditor',
-              to: '/docs/guide/tutorials/02-diagram-editor-without-code',
+              to: '/docs/guide/tutorials/diagram-editor-without-code',
             },
             {from: '/docs/Tutorials/Tutorial3-BuildingADiagramEditor', to: '/docs/guide/tutorials/'},
             {
               from: '/docs/Tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor',
-              to: '/docs/guide/tutorials/03-petri-net-editor',
+              to: '/docs/guide/tutorials/petri-net-editor',
             },
             {
               from: '/docs/Tutorials/Tutorial5-FederatingExcelDocuments',
-              to: '/docs/guide/tutorials/04-federating-spreadsheets',
+              to: '/docs/guide/tutorials/federating-spreadsheets',
             },
             {
               from: '/docs/Tutorials/Tutorial7-WorkingOnModelMapping',
-              to: '/docs/guide/tutorials/05-model-mapping-and-sync',
+              to: '/docs/guide/tutorials/model-mapping-and-sync',
             },
             {from: '/docs/howto/HowTo-TechnologyAdapters', to: '/docs/guide/concepts/technology-adapters'},
             {from: '/docs/howto/HowTo-ResourceCenters', to: '/docs/guide/cookbook/resource-centers'},

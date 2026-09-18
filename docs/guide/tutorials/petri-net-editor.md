@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 # Tutorial 4 : Create Petri Model editor using the FreeModellingEditor
