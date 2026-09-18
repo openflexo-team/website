@@ -257,7 +257,7 @@ const config = {
           // reorganised around its audiences. Add an entry whenever a page moves again.
           redirects: [
             {from: '/ModelFederation', to: '/docs/discover/model-federation'},
-            {from: '/docs/documentation', to: '/docs/category/user-guide'},
+            {from: '/docs/documentation', to: '/docs/get-started'},
             {from: '/docs/F.A.Q/WhatIsModelFederation', to: '/docs/discover/model-federation'},
             {from: '/docs/F.A.Q/HowToTestOpenflexo', to: '/docs/discover/faq'},
             {from: '/docs/F.A.Q/WhatAreRequiredComputerSkills', to: '/docs/discover/faq'},
@@ -265,7 +265,7 @@ const config = {
             {from: '/docs/get-started/versions', to: '/docs/develop/component-versions'},
             {from: '/docs/GettingStarted/GettingStartedUsingEclipse', to: '/docs/develop/setup'},
             {from: '/docs/GettingStarted/GettingStartedUsingIntellij', to: '/docs/develop/setup'},
-            {from: '/docs/GettingStarted/UsingModuleCreationArchetype', to: '/docs/category/develop'},
+            {from: '/docs/GettingStarted/UsingModuleCreationArchetype', to: '/docs/develop/setup'},
             {
               from: '/docs/GettingStarted/UsingTechnologyAdapterCreationArchetype',
               to: '/docs/develop/guides/write-a-technology-adapter',

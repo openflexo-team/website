@@ -19,8 +19,8 @@ resource center, and the [vocabulary](/docs/discover/vocabulary) explains the te
 
 Check first that a [technology adapter](/docs/develop/repository-map) exists for each of your
 sources and how mature it is, then look at [what you can build](/docs/discover/what-you-can-build)
-for the kinds of results to aim for. Federating sources means writing FML, the language of the
-[User guide](/docs/category/user-guide).
+for the kinds of results to aim for. Federating sources means writing FML: the
+[vocabulary](/docs/discover/vocabulary) introduces it.
 
 ## I want to develop, or contribute
 
