@@ -66,8 +66,8 @@ a 404), the INCOSE Systems Engineering Vision 2020 page (`incose.org/ProductsPub
 INFORSID 2014 paper (`inforsid.fr/Lyon2014/...pdf`, 404). Find the current addresses or link the DOI
 / HAL record instead.
 
-## WEB-D-8 — dead sponsor links on the contributors page
+## WEB-D-8 — dead sponsor links on the partners page
 
 **Status:** TODO
 
-`src/pages/contributors.js` links the YourKit profiler pages, which answer HTTP 522.
+`src/pages/partners.js` links the YourKit profiler pages, which answer HTTP 522.

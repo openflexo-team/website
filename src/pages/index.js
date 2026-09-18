@@ -5,7 +5,6 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import SimpleSlider from '@site/src/components/Slider';
 import HomepageHeader from '@site/src/components/HomePageHeader';
-import Partners from '@site/src/components/Partners';
 import downloads from '../data/downloads.json';
 
 import styles from './index.module.css';
@@ -168,10 +167,6 @@ export default function Home() {
             ))}
           </div>
         </div>
-
-        <HomepageHeader title="PARTNERS" content="They support us ...">
-          <Partners />
-        </HomepageHeader>
       </main>
     </Layout>
   );

@@ -126,3 +126,11 @@ fails on a repository it has no description for.
 The site has no news, so nothing shows the project is alive. The single blog plugin instance is
 configured as `blogTitle: 'Downloads'` in `docusaurus.config.js`. A real news feed needs either a
 second blog instance with its own id and route, or moving Downloads off the blog plugin.
+
+## WEB-F-13 — update the list of partners
+
+**Status:** TODO — needs the current list
+
+`src/data/partners.json` and the logos under `static/img/partners/` date from the early years of the
+project. The page now lives at `/partners`, linked from the Community section and the footer, and is
+no longer on the home page. Replace the list with the partners of today.

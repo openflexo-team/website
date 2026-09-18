@@ -218,6 +218,10 @@ const config = {
                 label: 'Contributors', 
               },
               {
+                to: '/partners',
+                label: 'Partners',
+              },
+              {
                 label: 'Contact us',
                 to: 'mailto:contact@openflexo.org',
               },
