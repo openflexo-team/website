@@ -2,21 +2,34 @@
     margin-bottom: 50px;
 }
 
+/* Every slide takes the height of the tallest one, and its background fills it. */
+.sliderStyle :global(.slick-track) {
+    display: flex;
+}
+
+.sliderStyle :global(.slick-slide) {
+    height: auto;
+}
+
+.sliderStyle :global(.slick-slide > div) {
+    height: 100%;
+}
+
 /* The banner keeps its own light colours in both themes: the illustrations are drawn for a light
    background and are blended onto it (multiply). Change --slider-background to recolour it. */
 .slide {
     --slider-background: #f6faee;
     display: flex !important;
+    height: 100%;
     align-items: center;
     justify-content: center;
-    gap: 4rem;
-    min-height: 420px;
-    padding: 2.5rem 1.5rem;
+    gap: 3rem;
+    padding: 2rem 1.5rem;
     background: var(--slider-background);
 }
 
 .text {
-    flex: 0 1 36rem;
+    max-width: 36rem;
 }
 
 .title {
@@ -36,7 +49,7 @@
 
 .illustration {
     max-width: 45%;
-    max-height: 340px;
+    max-height: 300px;
     width: auto;
     mix-blend-mode: multiply;
     filter: brightness(1.045);
@@ -45,13 +58,21 @@
 @media screen and (max-width: 996px) {
     .slide {
         flex-direction: column;
-        gap: 1.5rem;
-        min-height: 0;
-        padding: 2rem 1rem 3rem;
+        gap: 1rem;
+        padding: 1.5rem 1rem 2.5rem;
+    }
+
+    .title {
+        margin-bottom: 0.5rem;
+        font-size: 1.8rem;
+    }
+
+    .header {
+        font-size: 1.05rem;
     }
 
     .illustration {
-        max-width: 90%;
-        max-height: 240px;
+        max-width: 85%;
+        max-height: 200px;
     }
 }

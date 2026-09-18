@@ -12,10 +12,14 @@ export default function HomepageHeader(props) {
           <p className={styles.heroContent}>
             {props.content}
           </p>
-          <br/>
-          <p className={styles.heroContent}>
-            {props.subcontent}
-          </p>
+          {props.subcontent && (
+            <>
+              <br/>
+              <p className={styles.heroContent}>
+                {props.subcontent}
+              </p>
+            </>
+          )}
         </div>
 
         { props.children }

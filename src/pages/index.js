@@ -101,8 +101,16 @@ export default function Home() {
       <main>
         <HomepageHeader
           title="Federate, don't transform"
-          content="Openflexo is an open-source infrastructure for model federation: it connects models that live in different tools and formats, and lets you work with them together, without converting them."
-          subcontent="Its approach is to consider everything as a model. Any source of information (a spreadsheet, an XML file, a database, a drawing...) can be interpreted as a model, as soon as you tell Openflexo how to read it.">
+          content={
+            <span className={styles.heroLead}>
+              Openflexo is an open-source infrastructure for model federation. Its approach is to
+              consider everything as a model: any source of information (a spreadsheet, an XML file, a
+              database, a drawing...) can be interpreted as a model, as soon as you tell Openflexo how
+              to read it. Your models then stay in their original tools and formats: Openflexo
+              connects them instead of converting them, keeps them consistent, and lets you work with
+              them together and build graphical views and editors on top of them.
+            </span>
+          }>
           <div className={styles.buttons}>
             <Link className="button button--primary button--lg margin-right--md" to="/downloads">
               Download
