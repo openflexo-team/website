@@ -22,6 +22,7 @@ What it checks
                would write today (needs the sibling openflexo-buildplugin / openflexo-dev clones)
   placeholders leftover placeholder text and empty sections
   structure    number prefixes in file names, duplicate sidebar positions, invalid category files
+  publications src/data/papers.js is what the build rebuilds from src/publis/
 """
 import argparse
 import json
@@ -496,6 +497,17 @@ def check_generated(workspace, report):
             report.error("generated", f"docs/develop/{filename} is out of date: re-run scripts/{module.__name__}.py")
 
 
+def check_publications(report):
+    """The build rebuilds src/data/papers.js from src/publis/ (write_papers.js): they must agree."""
+    def entries(text):
+        return sorted(e.strip() for e in re.split(r"(?m)^(?=@)", text.replace("export const data_papers = `", "\n").rstrip("`\n")) if e.strip())
+
+    publis = "".join(f.read_text() for f in sorted((ROOT / "src" / "publis").glob("*.bib")))
+    data = (ROOT / "src" / "data" / "papers.js").read_text()
+    if entries(publis) != entries(data):
+        report.error("publications", "src/data/papers.js differs from src/publis/*.bib, which the build uses to rebuild it: run scripts/update_publications.py")
+
+
 def check_placeholders(report):
     files = list(DOCS.rglob("*.md")) + [p for p in (ROOT / "src").rglob("*") if p.suffix in (".js", ".json", ".md")]
     for path in sorted(files):
@@ -563,6 +575,7 @@ def main():
     check_generated(args.workspace, report)
     check_placeholders(report)
     check_structure(report)
+    check_publications(report)
     if args.offline:
         print("offline: external links and snapshot not checked")
     else:

@@ -152,7 +152,8 @@ around them.
 **Status:** IN PROGRESS
 
 * Done: publications synchronised from HAL (`python3 scripts/update_publications.py` regenerates
-  `src/data/papers.js`; 20 documents, 2013–2026; two HAL records are excluded on purpose, listed with
+  `src/publis/*.bib`, which the build turns into `src/data/papers.js` (`write_papers.js`), and that
+  file itself; 20 documents, 2013–2026; two HAL records are excluded on purpose, listed with
   their reason in the script); the publications page shows PDF, DOI and BibTeX links and awards;
   contributions by theme; how to cite; reading guide of the overview updated.
 * To do: publications grouped by theme as well as by year; project pages (Formose, Oneway, the ESA

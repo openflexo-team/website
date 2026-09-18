@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""Refresh src/data/papers.js, the publications shown at /papers, from HAL.
+"""Refresh the publications shown at /papers from HAL.
 
 HAL (hal.science) is the reference list of the team's publications. This script queries its public
-API for the given HAL author identifiers, keeps the BibTeX record HAL exports for each document,
-decodes the LaTeX accents to Unicode and writes them as the JavaScript module the page reads.
+API for the given HAL author identifiers, keeps the BibTeX record HAL exports for each document and
+decodes the LaTeX accents to Unicode. It writes one file per document in src/publis/ and the
+JavaScript module src/data/papers.js the page reads.
+
+The site build runs src/write_papers.js, which rebuilds src/data/papers.js from src/publis/ (see the
+"Update papers" step of build.gradle): src/publis/ is therefore the real source, and papers.js is
+only a copy of it that this script keeps identical to what the build produces.
 Python standard library only: this repository's package-lock.json cannot be regenerated, so
 nothing here may add an npm dependency.
 
@@ -69,6 +74,7 @@ def fetch(idhal: str) -> list:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "src" / "data" / "papers.js")
+    parser.add_argument("--publis", type=Path, default=Path(__file__).resolve().parents[1] / "src" / "publis")
     args = parser.parse_args()
 
     documents = {}
@@ -86,8 +92,19 @@ def main():
     if leftover:
         print("warning: LaTeX macros left undecoded in:\n  " + "\n  ".join(leftover), file=sys.stderr)
 
-    args.out.write_text("export const data_papers = `" + js_template("\n".join(entries)) + "\n`\n")
-    print(f"wrote {len(entries)} publications to {args.out} ({len(documents) - len(kept)} excluded)")
+    # write_papers.js concatenates the files as they are, into a JavaScript template literal.
+    for entry in entries:
+        if re.search(r"\\|`|\$\{", entry):
+            sys.exit(f"error: a backslash, backtick or ${{ is left in {entry.splitlines()[0]}: it would be altered by the build")
+
+    args.publis.mkdir(parents=True, exist_ok=True)
+    for old in args.publis.glob("*.bib"):
+        old.unlink()
+    for doc, entry in zip(kept, entries):
+        (args.publis / f"{doc['producedDateY_i']}-{doc['halId_s']}.bib").write_text(entry + "\n")
+    content = "".join(f.read_text() for f in sorted(args.publis.glob("*.bib")))
+    args.out.write_text("export const data_papers = `" + content + "`")
+    print(f"wrote {len(entries)} publications to {args.publis} and {args.out} ({len(documents) - len(kept)} excluded)")
 
 
 if __name__ == "__main__":
