@@ -5,7 +5,7 @@
 /* The banner keeps its own light colours in both themes: the illustrations are drawn for a light
    background and are blended onto it (multiply). Change --slider-background to recolour it. */
 .slide {
-    --slider-background: #eaf3d9;
+    --slider-background: #f6faee;
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -16,12 +16,12 @@
 }
 
 .text {
-    max-width: 30rem;
+    flex: 0 1 36rem;
 }
 
 .title {
     margin-bottom: 1rem;
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     line-height: 1.15;
     font-weight: 700;
     color: #1c1e21;

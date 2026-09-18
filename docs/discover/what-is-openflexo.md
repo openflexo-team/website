@@ -21,6 +21,14 @@ Openflexo takes another route. Each model **stays where it is**, in its original
 remains autonomous. A *federated* model does not have to own the values of its elements: it declares
 how to get them from the models that hold them, when they are needed, and how to send changes back.
 
+## Everything is a model
+
+Openflexo's approach is to consider **any source of information as a model**: a spreadsheet, an XML
+document, a database, a drawing, a document. In fact any data format is potentially a source. What
+makes it a model is the way it is interpreted, which can be explicit (a schema) or implicit; you
+tell Openflexo how to interpret it, through a technology adapter, and from then on it can be
+connected to the other models like any other.
+
 ## How it works, in short
 
 1. A **technology adapter** gives Openflexo access to one kind of resource: reading it, and, where
