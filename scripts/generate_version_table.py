@@ -102,20 +102,16 @@ def render_notes(refs: list) -> str:
     return "\n".join(f"* **{label}**: {note}" for label, _ref, note in refs)
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--buildplugin-dir", type=Path, default=Path(__file__).resolve().parents[2] / "openflexo-buildplugin")
-    parser.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "docs" / "develop" / "component-versions.md")
-    args = parser.parse_args()
+def build_page(buildplugin_dir: Path) -> str:
+    """The full generated page. Exits (SystemExit) if a ref or a version cannot be read."""
+    if not buildplugin_dir.is_dir():
+        sys.exit(f"error: {buildplugin_dir} does not exist -- pass --buildplugin-dir")
 
-    if not args.buildplugin_dir.is_dir():
-        sys.exit(f"error: {args.buildplugin_dir} does not exist -- pass --buildplugin-dir")
-
-    current_table = render_table(load(args.buildplugin_dir, CURRENT_REFS))
-    former_table = render_table(load(args.buildplugin_dir, FORMER_REFS))
+    current_table = render_table(load(buildplugin_dir, CURRENT_REFS))
+    former_table = render_table(load(buildplugin_dir, FORMER_REFS))
     all_refs = ", ".join(ref for _, ref, _ in CURRENT_REFS + FORMER_REFS)
 
-    page = f"""---
+    return f"""---
 sidebar_position: 3
 title: Component versions
 ---
@@ -147,6 +143,15 @@ Openflexo 2.99 does not run on a Java newer than 8: it freezes at startup (see
 
 {former_table}
 """
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--buildplugin-dir", type=Path, default=Path(__file__).resolve().parents[2] / "openflexo-buildplugin")
+    parser.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "docs" / "develop" / "component-versions.md")
+    args = parser.parse_args()
+
+    page = build_page(args.buildplugin_dir)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(page)
     print(f"wrote {args.out}")

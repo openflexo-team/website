@@ -3,76 +3,64 @@
         {
             "name": "FreeModellingEditor",
             "description": "Design graphical free models",
-            "logo": "/img/components/modules/FME/fme20x20.png",
-            "url": "https://openflexo-modules.openflexo.org/SNAPSHOT/free-modelling-editor/index.html"
+            "logo": "/img/components/modules/FME/fme20x20.png"
         },
         {
             "name": "OpenflexoModeller",
             "description": "Define and execute model federation",
-            "logo": "/img/components/modules/OM/om20x20.png",
-            "url": "https://openflexo-modules.openflexo.org/SNAPSHOT/openflexo-modeller/index.html"
+            "logo": "/img/components/modules/OM/om20x20.png"
         },
         {
             "name": "EAModule",
             "description": "Design with out-of-box models",
-            "logo": "/img/components/modules/EAM/eam20x20.png",
-            "url": "https://openflexo-modules.openflexo.org/SNAPSHOT/enterprise-architecture-module/index.html"
+            "logo": "/img/components/modules/EAM/eam20x20.png"
         }
     ],
     "technology_adapters": [
         {
             "name": "Diagram",
             "description": "Openflexo diagramming technology",
-            "logo": "/img/components/ta/diagram_ta/Diagram20x20.png",
-            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/flexodiagram/index.html"
+            "logo": "/img/components/ta/diagram_ta/Diagram20x20.png"
         },
         {
             "name": "M/S PowerPoint",
             "description": "MS/PowerPoint documents import",
-            "logo": "/img/components/ta/ppt_ta/PowerPoint20x20.png",
-            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/powerpointconnector/index.html"
+            "logo": "/img/components/ta/ppt_ta/PowerPoint20x20.png"
         },
         {
             "name": "EMF",
             "description": "Eclipse Modelling Framework technology",
-            "logo": "/img/components/ta/emf_ta/EMF20x20.png",
-            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/emfconnector/index.html"
+            "logo": "/img/components/ta/emf_ta/EMF20x20.png"
         },
         {
             "name": "XML/XSD",
             "description": "XML and XSD files",
-            "logo": "/img/components/ta/xml_xsd_ta/XMLXSD20x20.png",
-            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/xmlconnector/index.html"
+            "logo": "/img/components/ta/xml_xsd_ta/XMLXSD20x20.png"
         },
         {
             "name": "OWL ontologies",
             "description": "OWL2 ontologies",
-            "logo": "/img/components/ta/owl_ta/OWL20x20.png",
-            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/owlconnector/index.html"
+            "logo": "/img/components/ta/owl_ta/OWL20x20.png"
         },
         {
             "name": "M/S Word",
             "description": "Microsoft word documents (.doc,.docx)",
-            "logo": "/img/components/ta/word_ta/Word20x20.png",
-            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/docxconnector/index.html"
+            "logo": "/img/components/ta/word_ta/Word20x20.png"
         },
         {
             "name": "M/S Excel",
             "description": "Microsoft excel documents (.xls,.xlsx)",
-            "logo": "/img/components/ta/excel_ta/Excel20x20.png",
-            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/excelconnector/index.html"
+            "logo": "/img/components/ta/excel_ta/Excel20x20.png"
         },
         {
             "name": "PDF",
             "description": "PDF documents",
-            "logo": "/img/components/ta/pdf_ta/PDF20x20.png",
-            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/pdfconnector/index.html"
+            "logo": "/img/components/ta/pdf_ta/PDF20x20.png"
         },
         {
             "name": "JDBC",
             "description": "JDBC relational database support",
-            "logo": "/img/components/ta/jdbc_ta/JDBC20x20.png",
-            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/jdbcconnector/index.html"
+            "logo": "/img/components/ta/jdbc_ta/JDBC20x20.png"
         },
         {
             "name": "ODT",
@@ -107,8 +95,7 @@
         {
             "name": "OSLC",
             "description": "OSLC support",
-            "logo": "/img/components/ta/oslc_ta/OSLC20x20.png",
-            "url": "https://openflexo-ta.openflexo.org/SNAPSHOT/oslcconnector/index.html"
+            "logo": "/img/components/ta/oslc_ta/OSLC20x20.png"
         },
         {
             "name": "REST",
@@ -121,18 +108,6 @@
             "description": "JSON documents",
             "logo": "/img/components/ta/json_ta/JSON128x128.png",
             "url": "https://github.com/openflexo-team/openflexo-json"
-        },
-        {
-            "name": "XX",
-            "description": "Text files, line by line",
-            "logo": "/img/components/ta/xx_ta/XX128x128.png",
-            "url": "https://github.com/openflexo-team/openflexo-technology-adapters"
-        },
-        {
-            "name": "DSL",
-            "description": "Textual domain-specific languages",
-            "logo": "/img/components/ta/dsl_ta/DSL128x128.png",
-            "url": "https://github.com/openflexo-team/openflexo-technology-adapters"
         },
         {
             "name": "Rhapsody",
@@ -202,7 +177,7 @@
                     "name": "Openflexo Maintainer",
                     "description": "This packaging contains all modules and all all technology adapters developed at Openflexo. The purpose of this packaging is to offer full features for developers of Openflexo model federation infrastructure. This packaging is configured to enable all developers tools.",
                     "modules": ["FreeModellingEditor", "OpenflexoModeller", "EAModule"],
-                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "ODT", "PDF", "GINA", "JDBC", "Kafka", "Java", "OPC-UA", "REST", "OSLC", "JSON", "XX", "DSL", "Rhapsody"],
+                    "ta": ["Diagram", "EMF", "XML/XSD", "OWL ontologies", "M/S Word", "M/S Excel", "M/S PowerPoint", "ODT", "PDF", "GINA", "JDBC", "Kafka", "Java", "OPC-UA", "REST", "OSLC", "JSON", "Rhapsody"],
                     "downloadUrl":{
                         "mac": "https://downloads.openflexo.org/openflexo/2.99SNAPSHOT/2026-09-17/Mac/Openflexo%20FlexoMaintainer%202.99SNAPSHOT.dmg",
                         "linux": "https://downloads.openflexo.org/openflexo/2.99SNAPSHOT/2026-09-17/Linux/Openflexo%20FlexoMaintainer%202.99SNAPSHOT.tar.gz",

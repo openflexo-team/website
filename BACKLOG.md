@@ -35,14 +35,33 @@ alongside the other research projects.
 
 ## WEB-F-4 — local check script
 
-**Status:** TODO
+**Status:** DONE
 
-Python or shell, no npm dependency, non-zero exit status on any error: dead internal and external
-links (including the redirect map and every download URL), drift between each package's
-technology adapters and `openflexo-packaging`, registry entries without a logo, technology adapters
-referenced but absent from the registry, a version table that no longer matches the build plugin,
-leftover placeholder text, and a downloads snapshot older than the latest one on
-`downloads.openflexo.org` (warning only).
+`python3 scripts/check_site.py` (standard library only, `--offline` to skip the network) exits with
+status 1 on any error. It checks: internal links, static assets and the redirect map against the
+routes the build really produces; every external URL, download URLs included; the registry (fields,
+statuses, logos); technology adapters used by `downloads.json` against the registry and, for 2.99,
+each package's modules and adapters against `openflexo-packaging`; the snapshot date (consistent in
+`downloads.json`, and warning when a newer one is published); that the two generated pages are what
+their generators would write today; leftover placeholder text and empty sections; number prefixes in
+file names and duplicate sidebar positions. The packaging and generated-page checks need
+`openflexo-packaging`, `openflexo-buildplugin` and `openflexo-dev` cloned next to this repository
+(`--workspace` to point elsewhere) and are skipped with a warning otherwise.
+
+## WEB-F-9 — run the check in the Jenkins `website` job
+
+**Status:** DEFERRED
+
+The job only checks out this repository, so it could run `--offline` as is; the packaging and
+generated-page checks need the sibling clones.
+
+## WEB-F-10 — XX and DSL are archetypes, not adapters
+
+**Status:** DONE
+
+`XX` and `DSL` are templates to copy when writing an adapter. They are shipped by the Maintainer
+package but appear nowhere on the site: removed from `downloads.json`, and ignored by the check
+when it compares packages with `openflexo-packaging`.
 
 ## WEB-F-5 — Discover and Get started content
 

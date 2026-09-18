@@ -56,6 +56,9 @@ CORE_REPOS = {
     "openflexo-obp2": ("Connector for the OBP2 tool", "Retired"),
 }
 
+# Listed in settings.gradle but not reachable on GitHub (404): shown without a link.
+NO_PUBLIC_REPOSITORY = {"pimca", "cta"}
+
 STATUS_LABELS = {
     "stabilised": "Stabilised",
     "migration-in-progress": "Migration in progress",
@@ -135,25 +138,22 @@ def render_markdown(sections: list, registry: dict) -> str:
         parts.append("|---|---|---|")
         for name in repos:
             description, status = describe(name, registry)
-            parts.append(f"| [{name}](https://github.com/openflexo-team/{name}) | {description} | {status} |")
+            label = name if name in NO_PUBLIC_REPOSITORY else f"[{name}](https://github.com/openflexo-team/{name})"
+            parts.append(f"| {label} | {description} | {status} |")
         parts.append("")
     return "\n".join(parts)
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--openflexo-dev-dir", type=Path, default=Path(__file__).resolve().parents[2] / "openflexo-dev")
-    parser.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "docs" / "develop" / "repository-map.md")
-    args = parser.parse_args()
+def build_page(openflexo_dev_dir: Path) -> str:
+    """The full generated page. Exits (SystemExit) if a repository has no description."""
+    if not openflexo_dev_dir.is_dir():
+        sys.exit(f"error: {openflexo_dev_dir} does not exist -- pass --openflexo-dev-dir")
 
-    if not args.openflexo_dev_dir.is_dir():
-        sys.exit(f"error: {args.openflexo_dev_dir} does not exist -- pass --openflexo-dev-dir")
-
-    sections = parse_settings_gradle(read_committed_settings_gradle(args.openflexo_dev_dir))
+    sections = parse_settings_gradle(read_committed_settings_gradle(openflexo_dev_dir))
     registry = load_registry(Path(__file__).resolve().parent.parent / "src" / "data" / "technology-adapters.json")
     tables = render_markdown(sections, registry)
 
-    page = f"""---
+    return f"""---
 sidebar_position: 2
 title: Repository map
 ---
@@ -174,6 +174,15 @@ another one. See [Set up your workspace](./setup) to check them out and build th
 
 {tables}
 {LEGEND}"""
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--openflexo-dev-dir", type=Path, default=Path(__file__).resolve().parents[2] / "openflexo-dev")
+    parser.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "docs" / "develop" / "repository-map.md")
+    args = parser.parse_args()
+
+    page = build_page(args.openflexo_dev_dir)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(page)
     print(f"wrote {args.out}")

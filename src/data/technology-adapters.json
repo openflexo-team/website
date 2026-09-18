@@ -3,7 +3,7 @@
   "adapters": [
     {"id": "xml", "name": "XML/XSD", "description": "XML documents, typed against an XSD or freely structured", "logo": "/img/components/ta/xml_xsd_ta/XMLXSD128x128.png", "repository": "https://github.com/openflexo-team/openflexo-xml", "status": "stabilised"},
     {"id": "emf", "name": "EMF", "description": "EMF-based metamodels and models", "logo": "/img/components/ta/emf_ta/EMF128x92.png", "repository": "https://github.com/openflexo-team/openflexo-emf", "status": "stabilised"},
-    {"id": "owl", "name": "OWL", "description": "OWL2 ontologies", "logo": "/img/components/ta/owl_ta/OWL128x128.png", "repository": "https://github.com/openflexo-team/openflexo-owl", "status": "stabilised"},
+    {"id": "owl", "name": "OWL", "aliases": ["OWL ontologies"], "description": "OWL2 ontologies", "logo": "/img/components/ta/owl_ta/OWL128x128.png", "repository": "https://github.com/openflexo-team/openflexo-owl", "status": "stabilised"},
     {"id": "diagram", "name": "Diagram", "description": "Openflexo's native diagramming technology", "logo": "/img/components/ta/diagram_ta/Diagram128x128.png", "repository": "https://github.com/openflexo-team/openflexo-diagram", "status": "stabilised"},
     {"id": "docx", "name": "M/S Word", "description": "Microsoft Word documents (.doc, .docx)", "logo": "/img/components/ta/word_ta/Word128x128.png", "repository": "https://github.com/openflexo-team/openflexo-docx", "status": "stabilised"},
 	{"id": "xlsx", "name": "M/S Excel", "description": "Microsoft Excel spreadsheets (.xls, .xlsx)", "logo": "/img/components/ta/excel_ta/Excel128x128.png", "repository": "https://github.com/openflexo-team/openflexo-xlsx", "status": "stabilised"},

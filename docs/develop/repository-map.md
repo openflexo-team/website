@@ -33,8 +33,8 @@ another one. See [Set up your workspace](./setup) to check them out and build th
 | [modelers](https://github.com/openflexo-team/modelers) | BPMN, UML, statecharts and OWL modelers | Active |
 | [openflexo-integration-tests](https://github.com/openflexo-team/openflexo-integration-tests) | Regression tests and example federation use cases | Active |
 | [openflexo-packaging](https://github.com/openflexo-team/openflexo-packaging) | Assembles modules and technology adapters into downloadable packages | Active |
-| [pimca](https://github.com/openflexo-team/pimca) | Domain-specific systems modeling language for cyber threat analysis | Research prototype |
-| [cta](https://github.com/openflexo-team/cta) | Cyber Threat Application, built on Pimca (see [Research](/docs/research/projects/cta)) | Research prototype |
+| pimca | Domain-specific systems modeling language for cyber threat analysis | Research prototype |
+| cta | Cyber Threat Application, built on Pimca (see [Research](/docs/research/projects/cta)) | Research prototype |
 | [formod](https://github.com/openflexo-team/formod) | Formose application: the B technology adapter, its module and its tests | Research prototype |
 
 ## Technology adapters

@@ -56,3 +56,18 @@ staging forever and is then promoted to production by `website-production`, whic
 which is not in the module (only `GenerateReferenceDocumentation` and
 `GenerateLatexDocumentation` exist). `gradlew run` fails outright. `GenerateReferenceDocumentation`
 also wires exactly three technology adapters by hand, with several others commented out.
+
+## WEB-D-7 — dead links in the bibliography of the research overview
+
+**Status:** TODO
+
+`docs/research/index.md`: the publisher page `crcpress.com/product/isbn/9781420079135` (redirects to
+a 404), the INCOSE Systems Engineering Vision 2020 page (`incose.org/ProductsPubs/...`, 404) and the
+INFORSID 2014 paper (`inforsid.fr/Lyon2014/...pdf`, 404). Find the current addresses or link the DOI
+/ HAL record instead.
+
+## WEB-D-8 — dead sponsor links on the contributors page
+
+**Status:** TODO
+
+`src/pages/contributors.js` links the YourKit profiler pages, which answer HTTP 522.
