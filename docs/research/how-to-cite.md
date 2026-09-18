@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 title: How to cite Openflexo
 description: Which publication to cite when you use or discuss Openflexo, FML or PAMELA, with ready-to-use BibTeX.
 ---
@@ -83,6 +83,6 @@ Science of Computer Programming, 2021.
 
 ## Other publications
 
-All the publications are on the [publications page](/papers), each with its BibTeX record, and the
+All the publications are on the [publications page](/docs/research/publications), each with its BibTeX record, and the
 [contributions](/docs/research/contributions) page groups them by theme. When you refer to a
 particular version of the software, give its version number (see [Downloads](/downloads)).

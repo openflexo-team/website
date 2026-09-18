@@ -190,7 +190,7 @@ const config = {
             items: [
               {
                 label: 'Papers',
-                to: '/papers',
+                to: '/docs/research/publications',
               },
               {
                 label: 'Formose Project',
@@ -261,6 +261,7 @@ const config = {
           // reorganised around its audiences. Add an entry whenever a page moves again.
           redirects: [
             {from: '/ModelFederation', to: '/docs/discover/model-federation'},
+            {from: '/papers', to: '/docs/research/publications'},
             {from: '/docs/documentation', to: '/docs/get-started'},
             {from: '/docs/F.A.Q/WhatIsModelFederation', to: '/docs/discover/model-federation'},
             {from: '/docs/F.A.Q/HowToTestOpenflexo', to: '/docs/discover/faq'},

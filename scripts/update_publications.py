@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh the publications shown at /papers from HAL.
+"""Refresh the publications shown at /docs/research/publications from HAL.
 
 HAL (hal.science) is the reference list of the team's publications. This script queries its public
 API for the given HAL author identifiers, keeps the BibTeX record HAL exports for each document and

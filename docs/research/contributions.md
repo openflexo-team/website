@@ -8,7 +8,7 @@ description: The scientific contributions behind Openflexo, by theme, with the p
 
 Openflexo is both a software infrastructure and the vehicle of a research programme on model
 federation. This page groups the contributions by theme; each links to the publications where it is
-presented. The full list is on the [publications page](/papers).
+presented. The full list is on the [publications page](/docs/research/publications).
 
 ## Model federation
 

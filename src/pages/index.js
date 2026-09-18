@@ -31,7 +31,7 @@ const DOORS = [
     description: 'The scientific problem behind model federation, the projects and the publications.',
     links: [
       {to: '/docs/research', label: 'Research overview'},
-      {to: '/papers', label: 'Publications'},
+      {to: '/docs/research/publications', label: 'Publications'},
     ],
   },
 ];

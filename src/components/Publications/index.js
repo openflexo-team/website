@@ -1,9 +1,7 @@
 import React from 'react';
-import Layout from '@theme/Layout';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import styles from './index.module.css';
 import bibtexParse from '@orcid/bibtex-parse-js';
-import {data_papers} from '../data/papers'
+import {data_papers} from '@site/src/data/papers';
+import styles from '@site/src/pages/index.module.css';
 
 function Article({entryTags}){
     return (
@@ -38,21 +36,16 @@ function Article({entryTags}){
     )
 }
 
-export default function papers() {
-    const {siteConfig}  = useDocusaurusContext()
-    let articles        = bibtexParse.toJSON(data_papers)
+export default function Publications() {
+    let articles = bibtexParse.toJSON(data_papers)
 
     articles.sort((a, b) => a.entryTags.YEAR - b.entryTags.YEAR)
     articles.reverse()
     return (
-        <Layout
-          title={`${siteConfig.title}`}
-          description="Openflexo is a model-federation infrastructure software.">
-          <main>
+        <div className='row'>
             {articles.map((props, idx) => (
                 <Article key={idx} {...props} />
             ))}
-          </main>
-        </Layout>
-        )
+        </div>
+    )
 }
