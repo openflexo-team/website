@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-"""Regenerate docs/develop/repository-map.md from openflexo-dev's settings.gradle.
+"""Regenerate docs/develop/repository-map.md.
 
-Per CLAUDE.md: "The repo map ... [is] derivable from each settings.gradle." openflexo-dev's is the
-aggregate one: every repository anyone works across is one `includeBuild '../<repo>'` line there,
-grouped under its own comments, with the ones deliberately left out of the composite commented out
-(`//includeBuild`). This script parses that file — no npm dependency, no JS, Python stdlib only —
-and writes a plain Markdown page. Cross-references the technology-adapters.json registry for a
-status badge where the two overlap.
+The list and grouping of repositories come from the committed `settings.gradle` of the
+`openflexo-dev` aggregate build (one `includeBuild '../<repo>'` line per repository, grouped under
+its own comments). Descriptions and statuses of technology adapters come from
+src/data/technology-adapters.json; those of every other repository from CORE_REPOS below.
+Python standard library only: this repository's package-lock.json cannot be regenerated, so
+nothing here may add an npm dependency, and only the generated page is committed.
 
 Run from the website repo root:
 
     python3 scripts/generate_repository_map.py
 
-Requires openflexo-dev to be cloned as a sibling of this repo (the normal GIT-2.99 workspace
-layout) — pass --openflexo-dev-dir to point elsewhere.
+Requires a clone of openflexo-dev next to this repository -- pass --openflexo-dev-dir to point
+elsewhere. A repository absent from both tables makes the script fail rather than guess.
 """
 import argparse
 import json
@@ -24,19 +24,65 @@ from datetime import date
 from pathlib import Path
 
 INCLUDE_RE = re.compile(r"^(//)?\s*includeBuild\s*'\.\./([\w.-]+)'\s*$")
-# Real section headers in this file are short titles ("Technology adapters", "Server"), not the
-# multi-sentence explanatory comments at the top of the file -- cap word count to tell them apart.
+# Real section headers in settings.gradle are short titles ("Technology adapters", "Server"), not
+# the explanatory sentences at the top of the file: cap the word count and reject sentence openers.
 SECTION_RE = re.compile(r"^//\s*([A-Z][^.]*)$")
 SECTION_MAX_WORDS = 4
-# Explanatory prose ("The root project name", "The list of projects...") always starts with one of
-# these; real section titles ("Technology adapters", "Server") never do.
 SECTION_STOPWORDS = {"the", "for", "each", "you"}
+
+# Every repository that is not a technology adapter: (description, status).
+CORE_REPOS = {
+    "openflexo-buildplugin": ("Gradle build plugin and version configuration shared by every repository", "Active"),
+    "connie": ("Expression language and binding framework", "Active"),
+    "diana": ("Diagramming and 2D drawing framework", "Active"),
+    "gina": ("Generic user-interface framework: widgets, panels, inspectors", "Active"),
+    "pamela": ("Modeling framework: annotated interfaces woven into stateful model objects", "Active"),
+    "pamela-editor": ("Editor for Pamela metamodels", "Active"),
+    "openflexo-utils": ("Shared utility classes", "Active"),
+    "openflexo-core": ("Model federation engine and FML, the Flexo Modeling Language", "Active"),
+    "openflexo-ui": ("Shared user-interface components of the Openflexo applications", "Active"),
+    "modelers": ("BPMN, UML, statecharts and OWL modelers", "Active"),
+    "openflexo-integration-tests": ("Regression tests and example federation use cases", "Active"),
+    "openflexo-packaging": ("Assembles modules and technology adapters into downloadable packages", "Active"),
+    "pimca": ("Domain-specific systems modeling language for cyber threat analysis", "Research prototype"),
+    "cta": ("Cyber Threat Application, built on Pimca (see [Research](/docs/research/projects/cta))", "Research prototype"),
+    "formod": ("Formose application: the B technology adapter, its module and its tests", "Research prototype"),
+    "openflexo-technology-adapters": ("Historical container of technology adapters, now holding only the `xx-ta` template", "Legacy"),
+    "openflexo-server": ("HTTP server exposing the Openflexo infrastructure through a REST API", "Active"),
+    "openflexo-modules": ("Template (`xxxmodule`) for building a new application module", "Active"),
+    "openflexo-modeller": ("Openflexo Modeller application: define and run model federations", "Active"),
+    "free-modelling-editor": ("FreeModellingEditor application: build free graphical models", "Active"),
+    "enterprise-architecture-editor": ("Enterprise Architecture editor application", "Active"),
+    "openflexo-obp2": ("Connector for the OBP2 tool", "Retired"),
+}
+
+STATUS_LABELS = {
+    "stabilised": "Stabilised",
+    "migration-in-progress": "Migration in progress",
+    "active-development": "Active development",
+    "limited-support": "Limited support",
+    "retired": "Retired",
+    "unclassified": "Not yet classified",
+}
+
+LEGEND = """## Statuses
+
+Technology adapters follow the review made by the architecture board on 2026-04-03:
+
+* **Stabilised**: complete and stable.
+* **Migration in progress**: being migrated to the current architecture.
+* **Active development**: new adapter, still being developed.
+* **Limited support**: still available, with limited maintenance.
+* **Retired**: no longer maintained nor shipped.
+
+Other repositories are **Active** (maintained, part of the current platform), a **Research
+prototype** (built for a research project), **Legacy** (kept for history) or **Retired**.
+"""
 
 
 def read_committed_settings_gradle(openflexo_dev_dir: Path) -> str:
-    """The committed HEAD version, not the working tree: a contributor's own uncommitted
-    includeBuild toggles (which repos *they* happen to have checked out right now) must not leak
-    into a page meant to describe the shared, canonical default."""
+    """The committed HEAD version, not the working tree: local, uncommitted includeBuild toggles
+    must not leak into a page describing the shared project."""
     result = subprocess.run(
         ["git", "-C", str(openflexo_dev_dir), "show", "HEAD:settings.gradle"],
         capture_output=True, text=True,
@@ -47,53 +93,49 @@ def read_committed_settings_gradle(openflexo_dev_dir: Path) -> str:
 
 
 def parse_settings_gradle(content: str) -> list:
-    """Returns [(section_title, [(repo_name, active), ...]), ...] in file order."""
-    sections = [("Core & frameworks", [])]
+    """Returns [(section_title, [repo_name, ...]), ...] in file order."""
+    sections = [("Core and frameworks", [])]
     for line in content.splitlines():
         stripped = line.strip()
         include_match = INCLUDE_RE.match(stripped)
         if include_match:
-            commented, name = include_match.groups()
-            sections[-1][1].append((name, commented is None))
+            sections[-1][1].append(include_match.group(2))
             continue
         section_match = SECTION_RE.match(stripped)
         if section_match:
             title = section_match.group(1).strip()
             words = title.split()
-            # Ignore the file's leading explanatory comments (they don't look like a short title).
             if len(words) <= SECTION_MAX_WORDS and words[0].lower() not in SECTION_STOPWORDS:
                 sections.append((title, []))
     return [s for s in sections if s[1]]
 
 
 def load_registry(path: Path) -> dict:
-    if not path.is_file():
-        return {}
     data = json.loads(path.read_text())
     return {a["id"]: a for a in data["adapters"]}
+
+
+def describe(name: str, registry: dict) -> tuple:
+    """(description, status) of a repository. Registry ids come only from "openflexo-<id>"
+    repositories: a bare name such as "gina" (the GUI framework) must never be matched to
+    "openflexo-gina" (a different repository, the technology adapter)."""
+    if name in CORE_REPOS:
+        return CORE_REPOS[name]
+    if name.startswith("openflexo-") and name[len("openflexo-"):] in registry:
+        adapter = registry[name[len("openflexo-"):]]
+        return adapter["description"], STATUS_LABELS[adapter["status"]]
+    sys.exit(f"error: repository {name!r} is in settings.gradle but has no description: add it to CORE_REPOS")
 
 
 def render_markdown(sections: list, registry: dict) -> str:
     parts = []
     for title, repos in sections:
         parts.append(f"## {title}\n")
-        parts.append("| Repository | Status |")
-        parts.append("|---|---|")
-        for name, active in repos:
-            repo_url = f"https://github.com/openflexo-team/{name}"
-            # Registry ids are derived only from "openflexo-<id>" repos. Do NOT strip a bare name
-            # (e.g. "gina", the GUI framework) down to an id that collides with an unrelated
-            # "openflexo-<id>" adapter (e.g. "openflexo-gina", the technology adapter) -- see
-            # jenkins-api.md's warning: those two are different repositories.
-            ta_id = name[len("openflexo-"):] if name.startswith("openflexo-") else None
-            adapter = registry.get(ta_id) if ta_id else None
-            if adapter:
-                status = adapter["status"]
-            elif active:
-                status = "in the default composite build"
-            else:
-                status = "not in the default composite build"
-            parts.append(f"| [{name}]({repo_url}) | {status} |")
+        parts.append("| Repository | Description | Status |")
+        parts.append("|---|---|---|")
+        for name in repos:
+            description, status = describe(name, registry)
+            parts.append(f"| [{name}](https://github.com/openflexo-team/{name}) | {description} | {status} |")
         parts.append("")
     return "\n".join(parts)
 
@@ -107,11 +149,9 @@ def main():
     if not args.openflexo_dev_dir.is_dir():
         sys.exit(f"error: {args.openflexo_dev_dir} does not exist -- pass --openflexo-dev-dir")
 
-    content = read_committed_settings_gradle(args.openflexo_dev_dir)
-    sections = parse_settings_gradle(content)
-    registry_path = Path(__file__).resolve().parent.parent / "src" / "data" / "technology-adapters.json"
-    registry = load_registry(registry_path)
-    table = render_markdown(sections, registry)
+    sections = parse_settings_gradle(read_committed_settings_gradle(args.openflexo_dev_dir))
+    registry = load_registry(Path(__file__).resolve().parent.parent / "src" / "data" / "technology-adapters.json")
+    tables = render_markdown(sections, registry)
 
     page = f"""---
 sidebar_position: 2
@@ -120,25 +160,20 @@ title: Repository map
 
 # Repository map
 
-<!-- Generated {date.today().isoformat()} by scripts/generate_repository_map.py from
-     openflexo-dev/settings.gradle, cross-referenced against src/data/technology-adapters.json.
+<!-- Generated {date.today().isoformat()} by scripts/generate_repository_map.py.
      Do not hand-edit -- re-run the script instead. -->
 
-`GIT-2.99` (see the workspace root `CLAUDE.md`) is a set of independently-cloned repositories, not
-one monorepo. `openflexo-dev`'s `settings.gradle` is the aggregate composite build used for
-cross-project development — every repository below is one `includeBuild` line there, grouped as
-that file groups them. A repository marked "not in the default composite build" is commented out
-there: present in the ecosystem, but not included by default (a research prototype, or a technology
-not built locally by everyone).
+Openflexo is not a single repository: the infrastructure is made of independent repositories,
+each with its own history and its own version. They are listed below, grouped by role.
 
-Layering is strict bottom-up — `connie` → `pamela` → `gina`/`diana` → `openflexo-core` → UI →
-technology adapters → server → applications — a lower layer never depends on a higher one; a
-technology adapter never depends on another one. See the workspace `CLAUDE.md` for the invariant,
-[Set up your workspace](./setup) for how to check these out and build them together, and
-[Component versions](/docs/get-started/versions) for which version of each goes with a given
-Openflexo release.
+Layering is strict, bottom-up: Connie, then Pamela, then Gina and Diana, then the core
+(`openflexo-core`), the user interface, the technology adapters, the server and finally the
+applications. A layer never depends on a higher one, and a technology adapter never depends on
+another one. See [Set up your workspace](./setup) to check them out and build them together, and
+[Component versions](/docs/get-started/versions) for which version of each goes with a release.
 
-{table}"""
+{tables}
+{LEGEND}"""
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(page)
     print(f"wrote {args.out}")

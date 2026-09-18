@@ -1,8 +1,6 @@
 # Known defects — website
 
 Prefix `WEB-D-<n>`, never reused. Status: `TODO` · `IN PROGRESS` · `BLOCKED` · `DONE` · `DEFERRED`.
-See `.claude/epics/WebSiteRefactoring/` (in the workspace root, not this repo) for the audit and
-the phased plan these entries come from.
 
 ## WEB-D-1 — dead downloadable inputs on the EMF cookbook page
 
@@ -16,7 +14,7 @@ files (or produce fresh equivalents) and restore the links.
 
 ## WEB-D-2 — mini-site pipeline: skeletons not in any repository
 
-**Status:** DEFERRED (mini-sites out of scope for phase 1 — see `.claude/epics/WebSiteRefactoring/Plan.md` §3, §B1)
+**Status:** DEFERRED (mini-sites are out of scope for the main-site rebuild)
 
 The 15 Docusaurus skeleton projects (config, theme, navbar, `versioned_docs`) that the Jenkins
 `website` job's `WEBSITE` switch builds from live only on a build agent's local disk, in no git
@@ -52,8 +50,7 @@ staging forever and is then promoted to production by `website-production`, whic
 
 ## WEB-D-6 — reference-documentation generator's entry point does not exist
 
-**Status:** DEFERRED (blocks per-component reference docs, not phase 1's main-site scope — see
-`.claude/epics/WebSiteRefactoring/Plan.md` §B8)
+**Status:** DEFERRED (blocks per-component reference documentation, not the main site)
 
 `openflexo-packaging/doc-generator` declares `mainClassName = "org.openflexo.util.GenerateAll"`,
 which is not in the module (only `GenerateReferenceDocumentation` and

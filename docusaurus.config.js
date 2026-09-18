@@ -253,9 +253,8 @@ const config = {
         localRedirectsPlugin,
         /** @type {{redirects: Array<{from: string, to: string}>}} */
         ({
-          // Explicit only — no wildcards — generated from the mapping table in
-          // .claude/epics/WebSiteRefactoring/IA-Proposal.md §3, so it cannot silently drift from
-          // the actual move. Keep it in sync by hand when a page moves again.
+          // Explicit only, no wildcards: one entry per URL that changed when the site was
+          // reorganised around its audiences. Add an entry whenever a page moves again.
           redirects: [
             {from: '/ModelFederation', to: '/docs/discover/model-federation'},
             {from: '/docs/documentation', to: '/docs/guide/'},

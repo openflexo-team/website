@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
 """Regenerate docs/get-started/versions.md from openflexo-buildplugin's buildconfig.
 
-Source of truth (per CLAUDE.md / .claude/rules/gradle-build.md): each maintained branch of
-openflexo-buildplugin sets every component's version in one file,
+Source of truth: each branch of openflexo-buildplugin sets the version of every independently
+versioned component in one file,
 buildconfig/src/main/groovy/org/openflexo/buildplugin/plugin.groovy. This script reads that file
-at a fixed set of git refs (no checkout needed — `git show <ref>:<path>`) and writes a plain
-Markdown table. No npm dependency, no JS: this repo's package-lock.json cannot be regenerated, so
-generation happens here and only its output is committed.
+at a fixed list of git refs (no checkout needed: `git show <ref>:<path>`) and writes plain
+Markdown tables. Python standard library only: this repository's package-lock.json cannot be
+regenerated, so nothing here may add an npm dependency, and only the generated page is committed.
 
 Run from the website repo root:
 
     python3 scripts/generate_version_table.py
 
-Requires openflexo-buildplugin to be cloned as a sibling of this repo (the normal GIT-2.99
-workspace layout) — pass --buildplugin-dir to point elsewhere.
+Requires a clone of openflexo-buildplugin next to this repository -- pass --buildplugin-dir to
+point elsewhere. Re-run it whenever a branch's buildconfig changes or a new release branch appears
+(then add it to CURRENT_REFS below).
 """
 import argparse
 import re
@@ -24,17 +25,34 @@ from pathlib import Path
 
 PLUGIN_PATH = "buildconfig/src/main/groovy/org/openflexo/buildplugin/plugin.groovy"
 
-# (column label, git ref, note). Per the 2026-09-18 decision: one column per maintained branch,
-# 2.0.1 frozen as history. After the 2.99 release this set changes (2.99 -> stable, 3.0 appears as
-# snapshot) -- edit this list by hand when that happens, everything else regenerates.
-REFS = [
-    ("2.0.1", "origin/2.0.1", "last stable release"),
-    ("2.99", "2.99", "current development branch"),
-    ("3.0", "3.0", "next major, early development"),
+# (column label, git ref, one-line note). Recent branches first table, older ones second.
+CURRENT_REFS = [
+    ("2.0.0", "origin/2.0.0", "released in June 2020"),
+    ("2.0.1", "origin/2.0.1", "released in March 2023, the last stable release"),
+    ("2.0.2", "origin/2.0.2", "bug-fix evolution of 2.0.1"),
+    ("2.99", "2.99", "development branch, introduces the textual FML syntax"),
+    ("3.0", "3.0", "next major version, in development"),
+]
+FORMER_REFS = [
+    ("1.8.1", "origin/1.8.1", "released in 2017, mostly deprecated"),
+    ("1.9.0", "origin/1.9.0", "released in October 2018"),
+    ("1.9.1", "origin/1.9.1", "released in 2019"),
 ]
 
+# Java version required by each release. Hard-coded: buildconfig does not carry it. Java 8 up to
+# and including 2.99, Java 17 or later from 3.0 on -- update by hand when a new branch is added.
+JAVA_ROW = "Java version"
+JAVA_VERSIONS = {
+    "1.8.1": "Java 8", "1.9.0": "Java 8", "1.9.1": "Java 8",
+    "2.0.0": "Java 8", "2.0.1": "Java 8", "2.0.2": "Java 8", "2.99": "Java 8",
+    "3.0": "Java 17+",
+}
+
+# Row label -> pattern. The first row is the platform version, shared by the core, the technology
+# adapters, the modules, the packaging, the modelers and the build plugin itself.
 FIELDS = [
-    ("Openflexo", r'project\.openflexo\.openflexoVersion\s*=\s*"([^"]+)"'),
+    ("Openflexo platform (core, technology adapters, modules, packaging, modelers, build plugin)",
+     r'project\.openflexo\.openflexoVersion\s*=\s*"([^"]+)"'),
     ("Connie", r'project\.(?:ext|openflexo)\.connieVersion\s*=\s*"([^"]+)"'),
     ("Pamela", r'project\.openflexo\.pamelaVersion\s*=\s*"([^"]+)"'),
     ("Gina", r'project\.openflexo\.ginaVersion\s*=\s*"([^"]+)"'),
@@ -53,26 +71,35 @@ def read_plugin_groovy(buildplugin_dir: Path, ref: str) -> str:
     return result.stdout
 
 
-def extract_versions(content: str) -> dict:
+def extract_versions(content: str, ref: str) -> dict:
     versions = {}
     for label, pattern in FIELDS:
         match = re.search(pattern, content)
         if not match:
-            sys.exit(f"error: pattern for {label!r} not found -- plugin.groovy's shape has changed, update FIELDS")
-        # Groovy source keeps the bare version; the "-SNAPSHOT"/"" suffix is added at build time.
-        versions[label] = match.group(1)
+            sys.exit(f"error: no version found for {label!r} at {ref!r} -- plugin.groovy's shape has changed, update FIELDS")
+        # The bare version is written in the source; the "-SNAPSHOT"/release suffix is added at build
+        # time (the oldest branch hard-codes it, hence the strip).
+        versions[label] = match.group(1).removesuffix("-SNAPSHOT")
     return versions
 
 
-def render_markdown(columns_with_notes: list) -> str:
-    """columns_with_notes: [(label, versions_dict, note), ...]"""
-    header = "| Component | " + " | ".join(f"{label} ({note})" for label, _data, note in columns_with_notes) + " |"
-    sep = "|---|" + "|".join(["---"] * len(columns_with_notes)) + "|"
+def render_table(columns: list) -> str:
+    """columns: [(label, versions_dict), ...]"""
+    header = "| Component | " + " | ".join(label for label, _ in columns) + " |"
+    sep = "|---|" + "|".join(["---"] * len(columns)) + "|"
     rows = [header, sep]
+    rows.append(f"| {JAVA_ROW} | " + " | ".join(JAVA_VERSIONS[label] for label, _ in columns) + " |")
     for row_label, _pattern in FIELDS:
-        cells = [data[row_label] for _label, data, _note in columns_with_notes]
-        rows.append(f"| {row_label} | " + " | ".join(cells) + " |")
+        rows.append(f"| {row_label} | " + " | ".join(data[row_label] for _, data in columns) + " |")
     return "\n".join(rows)
+
+
+def load(buildplugin_dir: Path, refs: list) -> list:
+    return [(label, extract_versions(read_plugin_groovy(buildplugin_dir, ref), ref)) for label, ref, _note in refs]
+
+
+def render_notes(refs: list) -> str:
+    return "\n".join(f"* **{label}**: {note}" for label, _ref, note in refs)
 
 
 def main():
@@ -84,11 +111,9 @@ def main():
     if not args.buildplugin_dir.is_dir():
         sys.exit(f"error: {args.buildplugin_dir} does not exist -- pass --buildplugin-dir")
 
-    columns_with_notes = [
-        (label, extract_versions(read_plugin_groovy(args.buildplugin_dir, ref)), note)
-        for label, ref, note in REFS
-    ]
-    table = render_markdown(columns_with_notes)
+    current_table = render_table(load(args.buildplugin_dir, CURRENT_REFS))
+    former_table = render_table(load(args.buildplugin_dir, FORMER_REFS))
+    all_refs = ", ".join(ref for _, ref, _ in CURRENT_REFS + FORMER_REFS)
 
     page = f"""---
 sidebar_position: 2
@@ -98,17 +123,29 @@ title: Component versions
 # Component versions
 
 <!-- Generated {date.today().isoformat()} by scripts/generate_version_table.py from
-     openflexo-buildplugin's buildconfig (branches: {", ".join(ref for _, ref, _ in REFS)}).
+     openflexo-buildplugin's buildconfig (refs: {all_refs}).
      Do not hand-edit -- re-run the script instead. -->
 
-Each Openflexo release ties together a compatible set of component versions, defined in one place:
-`openflexo-buildplugin`'s `buildconfig`. This table is generated from that source, one column per
-maintained branch, so it cannot drift the way a hand-written table does.
+Each Openflexo release ties together a compatible set of component versions. They are defined in
+one place, the `buildconfig` of `openflexo-buildplugin`, and this page is generated from it, one
+column per release branch. The core, the technology adapters, the modules, the packaging and the
+modelers all carry the version of the Openflexo platform itself; the generic frameworks
+(Connie, Pamela, Gina, Diana) and the utilities are versioned independently.
 
-{table}
+## Recent versions
 
-Java requirement: **2.99 needs Java 8** (it freezes at startup on newer JVMs — see
-[Installing and running Openflexo](/downloads#install)); 3.0's requirement is not settled yet.
+{render_notes(CURRENT_REFS)}
+
+{current_table}
+
+Openflexo 2.99 does not run on a Java newer than 8: it freezes at startup (see
+[Installing and running Openflexo](/downloads#install)).
+
+## Former versions
+
+{render_notes(FORMER_REFS)}
+
+{former_table}
 """
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(page)
