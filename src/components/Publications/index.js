@@ -2,6 +2,26 @@ import React from 'react';
 import bibtexParse from '@orcid/bibtex-parse-js';
 import {data_papers} from '@site/src/data/papers';
 import styles from '@site/src/pages/index.module.css';
+import thumbnails from '@site/src/data/publication-thumbnails.json';
+import publicationStyles from './index.module.css';
+
+const hasThumbnails = Object.keys(thumbnails).length > 0
+
+function Thumbnail({entryTags}) {
+    if (!hasThumbnails) {
+        return null
+    }
+    const source = thumbnails[entryTags.HAL_ID]
+    const title = entryTags.TITLE.substring(1, entryTags.TITLE.length - 1)
+    if (!source) {
+        return <div className={publicationStyles.placeholder} aria-hidden="true" />
+    }
+    return (
+        <a href={entryTags.PDF || entryTags.URL}>
+            <img className={publicationStyles.thumbnail} src={source} alt={'First page of ' + title} loading="lazy" />
+        </a>
+    )
+}
 
 function Article({entryTags}){
     return (
@@ -9,7 +29,9 @@ function Article({entryTags}){
             <div className='margin-bottom--lg margin-top--lg card'>
                 <h2 className={`margin-left--lg margin-top--md ${styles.articleYear}`}>{entryTags.YEAR}</h2>
                 <ul>
-                    <li>
+                    <li className={publicationStyles.item}>
+                        <Thumbnail entryTags={entryTags} />
+                        <div className={publicationStyles.text}>
                         <h3><a href={entryTags.URL}>{entryTags.TITLE.substring(1, entryTags.TITLE.length -1)} </a></h3>
                         <b>Authors : {entryTags.AUTHOR}</b>
                         <br/>
@@ -29,6 +51,7 @@ function Article({entryTags}){
                         <p><b>{ entryTags.KEYWORDS ? 'Keywords: ' + entryTags.KEYWORDS : '' }</b></p>  
                         <h4>{ entryTags.EDITOR ? entryTags.EDITOR : ''} { entryTags.PUBLISHER?.substring(1, entryTags.PUBLISHER.length -1) }</h4> 
                         { entryTags.HAL_ID } { entryTags.HAL_VERSION }             
+                        </div>
                     </li>
                 </ul>
             </div>

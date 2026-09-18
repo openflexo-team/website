@@ -504,6 +504,13 @@ def check_publications(report):
 
     publis = "".join(f.read_text() for f in sorted((ROOT / "src" / "publis").glob("*.bib")))
     data = (ROOT / "src" / "data" / "papers.js").read_text()
+    thumbnails = json.loads((ROOT / "src" / "data" / "publication-thumbnails.json").read_text())
+    known = set(re.findall(r"HAL_ID = \{([^}]+)\}", data))
+    for hal_id, image in thumbnails.items():
+        if hal_id not in known:
+            report.error("publications", f"publication-thumbnails.json: {hal_id} is not a listed publication")
+        if not static_exists(image):
+            report.error("publications", f"publication-thumbnails.json: {image} does not exist under static/")
     if entries(publis) != entries(data):
         report.error("publications", "src/data/papers.js differs from src/publis/*.bib, which the build uses to rebuild it: run scripts/update_publications.py")
 

@@ -16,7 +16,9 @@ Run from the website repo root:
 
     python3 scripts/update_publications.py
 
-Add an author to IDHAL to include their documents too. A document that is not about the work
+Add an author to IDHAL to include their documents too. A publication that is not on HAL can be
+added by hand as src/publis/<any name not shaped like 2020-hal-123456.bib>.bib: this script leaves
+such files alone. A document that is not about the work
 presented on this site goes in EXCLUDE (with the reason), not in the data file by hand.
 """
 import argparse
@@ -61,10 +63,11 @@ def js_template(text: str) -> str:
     return text.replace("\\", "\\\\").replace("`", "\\`").replace("${", "\\${")
 
 
-def fetch(idhal: str) -> list:
+def fetch(idhal: str, extra_fields: str = "") -> list:
     query = urllib.parse.urlencode({
         "q": f"authIdHal_s:{idhal}", "rows": 500, "wt": "json",
-        "fl": "halId_s,producedDateY_i,label_bibtex", "sort": "producedDateY_i desc",
+        "fl": "halId_s,producedDateY_i,label_bibtex" + ("," + extra_fields if extra_fields else ""),
+        "sort": "producedDateY_i desc",
     })
     request = urllib.request.Request(f"{API}?{query}", headers={"User-Agent": "openflexo-website-publications"})
     with urllib.request.urlopen(request, timeout=30) as response:
@@ -99,7 +102,8 @@ def main():
 
     args.publis.mkdir(parents=True, exist_ok=True)
     for old in args.publis.glob("*.bib"):
-        old.unlink()
+        if re.fullmatch(r"\d{4}-(?:hal|tel)-\d+\.bib", old.name):  # files written by this script; any other name is a manual entry
+            old.unlink()
     for doc, entry in zip(kept, entries):
         (args.publis / f"{doc['producedDateY_i']}-{doc['halId_s']}.bib").write_text(entry + "\n")
     content = "".join(f.read_text() for f in sorted(args.publis.glob("*.bib")))

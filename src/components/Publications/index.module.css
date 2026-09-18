@@ -1,0 +1,38 @@
+/* One publication: the first page on the left, the reference on the right. */
+.item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    list-style: none;
+}
+
+.thumbnail,
+.placeholder {
+    display: block;
+    width: 120px;
+    min-width: 120px;
+    aspect-ratio: 240 / 311;
+}
+
+.thumbnail {
+    height: auto;
+    border: 1px solid var(--ifm-color-emphasis-300);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    background: #fff;
+}
+
+.placeholder {
+    border: 1px dashed var(--ifm-color-emphasis-300);
+    background: var(--ifm-color-emphasis-100);
+}
+
+.text {
+    flex: 1;
+    min-width: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .item {
+        flex-direction: column;
+    }
+}
