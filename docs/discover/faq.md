@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 9
 title: F.A.Q.
 ---
 
@@ -14,8 +14,10 @@ transforming them into a new format first.
 ### How do I try Openflexo?
 
 Download a current build from the [Downloads page](/downloads) — every link there is checked and
-points at a real, dated build — and run it. There is no separate installer wizard: distributions
-are ready-to-run zips/archives per OS.
+points at a real, dated build — and run it. Packages are ready to run: a `.zip` on Windows, a
+`.dmg` on macOS and a `.tar.gz` on Linux. Openflexo 2.99 needs **Java 8** and does not bundle a
+Java runtime; the [installation guide](/downloads#install) explains how to set it up on each
+system.
 
 ### What computer skills do I need?
 

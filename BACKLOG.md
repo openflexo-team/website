@@ -65,10 +65,16 @@ when it compares packages with `openflexo-packaging`.
 
 ## WEB-F-5 — Discover and Get started content
 
-**Status:** TODO
+**Status:** IN PROGRESS, written in reviewable batches
 
-Home page, Discover section and Get started section. `docs/get-started/index.md` and
-`docs/discover/faq.md` are minimal pages waiting for this work.
+* Batch 1 (done): Discover — what Openflexo is, model federation (terminology fixed), vocabulary,
+  what you can build, the tools; FAQ corrected.
+* Batch 2: Discover — maturity, licensing and support; is Openflexo for me; roadmap and release
+  policy; FAQ. Needs the licensing policy and the support statement.
+* Batch 3: Get started — install, which package, first launch, quickstarts, choose your track.
+* Batch 4: home page.
+* Waiting for input: comparison with other tools, and the case studies (only the MULTI Process
+  Challenge and the Cyber Threat Application have a page today).
 
 ## WEB-F-6 — where the user documentation of an adapter lives
 

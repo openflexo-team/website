@@ -4,7 +4,7 @@ title: Model federation
 hide_table_of_contents: true
 ---
 
-# Model federation ?
+# Model federation
 
 Every days we use models. Maps are probably the most common, but plans of a house or a building are another daylife model. Scientific, engineers also use models. Models are elaborated for dedicated purposes: locate yourself in space, prepare the building of a house, solve a problem with an equation, etc.
 
@@ -32,7 +32,7 @@ The figure below shows the example of Actor that has First name and Name coming 
 
 ![Example 1](/images/site/ModelFederation/Example1.png)
 
-Information is retrieved and managed thanks to a connection. This connection is a **Technical Adpater** (TA). A TA is specifically made for a source of information and allows features such as:
+Information is retrieved and managed thanks to a connection. This connection is a **technology adapter** (TA). A TA is specifically made for a source of information and allows features such as:
 
 * Openflexo reading
 * Openflexo writing/updating
@@ -44,7 +44,7 @@ At this point, models are merged at the level of a **concept**. The next figure 
 
 ![Example 2](/images/site/ModelFederation/Example2.png)
 
-We consider any source of information as a model. The way the information is interpreted can be explicit or implicit. Technological Adapters are there to give sense to (*interpret*) data.
+We consider any source of information as a model. The way the information is interpreted can be explicit or implicit. Technology adapters are there to give sense to (*interpret*) data.
 
 ### 3. Drawings are models too
 
@@ -86,5 +86,6 @@ Model Federation is a way to reuse models, make different models interacting, wh
 | model | virtual model | VirtualModel |
 | concept | flexo concept | FlexoConcept |
 | port | slot | ModelSlot |
-| connector | technological adapter | require many classes |
+| connector | technology adapter | require many classes |
 
+See the [vocabulary](./vocabulary) for all the terms, and [what you can build](./what-you-can-build) for examples.
