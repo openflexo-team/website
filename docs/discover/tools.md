@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 title: The tools
 description: The applications built on the Openflexo infrastructure, and which package contains which.
 ---

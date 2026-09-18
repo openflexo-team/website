@@ -57,9 +57,10 @@ come in ready-to-run [packages](/downloads).
 * **Not a single fixed language or method.** FML describes how models relate; the models themselves
   keep their own languages.
 * **Not a finished, closed product.** It is an infrastructure that grew out of research work (see
-  [Research](/docs/research)). The core and the frameworks are released under the GNU General
-  Public License version 3, and the components are at different levels of maturity: each
-  [technology adapter](/docs/develop/repository-map) carries a status.
+  [Research](/docs/research)), available under the GNU GPL version 3 or the European Union Public
+  Licence, and its components are at different levels of maturity: each
+  [technology adapter](/docs/develop/repository-map) carries a status. See
+  [maturity, licensing and support](./maturity-licensing-support).
 
 ## Where to go next
 
