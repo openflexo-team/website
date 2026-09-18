@@ -77,7 +77,10 @@ when it compares packages with `openflexo-packaging`.
 * Batch 3b: quickstart "federate a spreadsheet" and quickstart "run an FML script from the command
   line". Both need to be written from a run on the current 2.99 packages: the spreadsheet tutorial is
   a 1.x tutorial (Viewpoint, ViewPointModeller) and the CLI has not been verified.
-* Batch 4: home page.
+* Batch 4 (done): home page — slider kept, hero ("Federate, don't transform") with Download and Get
+  started, latest release read from `downloads.json` (the version flagged `expanded`), three doors, the
+  problem in one diagram, "See it at work", partners strip. Not done: latest news (the blog plugin is
+  already used for the Downloads page, see below).
 * Waiting for input: comparison with other tools, and the case studies (only the MULTI Process
   Challenge and the Cyber Threat Application have a page today).
 
@@ -115,3 +118,11 @@ fails on a repository it has no description for.
 `docs/discover/is-openflexo-for-me.md` (Java statements), `scripts/generate_version_table.py`
 (notes, `JAVA_VERSIONS`), then regenerate the two generated pages and run
 `python3 scripts/check_site.py`.
+
+## WEB-F-12 — news / blog
+
+**Status:** TODO — needs a decision
+
+The site has no news, so nothing shows the project is alive. The single blog plugin instance is
+configured as `blogTitle: 'Downloads'` in `docusaurus.config.js`. A real news feed needs either a
+second blog instance with its own id and route, or moving Downloads off the blog plugin.
