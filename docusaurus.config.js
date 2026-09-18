@@ -1,9 +1,49 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const fs = require('fs');
+const path = require('path');
 const themes = require('prism-react-renderer').themes;
 const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.dracula;
+
+/**
+ * Serves the redirect map without an npm dependency: at postBuild time, writes one static
+ * `<from>/index.html` per {from, to} entry — a meta-refresh + JS `location.replace` fallback,
+ * the same shape @docusaurus/plugin-client-redirects itself generates. Apache's default
+ * DirectorySlash + DirectoryIndex serve it for both `/from` and `/from/`, matching how every
+ * other page on this site is already served.
+ * @param {{redirects: Array<{from: string, to: string}>}} options
+ */
+function localRedirectsPlugin(context, options) {
+  return {
+    name: 'local-redirects-plugin',
+    async postBuild({outDir}) {
+      for (const {from, to} of options.redirects) {
+        const relDir = from.replace(/^\/+/, '').replace(/\/+$/, '');
+        const dir = path.join(outDir, relDir);
+        fs.mkdirSync(dir, {recursive: true});
+        fs.writeFileSync(
+          path.join(dir, 'index.html'),
+          `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=${to}">
+<link rel="canonical" href="${to}">
+<title>Redirecting…</title>
+</head>
+<body>
+Redirecting to <a href="${to}">${to}</a>…
+<script>location.replace(${JSON.stringify(to)});</script>
+</body>
+</html>
+`,
+        );
+      }
+    },
+  };
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -205,8 +245,13 @@ const config = {
     plugins: [
       require.resolve('docusaurus-lunr-search'),
       [
-        '@docusaurus/plugin-client-redirects',
-        /** @type {import('@docusaurus/plugin-client-redirects').Options} */
+        // Local plugin, not an npm package: the build machine's package-lock.json cannot be
+        // regenerated here (no npm install), so redirects are served without adding a
+        // dependency. Writes one static `<from>/index.html` per entry at postBuild time — the
+        // same meta-refresh + JS fallback shape @docusaurus/plugin-client-redirects itself
+        // produces. See localRedirectsPlugin below.
+        localRedirectsPlugin,
+        /** @type {{redirects: Array<{from: string, to: string}>}} */
         ({
           // Explicit only — no wildcards — generated from the mapping table in
           // .claude/epics/WebSiteRefactoring/IA-Proposal.md §3, so it cannot silently drift from
