@@ -52,44 +52,5 @@
             "source": "https://github.com/openflexo-team/openflexo-packaging/",
             "url": "#"
         }
-    ],
-    "ta": 
-    [
-        {
-            "name": "Diagram",
-            "logo": "/img/components/ta/diagram_ta/Diagram128x128.png",
-            "source": "https://github.com/openflexo-team/openflexo-diagram/",
-            "url": "https://openflexo.org/openflexo-diagram/"
-        },
-        {
-            "name": "EMF",
-            "logo": "/img/components/ta/emf_ta/emf_logo.png",
-            "source": "https://github.com/openflexo-team/openflexo-emf/",
-            "url": "https://openflexo.org/openflexo-emf/"
-        },
-        {
-            "name": "OWL",
-            "logo": "/img/components/ta/owl_ta/OWL128x128.png",
-            "source": "https://github.com/openflexo-team/openflexo-owl/",
-            "url": "https://openflexo.org/openflexo-owl/"
-        },
-        {
-            "name": "HTTP",
-            "logo": "/img/components/ta/http_ta/http_logo.png",
-            "source": "https://github.com/openflexo-team/openflexo-http/",
-            "url": "https://openflexo.org/openflexo-http/"
-        },
-        {
-            "name": "JDBC",
-            "logo": "/img/components/ta/jdbc_ta/ODBC_Administrator_icon.png",
-            "source": "https://github.com/openflexo-team/openflexo-jdbc/",
-            "url": "https://openflexo.org/openflexo-jdbc/"
-        },
-        {
-            "name": "PDF",
-            "logo": "/img/components/ta/pdf_ta/PDF-icon.png",
-            "source": "https://github.com/openflexo-team/openflexo-pdf/",
-            "url": "https://openflexo.org/openflexo-pdf/"
-        }
     ]
 }

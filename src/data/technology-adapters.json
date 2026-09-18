@@ -1,0 +1,33 @@
+{
+  "_comment": "Single registry of technology adapters. Status values (stabilised / migration-in-progress / active-development / limited-support / retired) follow the architecture board minutes of 2026-04-03 (Plan.md §4.4 section 10). Three repositories exist on disk but were not named in those minutes: http, odt, gina — status 'unclassified' until confirmed. Cross-checked against downloads.json and components.json by the local check script (WEB-F-4), not consumed by them at runtime: Downloads stays hand-maintained by design.",
+  "adapters": [
+    {"id": "xml", "name": "XML/XSD", "description": "XML documents, typed against an XSD or freely structured", "logo": "/img/components/ta/xml_xsd_ta/XMLXSD128x128.png", "repository": "https://github.com/openflexo-team/openflexo-xml", "status": "stabilised"},
+    {"id": "emf", "name": "EMF", "description": "EMF-based metamodels and models", "logo": "/img/components/ta/emf_ta/EMF128x92.png", "repository": "https://github.com/openflexo-team/openflexo-emf", "status": "stabilised"},
+    {"id": "owl", "name": "OWL", "description": "OWL2 ontologies", "logo": "/img/components/ta/owl_ta/OWL128x128.png", "repository": "https://github.com/openflexo-team/openflexo-owl", "status": "stabilised"},
+    {"id": "diagram", "name": "Diagram", "description": "Openflexo's native diagramming technology", "logo": "/img/components/ta/diagram_ta/Diagram128x128.png", "repository": "https://github.com/openflexo-team/openflexo-diagram", "status": "stabilised"},
+    {"id": "docx", "name": "M/S Word", "description": "Microsoft Word documents (.doc, .docx)", "logo": "/img/components/ta/word_ta/Word128x128.png", "repository": "https://github.com/openflexo-team/openflexo-docx", "status": "stabilised"},
+	{"id": "xlsx", "name": "M/S Excel", "description": "Microsoft Excel spreadsheets (.xls, .xlsx)", "logo": "/img/components/ta/excel_ta/Excel128x128.png", "repository": "https://github.com/openflexo-team/openflexo-xlsx", "status": "stabilised"},
+
+    {"id": "rest", "name": "REST", "description": "REST web services", "logo": "/img/components/ta/rest_ta/REST128x128.png", "repository": "https://github.com/openflexo-team/openflexo-rest", "status": "migration-in-progress"},
+    {"id": "jdbc", "name": "JDBC", "description": "Relational databases via JDBC", "logo": "/img/components/ta/jdbc_ta/JDBC_200x100.png", "repository": "https://github.com/openflexo-team/openflexo-jdbc", "status": "migration-in-progress"},
+    {"id": "pptx", "name": "M/S PowerPoint", "description": "Microsoft PowerPoint presentations (.ppt, .pptx)", "logo": "/img/components/ta/ppt_ta/PowerPoint128x128.png", "repository": "https://github.com/openflexo-team/openflexo-pptx", "status": "migration-in-progress"},
+
+    {"id": "opc-ua", "name": "OPC-UA", "description": "OPC-UA industrial automation servers", "logo": "/img/components/ta/opcua_ta/OPCUA128x128.png", "repository": "https://github.com/openflexo-team/openflexo-opc-ua", "status": "active-development"},
+    {"id": "mcp", "name": "MCP", "description": "Model Context Protocol servers", "logo": null, "repository": "https://github.com/openflexo-team/openflexo-mcp", "status": "active-development"},
+    {"id": "json", "name": "JSON", "description": "JSON documents", "logo": "/img/components/ta/json_ta/JSON128x128.png", "repository": "https://github.com/openflexo-team/openflexo-json", "status": "active-development"},
+    {"id": "capella", "name": "Capella", "description": "Capella / Arcadia system models", "logo": null, "repository": "https://github.com/openflexo-team/openflexo-capella", "status": "active-development"},
+    {"id": "csv", "name": "CSV", "description": "CSV files", "logo": null, "repository": "https://github.com/openflexo-team/openflexo-csv", "status": "active-development"},
+
+    {"id": "java", "name": "Java", "description": "Java source code", "logo": "/img/components/ta/java_ta/Java128x128.png", "repository": "https://github.com/openflexo-team/openflexo-java", "status": "limited-support"},
+    {"id": "kafka", "name": "Kafka", "description": "Apache Kafka streams", "logo": "/img/components/ta/kafka_ta/Kafka64x64.png", "repository": "https://github.com/openflexo-team/openflexo-kafka", "status": "limited-support"},
+    {"id": "pdf", "name": "PDF", "description": "PDF documents", "logo": "/img/components/ta/pdf_ta/PDF-icon.png", "repository": "https://github.com/openflexo-team/openflexo-pdf", "status": "limited-support"},
+    {"id": "markdown", "name": "Markdown", "description": "Markdown documents", "logo": null, "repository": "https://github.com/openflexo-team/openflexo-markdown", "status": "limited-support"},
+
+    {"id": "oslc", "name": "OSLC", "description": "OSLC-linked resources", "logo": "/img/components/ta/oslc_ta/OSLC128x128.png", "repository": "https://github.com/openflexo-team/openflexo-oslc", "status": "retired"},
+    {"id": "rhapsody", "name": "Rhapsody", "description": "IBM Rational Rhapsody models", "logo": "/img/components/ta/rhapsody_ta/Rhapsody16x16.png", "repository": "https://github.com/openflexo-team/openflexo-rhapsody", "status": "retired"},
+	{"id": "http", "name": "HTTP", "description": "Generic HTTP endpoints", "logo": "/img/components/ta/http_ta/http_logo.png", "repository": "https://github.com/openflexo-team/openflexo-http", "status": "retired"},
+	{"id": "gina", "name": "GINA", "description": "GINA user-interface components, as a federated resource", "logo": "/img/components/ta/gina_ta/GINA64x64.png", "repository": "https://github.com/openflexo-team/openflexo-gina", "status": "retired"}
+
+    {"id": "odt", "name": "ODT", "description": "OpenDocument Text documents (.odt)", "logo": "/img/components/ta/odt_ta/ODT128x128.png", "repository": "https://github.com/openflexo-team/openflexo-odt", "status": "unclassified"},
+  ]
+}

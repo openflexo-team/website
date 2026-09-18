@@ -22,12 +22,27 @@ for an actual page alongside the other research projects.
 
 ## WEB-F-3 — TA registry, generated version table, Components page warning
 
-**Status:** TODO (phase 1, step 3 — Foundations)
+**Status:** DONE (2026-09-18), one follow-up open — see WEB-F-7
 
-Single data file (name, logo, description, repository, status) feeding Downloads, Components and
-the future support matrix; a version-correspondence table generated from
-`openflexo-buildplugin/buildconfig`; and the "content dates from 2023–2024" warning banner on the
-Components page. See `.claude/epics/WebSiteRefactoring/Phase1Prompt.md`.
+Built: `src/data/technology-adapters.json` (23 adapters, id/name/description/logo/repository/status)
+feeding the Components page, grouped and badged by status; `scripts/generate_version_table.py`
+(stdlib-only, `git show`s `openflexo-buildplugin`'s buildconfig at three branches, no npm/Node
+involved) regenerating `docs/get-started/versions.md`; the "content dates from 2023–2024" warning
+on the Components page, naming exactly the 7 adapters (Diagram, EMF, OWL, HTTP, JDBC, PDF, Kafka)
+that ever had a mini-site built — every other card links to its GitHub repository instead of a
+fabricated mini-site URL. **Not done**: wiring the registry into `downloads.json`/`downloads.js` —
+that page is explicitly hand-maintained by decision, so the registry instead becomes something the
+check script (WEB-F-4) cross-references it against, not something it renders from at runtime.
+
+## WEB-F-7 — confirm status of three unclassified technology adapters
+
+**Status:** TODO — needs the user
+
+`src/data/technology-adapters.json` has three repositories present on disk (`openflexo-http`,
+`openflexo-odt`, `openflexo-gina`) that the 2026-04-03 architecture board minutes, as captured in
+`Plan.md` §4.4 section 10, never classified into any of the five status buckets. Marked
+`"unclassified"` for now rather than guessed. Needs the user to say which bucket each belongs in
+(or confirm "unclassified" is fine to keep showing as-is).
 
 ## WEB-F-4 — local, dependency-free check script
 

@@ -262,7 +262,7 @@ const config = {
             {from: '/docs/F.A.Q/WhatIsModelFederation', to: '/docs/discover/model-federation'},
             {from: '/docs/F.A.Q/HowToTestOpenflexo', to: '/docs/discover/faq'},
             {from: '/docs/F.A.Q/WhatAreRequiredComputerSkills', to: '/docs/discover/faq'},
-            {from: '/docs/GettingStarted/ComponentsAndVersionsManagement', to: '/docs/get-started/'},
+            {from: '/docs/GettingStarted/ComponentsAndVersionsManagement', to: '/docs/get-started/versions'},
             {from: '/docs/GettingStarted/GettingStartedUsingEclipse', to: '/docs/develop/setup'},
             {from: '/docs/GettingStarted/GettingStartedUsingIntellij', to: '/docs/develop/setup'},
             {from: '/docs/GettingStarted/UsingModuleCreationArchetype', to: '/docs/develop/'},
