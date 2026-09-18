@@ -26,8 +26,8 @@
     {"id": "oslc", "name": "OSLC", "description": "OSLC-linked resources", "logo": "/img/components/ta/oslc_ta/OSLC128x128.png", "repository": "https://github.com/openflexo-team/openflexo-oslc", "status": "retired"},
     {"id": "rhapsody", "name": "Rhapsody", "description": "IBM Rational Rhapsody models", "logo": "/img/components/ta/rhapsody_ta/Rhapsody16x16.png", "repository": "https://github.com/openflexo-team/openflexo-rhapsody", "status": "retired"},
 	{"id": "http", "name": "HTTP", "description": "Generic HTTP endpoints", "logo": "/img/components/ta/http_ta/http_logo.png", "repository": "https://github.com/openflexo-team/openflexo-http", "status": "retired"},
-	{"id": "gina", "name": "GINA", "description": "GINA user-interface components, as a federated resource", "logo": "/img/components/ta/gina_ta/GINA64x64.png", "repository": "https://github.com/openflexo-team/openflexo-gina", "status": "retired"}
+	{"id": "gina", "name": "GINA", "description": "GINA user-interface components, as a federated resource", "logo": "/img/components/ta/gina_ta/GINA64x64.png", "repository": "https://github.com/openflexo-team/openflexo-gina", "status": "retired"},
 
-    {"id": "odt", "name": "ODT", "description": "OpenDocument Text documents (.odt)", "logo": "/img/components/ta/odt_ta/ODT128x128.png", "repository": "https://github.com/openflexo-team/openflexo-odt", "status": "unclassified"},
+    {"id": "odt", "name": "ODT", "description": "OpenDocument Text documents (.odt)", "logo": "/img/components/ta/odt_ta/ODT128x128.png", "repository": "https://github.com/openflexo-team/openflexo-odt", "status": "unclassified"}
   ]
 }
