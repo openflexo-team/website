@@ -61,10 +61,10 @@ also wires exactly three technology adapters by hand, with several others commen
 
 **Status:** TODO
 
-`docs/research/index.md`: the publisher page `crcpress.com/product/isbn/9781420079135` (redirects to
-a 404), the INCOSE Systems Engineering Vision 2020 page (`incose.org/ProductsPubs/...`, 404) and the
-INFORSID 2014 paper (`inforsid.fr/Lyon2014/...pdf`, 404). Find the current addresses or link the DOI
-/ HAL record instead.
+`docs/research/index.md`: the INCOSE Systems Engineering Vision 2020 page
+(`incose.org/ProductsPubs/...`) does not answer a robot and gave a 404 on some attempts. Check it in a
+browser and link its current address. (The CRC Press page and the INFORSID paper are fixed: ISBN only,
+and the HAL record.)
 
 ## WEB-D-8 — dead sponsor links on the partners page
 

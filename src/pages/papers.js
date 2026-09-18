@@ -22,8 +22,12 @@ function Article({entryTags}){
                             {entryTags.NUMBER} {entryTags.PAGES ? 'pp. ' + entryTags.PAGES : '' } . 
                             {entryTags.MONTH ? entryTags.MONTH + ', ': ''} {entryTags.YEAR}. 
                         </i> 
-                        <a href={entryTags.PDF}>[PDF]</a>
-                        
+                        {entryTags.SCHOOL ? <span>{entryTags.SCHOOL.replace(/^\{+|\}+$/g, '')}. </span> : null}
+                        {entryTags.NOTE ? <b>{entryTags.NOTE}. </b> : null}
+                        {entryTags.PDF ? <a href={entryTags.PDF}>[PDF]</a> : null}
+                        {entryTags.DOI ? <span> <a href={'https://doi.org/' + entryTags.DOI}>[DOI]</a></span> : null}
+                        {entryTags.URL && entryTags.HAL_VERSION ? <span> <a href={entryTags.URL + entryTags.HAL_VERSION + '/bibtex'}>[BibTeX]</a></span> : null}
+
                         <p><b>{ entryTags.KEYWORDS ? 'Keywords: ' + entryTags.KEYWORDS : '' }</b></p>  
                         <h4>{ entryTags.EDITOR ? entryTags.EDITOR : ''} { entryTags.PUBLISHER?.substring(1, entryTags.PUBLISHER.length -1) }</h4> 
                         { entryTags.HAL_ID } { entryTags.HAL_VERSION }             
@@ -36,8 +40,7 @@ function Article({entryTags}){
 
 export default function papers() {
     const {siteConfig}  = useDocusaurusContext()
-    let  papers_data    = data_papers.replace(/{'e}/g, "é").replace(/{'i}/g, "í").replace(/{`e}/g, "è").replace(/{"e}/g, "ë").replace("{^i}", "î")
-    let articles        = bibtexParse.toJSON(papers_data)
+    let articles        = bibtexParse.toJSON(data_papers)
 
     articles.sort((a, b) => a.entryTags.YEAR - b.entryTags.YEAR)
     articles.reverse()

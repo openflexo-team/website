@@ -74,7 +74,8 @@ when it compares packages with `openflexo-packaging`.
 * Batch 3 (done): Get started — landing, download and install (with the choice of package), quickstart
   "first free model" (condensed from tutorial 1, not re-run on 2.99), choose your track. Caution banners
   added to the two tutorials written for 1.x.
-* Batch 3b: quickstart "federate a spreadsheet" and quickstart "run an FML script from the command
+* Batch 3b (postponed by the maintainers, to resume later — needs a current 2.99 Headless package to run
+  against): quickstart "federate a spreadsheet" and quickstart "run an FML script from the command
   line". Both need to be written from a run on the current 2.99 packages: the spreadsheet tutorial is
   a 1.x tutorial (Viewpoint, ViewPointModeller) and the CLI has not been verified.
 * Batch 4 (done): home page — slider kept, hero ("Federate, don't transform") with Download and Get
@@ -134,3 +135,27 @@ second blog instance with its own id and route, or moving Downloads off the blog
 `src/data/partners.json` and the logos under `static/img/partners/` date from the early years of the
 project. The page now lives at `/partners`, linked from the Community section and the footer, and is
 no longer on the home page. Replace the list with the partners of today.
+
+## WEB-F-14 — rebuild the tutorials for 2.99
+
+**Status:** BLOCKED — waiting for a fresh set of screenshots
+
+The tutorials show the interface of Openflexo 1.x and 2.0.x. Rebuild them for 2.99, starting with
+tutorial 1, then 2 and 3; the spreadsheet and synchronisation tutorials must be rewritten, not only
+re-illustrated (they still speak of Viewpoints). Screenshots: one window size, one theme, one
+version (2.99, Java 8), sequential PNG files per tutorial, together with the list of actions
+performed. Illustrations are then cropped, annotated and named consistently, and the text rewritten
+around them.
+
+## WEB-F-15 — research section
+
+**Status:** IN PROGRESS
+
+* Done: publications synchronised from HAL (`python3 scripts/update_publications.py` regenerates
+  `src/data/papers.js`; 20 documents, 2013–2026; two HAL records are excluded on purpose, listed with
+  their reason in the script); the publications page shows PDF, DOI and BibTeX links and awards;
+  contributions by theme; how to cite; reading guide of the overview updated.
+* To do: publications grouped by theme as well as by year; project pages (Formose, Oneway, the ESA
+  secure systems engineering framework, the Brest Métropole free-modeling project, others); the five
+  use cases of the MODELS 2024 experience report as case studies; theses, internships and open
+  positions; reproducibility (artefacts, datasets); teaching material. Needs input from the team.

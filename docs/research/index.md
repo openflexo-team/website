@@ -127,11 +127,17 @@ In the usual approach to modeling, the concrete artefact corresponding to a mode
 
 3. The open source framework [Openflexo](http://openflexo.org) implements the two notions and some part of the previously described work.
 
+4. A recent account in English of more than ten years of model federation with Openflexo is
+   [*10 years of Model Federation with Openflexo: Challenges and Lessons Learned*](https://hal.science/hal-04617492)
+   (MODELS 2024). The language itself is presented and validated in the thesis
+   [*FML*](https://theses.hal.science/tel-04555528) (in French). The [contributions](/docs/research/contributions)
+   page groups all the work by theme.
+
 ## Bibliography
 
 [1] <a id="Xamaral_recent_2010"></a>V. Amaral,   C. Hardebolle,   G. Karsai,   L. Lengyel,   and   T. Levendovszky. Recent   advances   in   multi-paradigm   modeling. In Models in Software Engineering,  ser.  Lecture  Notes  in  Computer  Science.     Springer  Berlin  Heidelberg,  2010,  vol.  6002,  pp.  220&#8211;224.  [Online].  Available: [http://dx.doi.org/10.1007/978-3-642-12261-3_21](http://dx.doi.org/10.1007/978-3-642-12261-3_21)
 
-[2] <a id="Xmaier_art_2002"></a>M. W. Maier and E. Rechtin. The Art of Systems Architecting. CRC Press, 2002. [https://www.crcpress.com/product/isbn/9781420079135](https://www.crcpress.com/product/isbn/9781420079135)
+[2] <a id="Xmaier_art_2002"></a>M. W. Maier and E. Rechtin. The Art of Systems Architecting. CRC Press, 2002. ISBN 9781420079135.
 
 [3] <a id="XiFestRoles"></a>W. Zhang, V. Leilde, B. Moller-Pedersen, J. Champeau, and C. Guychard. Towards tool integration through artifacts and roles. In the 19th Asia-Pacific Software Engineering Conference (APSEC), 2012, vol. 1, Dec., pp. 603&#8211;613.
 
@@ -145,6 +151,6 @@ In the usual approach to modeling, the concrete artefact corresponding to a mode
 
 [7] <a id="Xkoudry:hal-00904995"></a>A. Koudri, C. Guychard, S. Guerin, F. Dagnat, A. Beugnard, and J. Champeau.  De la n&eacute;cessit&eacute; de f&eacute;d&eacute;rer des mod&egrave;les dans une cha&icirc;ne d'outils. G&eacute;nie logiciel, C&amp;S, 2013, pp.18-23.
 
-[8] <a id="Xbeugnard:hal-01015893"></a>A. Beugnard, F. Dagnat, S. Guerin, and C. Guychard. Des situations de mod&eacute;lisation pour &eacute;valuer les outils de mod&eacute;lisation. INFORSID 2014 : 32&egrave;me congr&egrave;s de l'INFormatique des ORganisations et Syst&egrave;mes d'Information et de D&eacute;cision, May 2014, Lyon, France. pp.181-196, 2014. [Online]. Available: [http://inforsid.fr/Lyon2014/wp-content/uploads/papiers/11_paper_15.pdf](http://inforsid.fr/Lyon2014/wp-content/uploads/papiers/11_paper_15.pdf)
+[8] <a id="Xbeugnard:hal-01015893"></a>A. Beugnard, F. Dagnat, S. Guerin, and C. Guychard. Des situations de mod&eacute;lisation pour &eacute;valuer les outils de mod&eacute;lisation. INFORSID 2014 : 32&egrave;me congr&egrave;s de l'INFormatique des ORganisations et Syst&egrave;mes d'Information et de D&eacute;cision, May 2014, Lyon, France. pp.181-196, 2014. [Online]. Available: [https://hal.science/hal-01015893](https://hal.science/hal-01015893)
 
 [9] <a id="Xbeugnard:isi"></a>A. Beugnard, F. Dagnat, S. Guerin, and C. Guychard. Des situations de mod&eacute;lisation pour d&eacute;crire un processus de mod&eacute;lisation. M&eacute;thodes, langages et outils de mod&eacute;lisation pour l'ing&eacute;nierie des SI. RTSI S&eacute;rie ISI, Vol. 20, Num. 2/2015, pp. 41-66. [Online]. Available: [http://dx.doi.org/10.3166/isi.20.2.41-66](http://dx.doi.org/10.3166/isi.20.2.41-66)
