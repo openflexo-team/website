@@ -11,7 +11,7 @@ function Thumbnail({entryTags}) {
     if (!hasThumbnails) {
         return null
     }
-    const source = thumbnails[entryTags.HAL_ID]
+    const source = thumbnails[entryTags.HAL_ID || entryTags.LOCAL_ID]
     const title = entryTags.TITLE.substring(1, entryTags.TITLE.length - 1)
     if (!source) {
         return <div className={publicationStyles.placeholder} aria-hidden="true" />

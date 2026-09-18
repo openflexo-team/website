@@ -43,20 +43,26 @@ import update_publications  # noqa: E402  (IDHAL and EXCLUDE are shared, so the 
 ROOT = Path(__file__).resolve().parents[1]
 THUMBS_DIR = ROOT / "static" / "img" / "publications"
 MAP_PATH = ROOT / "src" / "data" / "publication-thumbnails.json"
-WIDTH = 240  # pixels; shown at half that width so that it stays sharp on high-density screens
+WIDTH = 360  # pixels; shown at half that width (see .thumbnail in components/Publications) so that it stays sharp on high-density screens
 
 
 def publications() -> dict:
-    """{HAL id: (title, URL of the PDF on HAL)} of the publications the page lists, PDF or not."""
+    """{id: (title, URL of the PDF on HAL or None)} of the publications the page lists: the HAL
+    records, then the manual entries of src/publis/, identified by their LOCAL_ID."""
     found = {}
-    for idhal in update_publications.IDHAL:
-        for doc in update_publications.fetch(idhal):
-            if doc["halId_s"] in update_publications.EXCLUDE:
-                continue
-            bibtex = doc["label_bibtex"]
-            pdf = re.search(r"PDF = \{([^}]+)\}", bibtex)
-            title = re.search(r"TITLE = \{\{(.*?)\}\}", bibtex, re.S)
-            found[doc["halId_s"]] = (update_publications.decode_latex(title.group(1)) if title else doc["halId_s"], pdf.group(1) if pdf else None)
+    for hal_id, doc in update_publications.documents().items():
+        if hal_id in update_publications.EXCLUDE:
+            continue
+        bibtex = doc["label_bibtex"]
+        pdf = re.search(r"PDF = \{([^}]+)\}", bibtex)
+        title = re.search(r"TITLE = \{\{(.*?)\}\}", bibtex, re.S)
+        found[hal_id] = (update_publications.decode_latex(title.group(1)) if title else hal_id, pdf.group(1) if pdf else None)
+    for manual in sorted((ROOT / "src" / "publis").glob("*.bib")):
+        text = manual.read_text()
+        local_id = re.search(r"LOCAL_ID = \{([^}]+)\}", text)
+        if local_id:
+            title = re.search(r"TITLE = \{\{(.*?)\}\}", text, re.S)
+            found[local_id.group(1)] = (title.group(1) if title else local_id.group(1), None)
     return found
 
 

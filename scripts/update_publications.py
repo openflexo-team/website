@@ -32,6 +32,13 @@ from pathlib import Path
 
 IDHAL = ["sylvain-guerin"]
 
+# HAL records to list although none of the IDHAL authors signs them: work on Openflexo by other
+# members of the team.
+EXTRA_HAL_IDS = [
+    "hal-04254748",  # Towards evolving secured multi-model systems with model federation (MODELS 2023, ME workshop)
+    "hal-05715009",  # Towards continuous verification of security patterns (MoDeVVa 2026)
+]
+
 # HAL identifier -> why it is not listed.
 EXCLUDE = {
     "hal-00083035": "2004 paper on reconfigurable accelerators, unrelated to model federation",
@@ -74,18 +81,32 @@ def fetch(idhal: str, extra_fields: str = "") -> list:
         return json.load(response)["response"]["docs"]
 
 
+def documents() -> dict:
+    """{HAL id: document} of every HAL record that is listed (author lists and extra records)."""
+    found = {}
+    for idhal in IDHAL:
+        for doc in fetch(idhal):
+            found[doc["halId_s"]] = doc
+    for hal_id in EXTRA_HAL_IDS:
+        query = urllib.parse.urlencode({"q": f"halId_s:{hal_id}", "rows": 1, "wt": "json", "fl": "halId_s,producedDateY_i,label_bibtex"})
+        request = urllib.request.Request(f"{API}?{query}", headers={"User-Agent": "openflexo-website-publications"})
+        with urllib.request.urlopen(request, timeout=30) as response:
+            docs = json.load(response)["response"]["docs"]
+        if not docs:
+            sys.exit(f"error: {hal_id} (EXTRA_HAL_IDS) is not on HAL")
+        found[hal_id] = docs[0]
+    return found
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "src" / "data" / "papers.js")
     parser.add_argument("--publis", type=Path, default=Path(__file__).resolve().parents[1] / "src" / "publis")
     args = parser.parse_args()
 
-    documents = {}
-    for idhal in IDHAL:
-        for doc in fetch(idhal):
-            documents[doc["halId_s"]] = doc
-    kept = [d for hal_id, d in documents.items() if hal_id not in EXCLUDE]
-    unknown = [hal_id for hal_id in EXCLUDE if hal_id not in documents]
+    documents_by_id = documents()
+    kept = [d for hal_id, d in documents_by_id.items() if hal_id not in EXCLUDE]
+    unknown = [hal_id for hal_id in EXCLUDE if hal_id not in documents_by_id]
     if unknown:
         print(f"note: excluded ids no longer returned by HAL: {', '.join(unknown)}", file=sys.stderr)
     kept.sort(key=lambda d: (-d["producedDateY_i"], d["halId_s"]))
@@ -108,7 +129,7 @@ def main():
         (args.publis / f"{doc['producedDateY_i']}-{doc['halId_s']}.bib").write_text(entry + "\n")
     content = "".join(f.read_text() for f in sorted(args.publis.glob("*.bib")))
     args.out.write_text("export const data_papers = `" + content + "`")
-    print(f"wrote {len(entries)} publications to {args.publis} and {args.out} ({len(documents) - len(kept)} excluded)")
+    print(f"wrote {len(entries)} publications to {args.publis} and {args.out} ({len(documents_by_id) - len(kept)} excluded)")
 
 
 if __name__ == "__main__":

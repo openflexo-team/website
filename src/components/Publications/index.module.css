@@ -9,9 +9,9 @@
 .thumbnail,
 .placeholder {
     display: block;
-    width: 120px;
-    min-width: 120px;
-    aspect-ratio: 240 / 311;
+    width: 180px;
+    min-width: 180px;
+    aspect-ratio: 360 / 466;
 }
 
 .thumbnail {

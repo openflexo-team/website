@@ -27,7 +27,9 @@ Later work applies and examines it:
 * continuous requirements engineering, keeping a dynamic link between requirement models and their
   sources ([2016](https://hal.science/hal-01487055));
 * traceability between informal requirements and formal specifications
-  ([2018](https://hal.science/hal-01853610)).
+  ([2018](https://hal.science/hal-01853610));
+* the consistency of multi-model systems that evolve, with a focus on security requirements
+  ([2023](https://hal.science/hal-04254748), by other members of the team).
 
 In 2024, [*10 years of Model Federation with Openflexo: Challenges and Lessons
 Learned*](https://hal.science/hal-04617492) reports over a decade of practice, in close
@@ -54,7 +56,8 @@ multi-level modeling: see the [MULTI Process Challenge](/docs/research/challenge
 ## Free modeling
 
 Free modeling lets modelers build models and their modeling language together, instead of choosing
-a language first. Two papers on *modeling situations* (elementary actions on models and
+a language first. The poster *Free The Modeling!* (MiSE 2013) presents an agile way of building
+conceptual views expanding upon existing models and tools. Two papers on *modeling situations* (elementary actions on models and
 metamodels) present the idea and Openflexo as a free modeling tool
 ([2014](https://hal.science/hal-01015893), [2015](https://hal.science/hal-01164480)), and
 [*Using free modeling as an Agile method for developing domain specific modeling
@@ -80,6 +83,9 @@ The team also applies its modeling work to security:
 * the specification of security patterns with Design by Contract
   ([2020](https://hal.science/hal-02958111)) and with Security Contracts, which monitor them at
   runtime ([2024](https://hal.science/hal-04578756));
+* the automatic synchronisation of a PAMELA security pattern with its formal specification in Alloy,
+  through model federation with Openflexo, so that a correctness check runs whenever a deployed
+  pattern evolves ([2026](https://hal.science/hal-05715009), by other members of the team);
 * an approach to analyse a cyber-physical system while taking the attacker's interests into
   account ([2022](https://hal.science/hal-03866297));
 * a framework for the secure systems engineering of space missions, developed in response to a

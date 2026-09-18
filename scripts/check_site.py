@@ -505,7 +505,7 @@ def check_publications(report):
     publis = "".join(f.read_text() for f in sorted((ROOT / "src" / "publis").glob("*.bib")))
     data = (ROOT / "src" / "data" / "papers.js").read_text()
     thumbnails = json.loads((ROOT / "src" / "data" / "publication-thumbnails.json").read_text())
-    known = set(re.findall(r"HAL_ID = \{([^}]+)\}", data))
+    known = set(re.findall(r"(?:HAL_ID|LOCAL_ID) = \{([^}]+)\}", data))
     for hal_id, image in thumbnails.items():
         if hal_id not in known:
             report.error("publications", f"publication-thumbnails.json: {hal_id} is not a listed publication")
