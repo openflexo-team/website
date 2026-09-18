@@ -2,6 +2,14 @@
 sidebar_position: 5
 ---
 
+:::caution Written for Openflexo 1.x
+
+This tutorial predates Openflexo 2. It uses the word *Viewpoint*, which no longer exists: a viewpoint
+is now simply a top-level virtual model. The ideas still apply, but menus, screens and file formats
+differ in the current versions.
+
+:::
+
 # Tutorial 7 : Working on model mapping
 
 ### 1. Purpose of this tutorial

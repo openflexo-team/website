@@ -71,7 +71,12 @@ when it compares packages with `openflexo-packaging`.
   what you can build, the tools; FAQ corrected.
 * Batch 2 (done): Discover — is Openflexo for me, maturity/licensing/support (dual GPLv3 or EUPL,
   best-effort support), roadmap (2.99 then 3.0), FAQ entries.
-* Batch 3: Get started — install, which package, first launch, quickstarts, choose your track.
+* Batch 3 (done): Get started — landing, download and install (with the choice of package), quickstart
+  "first free model" (condensed from tutorial 1, not re-run on 2.99), choose your track. Caution banners
+  added to the two tutorials written for 1.x.
+* Batch 3b: quickstart "federate a spreadsheet" and quickstart "run an FML script from the command
+  line". Both need to be written from a run on the current 2.99 packages: the spreadsheet tutorial is
+  a 1.x tutorial (Viewpoint, ViewPointModeller) and the CLI has not been verified.
 * Batch 4: home page.
 * Waiting for input: comparison with other tools, and the case studies (only the MULTI Process
   Challenge and the Cyber Threat Application have a page today).

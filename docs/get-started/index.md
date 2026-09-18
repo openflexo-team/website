@@ -1,13 +1,18 @@
 ---
 sidebar_position: 1
 title: Get started
+description: From download to your first model in about half an hour.
 ---
 
 # Get started
 
-The fastest way to try Openflexo today is to download a current build from the
-[Downloads page](/downloads) and launch it — every link there is checked and points at a real,
-dated build. The step-by-step walkthroughs that belong in this section — installing per OS, a
-first tour of the application, and guided quickstarts for building your first federated model —
-are being written next, batch by batch. In the meantime, the [tutorials](/docs/guide/tutorials/first-free-model)
-in the User guide cover the same ground in more depth.
+Three steps take you from nothing to a working model:
+
+1. **[Download and install](/docs/get-started/download-and-install)**: choose a package, install Java 8, run it.
+2. **[Quickstart: your first free model](/docs/get-started/quickstart-free-model)**: draw a model and turn shapes
+   into concepts, with no code.
+3. **[Choose your track](/docs/get-started/choose-your-track)**: what to do next, depending on what you want to
+   build.
+
+If you are still deciding whether Openflexo suits you, read
+[Is Openflexo for me?](/docs/discover/is-openflexo-for-me) first.

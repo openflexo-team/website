@@ -23,8 +23,8 @@ defining the synchronisation rules as a model between them. The rules say what c
 and what happens when one side changes.
 
 *Example.* The test suite of Openflexo includes a use case that synchronises two EMF models, with
-scripts that load them, generate a counterpart, synchronise, and undo the federation. The tutorial
-[Working on model mapping](/docs/guide/tutorials/model-mapping-and-sync) walks through the idea.
+scripts that load them, generate a counterpart, synchronise, and undo the federation. An older tutorial,
+[Working on model mapping](/docs/guide/tutorials/model-mapping-and-sync), walks through the idea.
 
 ## Consistency checking
 
