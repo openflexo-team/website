@@ -61,36 +61,47 @@ const config = {
         },
         items: [
           {
-            to: '/ModelFederation', 
-            label: 'Model Federation', 
-            position: 'left'
-          },
-          {
-            type: 'doc',
-            docId: 'documentation',
+            type: 'docSidebar',
+            sidebarId: 'discoverSidebar',
             position: 'left',
-            label: 'Documentation',
+            label: 'Discover',
           },
           {
-            type: 'doc',
-            docId: '/category/research',
+            type: 'docSidebar',
+            sidebarId: 'getStartedSidebar',
+            position: 'left',
+            label: 'Get started',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'guideSidebar',
+            position: 'left',
+            label: 'User guide',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'developSidebar',
+            position: 'left',
+            label: 'Develop',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'researchSidebar',
             position: 'left',
             label: 'Research',
           },
           {
-            to: 'docs/components', 
-            label: 'Components', 
-            position: 'left'
+            type: 'docSidebar',
+            sidebarId: 'communitySidebar',
+            position: 'left',
+            label: 'Community',
           },
           {
-            to: '/downloads', 
-            label: 'Downloads', 
-            position: 'left'
+            to: '/downloads',
+            label: 'Downloads',
+            position: 'right',
+            className: 'navbar__downloads-button',
           },
-          // {
-          //   type: 'docsVersionDropdown',
-          //   position: 'right'
-          // },
         ],
       },
       footer: {
@@ -151,7 +162,7 @@ const config = {
               },
               {
                 label: 'Cyber Threat Application',
-                to: '/docs/research/cta',
+                to: '/docs/research/projects/cta',
               },
               {
                 label: 'Download CTA Application',
@@ -193,6 +204,69 @@ const config = {
     }),
     plugins: [
       require.resolve('docusaurus-lunr-search'),
+      [
+        '@docusaurus/plugin-client-redirects',
+        /** @type {import('@docusaurus/plugin-client-redirects').Options} */
+        ({
+          // Explicit only — no wildcards — generated from the mapping table in
+          // .claude/epics/WebSiteRefactoring/IA-Proposal.md §3, so it cannot silently drift from
+          // the actual move. Keep it in sync by hand when a page moves again.
+          redirects: [
+            {from: '/ModelFederation', to: '/docs/discover/model-federation'},
+            {from: '/docs/documentation', to: '/docs/guide/'},
+            {from: '/docs/F.A.Q/WhatIsModelFederation', to: '/docs/discover/model-federation'},
+            {from: '/docs/F.A.Q/HowToTestOpenflexo', to: '/docs/discover/faq'},
+            {from: '/docs/F.A.Q/WhatAreRequiredComputerSkills', to: '/docs/discover/faq'},
+            {from: '/docs/GettingStarted/ComponentsAndVersionsManagement', to: '/docs/get-started/'},
+            {from: '/docs/GettingStarted/GettingStartedUsingEclipse', to: '/docs/develop/setup'},
+            {from: '/docs/GettingStarted/GettingStartedUsingIntellij', to: '/docs/develop/setup'},
+            {from: '/docs/GettingStarted/UsingModuleCreationArchetype', to: '/docs/develop/'},
+            {
+              from: '/docs/GettingStarted/UsingTechnologyAdapterCreationArchetype',
+              to: '/docs/develop/guides/write-a-technology-adapter',
+            },
+            {
+              from: '/docs/Tutorials/Tutorial1-GettingStartedWithFreeModelingEditor',
+              to: '/docs/guide/tutorials/01-first-free-model',
+            },
+            {
+              from: '/docs/Tutorials/Tutorial2-CreateDiagramEditorUsingFreeModellingEditor',
+              to: '/docs/guide/tutorials/02-diagram-editor-without-code',
+            },
+            {from: '/docs/Tutorials/Tutorial3-BuildingADiagramEditor', to: '/docs/guide/tutorials/'},
+            {
+              from: '/docs/Tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor',
+              to: '/docs/guide/tutorials/03-petri-net-editor',
+            },
+            {
+              from: '/docs/Tutorials/Tutorial5-FederatingExcelDocuments',
+              to: '/docs/guide/tutorials/04-federating-spreadsheets',
+            },
+            {
+              from: '/docs/Tutorials/Tutorial7-WorkingOnModelMapping',
+              to: '/docs/guide/tutorials/05-model-mapping-and-sync',
+            },
+            {from: '/docs/howto/HowTo-TechnologyAdapters', to: '/docs/guide/concepts/technology-adapters'},
+            {from: '/docs/howto/HowTo-ResourceCenters', to: '/docs/guide/cookbook/resource-centers'},
+            {from: '/docs/howto/HowTo-BuildingApps', to: '/docs/develop/guides/build-standalone-app'},
+            {from: '/docs/howto/HowTo-EditLocales', to: '/docs/guide/cookbook/edit-locales'},
+            {from: '/docs/howto/HowTo-PackageEMFMetaModel', to: '/docs/guide/cookbook/package-emf-metamodel'},
+            {from: '/docs/research/overview', to: '/docs/research/'},
+            {from: '/docs/research/cta', to: '/docs/research/projects/cta'},
+            {from: '/docs/research/MLMChallenge', to: '/docs/research/challenges/multi-process-challenge'},
+            {from: '/docs/research/Oneway', to: '/docs/research/'},
+            {
+              from: '/docs/Contribute/DeveloppingTechnologyAdapter',
+              to: '/docs/develop/guides/write-a-technology-adapter',
+            },
+            {from: '/docs/Contribute/DevelopmentGuidelines', to: '/docs/develop/code-standards'},
+            {from: '/docs/Contribute/GetInvolved', to: '/docs/community/get-involved'},
+            {from: '/docs/Contribute/ProductionProcess', to: '/docs/develop/release-engineering'},
+            {from: '/docs/Contribute/CreateANewInstallableDistro', to: '/docs/develop/release-engineering'},
+            {from: '/docs/Contribute/WebSiteProduction..', to: '/docs/develop/release-engineering'},
+          ],
+        }),
+      ],
     ]
     // themes: [
     //   // ... Your other themes.

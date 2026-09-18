@@ -1,0 +1,8 @@
+{
+  "label": "Discover",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "What Openflexo is, what model federation means, and whether it fits your problem."
+  }
+}

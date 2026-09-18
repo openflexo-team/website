@@ -59,3 +59,15 @@
   margin: 25px 0 10px 0;
   font-weight: bold;
 }
+
+.navbar__downloads-button {
+  background-color: var(--ifm-color-primary);
+  border-radius: 6px;
+  color: #fff !important;
+  padding: 0.4rem 1rem !important;
+  margin-left: 0.5rem;
+}
+
+.navbar__downloads-button:hover {
+  background-color: var(--ifm-color-primary-dark);
+}

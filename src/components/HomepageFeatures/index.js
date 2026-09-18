@@ -9,7 +9,7 @@ const FeatureList = [
     Svg: require('@site/static/img/software.svg').default,
     description: (
       <>
-        Openflexo is not not a tool nor a software, but a collection of innovative technical software components, exploring new paradigms.
+        Openflexo is not a single tool or piece of software, but a collection of innovative technical software components, exploring new paradigms.
       </>
     ),
   },
