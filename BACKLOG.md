@@ -157,10 +157,8 @@ around them.
   their reason in the script); the publications page shows PDF, DOI and BibTeX links and awards;
   contributions by theme; how to cite; reading guide of the overview updated.
 * Publication thumbnails: page and script done (`update_publication_thumbnails.py`, process in
-  `scripts/README.md`); 17 of the 23 thumbnails are done, from the copies of the final PDFs kept by the team; still
-  missing (no PDF at hand): the ICISSP 2020 paper on Pimca, the CRiSIS 2022 security analysis, the
-  2024 survey and the thesis. HAL blocks scripts with an anti-robot check, so those are added by
-  downloading the PDFs by hand.
+  `scripts/README.md`); all 23 thumbnails are done. HAL blocks scripts with an anti-robot check, so the PDFs of new
+  publications are added by hand (see `scripts/README.md`).
 * To do: publications grouped by theme as well as by year; project pages (Formose, Oneway, the ESA
   secure systems engineering framework, the Brest Métropole free-modeling project, others); the five
   use cases of the MODELS 2024 experience report as case studies; theses, internships and open
