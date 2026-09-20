@@ -176,7 +176,27 @@ around them.
   typed or metamodel-based, native PAMELA, office read/write and small document cases, each with its
   reference adapter. `docs/develop/guides/write-a-technology-adapter.md` stays the introduction and
   will link to them.
-* To do, from the content plan: a PAMELA guide, testing
-  strategy (including the `.fmlscript` methodology and the use-case projects), continuous integration,
-  contribution workflow and a first-contribution walkthrough (need the real channels and starter
-  issues), guides for Connie, Gina, Diana and for adding a construct to FML, API reference.
+* The PAMELA guide belongs to the PAMELA mini-site, not to this section.
+* To do later: the testing strategy page (unit and UI tests, the `.fmlscript` methodology with its
+  `AutomatedTests` runner and test resource centers, the use-case projects and how to add one).
+* To do, from the content plan: continuous integration, contribution workflow and a
+  first-contribution walkthrough (need the real channels and starter issues), guides for Connie, Gina,
+  Diana and for adding a construct to FML, API reference.
+
+## WEB-F-17 — user guide: core concepts and the FML language
+
+**Status:** IN PROGRESS
+
+The user guide only had one concept page, the cookbook and the tutorials. It gains a section on
+the FML language (`docs/guide/fml/`) and the core concepts, written in reviewable batches. Every
+model and script shown is a test of the platform that runs each `assert` (in `openflexo-core` for
+examples without a technology adapter, in the repository of the adapter for one adapter, in
+`openflexo-integration-tests` for several).
+
+* Batch 1 (in progress): the section index, "FML in ten minutes" (done), the language tour (file
+  structure, imports, typing space, name resolution) and the concept page "virtual model, flexo
+  concept, properties, behaviours".
+* Next, in this order: declaring virtual models and concepts (inheritance, containment),
+  properties, behaviours, the control graph and edition actions, queries (`select`), matching and
+  synchronisation, expressions, annotations, FML-script, migrating `.fml.xml`.
+* Later: grammar reference generated from the grammar, error catalogue, style guide.
