@@ -26,6 +26,8 @@ Two things set FML apart from a general-purpose language:
 
 - [FML in ten minutes](/docs/guide/fml/fml-in-ten-minutes) writes a complete, runnable model of about thirty
   lines, and explains each line.
+- [Language tour](/docs/guide/fml/language-tour) follows a file from the top: its layout, namespaces
+  and imports, the types it can name, and how a name is resolved inside a behaviour.
 
 ## FML and FML-script
 

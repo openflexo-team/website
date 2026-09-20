@@ -53,7 +53,7 @@ public model TaskList {
 
 **The virtual model.** `model TaskList { … }` declares a virtual model, the unit that holds
 concepts. `@URI(…)` gives it its address, the one other models use to refer to it.
-`import java.util.List;` makes the Java type `List` available, as in Java.
+`import java.util.List;` imports the Java type `List`, used by the return type of `openTasks()`.
 
 **A property that holds other objects.** `Task[0,*] tasks;` declares a property named `tasks`,
 whose values are instances of the concept `Task`, from zero to any number (`[0,*]` is the
