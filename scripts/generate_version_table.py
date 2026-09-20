@@ -112,7 +112,7 @@ def build_page(buildplugin_dir: Path) -> str:
     all_refs = ", ".join(ref for _, ref, _ in CURRENT_REFS + FORMER_REFS)
 
     return f"""---
-sidebar_position: 3
+sidebar_position: 5
 title: Component versions
 ---
 

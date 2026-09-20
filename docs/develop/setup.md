@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 title: Set up your workspace
 ---
 
@@ -29,8 +29,8 @@ as a published jar from the Openflexo Artifactory instead of local source.
 
 Several modules (`connie/*-parser`, `openflexo-core/fml-parser`, `openflexo-core/fml-cli`, the
 technology-adapter parser modules) are generated from SableCC grammars under
-`src/main/sablecc/*.sablecc`. A plain compile does **not** trigger generation — run this once,
-before the first build or IDE import, and again whenever a grammar changes:
+`src/main/sablecc/*.sablecc`. Run this once, before the first build or IDE import, so that the
+generated classes exist, and again whenever a grammar changes:
 
 ```
 ./gradlew sableccParser
@@ -39,6 +39,8 @@ before the first build or IDE import, and again whenever a grammar changes:
 Generated sources land in `build/generated-sources/` and are never committed or hand-edited.
 
 ### 3. Build
+
+The tasks, and the trap of a green build with failing tests, are detailed in [Build and test](./build-and-test).
 
 ```
 ./gradlew compile     # compile everything included in openflexo-dev
@@ -65,7 +67,7 @@ Generated sources land in `build/generated-sources/` and are never committed or 
   module, or Eclipse will report the generated classes as missing.
 * To run a packaged application from Eclipse: create a Run Configuration with main class
   `org.openflexo.Flexo`, module set to one of the existing packages under `openflexo-packaging`
-  (`flexomaintainer`, `flexosemantics`, …), and program argument `dev`.
+  (`openflexo-designer`, `flexomaintainer`, `freemodelling`, …), and program argument `dev`.
 
   ![Launch configuration](/images/getting_started/SetupDevelopmentEnvironmentUsingGradle/new/5-LaunchConfig.png)
 

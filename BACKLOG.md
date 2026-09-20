@@ -163,3 +163,20 @@ around them.
   secure systems engineering framework, the Brest Métropole free-modeling project, others); the five
   use cases of the MODELS 2024 experience report as case studies; theses, internships and open
   positions; reproducibility (artefacts, datasets); teaching material. Needs input from the team.
+
+## WEB-F-16 — Develop section
+
+**Status:** IN PROGRESS
+
+* Done: architecture overview, build and test (the commands and the `Results:` summary were run on
+  `connie`), repository map, component versions, setup, code standards.
+* Postponed: the technology adapter guides. There will be several, one per kind of adapter: the
+  document adapters (the file is parsed into an object tree, `load` and `save` symmetric) and the
+  service adapters (the resource only holds a connection, data is queried live), and within them the
+  typed or metamodel-based, native PAMELA, office read/write and small document cases, each with its
+  reference adapter. `docs/develop/guides/write-a-technology-adapter.md` stays the introduction and
+  will link to them.
+* To do, from the content plan: a PAMELA guide, testing
+  strategy (including the `.fmlscript` methodology and the use-case projects), continuous integration,
+  contribution workflow and a first-contribution walkthrough (need the real channels and starter
+  issues), guides for Connie, Gina, Diana and for adding a construct to FML, API reference.

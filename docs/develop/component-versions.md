@@ -1,11 +1,11 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 title: Component versions
 ---
 
 # Component versions
 
-<!-- Generated 2026-09-18 by scripts/generate_version_table.py from
+<!-- Generated 2026-09-20 by scripts/generate_version_table.py from
      openflexo-buildplugin's buildconfig (refs: origin/2.0.0, origin/2.0.1, origin/2.0.2, 2.99, 3.0, origin/1.8.1, origin/1.9.0, origin/1.9.1).
      Do not hand-edit -- re-run the script instead. -->
 
