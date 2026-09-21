@@ -24,6 +24,8 @@ Two things set FML apart from a general-purpose language:
 
 ## Where to start
 
+- [Virtual models and concepts](/docs/guide/concepts/virtual-models-and-concepts) explains what a
+  virtual model, a concept, a property and a behaviour are, without the syntax.
 - [FML in ten minutes](/docs/guide/fml/fml-in-ten-minutes) writes a complete, runnable model of about thirty
   lines, and explains each line.
 - [Language tour](/docs/guide/fml/language-tour) follows a file from the top: its layout, namespaces

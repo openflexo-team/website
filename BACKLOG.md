@@ -193,9 +193,10 @@ model and script shown is a test of the platform that runs each `assert` (in `op
 examples without a technology adapter, in the repository of the adapter for one adapter, in
 `openflexo-integration-tests` for several).
 
-* Batch 1 (in progress): the section index, "FML in ten minutes" and the language tour (file
-  structure, namespaces, imports, typing space, name resolution) are written; the concept page
-  "virtual model, flexo concept, properties, behaviours" remains.
+* Batch 1 (written, under review): the section index, "FML in ten minutes", the language tour (file
+  structure, namespaces, imports, typing space, name resolution) and the concept page "Virtual models
+  and concepts". Pages must not present `extends` between virtual models before `CORE-D-15` of
+  `openflexo-core` is fixed.
 * Next, in this order: declaring virtual models and concepts (inheritance, containment),
   properties, behaviours, the control graph and edition actions, queries (`select`), matching and
   synchronisation, expressions, annotations, FML-script, migrating `.fml.xml`.
