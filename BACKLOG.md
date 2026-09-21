@@ -199,7 +199,8 @@ examples without a technology adapter, in the repository of the adapter for one 
   `openflexo-core` is fixed.
 * Batch 2 (written, under review): "Declaring models and concepts", "Properties", "Behaviours".
 * Batch 3 (written, under review): "Control flow and instructions".
-* Next, in this order: queries (`select`), matching and synchronisation (waiting for `CORE-D-1`,
-  `CORE-D-2` and `CORE-D-12` of `openflexo-core`, or to be written with their limits), expressions,
-  annotations, FML-script, migrating `.fml.xml`.
+* Batch 4 (written, under review): "Queries with select" and "Matching and synchronisation" (with its
+  limits; the page follows `CORE-D-1`, `CORE-D-2`, `CORE-D-12` and `CORE-F-2` of `openflexo-core`, and
+  needs revising when they are fixed).
+* Next, in this order: expressions, annotations, FML-script, migrating `.fml.xml`.
 * Later: grammar reference generated from the grammar, error catalogue, style guide.

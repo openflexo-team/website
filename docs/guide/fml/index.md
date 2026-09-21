@@ -38,6 +38,10 @@ Two things set FML apart from a general-purpose language:
 - [Control flow and instructions](/docs/guide/fml/control-flow) covers the statements of a body,
   conditions, loops, the instructions that act on models, and the constructs that do not behave as
   in Java.
+- [Queries with select](/docs/guide/fml/queries-with-select) covers how to find instances, filter
+  them, and what the source of the query changes.
+- [Matching and synchronisation](/docs/guide/fml/matching-and-synchronisation) covers `match`, which
+  keeps instances in step with a source, and the limits of the current implementation.
 
 ## FML and FML-script
 
