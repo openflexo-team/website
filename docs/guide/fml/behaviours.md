@@ -115,7 +115,35 @@ model calls another one of the model with `this.chorus()`, not `chorus()`.
 
 A `create` behaviour, a **creation scheme**, runs when an instance is created with `new`. Inside a
 behaviour of a model, `new Shelf(…)` creates an instance of the concept `Shelf` in the model
-instance; inside a behaviour of a concept, the new instance is contained in the current one.
+instance.
+
+Inside a behaviour of a concept, `new` creates a concept **nested in that concept**, inside the
+current instance: `Shelf.newBook` creates a `Book`, declared in `Shelf`. A concept declared
+elsewhere, at the model level for instance, is created with `container.new`, and a bare `new` gives
+`null`:
+
+```
+public Tool bareTool(String name) {
+	return new Tool(parameters.name);
+}
+
+public Tool containerTool(String name) {
+	return container.new Tool(parameters.name);
+}
+
+public Slot newSlot(String code) {
+	return new Slot(parameters.code);
+}
+```
+
+```
+assert bin.bareTool("saw") == null;
+hammer = bin.containerTool("hammer");
+assert hammer.container == depot;
+```
+
+Here `Bin` declares `Slot` and the model declares `Tool`, and `bin.newSlot("s1")` returns a `Slot`
+contained in `bin`.
 
 A concept may have several creation schemes. At most one is anonymous; the others are named, with
 `create::name`, and are chosen by the name in the `new`:
@@ -234,8 +262,9 @@ offers is described with the [technology adapters](/docs/guide/concepts/technolo
 A behaviour has a name, arguments read through `parameters`, and a body; two behaviours can share a
 name when their arguments differ. Behaviours of the same instance are called on `this`. Creation and
 deletion are behaviours too, `create` and `delete`, and a model reacts to events with `listen`.
-Three silent traps to keep in mind: a bare parameter name, a bare call of a behaviour, and a
-creation call that omits an argument with a default value.
+Four silent traps to keep in mind: a bare parameter name, a bare call of a behaviour, a `new` of a
+concept that is not nested in the current one, and a creation call that omits an argument with a
+default value.
 
-The models and scripts on this page (`Talker.fml`, `NameLookup.fml` and `Library.fml`) are tests of the
+The models and scripts on this page (`Talker.fml`, `NameLookup.fml`, `Depot.fml` and `Library.fml`) are tests of the
 platform, in the `openflexo-core` repository.

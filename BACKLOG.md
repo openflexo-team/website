@@ -202,5 +202,6 @@ examples without a technology adapter, in the repository of the adapter for one 
 * Batch 4 (written, under review): "Queries with select" and "Matching and synchronisation" (with its
   limits; the page follows `CORE-D-1`, `CORE-D-2`, `CORE-D-12` and `CORE-F-2` of `openflexo-core`, and
   needs revising when they are fixed).
-* Next, in this order: expressions, annotations, FML-script, migrating `.fml.xml`.
+* Batch 5 (written, under review): "Expressions", and a correction of "Behaviours" on `new` inside a concept.
+* Next, in this order: annotations, FML-script, migrating `.fml.xml`.
 * Later: grammar reference generated from the grammar, error catalogue, style guide.

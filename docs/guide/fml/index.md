@@ -42,6 +42,8 @@ Two things set FML apart from a general-purpose language:
   them, and what the source of the query changes.
 - [Matching and synchronisation](/docs/guide/fml/matching-and-synchronisation) covers `match`, which
   keeps instances in step with a source, and the limits of the current implementation.
+- [Expressions](/docs/guide/fml/expressions) covers operators, numbers, strings and `null`, and the
+  places where an expression differs from Java.
 
 ## FML and FML-script
 
