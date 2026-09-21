@@ -60,7 +60,7 @@ whose values are instances of the concept `Task`, from zero to any number (`[0,*
 cardinality). The properties of a concept are the data of its instances.
 
 **A computed property.** `int taskCount values tasks.size;` is read-only: its value is the
-expression after `values`, evaluated each time the property is read. `tasks.size` is a path, made of
+result of the expression after `values`, and follows the properties that expression reads. `tasks.size` is a path, made of
 a property followed by what that property offers.
 
 **A behaviour.** `public Task addTask(String label) { … }` is a behaviour of the model, the

@@ -94,7 +94,7 @@ public concept Shelf {
 |---|---|---|
 | **Stored** | `String label;`, `int capacity;` | a value the instance holds, of a primitive or Java type |
 | **Reference to concept instances** | `Book[0,*] books;` | instances of a concept; the cardinality tells how many, `[0,*]` meaning any number |
-| **Computed** | `int bookCount values books.size;` | read-only, evaluated from an expression each time it is read |
+| **Computed** | `int bookCount values books.size;` | read-only, computed from an expression over other properties |
 | **Get and set** | `String displayName { … };` | a value computed by a `get()` and, optionally, changed by a `set(…)` |
 | **Abstract** | `abstract String code;` | declared by a concept, given its value by the concepts that extend it |
 

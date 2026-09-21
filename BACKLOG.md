@@ -197,7 +197,7 @@ examples without a technology adapter, in the repository of the adapter for one 
   structure, namespaces, imports, typing space, name resolution) and the concept page "Virtual models
   and concepts". Pages must not present `extends` between virtual models before `CORE-D-15` of
   `openflexo-core` is fixed.
-* Next, in this order: declaring virtual models and concepts (inheritance, containment),
-  properties, behaviours, the control graph and edition actions, queries (`select`), matching and
+* Batch 2 (written, under review): "Declaring models and concepts", "Properties", "Behaviours".
+* Next, in this order: the control graph and edition actions, queries (`select`), matching and
   synchronisation, expressions, annotations, FML-script, migrating `.fml.xml`.
 * Later: grammar reference generated from the grammar, error catalogue, style guide.

@@ -30,6 +30,11 @@ Two things set FML apart from a general-purpose language:
   lines, and explains each line.
 - [Language tour](/docs/guide/fml/language-tour) follows a file from the top: its layout, namespaces
   and imports, the types it can name, and how a name is resolved inside a behaviour.
+- [Declaring models and concepts](/docs/guide/fml/declaring-models-and-concepts) covers annotations,
+  nested and contained models, abstract concepts and inheritance.
+- [Properties](/docs/guide/fml/properties) covers the kinds of properties, their initial values and
+  how they are read and written.
+- [Behaviours](/docs/guide/fml/behaviours) covers parameters, calls, creation and deletion, and events.
 
 ## FML and FML-script
 

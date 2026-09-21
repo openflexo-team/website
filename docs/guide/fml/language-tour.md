@@ -195,9 +195,11 @@ public model NameLookup {
 | `String name = "local"; return name + "/" + this.name;` | `"local/Pen"`: `this` still reaches the property |
 | `parameter(String name)`: `return parameters.name + "/" + this.name;` | `"Arg/Pen"` when called with `"Arg"` |
 | `bareParameter(String other)`: `return other;` | `null`: a parameter is not read by its bare name |
+| `return twin();`, where `twin()` is another behaviour of `Item` | `null`: a behaviour is called on `this`, as `this.twin()`, which gives `"twin"` |
 
-The last line is the one to remember: a parameter must be read as `parameters.other`. A bare
-parameter name is not an error, it gives `null`.
+The last two lines are the ones to remember: a parameter must be read as `parameters.other`, and a
+behaviour of the same instance called on `this`. A bare parameter name, or a bare call, is not an
+error: it gives `null`.
 
 ## What you have seen
 
