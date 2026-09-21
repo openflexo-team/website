@@ -35,6 +35,9 @@ Two things set FML apart from a general-purpose language:
 - [Properties](/docs/guide/fml/properties) covers the kinds of properties, their initial values and
   how they are read and written.
 - [Behaviours](/docs/guide/fml/behaviours) covers parameters, calls, creation and deletion, and events.
+- [Control flow and instructions](/docs/guide/fml/control-flow) covers the statements of a body,
+  conditions, loops, the instructions that act on models, and the constructs that do not behave as
+  in Java.
 
 ## FML and FML-script
 

@@ -198,6 +198,8 @@ examples without a technology adapter, in the repository of the adapter for one 
   and concepts". Pages must not present `extends` between virtual models before `CORE-D-15` of
   `openflexo-core` is fixed.
 * Batch 2 (written, under review): "Declaring models and concepts", "Properties", "Behaviours".
-* Next, in this order: the control graph and edition actions, queries (`select`), matching and
-  synchronisation, expressions, annotations, FML-script, migrating `.fml.xml`.
+* Batch 3 (written, under review): "Control flow and instructions".
+* Next, in this order: queries (`select`), matching and synchronisation (waiting for `CORE-D-1`,
+  `CORE-D-2` and `CORE-D-12` of `openflexo-core`, or to be written with their limits), expressions,
+  annotations, FML-script, migrating `.fml.xml`.
 * Later: grammar reference generated from the grammar, error catalogue, style guide.
