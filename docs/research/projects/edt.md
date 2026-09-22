@@ -5,7 +5,7 @@ title: Engineering Digital Twins (EDT)
 
 # Engineering Digital Twins (EDT)
 
-<img src="/images/site/edt/logo.png" width="300" alt="EDT logo"/>
+![EDT logo](/images/site/edt/logo.png)
 
 ## Problem
 
