@@ -343,4 +343,18 @@ export const data_papers = `@article{koudri:hal-00904995,
   HAL_ID = {hal-05715009},
   HAL_VERSION = {v1},
 }
+@inproceedings{hnaini:mom2025,
+  TITLE = {{Openflexo as a Model Management Platform for the MoM 2025 Satellite Configuration Challenge}},
+  AUTHOR = {Hnaini, Hiba and Boudjemila, Chahrazed and Guerin, Sylvain},
+  URL = {https://ieeexplore.ieee.org/document/11273234},
+  BOOKTITLE = {{2025 ACM/IEEE 28th International Conference on Model Driven Engineering Languages and Systems Companion (MODELS-C)}},
+  ADDRESS = {Grand Rapids, MI, United States},
+  PUBLISHER = {{IEEE}},
+  PAGES = {732-741},
+  YEAR = {2025},
+  MONTH = Oct,
+  DOI = {10.1109/MODELS-C68889.2025.00116},
+  KEYWORDS = {Model management ; Openflexo ; Consistency ; Challenge ; Model federation},
+  LOCAL_ID = {2025-mom-challenge},
+}
 `
