@@ -1,12 +1,12 @@
 ---
-sidebar_position: 7
-title: People
+sidebar_position: 3
+title: Contributors
 description: The core team and the people who have contributed to Openflexo over the years.
 ---
 
 import Contributors from '@site/src/components/Contributors';
 
-# People
+# Contributors
 
 ## Core team
 
@@ -19,5 +19,3 @@ Leilde, Philippe Bonnet, Guillaume Polet, Dominique Snyers, Frederic Van Der Vae
 Pierre Trémenbert, Luka Le Roux, Gilles Besançon, Laurent Wouters, Etienne Louboutin, Alexandre Manoury,
 Axel Baudot, Fahad Golra, Wei Jiang, Peiqi Shi, Shuting Wang, Benoit Mangez, Kevin Vermeulen, 
 and many other people.
-
- 

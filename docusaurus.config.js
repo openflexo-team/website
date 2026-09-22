@@ -208,17 +208,13 @@ const config = {
                 label: 'Formose',
                 to: '/docs/research/projects/formose',
               },
-              {
-                label: 'Cyber Threat Application',
-                to: '/docs/research/projects/cta',
-              },
             ],
           },
           {
             title: 'Community',
             items: [
               {
-                to: '/docs/research/people',
+                to: '/docs/community/contributors',
                 label: 'Contributors',
               },
               {
@@ -268,7 +264,8 @@ const config = {
             {from: '/papers', to: '/docs/research/publications'},
             {from: '/docs/components', to: '/docs/develop/components'},
             {from: '/partners', to: '/docs/community/partners'},
-            {from: '/contributors', to: '/docs/research/people'},
+            {from: '/contributors', to: '/docs/community/contributors'},
+            {from: '/docs/research/people', to: '/docs/community/contributors'},
             {from: '/docs/documentation', to: '/docs/get-started'},
             {from: '/docs/F.A.Q/WhatIsModelFederation', to: '/docs/discover/model-federation'},
             {from: '/docs/F.A.Q/HowToTestOpenflexo', to: '/docs/discover/faq'},

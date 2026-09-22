@@ -236,6 +236,9 @@ inconsistency this entry fixes.
   `docs/community/partners.md` (position 2) imports the existing `src/components/Partners`;
   `docs/research/people.md` (position 7) imports the existing `src/components/Contributors` for the
   core team, with the secondary contributors kept as plain text (that half was never a component).
+  Since renamed and moved to `docs/community/contributors.md` (position 3, title "Contributors"),
+  alongside `get-involved.md` and `partners.md`; the footer's "Contributors" link and the
+  `/contributors` and `/docs/research/people` redirects follow it.
 * The three old page files are deleted; `src/components/Components` is new (extracted from the
   deleted `src/pages/docs/components.js`), `src/components/Partners` and `src/components/Contributors`
   are unchanged, just imported from a doc instead of a page now.
