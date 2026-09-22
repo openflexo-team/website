@@ -1,15 +1,17 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Repository map
 ---
 
 # Repository map
 
-<!-- Generated 2026-09-18 by scripts/generate_repository_map.py.
+<!-- Generated 2026-09-22 by scripts/generate_repository_map.py.
      Do not hand-edit -- re-run the script instead. -->
 
 Openflexo is not a single repository: the infrastructure is made of independent repositories,
 each with its own history and its own version. They are listed below, grouped by role.
+
+![The workspace](/img/architecture/14-workspace.png)
 
 Layering is strict, bottom-up: Connie, then Pamela, then Gina and Diana, then the core
 (`openflexo-core`), the user interface, the technology adapters, the server and finally the

@@ -147,6 +147,12 @@ The last item is what lets a path go through an external resource: `guest.name` 
 into a spreadsheet are resolved by the same rules, each step being looked up in the type of the
 previous one.
 
+![FML typing](/img/architecture/12-fml-typing.png)
+
+A bare type name is resolved in this order, and the first match wins: a concept declared in the
+compilation unit, then the class brought by a model slot the unit uses, then a keyword or a
+`typedef`, then a plain Java type.
+
 ## How a name is resolved
 
 Inside a behaviour, a bare name such as `name` is looked up outward: first among the local

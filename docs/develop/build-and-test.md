@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 title: Build and test
 description: The Gradle tasks of the Openflexo build, and the traps to know before trusting a green build.
 ---

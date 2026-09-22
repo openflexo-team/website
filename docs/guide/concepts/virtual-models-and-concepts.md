@@ -12,6 +12,13 @@ do), and how those descriptions become objects when the model runs. It uses the 
 [FML language](/docs/guide/fml/); the examples are excerpts of a small library model, `Library`,
 that the platform's automated tests load and run.
 
+![FML meta-model](/img/architecture/03-fml-metamodel.png)
+
+A `.fml` file is a compilation unit that declares one `VirtualModel`, which contains
+`FlexoConcept`s. Inside a `FlexoConcept` are its **properties**, its **behaviours**, and, as the
+body of each behaviour, a **control graph** — the sequence of statements it runs (covered on
+[control flow and instructions](/docs/guide/fml/control-flow)).
+
 ## Two levels: describing and running
 
 Everything on this page exists at two levels.
@@ -29,6 +36,16 @@ If you know an object-oriented language, a concept plays the part of a class, it
 attributes and its behaviours are the methods. Three things go beyond that: concepts *contain*
 other concepts, properties can point at data that lives outside the model, and behaviours can react
 to what happens in the resources a model federates.
+
+Each model-level notion has its run-time counterpart: a `VirtualModel` is instantiated as a
+`VirtualModelInstance`, a `FlexoConcept` as a `FlexoConceptInstance`, and a `FlexoRole` (a property
+bound to a resource) as an `ActorReference`. A `FlexoBehaviour`'s counterpart is more short-lived:
+each time it runs, it does so as a `FlexoBehaviourAction`.
+
+![FML ↔ FML-RT](/img/architecture/06-fml-fmlrt.png)
+
+In the running example of this page, `Library` is instantiated as `library`, its concept `Shelf`
+as `fiction`, and `Shelf`'s concept `Book` as `emma`.
 
 ## Containment
 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Technology adapters
@@ -17,3 +17,12 @@ ModelSlot when it is described in a non-Java format such as an XML Schema, and a
 ModelSlot when there is no external meta-model at all — the FML VirtualModel itself defines the
 structure. The [technology adapter authoring guide](/docs/develop/guides/write-a-technology-adapter)
 covers the same distinction from the other side, for whoever is writing a new TA.
+
+Every TA follows the same module template, found at run time through Java's `ServiceLoader`:
+
+![Technology adapter template](/img/architecture/05-ta-template.png)
+
+The `-ta` module is the adapter core: the technology model (what the technology contains), the
+resources it loads and saves, and the FML integration — the model slots, roles and edition actions
+described above. `-ta-ui` is its user interface, and `-ta-test` its `.fmlscript` tests, the same
+kind of test every FML example on this site is proved by.

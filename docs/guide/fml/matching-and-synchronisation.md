@@ -13,6 +13,8 @@ instances again at every run. **Matching** is the instruction that makes it repe
 the instance that already corresponds to a source, creates the ones that are missing, and removes the
 ones whose source is gone.
 
+![Matching: synchronizing without duplicates](/img/architecture/10-matching.png)
+
 The examples use a model `Team` with members, and a badge that must exist for each member.
 
 ## The three instructions

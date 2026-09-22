@@ -10,8 +10,9 @@ This section is for building and using a virtual model: the concepts behind it, 
 describes it, and recipes for specific tasks.
 
 - **[Core concepts](/docs/guide/concepts/virtual-models-and-concepts)** — virtual models, concepts,
-  properties and behaviours, and the [technology adapters](/docs/guide/concepts/technology-adapters)
-  that connect a model to a resource.
+  properties and behaviours, [resources and their life cycle](/docs/guide/concepts/resources), and
+  the [technology adapters](/docs/guide/concepts/technology-adapters) that connect a model to a
+  resource.
 - **[The FML language](/docs/guide/fml/)** — writing FML: from a first complete model to the
   language's structures, properties, behaviours, queries, expressions and annotations.
 - **[Cookbook](/docs/guide/cookbook/resource-centers)** — short recipes for one task: setting up a resource center,

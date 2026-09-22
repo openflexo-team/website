@@ -20,6 +20,15 @@ calls: `guest.name`, `fiction.books.size`, `this.container.label`. The names a p
 are the local variables, the properties of the concept, and `this`, `container` and `parameters`
 (see the [language tour](/docs/guide/fml/language-tour)). Inside a `listen`, `evt` is the event.
 
+![FML bindings](/img/architecture/11-fml-bindings.png)
+
+Resolving a path is: parse the text into an expression, find its first name in the binding model
+in scope, resolve each further step against the type found so far, then evaluate it. The binding
+model in scope inside a control graph is itself a chain — a `VirtualModel`'s, then its
+`FlexoConcept`'s, then a `FlexoBehaviour`'s, then the control graph's own — each adding its names
+to those of the one before it. The [language tour](/docs/guide/fml/language-tour#how-a-name-is-resolved)
+measures the resulting lookup order for a bare name inside a behaviour.
+
 ## Operators
 
 | Kind | Operators |

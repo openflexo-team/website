@@ -7,12 +7,16 @@ description: How the Openflexo infrastructure is layered, the rules that hold it
 # Architecture overview
 
 Openflexo is a stack of components, each in its own repository, built one on top of the other. This
-page gives the map; the [repository map](/docs/develop/repository-map) lists every repository, and
-[Component versions](/docs/develop/component-versions) says which versions go together.
+page gives the map; the [repository map](/docs/develop/repository-map) lists every repository,
+[Component versions](/docs/develop/component-versions) says which versions go together, and
+[Runtime](./runtime) covers what happens while it runs.
 
 ## The layers
 
-Layering is strict, bottom-up: **a lower layer never depends on a higher one.**
+![Openflexo 2.99 — Infrastructure](/img/architecture/01-infrastructure.png)
+
+Layering is strict, bottom-up: **a lower layer never depends on a higher one.** FML and FML-RT are
+technology adapters built into the core.
 
 | Layer | Repositories | What it provides |
 |---|---|---|
@@ -31,6 +35,15 @@ Layering is strict, bottom-up: **a lower layer never depends on a higher one.**
 `openflexo-integration-tests` sits beside the stack: regression tests and complete use cases that
 exercise it from the outside.
 
+### Inside openflexo-core
+
+![openflexo-core — main modules](/img/architecture/02-core-modules.png)
+
+`fml-cli` (scripts and commands), `fml-lsp` (the language server) and `flexo-foundation-rm` (FML
+resources) all depend on `fml-parser`, the textual FML ↔ model conversion, which itself depends on
+`flexo-foundation`: the FML and FML-RT models, resources, technology adapters and services. Also in
+`openflexo-core`: `flexo-ontology`, `flexo-documentation`, `bug-reporting`, and the test modules.
+
 ## The rules that hold it together
 
 * **No dependency goes up.** `connie` and `pamela` know nothing of `openflexo-core`; the core knows
@@ -45,8 +58,10 @@ exercise it from the outside.
 * **Model data is reached through Connie bindings**, where the surrounding code does so. Calling
   getters by hand around them breaks FML evaluation and change propagation.
 * **The FML syntax is defined in one grammar**, `fml-parser/src/main/sablecc/fml.sablecc`. Parsers
-  are generated from it, never edited (see [Build and test](./build-and-test)). The command
-  interpreter has its own, separate grammar.
+  are generated from it, never edited (see [Build and test](./build-and-test)). Commands and
+  `.fmlscript` files are parsed by that same grammar, through separate entry points — there is no
+  second, standalone grammar for them. See [Runtime](./runtime) for what happens once a file is
+  loaded.
 * **Resource centers are identified by their base URI, which must be unique on the classpath.** A
   jar declares its resource center in
   `META-INF/resourceCenters/org.openflexo.foundation.resource.FlexoResourceCenter`; when two share
@@ -58,7 +73,9 @@ The layers meet at run time as follows. A **resource center** makes resources vi
 **technology adapter** knows one kind of resource and offers **model slots** to reach it. An FML
 **virtual model** declares those slots and the concepts built on them, and executing it creates a
 **virtual model instance**. The [vocabulary](/docs/discover/vocabulary) defines each of these
-terms.
+terms; [Resources and their life cycle](/docs/guide/concepts/resources) and
+[Runtime](./runtime) go into how a resource is discovered and how start-up, loading and behaviour
+execution actually proceed.
 
 ## Where to look for what
 

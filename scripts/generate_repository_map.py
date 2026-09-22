@@ -154,7 +154,7 @@ def build_page(openflexo_dev_dir: Path) -> str:
     tables = render_markdown(sections, registry)
 
     return f"""---
-sidebar_position: 2
+sidebar_position: 3
 title: Repository map
 ---
 
@@ -165,6 +165,8 @@ title: Repository map
 
 Openflexo is not a single repository: the infrastructure is made of independent repositories,
 each with its own history and its own version. They are listed below, grouped by role.
+
+![The workspace](/img/architecture/14-workspace.png)
 
 Layering is strict, bottom-up: Connie, then Pamela, then Gina and Diana, then the core
 (`openflexo-core`), the user interface, the technology adapters, the server and finally the
