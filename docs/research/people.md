@@ -16,7 +16,7 @@ import Contributors from '@site/src/components/Contributors';
 
 Christophe Guychard, Ali Koudri, Gilles Godet, Ihab Benamer, Jean-Charles Roger, Julien Carette, Vincent
 Leilde, Philippe Bonnet, Guillaume Polet, Dominique Snyers, Frederic Van Der Vaeren, Bernard Penhoet,
-Pierre Trémenbert, Luka Leroux, Gilles Besançon, Laurent Wouters, Etienne Louboutin, Alexandre Manoury,
+Pierre Trémenbert, Luka Le Roux, Gilles Besançon, Laurent Wouters, Etienne Louboutin, Alexandre Manoury,
 Axel Baudot, Fahad Golra, Wei Jiang, Peiqi Shi, Shuting Wang, Benoit Mangez, Kevin Vermeulen, 
 and many other people.
 

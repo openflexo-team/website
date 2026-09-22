@@ -193,20 +193,24 @@ const config = {
                 to: '/docs/research/publications',
               },
               {
-                label: 'Formose Project',
-                to: 'http://formose.lacl.fr/',
+                label: 'AUGMENT',
+                to: '/docs/research/projects/augment',
               },
               {
-                label: 'Download Formose prototype',
-                to: 'http://downloads.openflexo.org/Formose',
+                label: 'Engineering Digital Twins (EDT)',
+                to: '/docs/research/projects/edt',
+              },
+              {
+                label: 'MODES',
+                to: '/docs/research/projects/modes',
+              },
+              {
+                label: 'Formose',
+                to: '/docs/research/projects/formose',
               },
               {
                 label: 'Cyber Threat Application',
                 to: '/docs/research/projects/cta',
-              },
-              {
-                label: 'Download CTA Application',
-                to: 'http://downloads.openflexo.org/CTA',
               },
             ],
           },

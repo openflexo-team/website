@@ -12,10 +12,12 @@ problem statement, the contribution and links, in the same shape as `docs/resear
 
 ## WEB-F-2 — write the Formose research project page
 
-**Status:** TODO
+**Status:** DONE
 
-Formose only exists as two footer links (project site, prototype download). It deserves a page
-alongside the other research projects.
+Formose used to only exist as two footer links (project site, prototype download). It now has
+`docs/research/projects/formose.md`, in the same shape as `cta.md`, and the footer links to it
+instead of pointing straight at the project site. Added alongside three other project pages
+(`augment.md`, `edt.md`, `modes.md`) covering AUGMENT, Engineering Digital Twins (EDT) and MODES.
 
 ## WEB-F-3 — technology adapter registry, version table, Components page warning
 
@@ -161,8 +163,10 @@ around them.
 * Publication thumbnails: page and script done (`update_publication_thumbnails.py`, process in
   `scripts/README.md`); all 23 thumbnails are done. HAL blocks scripts with an anti-robot check, so the PDFs of new
   publications are added by hand (see `scripts/README.md`).
-* To do: publications grouped by theme as well as by year; project pages (Formose, Oneway, the ESA
-  secure systems engineering framework, the Brest Métropole free-modeling project, others); the five
+* Project pages: `docs/research/projects/` now has AUGMENT, Engineering Digital Twins (EDT), MODES
+  and Formose, alongside the pre-existing Cyber Threat Application.
+* To do: publications grouped by theme as well as by year; the Oneway project page (WEB-F-1); the ESA
+  secure systems engineering framework and the Brest Métropole free-modeling project pages; the five
   use cases of the MODELS 2024 experience report as case studies; theses, internships and open
   positions; reproducibility (artefacts, datasets); teaching material. Needs input from the team.
 
