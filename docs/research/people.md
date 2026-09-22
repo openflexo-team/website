@@ -4,13 +4,13 @@ title: People
 description: The core team and the people who have contributed to Openflexo over the years.
 ---
 
+import Contributors from '@site/src/components/Contributors';
+
 # People
 
 ## Core team
 
-Ali Koudri, Antoine Beugnard, Christophe Guychard, Fabien Dagnat, Guillaume Polet, Gilles Godet,
-Ihab Benamer, Jean-Charles Roger, Julien Carette, Sylvain Guerin, Vincent Leilde and Philippe
-Bonnet.
+<Contributors />
 
 ## Also contributed to the project
 

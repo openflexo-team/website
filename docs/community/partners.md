@@ -4,21 +4,14 @@ title: Partners
 description: The institutions and companies that support Openflexo.
 ---
 
+import Partners from '@site/src/components/Partners';
+
 # Partners
 
-Openflexo has been supported over the years by:
+Openflexo has been supported over the years by the institutions and companies below. The list
+dates from the early years of the project and is due for an update.
 
-- Télécom Bretagne
-- Brest Métropole
-- ANR (Agence Nationale de la Recherche)
-- Bpifrance
-- ENSTA Bretagne
-- IRT SystemX
-- Technopôle Brest-Iroise (TBI)
-- Thales
-- URSCOP
-
-This list dates from the early years of the project and is due for an update.
+<Partners />
 
 ## Sponsor
 
