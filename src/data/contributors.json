@@ -10,18 +10,25 @@
          {
             "name": "Fabien Dagnat",
             "role": "Researcher",
-            "image": "/img/team/FabienDagnat.jpg",
+            "image": "/img/team/FabienDagnat.png",
 			"affiliation": "IMT Atlantique",
 		    "email": "fabien.dagnat@imt-atlantique.fr"
         },
         {
             "name": "Sylvain Guerin",
             "role": "Researcher",
-            "image": "/img/team/SylvainGuerin.jpg",
+            "image": "/img/team/SylvainGuerin.png",
 			"affiliation": "IMT Atlantique",
 			"email": "sylvain.guerin@imt-atlantique.fr"
         }
-    ],
+		{
+		    "name": "Salvador Martinez",
+		    "role": "Researcher",
+		    "image": "/img/team/SalvadorMartinez.png",
+			"affiliation": "IMT Atlantique",
+			"email": "salvador.martinez@imt-atlantique.fr"
+		}
+   ],
     "secondary": [
 		{
 		    "name": "Ali Koudri"
