@@ -4,41 +4,41 @@
             "name": "Antoine Beugnard",
             "role": "Researcher",
             "image": "/img/team/AntoineBeugnard.jpg",
-			"affiliation": "IMT Atlantique",
+			"affiliation": "IMT Atlantique, Lab-STICC",
 			"email": "antoine.beugnard@imt-atlantique.fr"       
 		 },
          {
             "name": "Fabien Dagnat",
             "role": "Researcher",
             "image": "/img/team/FabienDagnat.png",
-			"affiliation": "IMT Atlantique",
+			"affiliation": "IMT Atlantique, Lab-STICC",
 		    "email": "fabien.dagnat@imt-atlantique.fr"
         },
         {
             "name": "Sylvain Guerin",
             "role": "Researcher",
             "image": "/img/team/SylvainGuerin.png",
-			"affiliation": "IMT Atlantique",
+			"affiliation": "IMT Atlantique, Lab-STICC",
 			"email": "sylvain.guerin@imt-atlantique.fr"
         },
 		{
 		    "name": "Salvador Martinez",
 		    "role": "Researcher",
 		    "image": "/img/team/SalvadorMartinez.png",
-			"affiliation": "IMT Atlantique",
+			"affiliation": "IMT Atlantique, Lab-STICC",
 			"email": "salvador.martinez@imt-atlantique.fr"
 		},
 		{
-		    "name": "Chahrazed Boudjemila",
+		    "name": "Jean-Christophe Bach",
 		    "role": "Researcher",
-			"image": "/img/team/BoudjemilaChahrazed.jpg",
-			"link": "https://www.linkedin.com/in/chahrazed-boudjmila/"
+			"affiliation": "IMT Atlantique, Lab-STICC",
+			"email": "jc.bach@imt-atlantique.fr"
 		},
 		{
 		    "name": "Dominique Blouin",
 		    "role": "Researcher",
 			"image": "/img/team/DominiqueBlouin.png",
-			"affiliation": "Télécom Paris, Institut Polytechnique de Paris",
+			"affiliation": "Télécom Paris, IPP",
 			"link": "https://www.telecom-paris.fr/dominique-blouin",
 		    "email": "dominique.blouin@telecom-paris.fr"
 		},
@@ -52,27 +52,33 @@
 		    "name": "Ciprian Teodorov",
 		    "role": "Researcher",
 			"image": "https://teodorov.github.io/assets/img/prof_pic.png",
-			"affiliation": "ENSTA Bretagne, Lab-STICC",
+			"affiliation": "ENSTA, Lab-STICC",
 			"email": "ciprian.teodorov@ensta-bretagne.fr",
 			"link": "https://teodorov.github.io/"
 		},
 		{
 		    "name": "Eric Cariou",
 		    "role": "Researcher",
-			"image": "https://departement-informatique.www.univ-brest.fr/files/2023-05/cariou_eric_crop2.png",
-			"affiliation": "Université de Bretagne Occidentale, Lab-STICC",
+			"image": "/img/team/EricCariou.png",
+			"affiliation": "UBO, Lab-STICC",
 			"email": "eric.cariou@univ-brest.fr",
 			"link": "https://nouveau.univ-brest.fr/departement-informatique/fr/membre/cariou-eric"
 		},
 		{
+		    "name": "Chahrazed Boudjemila",
+		    "role": "Researcher",
+			"image": "/img/team/BoudjemilaChahrazed.jpg",
+			"link": "https://www.linkedin.com/in/chahrazed-boudjmila/"
+		},
+		{
 		    "name": "Mouad Hayaoui",
 		    "role": "Researcher",
-			"affiliation": "ENSTA"
+			"affiliation": "ENSTA, Lab-STICC"
 		},
 		{
 		    "name": "Yanis Allouch",
 		    "role": "Researcher",
-			"affiliation": "IMT Atlantique"
+			"affiliation": "IMT Atlantique, Lab-STICC"
 		},
 		{
 		    "name": "Ikram Yousfi",
