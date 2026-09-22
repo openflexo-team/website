@@ -1,6 +1,9 @@
 ---
 sidebar_position: 3
 ---
+
+import Publications from '@site/src/components/Publications';
+
 # Multi-Level Modelling Challenge
 
 This challenge is intended to allow the demonstration of multi-level modeling techniques and enable the comparison of submissions, and hence framework/language capabilities. The multi-level modeling community is invited to respond to this challenge with submissions describing solutions to the challenge expressed in a technology of their choosing. Authors should emphasize the merits and limitations of their solution according to the criteria defined in this challenge description. This challenge closely follows the MULTI 2019/2020 Process Challenge with minor changes to Sections 1 and 3, and adds more specific presentation requirements.
@@ -24,6 +27,8 @@ This challenge is intended to elicit submissions which demonstrate how MLM techn
 ### 2.1 Overview of our solution: submitted abstract
 
 Model federation is a multi-model management approach based on the use of virtual models and loosely coupled links. The models in a federation remain autonomous and represented in their original technological spaces whereas virtual models and links (which are not level bounded) serve as control components used to present different views to the users and maintain synchronization. In this paper we tackle the MULTI process modeling challenge, which consists in providing a solution to the problem of specifying and enacting processes. Solutions must fulfill a number of requirements for a process representation defined at an abstract process-definition level and at various more concrete domain-specific levels, resulting in a multi-level hierarchy of related models. We present a solution based on model federation and discuss the advantages and limitations of using this approach for multi-level modeling. Concretely, we use virtual models and more precisely the Flexo Modeling Language (FML) that serves to describe them as the main building block in order to solve the process modeling challenge whereas the federation aspect is used as a means to provide editing tooling for the resulting process language. Our solution is fully implemented with the Openflexo framework. It fulfills all the challenge requirements.
+
+<Publications ids={["hal-03692372"]} />
 
 ### 2.2 The ProcessType graphical editor
 

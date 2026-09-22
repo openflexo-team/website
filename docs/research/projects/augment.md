@@ -3,6 +3,8 @@ sidebar_position: 1
 title: AUGMENT
 ---
 
+import Publications from '@site/src/components/Publications';
+
 # AUGMENT
 
 ![AUGMENT logo](/images/site/augment/banner.png)
@@ -25,6 +27,10 @@ management of model and experimental-frame validity. The project builds on
 [OpenFlexo](https://openflexo.org)'s model federation and on the ACMoM hierarchical megamodel
 work to produce both a theoretical foundation and a unified software infrastructure prototype,
 targeting defense systems and, beyond, reliable digital twins.
+
+## Publications
+
+<Publications ids={["hal-04721128", "hal-05503862"]} />
 
 ## Partners
 

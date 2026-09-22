@@ -3,6 +3,8 @@ sidebar_position: 4
 title: MODES
 ---
 
+import Publications from '@site/src/components/Publications';
+
 # MODES
 
 ## Problem
@@ -31,6 +33,10 @@ MODES is carried by the P4S team of Lab-STICC at IMT Atlantique, Brest:
 - **Salvador Martínez** — project coordinator
 - Antoine Beugnard, Fabien Dagnat, Jean-Christophe Bach, Sylvain Guerin — team members
 - Yanis Allouch — PhD student
+
+## Publications
+
+<Publications ids={["hal-04254748", "hal-05715009"]} />
 
 ## Website
 

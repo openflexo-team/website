@@ -3,6 +3,8 @@ sidebar_position: 5
 title: Formose
 ---
 
+import Publications from '@site/src/components/Publications';
+
 # Formose
 
 ![Formose and its partners: ClearSy, LACL, Institut Mines-Télécom, OpenFlexo, THALES](/images/site/formose/partners.png)
@@ -34,6 +36,10 @@ Two academic partners and three companies, all with a strong background in forma
 - **Institut Mines-Télécom** (Télécom Bretagne, Télécom SudParis) — design processes, product models, verification of critical systems
 - **OpenFlexo** — the model federation platform used to build the project's supporting tool
 - **THALES** — mission-critical information systems for aerospace, defense and security
+
+## Publications
+
+<Publications ids={["hal-01487055", "hal-01853610"]} />
 
 ## Download
 
