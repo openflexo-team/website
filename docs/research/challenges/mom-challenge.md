@@ -1,6 +1,9 @@
 ---
 sidebar_position: 1
 ---
+
+import Publications from '@site/src/components/Publications';
+
 # MoM Challenge
 
 The Model Management (MoM) workshop, co-located with MODELS, includes a Model Management
@@ -26,13 +29,7 @@ the challenge's heterogeneous models — OWL ontologies, JSON architecture files
 requirements, and text reports — while keeping traceable and consistent links between them, and
 evaluated our contribution against the five key scenarios identified in the challenge.
 
-Hiba Hnaini, Chahrazed Boudjemila, Sylvain Guerin. *Openflexo as a Model Management Platform for
-the MoM 2025 Satellite Configuration Challenge*. In the Proceedings of the 2025 ACM/IEEE 28th
-International Conference on Model Driven Engineering Languages and Systems Companion
-(MODELS-C), pp. 732-741, IEEE, Grand Rapids, MI, United States, 2025.
-
-[Read the paper](https://ieeexplore.ieee.org/document/11273234) — see also the
-[publications](/docs/research/publications) page.
+<Publications ids={["2025-mom-challenge"]} />
 
 ## 3. This year's challenge
 

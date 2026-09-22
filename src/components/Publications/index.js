@@ -59,8 +59,12 @@ function Article({entryTags}){
     )
 }
 
-export default function Publications() {
+export default function Publications({ids}) {
     let articles = bibtexParse.toJSON(data_papers)
+
+    if (ids) {
+        articles = articles.filter(({entryTags}) => ids.includes(entryTags.HAL_ID || entryTags.LOCAL_ID))
+    }
 
     articles.sort((a, b) => a.entryTags.YEAR - b.entryTags.YEAR)
     articles.reverse()
