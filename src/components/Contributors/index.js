@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import styles from './index.module.css';
 import ContributorList from '../../data/contributors.json';
 
-function Contributor({name, role, image}){
+function Contributor({name, role, image, affiliation, email}){
     return (
         <div className='col col--4'>
             <div className='avatar avatar--vertical margin-bottom--lg card'>
@@ -13,6 +13,12 @@ function Contributor({name, role, image}){
                 <div className="text--center padding-horiz--md margin-bottom--lg">
                     <div className='avatar__name'>{name}</div>
                     <small className='avatar__subtitle'>{role}</small>
+                    {affiliation && <div className={styles.affiliation}>{affiliation}</div>}
+                    {email && (
+                        <div className={styles.email}>
+                            <a href={`mailto:${email}`}>{email}</a>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

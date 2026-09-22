@@ -8,3 +8,14 @@
     border-radius: 15px;
     /* padding: 15px 0; */
 }
+
+.affiliation {
+    font-size: 0.85rem;
+    color: var(--ifm-color-emphasis-700);
+    margin-top: 0.25rem;
+}
+
+.email {
+    font-size: 0.85rem;
+    margin-top: 0.1rem;
+}
