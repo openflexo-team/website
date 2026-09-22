@@ -27,6 +27,18 @@
       "name": "ANR",
       "image": "/img/partners/anr.png"
     },
+	{
+	   "name": "Lab-STICC",
+	   "image": "/img/partners/LabSTICC-P4S.png"
+	},
+	{
+	   "name": "Inria",
+	   "image": "/img/partners/RF-Inria_Logo_RVB.svg"
+	},
+	{
+	   "name": "Engineering Digital Twins (EDT)",
+	    "image": "/img/partners/Logo_EDT_CBLOT.BFMY5V0T_1P6dHW.webp"
+	},
     {
       "name": "BPI France",
       "image": "/img/partners/bpifrance.png"
@@ -46,17 +58,5 @@
     {
       "name": "urscop",
       "image": "/img/partners/urscop.png"
-    },
-    {
-      "name": "Lab-STICC",
-      "image": "/img/partners/LabSTICC-P4S.png"
-    },
-    {
-      "name": "Inria",
-      "image": "/img/partners/RF-Inria_Logo_RVB.svg"
-    },
-    {
-      "name": "Engineering Digital Twins (EDT)",
-      "image": "/img/partners/Logo_EDT_CBLOT.BFMY5V0T_1P6dHW.webp"
     }
 ]
