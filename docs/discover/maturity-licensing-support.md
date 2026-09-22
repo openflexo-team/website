@@ -18,7 +18,7 @@ Openflexo is an infrastructure made of components that do not all evolve at the 
 * **Technology adapters** each carry a status, decided by the architecture board: *stabilised*,
   *migration in progress*, *active development*, *limited support* or *retired*. The
   [repository map](/docs/develop/repository-map) gives the status of every adapter with its
-  definition, and the [components page](/docs/components) shows them by group.
+  definition, and the [components page](/docs/develop/components) shows them by group.
 * **Research origin.** Openflexo grew out of research work on model federation, and some
   components are research prototypes: the repository map marks them as such.
 

@@ -214,11 +214,11 @@ const config = {
             title: 'Community',
             items: [
               {
-                to: '/contributors', 
-                label: 'Contributors', 
+                to: '/docs/research/people',
+                label: 'Contributors',
               },
               {
-                to: '/partners',
+                to: '/docs/community/partners',
                 label: 'Partners',
               },
               {
@@ -262,6 +262,9 @@ const config = {
           redirects: [
             {from: '/ModelFederation', to: '/docs/discover/model-federation'},
             {from: '/papers', to: '/docs/research/publications'},
+            {from: '/docs/components', to: '/docs/develop/components'},
+            {from: '/partners', to: '/docs/community/partners'},
+            {from: '/contributors', to: '/docs/research/people'},
             {from: '/docs/documentation', to: '/docs/get-started'},
             {from: '/docs/F.A.Q/WhatIsModelFederation', to: '/docs/discover/model-federation'},
             {from: '/docs/F.A.Q/HowToTestOpenflexo', to: '/docs/discover/faq'},

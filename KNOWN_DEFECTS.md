@@ -70,4 +70,4 @@ and the HAL record.)
 
 **Status:** TODO
 
-`src/pages/partners.js` links the YourKit profiler pages, which answer HTTP 522.
+`docs/community/partners.md` links the YourKit profiler pages, which answer HTTP 522.
