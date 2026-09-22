@@ -10,45 +10,45 @@
          {
             "name": "Fabien Dagnat",
             "role": "Researcher",
-            "image": "/img/team/FabienDagnat.jpg",			,
+            "image": "/img/team/FabienDagnat.jpg",
 			"affiliation": "IMT Atlantique",
 		    "email": "fabien.dagnat@imt-atlantique.fr"
         },
         {
             "name": "Sylvain Guerin",
             "role": "Researcher",
-            "image": "/img/team/SylvainGuerin.jpg",			,			,
+            "image": "/img/team/SylvainGuerin.jpg",
 			"affiliation": "IMT Atlantique",
 			"email": "sylvain.guerin@imt-atlantique.fr"
         }
     ],
     "secondary": [
 		{
-		    "name": "Ali Koudri",
+		    "name": "Ali Koudri"
 		},
 		{
-		    "name": "Christophe Guychard",
+		    "name": "Christophe Guychard"
 		},
 		{
-		    "name": "Guillaume Polet",
+		    "name": "Guillaume Polet"
 		},
 		{
-		    "name": "Gilles Godet",
+		    "name": "Gilles Godet"
 		},
 		{
-		    "name": "Ihab Benamer",
+		    "name": "Ihab Benamer"
 		},
 		{
-		    "name": "Jean-Charles Roger",
+		    "name": "Jean-Charles Roger"
 		},
 		{
-		    "name": "Julien Carette",
+		    "name": "Julien Carette"
 		},
 		{
-		    "name": "Vincent Leilde",
+		    "name": "Vincent Leilde"
 		},
 		{
-		    "name": "Philippe Bonnet",
+		    "name": "Philippe Bonnet"
 		},
       	{
             "name": "Dominique Snyers"
