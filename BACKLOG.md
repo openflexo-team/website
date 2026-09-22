@@ -205,5 +205,9 @@ examples without a technology adapter, in the repository of the adapter for one 
 * Batch 5 (written, under review): "Expressions", and a correction of "Behaviours" on `new` inside a concept.
 * Batch 6 (written, under review): "Annotations".
 * Batch 7 (written, under review): "FML-script".
-* Next: migrating `.fml.xml` to textual FML 2.99, then the grammar reference, style guide and error catalogue.
-* Later: grammar reference generated from the grammar, error catalogue, style guide.
+* Batch 8 (written, under review): `docs/guide/index.md`, the section's overview page — replaces
+  "Virtual models and concepts" as the page the "User guide" navbar entry opens.
+* Migrating `.fml.xml` to textual FML 2.99 is dropped from this section's scope: deprecated
+  serialization, not documentation for someone writing FML today.
+* Later, no priority: a grammar reference generated from the grammar, an error catalogue, a style
+  guide.
