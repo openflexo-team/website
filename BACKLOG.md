@@ -203,5 +203,7 @@ examples without a technology adapter, in the repository of the adapter for one 
   limits; the page follows `CORE-D-1`, `CORE-D-2`, `CORE-D-12` and `CORE-F-2` of `openflexo-core`, and
   needs revising when they are fixed).
 * Batch 5 (written, under review): "Expressions", and a correction of "Behaviours" on `new` inside a concept.
-* Next, in this order: annotations, FML-script, migrating `.fml.xml`.
+* Batch 6 (written, under review): "Annotations".
+* Batch 7 (written, under review): "FML-script".
+* Next: migrating `.fml.xml` to textual FML 2.99, then the grammar reference, style guide and error catalogue.
 * Later: grammar reference generated from the grammar, error catalogue, style guide.
