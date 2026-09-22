@@ -13,12 +13,10 @@ describes it, and recipes for specific tasks.
   properties and behaviours, and the [technology adapters](/docs/guide/concepts/technology-adapters)
   that connect a model to a resource.
 - **[The FML language](/docs/guide/fml/)** — writing FML: from a first complete model to the
-  language's structures, properties, behaviours, queries, expressions and annotations, each page
-  proven by a runnable example.
+  language's structures, properties, behaviours, queries, expressions and annotations.
 - **[Cookbook](/docs/guide/cookbook/resource-centers)** — short recipes for one task: setting up a resource center,
   translating the interface, importing an EMF metamodel.
-- **[Tutorials](/docs/guide/tutorials/first-free-model)** — step-by-step walkthroughs in the Openflexo application;
-  two of them predate 2.99 and carry a caution banner.
+- **[Tutorials](/docs/guide/tutorials/first-free-model)** — step-by-step walkthroughs in the Openflexo application
 
 Coming from outside Openflexo, or not sure where to start? See
 [Get started](/docs/get-started/) first.

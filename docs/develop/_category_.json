@@ -1,8 +1,4 @@
 {
   "label": "Develop",
-  "position": 4,
-  "link": {
-    "type": "generated-index",
-    "description": "Architecture, workspace setup, build & test, and extension guides for contributors."
-  }
+  "position": 4
 }
