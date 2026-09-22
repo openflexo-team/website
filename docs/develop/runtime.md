@@ -41,17 +41,17 @@ validation errors. A clean validation report is not on its own proof that a `.fm
 ![FML execution engine](/img/architecture/09-fml-execution-engine.png)
 
 Calling a behaviour builds a `FlexoBehaviourAction`, which runs the behaviour's control graph and
-gives back the returned value. Firing an event goes through `FMLRunTimeEngine` to whatever listens
-for it. **The engine runs in the calling thread**, and it registers every `VirtualModelInstance` it
-creates along the way.
+gives back the returned value. Firing an event goes through `FMLRunTimeEngine`: it registers every
+`VirtualModelInstance` when its resource is created or loaded, and delivers the event to whatever
+listens for it on that instance. **The engine runs in the calling thread.**
 
 ## The action layer
 
 ![The action layer](/img/architecture/13-action-layer.png)
 
-Every change to a model made through the desktop application — as opposed to an FML behaviour
-running its own edition actions — is an **action**: a `FlexoActionFactory` builds a `FlexoAction`
-and says whether it is currently enabled, and a `FlexoEditor` performs it and records the undo. In
-the interactive editor, performing an action starts an undo transaction, asks for the action's
-parameters, executes it, then ends the transaction. **The headless editor only checks the factory,
-then executes**: it has no undo to record.
+Every change to a model is packaged as an **action**: a `FlexoActionFactory` builds a `FlexoAction`
+and says whether it is currently enabled, and a `FlexoEditor` performs it and records the undo. A
+`FlexoBehaviourAction` (above) is itself a `FlexoAction` — running a behaviour goes through this
+same layer. In the interactive editor, performing an action starts an undo transaction, asks for
+the action's parameters, executes it, then ends the transaction. **The headless editor only checks
+the factory, then executes**: it has no undo to record.

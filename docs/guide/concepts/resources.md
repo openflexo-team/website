@@ -23,9 +23,11 @@ data is not in memory. From there:
 - **save** writes it back and returns the resource to **loaded**;
 - **unload** frees the data in memory and returns the resource to **registered**, without saving.
 
-**Every step notifies the observers of the resource.** A resource center, an inspector, or a model
-that federates the resource is told when it is loaded, modified, saved or unloaded, and can react —
-this is what lets a virtual model stay in step with a resource edited outside Openflexo.
+**Every step notifies the observers of the resource** — `notifyResourceWillLoad`,
+`notifyResourceLoaded`, `notifyResourceModified`, `notifyResourceSaved`,
+`notifyResourceUnloaded`. A resource center, an inspector, or a model that federates the resource
+is told when it changes state, and can react — this is what lets a virtual model stay in step with
+a resource edited outside Openflexo.
 
 ## Where this matters when writing FML
 

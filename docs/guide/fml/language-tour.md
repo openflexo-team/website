@@ -150,8 +150,9 @@ previous one.
 ![FML typing](/img/architecture/12-fml-typing.png)
 
 A bare type name is resolved in this order, and the first match wins: a concept declared in the
-compilation unit, then the class brought by a model slot the unit uses, then a keyword or a
-`typedef`, then a plain Java type.
+compilation unit, then a class exposed by a model slot the unit uses (one of those declared with
+`use`), then a language keyword (`ConceptInstance`, `MatchingSet`), then a `typedef` alias declared
+in the unit, then a plain Java type.
 
 ## How a name is resolved
 
