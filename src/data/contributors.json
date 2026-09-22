@@ -5,22 +5,25 @@
             "role": "Researcher",
             "image": "/img/team/AntoineBeugnard.jpg",
 			"affiliation": "IMT Atlantique, Lab-STICC",
-			"email": "antoine.beugnard@imt-atlantique.fr"       
+			"email": "antoine.beugnard@imt-atlantique.fr",   
+			"link": "https://p4s.enstb.org/perso/antoine_beugnard"    
 		 },
          {
             "name": "Fabien Dagnat",
             "role": "Researcher",
             "image": "/img/team/FabienDagnat.png",
 			"affiliation": "IMT Atlantique, Lab-STICC",
-		    "email": "fabien.dagnat@imt-atlantique.fr"
+		    "email": "fabien.dagnat@imt-atlantique.fr",
+		    "link": "https://p4s.enstb.org/perso/fabien_dagnat"    
         },
         {
             "name": "Sylvain Guerin",
             "role": "Researcher",
             "image": "/img/team/SylvainGuerin.png",
 			"affiliation": "IMT Atlantique, Lab-STICC",
-			"email": "sylvain.guerin@imt-atlantique.fr"
-        },
+			"email": "sylvain.guerin@imt-atlantique.fr",
+			"link": "https://p4s.enstb.org/perso/sylvain_guerin"    
+       },
 		{
 		    "name": "Salvador Martinez",
 		    "role": "Researcher",
@@ -32,7 +35,7 @@
 		    "name": "Jean-Christophe Bach",
 		    "role": "Researcher",
 			"affiliation": "IMT Atlantique, Lab-STICC",
-			"email": "jc.bach@imt-atlantique.fr"
+			"link": "https://p4s.enstb.org/perso/jc_bach"
 		},
 		{
 		    "name": "Dominique Blouin",
@@ -72,19 +75,24 @@
 		},
 		{
 		    "name": "Mouad Hayaoui",
-		    "role": "Researcher",
+		    "role": "Research Engineer",
 			"affiliation": "ENSTA, Lab-STICC"
 		},
 		{
 		    "name": "Yanis Allouch",
-		    "role": "Researcher",
+		    "role": "PhD student",
 			"affiliation": "IMT Atlantique, Lab-STICC"
 		},
 		{
 		    "name": "Ikram Yousfi",
-		    "role": "Researcher",
-			"affiliation": "IMT Atlantique"
-		}
+		    "role": "PhD student",
+			"affiliation": "IMT Atlantique, Lab-STICC"
+		},
+	    {
+     	    "name": "Steve Lening",
+    	    "role": "PhD student",
+    		"affiliation": "ENSTA, Lab-STICC"
+    	}
    ],
     "secondary": [
 		{
