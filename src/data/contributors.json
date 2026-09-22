@@ -27,6 +27,57 @@
 		    "image": "/img/team/SalvadorMartinez.png",
 			"affiliation": "IMT Atlantique",
 			"email": "salvador.martinez@imt-atlantique.fr"
+		},
+		{
+		    "name": "Chahrazed Boudjemila",
+		    "role": "Researcher",
+			"image": "/img/team/BoudjemilaChahrazed.jpg",
+			"link": "https://www.linkedin.com/in/chahrazed-boudjmila/"
+		},
+		{
+		    "name": "Dominique Blouin",
+		    "role": "Researcher",
+			"image": "/img/team/DominiqueBlouin.png",
+			"affiliation": "Télécom Paris, Institut Polytechnique de Paris",
+			"link": "https://www.telecom-paris.fr/dominique-blouin",
+		    "email": "dominique.blouin@telecom-paris.fr"
+		},
+		{
+		    "name": "Moussa Amrani",
+		    "role": "Researcher",
+			"affiliation": "Télécom Paris",
+			"email": "Moussa.Amrani@telecom-paris.fr"		
+		},
+		{
+		    "name": "Ciprian Teodorov",
+		    "role": "Researcher",
+			"image": "https://teodorov.github.io/assets/img/prof_pic.png",
+			"affiliation": "ENSTA Bretagne, Lab-STICC",
+			"email": "ciprian.teodorov@ensta-bretagne.fr",
+			"link": "https://teodorov.github.io/"
+		},
+		{
+		    "name": "Eric Cariou",
+		    "role": "Researcher",
+			"image": "https://departement-informatique.www.univ-brest.fr/files/2023-05/cariou_eric_crop2.png",
+			"affiliation": "Université de Bretagne Occidentale, Lab-STICC",
+			"email": "eric.cariou@univ-brest.fr",
+			"link": "https://nouveau.univ-brest.fr/departement-informatique/fr/membre/cariou-eric"
+		},
+		{
+		    "name": "Mouad Hayaoui",
+		    "role": "Researcher",
+			"affiliation": "ENSTA"
+		},
+		{
+		    "name": "Yanis Allouch",
+		    "role": "Researcher",
+			"affiliation": "IMT Atlantique"
+		},
+		{
+		    "name": "Ikram Yousfi",
+		    "role": "Researcher",
+			"affiliation": "IMT Atlantique"
 		}
    ],
     "secondary": [
@@ -70,7 +121,7 @@
             "name": "Pierre Trémenbert"
         },
         {
-            "name": "Luka Leroux"
+            "name": "Luka Le Roux"
         },
         {
             "name": "Gilles Besançon"
@@ -104,6 +155,9 @@
         },
         {
             "name": "Kevin Vermeulen"
+        },
+        {
+            "name": "Hiba Hnaini"
         }
     ]
 }

@@ -19,3 +19,16 @@
     font-size: 0.85rem;
     margin-top: 0.1rem;
 }
+
+.placeholderAvatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--ifm-color-emphasis-300);
+    color: var(--ifm-color-emphasis-800);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
