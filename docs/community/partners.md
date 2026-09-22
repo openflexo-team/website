@@ -8,8 +8,7 @@ import Partners from '@site/src/components/Partners';
 
 # Partners
 
-Openflexo has been supported over the years by the institutions and companies below. The list
-dates from the early years of the project and is due for an update.
+Openflexo has been supported over the years by the institutions and companies below.
 
 <Partners />
 

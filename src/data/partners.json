@@ -1,38 +1,62 @@
 [
+	{
+	  "name": "IMT Atlantique",
+	  "image": "/img/partners/imtatlantique-rvb.png"
+	},
+	{
+	  "name": "ENSTA",
+	  "image": "/img/partners/Ensta-logotype-05-bleu-rvb.png"
+	},
+	{
+	  "name": "Télécom Paris",
+	  "image": "/img/partners/TelecomParis_endossem_IPP_RVB_200pix.png"
+	},
     {
-      "name": "telecom bretagne",
-      "image": "/img/partners/telecom-bretagne.png"
+      "name": "AID",
+      "image": "/img/partners/AID.png"
     },
+	{
+	  "name": "CIEDS",
+	  "image": "/img/partners/cieds_ip_paris_logo.jpg"
+	},
     {
-      "name": "brest metropole",
+      "name": "Brest Metropole",
       "image": "/img/partners/brest-metropole.png"
     },
     {
-      "name": "anr",
+      "name": "ANR",
       "image": "/img/partners/anr.png"
     },
     {
-      "name": "bpi france",
+      "name": "BPI France",
       "image": "/img/partners/bpifrance.png"
     },
     {
-      "name": "ensta",
-      "image": "/img/partners/ensta.png"
-    },
-    {
-      "name": "systemx",
+      "name": "SystemX",
       "image": "/img/partners/systemx.png"
     },
     {
-      "name": "tbi",
+      "name": "TBI",
       "image": "/img/partners/tbi.png"
     },
     {
-      "name": "thales",
+      "name": "Thales",
       "image": "/img/partners/thales.png"
     },
     {
       "name": "urscop",
       "image": "/img/partners/urscop.png"
+    },
+    {
+      "name": "Lab-STICC",
+      "image": "/img/partners/LabSTICC-P4S.png"
+    },
+    {
+      "name": "Inria",
+      "image": "/img/partners/RF-Inria_Logo_RVB.svg"
+    },
+    {
+      "name": "Engineering Digital Twins (EDT)",
+      "image": "/img/partners/Logo_EDT_CBLOT.BFMY5V0T_1P6dHW.webp"
     }
 ]
