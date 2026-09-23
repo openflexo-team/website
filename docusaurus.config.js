@@ -193,7 +193,7 @@ const config = {
                 to: '/docs/research/publications',
               },
               {
-                label: 'AUGMENT',
+                label: 'AUGMENT project',
                 to: '/docs/research/projects/augment',
               },
               {
@@ -201,11 +201,11 @@ const config = {
                 to: '/docs/research/projects/edt',
               },
               {
-                label: 'MODES',
+                label: 'MODES project',
                 to: '/docs/research/projects/modes',
               },
               {
-                label: 'Formose',
+                label: 'Formose project',
                 to: '/docs/research/projects/formose',
               },
             ],

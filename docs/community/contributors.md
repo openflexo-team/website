@@ -10,6 +10,8 @@ import Contributors from '@site/src/components/Contributors';
 
 ## Core team
 
+The list below reflects who is actively contributing to Openflexo right now.
+
 <Contributors />
 
 ## Also contributed to the project
