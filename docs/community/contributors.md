@@ -19,5 +19,5 @@ The list below reflects who is actively contributing to Openflexo right now.
 Christophe Guychard, Ali Koudri, Gilles Godet, Ihab Benamer, Jean-Charles Roger, Julien Carette, Vincent
 Leilde, Philippe Bonnet, Guillaume Polet, Dominique Snyers, Frederic Van Der Vaeren, Bernard Penhoet,
 Pierre Trémenbert, Luka Le Roux, Gilles Besançon, Laurent Wouters, Etienne Louboutin, Alexandre Manoury,
-Axel Baudot, Fahad Golra, Wei Jiang, Peiqi Shi, Shuting Wang, Benoit Mangez, Kevin Vermeulen, 
+Axel Baudot, Fahad Golra, Wei Jiang, Peiqi Shi, Shuting Wang, Benoit Mangez, Kevin Vermeulen, Hiba Hnaini
 and many other people.
