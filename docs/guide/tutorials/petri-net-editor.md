@@ -24,6 +24,16 @@ Nothing here needs code until the semantics step. The first fourteen steps are d
 * an execution engine: a transition fires when its input places hold enough tokens;
 * the finished project, `PetriNet.prj`, to compare with yours, in the [`tutorials-rc` module of openflexo-integration-tests](https://github.com/openflexo-team/openflexo-integration-tests/tree/2.99/tutorials-rc/src/main/resources/PetriNet.prj).
 
+### About Petri nets
+
+A Petri net, also known as a place/transition (PT) net, is one of several mathematical modeling languages for the description of distributed systems. It is a class of discrete event dynamic system. A Petri net is a directed bipartite graph, in which the nodes represent transitions (i.e. events that may occur, represented by bars) and places (i.e. conditions, represented by circles). The directed arcs describe which places are pre- and/or post-conditions for which transitions (signified by arrows). Some sources state that Petri nets were invented in August 1939 by Carl Adam Petri, at the age of 13, for the purpose of describing chemical processes. See [Petri net on Wikipedia](https://en.wikipedia.org/wiki/Petri_net) for more.
+
+![A Petri net with four places and two transitions](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/Detailed_petri_net.png)
+
+*A Petri net with four places (P1 to P4), two transitions (T1 and T2) and tokens, drawn as dots in the places.*
+
+The tokens in the places give the state of the net. A transition can fire when each of its input places holds enough tokens. Firing it removes tokens from its input places and adds tokens to its output places. This rule, and the graphical editor to draw such nets, are what you build in this tutorial.
+
 ### Before you start
 
 Install an Openflexo 2.99 distribution from the [download page](https://www.openflexo.org/download.html). Nothing else is required.
