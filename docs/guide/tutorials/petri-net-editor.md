@@ -42,7 +42,7 @@ Install an Openflexo 2.99 distribution from the [download page](https://www.open
 
 Launch **Openflexo Designer**. The welcome panel lists the available modules. Select **FreeModellingEditor**, then click **New project**.
 
-![Openflexo welcome panel with the Free Modelling Editor module selected](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/1-WelcomePanel.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/1-WelcomePanel.png" alt="Openflexo welcome panel with the Free Modelling Editor module selected" style={{width: "49%"}} />
 
 *The welcome panel, with the Free Modelling Editor module selected.*
 
@@ -51,7 +51,7 @@ Choose any directory and create a project named `PetriNet`. In the wizard, set:
 - **Project name**: `PetriNet`
 - **Project uri**: `http://www.openflexo.org/test/PetriNet.prj`
 
-![Create openflexo project wizard filled with PetriNet](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/2-CreateOpenflexoProject.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/2-CreateOpenflexoProject.png" alt="Create openflexo project wizard filled with PetriNet" style={{width: "58%"}} />
 
 *The Create openflexo project wizard.*
 
@@ -71,7 +71,7 @@ A two-step wizard opens.
 
 This is the model that will hold the Petri net concepts. Keep **CreateNewVirtualModel** and name it `PetriNet`. Click **Next**.
 
-![Wizard step 1: create a new virtual model named PetriNet](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/4-DefineConceptualModel.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/4-DefineConceptualModel.png" alt="Wizard step 1: create a new virtual model named PetriNet" style={{width: "61%"}} />
 
 *Step 1: the conceptual model to feed.*
 
@@ -79,7 +79,7 @@ This is the model that will hold the Petri net concepts. Keep **CreateNewVirtual
 
 The sample data are instances of the conceptual model. You will create them from a first example. Keep **CreateNewVirtualModelInstance** and name it `MyPetriNet`. Click **Finish**.
 
-![Wizard step 2: create a new virtual model instance named MyPetriNet](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/5-DefineSampleData.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/5-DefineSampleData.png" alt="Wizard step 2: create a new virtual model instance named MyPetriNet" style={{width: "61%"}} />
 
 *Step 2: the sample data.*
 
@@ -101,7 +101,7 @@ The project page now lists the conceptual model, the sample data and the free mo
 
 Name the free model `FreeModel` and click **Finish**.
 
-![Instantiate free model with a diagram wizard](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/7-InstantiateFreeModelWithADiagram.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/7-InstantiateFreeModelWithADiagram.png" alt="Instantiate free model with a diagram wizard" style={{width: "61%"}} />
 
 *The free model wizard.*
 
@@ -140,7 +140,7 @@ So far `P` is only a drawing. To give it a meaning, make a concept out of it: se
 
 Name the concept `Place` and give it a description, for example *Represent a place in a Petri Net*. Click **Finish**.
 
-![Create new concept wizard filled with Place](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/11-CreatePlace.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/11-CreatePlace.png" alt="Create new concept wizard filled with Place" style={{width: "53%"}} />
 
 *The Create new concept wizard.*
 
@@ -160,7 +160,7 @@ Now add a shape for the transition. Choose a rectangle with a label above it, fi
 
 Conceptualise this shape too: right-click it, choose **Create new concept** and create the concept `Transition`.
 
-![Create new concept wizard filled with Transition](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/14-CreateNewTransition.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/14-CreateNewTransition.png" alt="Create new concept wizard filled with Transition" style={{width: "53%"}} />
 
 *The wizard, filled in for `Transition`.*
 
@@ -190,7 +190,7 @@ A line is drawn. You can inspect it, for instance to change its shape: choose **
 
 Conceptualise it the same way: select the edge, right-click and choose **Create new concept**.
 
-![Create new relational concept wizard for Edge](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/18-CreateEdge.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/18-CreateEdge.png" alt="Create new relational concept wizard for Edge" style={{width: "57%"}} />
 
 *For a connector, the wizard offers a relational concept, with a source concept (`Place`) and a destination concept (`Transition`).*
 
@@ -204,7 +204,7 @@ A Petri net edge has a weight. Select the edge, right-click and choose **Create 
 
 Create the property `weight`, of type *Integer*: the number of tokens needed for the edge to be triggered. Its default value is 1.
 
-![Define new property wizard for weight](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/20-CreateWeightProperty.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/20-CreateWeightProperty.png" alt="Define new property wizard for weight" style={{width: "51%"}} />
 
 *The Define new property wizard.*
 
@@ -218,19 +218,19 @@ You now want an edge from the transition `t` to the place `P2`. But the concept 
 
 Select the concept `Edge`, right-click and choose **Refactor > Rename concept**.
 
-![Rename concept wizard showing InputEdge](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/22-RenameEdge.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/22-RenameEdge.png" alt="Rename concept wizard showing InputEdge" style={{width: "51%"}} />
 
 *The Rename concept wizard.*
 
 Then draw an edge from `t` to `P2`. First draw the shape, then promote it to a concept called `OutputEdge`.
 
-![Create new relational concept wizard for OutputEdge](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/23-CreateOutputEdge.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/23-CreateOutputEdge.png" alt="Create new relational concept wizard for OutputEdge" style={{width: "57%"}} />
 
 *Creating the concept `OutputEdge`, from a transition to a place.*
 
 Define the property `weight` on `OutputEdge` as well (right-click > **Create new property**). This time its meaning is the number of tokens created when the edge is activated.
 
-![Define new property wizard for weight on OutputEdge](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/24-CreateWeightProperty2.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/24-CreateWeightProperty2.png" alt="Define new property wizard for weight on OutputEdge" style={{width: "51%"}} />
 
 *The property `weight` on `OutputEdge`.*
 
@@ -244,7 +244,7 @@ You get this screen:
 
 A place holds tokens. Select a place, right-click and choose **Create new property**. Name it `tokens`, type *Integer*, with a default value of 0.
 
-![Define new property wizard for tokens](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/26-CreateTokensProperty.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/26-CreateTokensProperty.png" alt="Define new property wizard for tokens" style={{width: "51%"}} />
 
 *The property `tokens` on `Place`.*
 
@@ -254,13 +254,13 @@ A place holds tokens. Select a place, right-click and choose **Create new proper
 
 In the first page, name the common super concept `Edge` and keep it abstract. Click **Next**.
 
-![Generalize wizard, step 1: name the common super concept](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/27-Generalize1.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/27-Generalize1.png" alt="Generalize wizard, step 1: name the common super concept" style={{width: "46%"}} />
 
 *Step 1: the common super concept.*
 
 In the second page, choose the properties to move up to the super concept. Keep `weight` checked.
 
-![Generalize wizard, step 2: choose properties to move](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/28-Generalize2.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/28-Generalize2.png" alt="Generalize wizard, step 2: choose properties to move" style={{width: "46%"}} />
 
 *Step 2: the property `weight` is factored into `Edge`.*
 
@@ -274,7 +274,7 @@ This ends a first modelling phase. You now have a Petri net model, an example of
 
 You also have a graphical editor. Build a new Petri net to see it. Select `FreeModel` in the main browser, right-click and choose **Instantiate Diagram Free Model**. Name it `Example2`.
 
-![Instantiate free model with a diagram wizard for Example2](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/30-NewExample.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/30-NewExample.png" alt="Instantiate free model with a diagram wizard for Example2" style={{width: "61%"}} />
 
 *The wizard for the second example.*
 
@@ -449,7 +449,7 @@ Go back to the Free Modelling Editor and to the second diagram. You can now anim
 
 Right-click a transition and choose **FireTransition**. The entry is available only when the transition is fireable.
 
-![Context menu of a transition with the FireTransition entry](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/36-RightClickToExecuteTransition.png)
+<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/36-RightClickToExecuteTransition.png" alt="Context menu of a transition with the FireTransition entry" style={{width: "27%"}} />
 
 *The context menu of a transition, with `FireTransition`.*
 
