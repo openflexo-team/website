@@ -1,384 +1,447 @@
 ---
 sidebar_position: 3
+description: Build a domain-specific language for Petri nets end to end, from an informal sketch to a graphical editor that executes and animates its models.
 ---
 
-# Tutorial 4 : Create Petri Model editor using the FreeModellingEditor
+# Tutorial 4 : Build a Petri net language with the FreeModellingEditor
 
-In this article, you will learn how to get started in creating a basic Petri Model Editor while using the FreeModellingEditor
+Most modelling languages are built one layer at a time, with a different tool for each layer: a notation, a metamodel, an editor, then some code that gives the models a meaning. In this tutorial you build all of them, end to end, in Openflexo. You start from an informal drawing and finish with a domain-specific language (DSL) for Petri nets, with its graphical editor and its execution, animated in that same editor.
 
-### 1. Purpose of this tutorial
+1. **Sketch.** Draw a first Petri net with plain shapes ([steps 3 to 5](#step-3) and [7 to 9](#step-7)).
+2. **Metamodel.** Turn the shapes into concepts, properties and relations, then refactor them ([steps 6 to 13](#step-6)).
+3. **Graphical editor.** Each concept gets its own representation and its palette entry, built along the way.
+4. **Instantiation.** Drop concepts from the palette to edit new Petri nets ([step 14](#step-14)).
+5. **Semantics.** Write in FML what it means to fire a transition ([steps 15 and 16](#step-15)).
+6. **Execution.** Fire transitions from the diagram ([step 18](#step-18)).
+7. **Animation.** Show tokens and weights on the diagram while it runs ([steps 17 and 18](#step-17)).
 
-The purpose of this tutorial is:
+Nothing here needs code until the semantics step. The first fourteen steps are done with the mouse: you draw, and the editor writes the model for you. Then you open the model, read the FML it produced, and add the behaviour by hand.
 
-* to discover how to elicit concepts from example use cases with the Openflexo FreeModellingEditor tool
-* to build a basic graphical editor (diagram-based) of those concepts
-* to be able to use FML language to define specific business logic for those concepts
+### What you will have at the end
 
-### 2. About Petri Nets
+* a conceptual model of Petri nets: places, transitions, and input and output edges with a weight;
+* a graphical editor for it, with a palette, inspectors and example diagrams;
+* an execution engine: a transition fires when its input places hold enough tokens;
+* the finished project, `PetriNet.prj`, to compare with yours, in the [`tutorials-rc` module of openflexo-integration-tests](https://github.com/openflexo-team/openflexo-integration-tests/tree/2.99/tutorials-rc/src/main/resources/PetriNet.prj).
 
-https://en.wikipedia.org/wiki/Petri_net
+### Before you start
 
-A Petri net, also known as a place/transition (PT) net, is one of several mathematical modeling languages for the description of distributed systems. It is a class of discrete event dynamic system. A Petri net is a directed bipartite graph, in which the nodes represent transitions (i.e. events that may occur, represented by bars) and places (i.e. conditions, represented by circles). The directed arcs describe which places are pre- and/or post-conditions for which transitions (signified by arrows). Some sources[1] state that Petri nets were invented in August 1939 by Carl Adam Petri—at the age of 13—for the purpose of describing chemical processes. 
+Install an Openflexo 2.99 distribution from the [download page](https://www.openflexo.org/download.html). Nothing else is required.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/Detailed_petri_net.png" alt="Petri Nets" />
+## 1. Create the project {#step-1}
 
-### 3. Download Openflexo
+Launch **Openflexo Designer**. The welcome panel lists the available modules. Select **FreeModellingEditor**, then click **New project**.
 
-As a preliminary phase, you should get a recent Openflexo distribution
+![Openflexo welcome panel with the Free Modelling Editor module selected](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/1-WelcomePanel.png)
 
-Download it on:
+*The welcome panel, with the Free Modelling Editor module selected.*
 
-* https://www.openflexo.org/download.html
-* Alternatively take the current 2.0.x snapshot (https://downloads.openflexo.org/openflexo/2.0.0SNAPSHOT/)
+Choose any directory and create a project named `PetriNet`. In the wizard, set:
 
-### 4. Launch Openflexo FreeModellingEditor and create a project
+- **Project name**: `PetriNet`
+- **Project uri**: `http://www.openflexo.org/test/PetriNet.prj`
 
-Launch Openflexo, and choose the FreeModellingEditor.
+![Create openflexo project wizard filled with PetriNet](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/2-CreateOpenflexoProject.png)
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/1-WelcomePanel.png" alt="Welcome panel" />
+*The Create openflexo project wizard.*
 
-Select FreeModellingEditor icon.
+Click **Finish**. The project opens in the module.
 
-Click on "New project", enter name, here "PetriNet".
+## 2. Give the project the Free Modelling nature {#step-2}
 
-The FreeModellingEditor module will be launched.
+The project exists, but it is still a plain Openflexo project. Click **Gives your project the "Free Modelling" nature**.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/2-CreateProject.png" alt="Create project" />
+![Project page offering to give the project the Free Modelling nature](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/3-WelcomePanel2.png)
 
-A windows opens, allowing to choose a URI and a description of project. Click on "Finish"
+*The project page before it has the nature.*
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/3-GivesNature1.png" alt="Gives project FreeModelling nature" />
+A two-step wizard opens.
 
-We choose to create new VirtualModel. This indicates that we would like to create a new Conceptual Model encoding Petri Net Model.
+### Step 1 of 2: the conceptual model
 
-Click then on "Next"
+This is the model that will hold the Petri net concepts. Keep **CreateNewVirtualModel** and name it `PetriNet`. Click **Next**.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/4-GivesNature2.png" alt="Gives project FreeModelling nature" />
+![Wizard step 1: create a new virtual model named PetriNet](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/4-DefineConceptualModel.png)
 
-We choose to create new VirtualModelInstance: we would like to encode our own sample data.
+*Step 1: the conceptual model to feed.*
 
-Click then on "Finish"
+### Step 2 of 2: the sample data
 
-The FreeModellingEditor module finally opens.
+The sample data are instances of the conceptual model. You will create them from a first example. Keep **CreateNewVirtualModelInstance** and name it `MyPetriNet`. Click **Finish**.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/5-WelcomeInFME.png" alt="Welcome in FreeModelling editor" />
+![Wizard step 2: create a new virtual model instance named MyPetriNet](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/5-DefineSampleData.png)
 
-### 5. Create a FreeDiagram
+*Step 2: the sample data.*
 
-We would like to elicit our Petri Net concepts from an example diagram.
+You are now editing a new conceptual model, `PetriNet`, whose instances you will create from a first example, `MyPetriNet`. The project browser shows both resources:
 
-Then click on "New diagram" to create a new example diagram.
+```text
+PetriNet
+├─ PetriNet.fml  conceptual model
+└─ MyPetriNet.fml.rt  sample data
+```
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/6-InstanciateFreeDiagram1.png" alt="Instantiate free diagram" />
+## 3. Create a diagram {#step-3}
 
-Type name of free model (keep same) and choose "Next".
+The project page now lists the conceptual model, the sample data and the free models, with three ways to start: **New diagram**, **Import ppt slide** and **Import excel**. Select **New diagram**.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/7-InstanciateFreeDiagram2.png" alt="Instantiate free diagram" />
+![Project page with New diagram, Import ppt slide and Import excel buttons](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/6-WelcomePanel3.png)
 
-Type name of example (keep same) and choose "Finish".
+*The project page after the wizard.*
 
-You should see this FreeDiagram panel.
+Name the free model `FreeModel` and click **Finish**.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/8-WelcomeInFreeDiagramEditor.png" alt="Welcome in free diagram" />
+![Instantiate free model with a diagram wizard](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/7-InstantiateFreeModelWithADiagram.png)
 
-### 6. Create a place
+*The free model wizard.*
 
-Drag an oval shape from the right palette, and name it "place".
+## 4. Find your way around the editor {#step-4}
 
-Use graphical inspectors to set dimensions (40x40 pixels for example) foreground, background, text properties.
+The *Free Modelling Editor* opens on a blank diagram named `Example`. The window has six areas.
 
-You should obtain this.
+![The Free Modelling Editor on a blank diagram, with six areas outlined in red](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/8-BlankDiagram.png)
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/9-DrawPlaceShape.png" alt="Draw place shape" />
+*The editor on the blank `Example` diagram. The red frames match the list below.*
 
-The place is here a pure shape, and has no particular meaning. Lets decide that we will elicit a concept from that shape.
+1. **Diagram.** The central window, where you draw.
+2. **Main browser.** The project and its resources.
+3. **Represented concepts.** The concepts shown in this diagram, with their instances.
+4. **All concepts.** The model, or metamodel, you are building.
+5. **Palettes.** Represented concepts, available concepts and free shapes, used to edit the diagram.
+6. **Inspectors.** Conceptual and graphical properties of the selection.
 
-Right-click on the 'place' shape, and select "Create new concept"
+## 5. Draw the first place {#step-5}
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/10-CreateNewConcept.png" alt="Create new concept" />
+A Petri net has *places*, drawn as circles, and *transitions*, drawn as bars. Start with a place: drag a circle from the palette and drop it on the diagram.
 
-Concept 'Place' has been created in the conceptual model, with two default properties 'name' and 'description'.
-'place' instance, represented as a shape, is now an instance of 'Place' concept.
+![The diagram with a circle labelled P](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/9-FirstPlace.png)
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/11-InstanceOfPlaceConcept.png" alt="Instance of Place concept" />
+*A circle dropped on the diagram. Double-click its label to rename it.*
 
-We would like now to create a new property to 'Place' concept, as the number of tokens present in this place.
+Double-click the label `unnamed` and change it to `P`. Then change the background colour in the **Background** inspector.
 
-Right-click on 'place' instance and select 'Create new property'
+![The place P with a pink background and the Background inspector open](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/10-FirstPlaceChangeBackground.png)
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/12-DefineNewProperty.png" alt="Define new property" />
+*The place with its new background colour. In Represented concepts, `P` is still Unclassified.*
 
-Property has been added to concept 'Place'. 'place' instance has now this property, and we can assign a value to that property (here the default number of tokens is '0').
+## 6. Turn the shape into a concept {#step-6}
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/13-SetNumberOfTokensInPlace.png" alt="Instance of Place concept" />
+So far `P` is only a drawing. To give it a meaning, make a concept out of it: select the shape `P`, right-click and choose **Create new concept**.
 
-### 7. Create a transition
+Name the concept `Place` and give it a description, for example *Represent a place in a Petri Net*. Click **Finish**.
 
-Now create a transition using the same scheme. Drag a rectangular shape from the right palette.
+![Create new concept wizard filled with Place](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/11-CreatePlace.png)
 
-Use graphical inspectors to set dimensions (10x30 pixels for example) foreground (black color), background (black color), shadow (no shadow) and text properties.
+*The Create new concept wizard.*
 
-In 'Text' inspector panel, you should check 'Is floating label'. Then you can move the label.
+The shape is no longer *Unclassified*: it is now an instance of the new concept `Place`. The concept has a property `name`, whose value is `P` for this instance.
 
-You should obtain something like this:
+![P is now an instance of the Place concept](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/12-PlaceHasBeenCreated.png)
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/14-DrawTransitionShape.png" alt="Draw transition shape" />
+*`P` is an instance of `Place`, listed under the concept in Represented concepts. The concept appears in All concepts.*
 
-Then create a new concept Transition:
+## 7. Draw a transition {#step-7}
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/15-CreateTransitionConcept.png" alt="Create Transition concept" />
+Now add a shape for the transition. Choose a rectangle with a label above it, fill it in black, remove its shadow, and label it `t` (for transition).
 
-A new instance of Transition called 'transition' has been created:
+![A black rectangle labelled t next to the place P](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/13-DrawFirstTransition.png)
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/16-InstanceOfTransitionConcept.png" alt="Instance of Transition concept" />
+*The transition shape, still Unclassified.*
 
-### 8. Instantiate an other Place
+Conceptualise this shape too: right-click it, choose **Create new concept** and create the concept `Transition`.
 
-Select the 'Concept' palette on the right side, and drag a new Place on the diagram.
+![Create new concept wizard filled with Transition](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/14-CreateNewTransition.png)
 
-You should see an other instance of 'Place' concept appearing in the diagram.
+*The wizard, filled in for `Transition`.*
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/17-NewInstanceOfPlaceConcept.png" alt="New instance of Place concept" />
+![t is now an instance of the Transition concept](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/15-TransitionHasBeenCreated.png)
 
-### 9. Create edges
+*`t` is an instance of `Transition`, with a `name` property whose value is `t`.*
 
-It's time now to define some edges linking places to transitions, and transitions to places.
+The *Concepts* palette on the right now offers a `Place` and a `Transition`.
 
-To do so, CTRL-click on first place, and draw an edge to 'transition'.
+## 8. Add a second place {#step-8}
 
-Select newly drawn connector, open 'Connector' inspector, and set terminal of edge to be a 'arrow' connector
+Switch to the **Concepts** palette and drop a new place on the diagram. Name it `P2`. Rename the first place from `P` to `P1`, either in the inspector or directly on the diagram.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/18-DrawEdge.png" alt="Draw edge" />
+![The diagram with P1, the transition t and P2](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/16-NewPlaceP2.png)
 
-Then right-click on connector, and select 'Create new concept'
+*Two instances of `Place` and one `Transition`.*
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/19-CreatePlaceToTransitionEdgeConcept.png" alt="Create PlaceToTransitionEdge concept" />
+## 9. Draw an edge {#step-9}
 
-Leave default configuration.
+Create an edge from `P1` to `t`. Hold the **CTRL** key, press on `P1`, and with the button still down, release on `t`.
 
-This creates a new concept called PlaceToTransitionEdge, with a unique instance linking 'place' to 'transition'.
+A line is drawn. You can inspect it, for instance to change its shape: choose **curve** and put an arrow at its end.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/20-NewInstanceOfPlaceToTransitionEdge.png" alt="New instance of PlaceToTransition concept" />
+![A curved arrow from P1 to t and the Connector inspector](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/17-DrawNewEdge.png)
 
-Do the same for the TransitionToPlace concept: draw a connector, and create related concept.
+*The new connector and its inspector.*
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/21-NewInstanceOfTransitionToPlaceEdge.png" alt="New instance of TransitionToPlace concept" />
+Conceptualise it the same way: select the edge, right-click and choose **Create new concept**.
 
-### 10. Create a new example diagram
+![Create new relational concept wizard for Edge](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/18-CreateEdge.png)
 
-A first graphical editor is now ready to use.
+*For a connector, the wizard offers a relational concept, with a source concept (`Place`) and a destination concept (`Transition`).*
 
-To test it, right-click on 'FreeModel' above 'PetriNet' project on the top-left browser, and select 'Instantiate diagram free model' to instantiate a new example. Call it 'Example2' as suggested.
+![The edge is now an instance of the Edge concept](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/19-EdgeHasBeenCreated.png)
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/22-InstantiateNewExampleDiagram.png" alt="Instantiate new example diagram" />
+*The edge has been created as an instance of the concept `Edge`.*
 
-A new editor opens.
+## 10. Give the edge a weight {#step-10}
 
-Select the 'Concepts' palette, and drag 3 places 'place3', 'place4' and 'place5'. Also drag transitions 'transition2' and 'transition3'. Connect those places and transitions (let the cursor stay on a shape, and drag using floating palette).
+A Petri net edge has a weight. Select the edge, right-click and choose **Create new property**.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/23-EditANewPetriNet.png" alt="Edit a new Petri Net" />
- 
-### 11. Start to edit conceptual model
+Create the property `weight`, of type *Integer*: the number of tokens needed for the edge to be triggered. Its default value is 1.
 
-The FreeModelling Editor is a good starting point to elicit concepts and build a new graphical editor.
+![Define new property wizard for weight](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/20-CreateWeightProperty.png)
 
-We may now use the Openflexo Modeller to refine our models and graphical representations.
+*The Define new property wizard.*
 
-Right on the 'Openflexo Modeller' module icon on the top-left panel, to open Openflexo Modeller.
+![The edge now has a weight property](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/21-EdgeHasAWeight.png)
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/24-WelcomeInOpenflexoModeller.png" alt="Welcome in Openflexo Modeller" />
+*The edge instance now has a `weight` property.*
 
-The left browser shows all resources that have been created/edited through the FreeModelling design process:
+## 11. Split edges into input and output edges {#step-11}
 
-* **ConceptualModel.fml**: the conceptual model of Petri Net, with 'Place' and 'Transition' concepts
-* **SampleData.fml.rt**: an instance of that conceptual model: our sample data
-* **FreeModel.fml**: the meta-model of graphical editor encoding a Petri Net as a diagram
-* **Example.fml.rt** and **Example2.fml.rt**: instances of that graphical editor (Petri Nets diagrams)
-* **FreeModel.diagramspecification**: specification of a Petri Net diagram
-* **Example.diagram** and **Example2.diagram**: pure diagrams encoding graphical representations
+You now want an edge from the transition `t` to the place `P2`. But the concept `Edge` links a place to a transition, and this one goes the other way. Two kinds of edges are needed: rename `Edge` into `InputEdge` and create a new concept `OutputEdge`.
 
-Lets double-click on ConceptualModel.fml to discover Petri Net meta-model just being created.
+Select the concept `Edge`, right-click and choose **Refactor > Rename concept**.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/25-ConceptualModel.fml.png" alt="PetriNet conceptual model" />
+![Rename concept wizard showing InputEdge](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/22-RenameEdge.png)
 
-We see the 4 concepts that have been created. Double-clinking on concepts allows to edit them.
+*The Rename concept wizard.*
 
-Lets double click on SampleData.fml.rt to discover our sample data.
+Then draw an edge from `t` to `P2`. First draw the shape, then promote it to a concept called `OutputEdge`.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/26-SampleData.fml.rt.png" alt="PetriNet sample data" />
+![Create new relational concept wizard for OutputEdge](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/23-CreateOutputEdge.png)
 
-Lets double click on FreeModel.fml to discover diagram FreeModel.
+*Creating the concept `OutputEdge`, from a transition to a place.*
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/27-FreeModel.fml.png" alt="FreeModel.fml" />
+Define the property `weight` on `OutputEdge` as well (right-click > **Create new property**). This time its meaning is the number of tokens created when the edge is activated.
 
-Concepts in that free model are federated concepts linking a concept to a graphical representation.
+![Define new property wizard for weight on OutputEdge](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/24-CreateWeightProperty2.png)
 
-Double-click on PlaceGR for example. Then click on 'Diagram perspective' on the top-right panel.
+*The property `weight` on `OutputEdge`.*
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/28-PlaceGR.png" alt="PlaceGR concept" />
+You get this screen:
 
-This concept has mainly two properties (roles):
-* **fmeConcept** which is an instance of 'Place' concept (in the conceptual model)
-* **shape** which is the graphical representation of a 'Place' in the diagram
+![Diagram with P1, t and P2 linked by an InputEdge and an OutputEdge](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/25-BothEdgesCreated.png)
 
-Select 'shape', edit a new example value (eg 'place').
+*Both kinds of edges exist now, with their own concepts in All concepts.*
 
-Open 'Text' inspector. Check 'Is floating label'. The label may be moved in the preview panel.
+## 12. Add the tokens {#step-12}
 
-Edit bound label property of that shape.
+A place holds tokens. Select a place, right-click and choose **Create new property**. Name it `tokens`, type *Integer*, with a default value of 0.
 
-First check read-only to declare it as a read-only label. Then instead of
+![Define new property wizard for tokens](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/26-CreateTokensProperty.png)
 
-> fmeConcept.name
+*The property `tokens` on `Place`.*
 
-also display number of tokens inside the place. Label should be for example:
+## 13. Generalise the edges {#step-13}
 
-> fmeConcept.name + "/" + fmeConcept.tokenNb
+`InputEdge` and `OutputEdge` have a lot in common. Select both (hold the **command** key for a multiple selection), right-click and choose **Refactor > Generalize…**.
 
-When reopening **Example2** you see that labels of places are now something than: place3/null
+In the first page, name the common super concept `Edge` and keep it abstract. Click **Next**.
 
-It means that the tokenNb was never initialized.
+![Generalize wizard, step 1: name the common super concept](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/27-Generalize1.png)
 
-To do so, open the conceptual model, double-click on Place concept. Expand create(conceptName) behavior. Select unique statement:
+*Step 1: the common super concept.*
 
-> name = parameters.conceptName
+In the second page, choose the properties to move up to the super concept. Keep `weight` checked.
 
-Then click on the '+' button in the bottom left of the browser to add a new statement.
+![Generalize wizard, step 2: choose properties to move](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/28-Generalize2.png)
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/29-CreateAssignment.png" alt="Create new assignment" />
+*Step 2: the property `weight` is factored into `Edge`.*
 
-Select 'ExpressionAction', check 'Assign to' and fill in with 'tokenNb', then set expression to 0 and click 'Finish' to add that assignment expression:
+![Diagram after generalisation, with Edge as parent of InputEdge and OutputEdge](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/29-AfterGeneralization.png)
 
-> tokenNb = 0
+*After the generalisation, `InputEdge` and `OutputEdge` inherit from `Edge`.*
 
-Then test this while going back to the FreeModellingEditor.
+This ends a first modelling phase. You now have a Petri net model, an example of a Petri net, and a graphical representation of it.
 
-Create a new ExampleDiagram, called 'Example3', and drag a new Place. The place is well instantiated with the right number of tokens, and with a floating label displaying 'place6/0'
+## 14. Edit a new Petri net with the editor {#step-14}
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/30-Example3FreeModel.png" alt="Example3 free model" />
+You also have a graphical editor. Build a new Petri net to see it. Select `FreeModel` in the main browser, right-click and choose **Instantiate Diagram Free Model**. Name it `Example2`.
 
-Using the same scheme, you can change the label rendering of edges to have a lighter display.
+![Instantiate free model with a diagram wizard for Example2](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/30-NewExample.png)
 
-### 12. Abstract edges in conceptual model
+*The wizard for the second example.*
 
-We want now to define a 'weight' property on edges (PlaceToTransitionEdge and TransitionToPlaceEdge).
+An empty diagram opens.
 
-Instead of doing it twice, we would like to define a inheriting scheme.
+![An empty diagram Example2 with the Concepts palette](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/31-StartEditNewPetriNet.png)
 
-To do so, switch back to Openflexo Modeller, and open ConceptualModel.fml
+*The empty diagram `Example2`.*
 
-Right-click on ConceptualModel.fml, and select New > FlexoConcept
+Drag and drop elements from the **Concepts** palette. To draw links, hover a place: a small palette appears, from which you can pull a new shape and/or a link.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/31-CreateEdgeConcept.png" alt="Create abstract Edge concept" />
+You get a new Petri net:
 
-Abstract Edge concept has been created.
+![Example2 with three places, three transitions and several edges](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/32-NewPetriNetHasBeenEdited.png)
 
-We should now declare Edge as parent concept for PlaceToTransitionEdge and TransitionToPlaceEdge
+*A Petri net edited in `Example2`. The labels still show the default text of each concept.*
 
-Double-click on PlaceToTransitionEdge. Click on '+' icon beside parent concepts and declare Edge as parent concept. 
+## 15. Open the Openflexo Modeller {#step-15}
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/32-DeclareParentConcept.png" alt="Declare parent concept" />
+You would now like to program the execution semantics of this model. Switch to the **Openflexo Modeller** module, with the third icon at the top left of the window.
 
-Do the same for TransitionToPlaceEdge.
+![Openflexo Modeller welcome page, with the module icon outlined in red](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/33-OpenOpenflexoModeller.png)
 
-Then double-click again on Edge concept, select 'Structural' facet, and select New Property > Create primitive role
+*The red frame shows where to click to open the Modeller.*
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/33-DeclareWeightProperty.png" alt="Declare weight property" />
+Open the model `PetriNet.fml`.
 
-Select default constructor and add assignment to default value:
+![PetriNet.fml opened in the Modeller](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/34-EditPetriNet.fml.png)
 
-> weight = 1
+*`PetriNet.fml` as generated by the Free Modelling Editor. The outline on the right lists the five concepts.*
 
-You should finally obtain this:
+The editor has written the concepts for you in FML, the Flexo Modeling Language. You are going to add behaviours to it. The full file is part of the project `PetriNet.prj`.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/34-EdgeConcept.png" alt="Edge concept" />
+## 16. Describe the behaviour of each concept {#step-16}
 
-### 13. Declare references for edges in Transition
+The semantics fits in a few methods. We go through the concepts in this order: `Edge`, `InputEdge`, `OutputEdge` and `Transition`.
 
-Edit Transition concept.
+### Edge
 
-We must now declare references to incoming and outgoing Edges
+An edge can be *triggered*. The super concept declares it as an abstract method, and each kind of edge gives it a meaning.
 
-Right-click on Transition structural facet, and select New Property > Select FlexoConceptInstance role
+```text
+@Description("Common super concept for edges")
+public abstract concept Edge {
+    @Description("This is the weight of the edge which corresponds to the number of tokens beeing created when the edge is triggered")
+    int weight = 1;
 
-Create 'incomings' property with multiple cardinality storing references to all incoming edges
+    // Abstract method used to trigger an edge
+    abstract trigger();
+}
+```
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/35-CreateIncomingEdgeReferences.png" alt="Create incoming edges references" />
+### InputEdge
 
-Do the same for outgoings property.
+An input edge is triggerable if its source place holds at least as many tokens as its weight. Triggering it removes that many tokens from the place.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/36-CreateIncomingAndOutgoingReferences.png" alt="Transition concept" />
+```text
+@Inspector("Edge.inspector")
+public concept InputEdge extends Edge {
 
-Now, go to PlaceToTransitionEdge constructor, and add to statements:
+    Place place with ConceptInstance(virtualModelInstance=container);
+    Transition transition with ConceptInstance(virtualModelInstance=container);
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/37-SetIncomingsReference.png" alt="Sets incoming edges references" />
+    // This edge is triggerable if the number of tokens in source place exceed required weight
+    boolean isTriggerable() {
+        return place.tokens >= this.weight;
+    }
 
-Do the same in TransitionToPlaceEdge:
+    // Trigger that edge : remove required tokens from source place
+    trigger() {
+        place.tokens = place.tokens - this.weight;
+    }
+}
+```
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/38-SetOutgoingsReference.png" alt="Sets outgoing edges references" />
+### OutputEdge
 
-All the transitions now "know" about their incoming and outgoing edges
+An output edge adds tokens to its destination place.
 
-### 14. Define PlaceToTransitionEdge activation
+```text
+@Inspector("OutputEdge.inspector")
+public concept OutputEdge extends Edge {
 
-This edge can be activated if the number of tokens in source concept is greater or equal to the weight of the edge.
+    Transition transition with ConceptInstance(virtualModelInstance=container);
+    Place place with ConceptInstance(virtualModelInstance=container);
 
-To implement this, declare those two behaviors in PlaceToTransitionEdge (as ActionScheme):
+    // Trigger that edge : add tokens to destination place
+    trigger() {
+        place.tokens = place.tokens + this.weight;
+    }
+}
+```
 
-> isActivable() \{
->   return (sourceConcept.tokensNb >= weight);
-> }
+### Transition
 
-and:
+A transition needs to know its incoming and outgoing edges. These two lists are computed on demand: they select the edges of the model that point to this transition.
 
-> activate() \{
->   sourceConcept.tokensNb = (sourceConcept.tokensNb-weight);
-> }
+A transition is *fireable* if all its input edges are triggerable. Firing it triggers every input edge, then every output edge.
 
-You should obtain this:
+```text
+@Description("Represent a transition in a Petri Net")
+public concept Transition {
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/39-DefinePlaceToTransitionEdgeActivation.png" alt="Define PlaceToTransitionEdge activation" />
+    String name;
+    String description;
 
+    List<InputEdge> inputEdges {
+        List<InputEdge> get() {
+            return select InputEdge from container where (selected.transition == this);
+        }
+    };
+    List<OutputEdge> outputEdges {
+        List<OutputEdge> get() {
+            return select OutputEdge from container where (selected.transition == this);
+        }
+    };
 
-### 15. Implement activation for TransitionToPlaceEdge
+    boolean isFireable() {
+        for (InputEdge e : inputEdges) {
+            if (!e.isTriggerable()) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-Define an activate() behavior for PlaceToTransitionEdge
+    @Enable(this.isFireable())
+    public fireTransition() {
+        if (this.isFireable()) {
+            for (InputEdge e : inputEdges) {
+                e.trigger();
+            }
+            for (OutputEdge e : outputEdges) {
+                e.trigger();
+            }
+        }
+        else {
+            log "This transition is not fireable";
+        }
+    }
+}
+```
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/40-DefineTransitionToPlaceEdgeActivation.png" alt="Define TransitionToPlaceEdge activation" />
+The annotation `@Enable(this.isFireable())` on `fireTransition()` enables the action only when the transition is fireable.
 
-### 16. Finalize Transition behavior
+Make sure the places start empty by giving `tokens` its default value: `int tokens = 0;`.
 
-Define now Transition behavior:
+## 17. Show the tokens and weights on the diagram {#step-17}
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/41-DefineTransitionBehaviour.png" alt="Define Transition behaviour" />
+To make the net more visual, change the `@Renderer` of the concepts. The renderer is the text displayed for an instance in the diagram.
 
-Finally expose behavior in an ActionScheme in TransitionGR.
+```text
+@Renderer(instance.tokens.toString)
+public concept Place { ... }
 
-It is really important to set visibility to public to have action available in graphical editor.
+@Renderer((this.weight != 1 ? this.weight.toString : ""))
+public concept InputEdge extends Edge { ... }
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/42-ExposeBehaviour.png" alt="Expose Transition behaviour" />
+@Renderer((this.weight != 1 ? this.weight.toString : ""))
+public concept OutputEdge extends Edge { ... }
+```
 
-### 17. Test final editor
+A place now shows its number of tokens, and an edge shows its weight only when it differs from 1.
 
-Switch back to FreeModelling editor to instantiate a new example.
+## 18. Run the Petri net {#step-18}
 
-Draw this Petri Net:
+Go back to the Free Modelling Editor and to the second diagram. You can now animate and execute the Petri net.
 
-<img src="/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/43-FinalEditorTest.png" alt="Final test" />
+![Example2 showing tokens in the places and weights on the edges](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/35-RunAndExecutePetriNet.png)
 
-Transitions may be executed using right-click on transitions.
+*`Example2` with token counts in the places and weights on the edges.*
 
+Right-click a transition and choose **FireTransition**. The entry is available only when the transition is fireable.
 
+![Context menu of a transition with the FireTransition entry](/images/tutorials/Tutorial4-CreatePetriModelEditorUsingFreeModellingEditor/36-RightClickToExecuteTransition.png)
 
+*The context menu of a transition, with `FireTransition`.*
 
-
-
-
-
-
-
-
-
-
-
+The finished project, `PetriNet.prj`, is available in the [`tutorials-rc` module of openflexo-integration-tests](https://github.com/openflexo-team/openflexo-integration-tests/tree/2.99/tutorials-rc/src/main/resources/PetriNet.prj).
 

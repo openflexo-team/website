@@ -11,7 +11,7 @@ Once Openflexo runs, pick the path that matches what you want to do.
 ## I want to model and federate, without becoming a developer
 
 Work through the [tutorials](/docs/guide/tutorials/first-free-model): from a first free model to a
-diagram editor and a Petri net editor built without code. The
+diagram editor and a complete Petri net language, with its graphical editor and its execution. The
 [cookbook](/docs/guide/cookbook/resource-centers) covers recurring tasks such as setting up a
 resource center, and the [vocabulary](/docs/discover/vocabulary) explains the terms.
 
