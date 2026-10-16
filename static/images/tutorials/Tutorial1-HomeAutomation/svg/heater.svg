@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="256" height="256">
+  <title>Heater</title>
+  <rect x="14" y="30" width="100" height="68" rx="10" fill="#FDE3DC" stroke="#B5432A" stroke-width="6"/>
+  <g stroke="#B5432A" stroke-width="7" stroke-linecap="round"><path d="M38 44 V84"/><path d="M58 44 V84"/><path d="M78 44 V84"/><path d="M98 44 V84"/></g>
+  <rect x="26" y="98" width="10" height="14" rx="3" fill="#B5432A"/>
+  <rect x="92" y="98" width="10" height="14" rx="3" fill="#B5432A"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="256" height="256">
+  <title>Lamp</title>
+  <path d="M64 12 C40 12 28 30 28 48 C28 62 38 70 44 80 H84 C90 70 100 62 100 48 C100 30 88 12 64 12 Z" fill="#FFE08A" stroke="#C97A0A" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="44" y="86" width="40" height="10" rx="4" fill="#C97A0A"/>
+  <rect x="50" y="102" width="28" height="10" rx="4" fill="#C97A0A"/>
+  <path d="M52 52 L60 64 L68 52 L76 64" fill="none" stroke="#C97A0A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
