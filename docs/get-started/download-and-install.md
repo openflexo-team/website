@@ -30,7 +30,7 @@ application freezes at startup. No package bundles a Java runtime, so install on
 ## 3. Run it
 
 * **Windows**: install a Java 8 runtime *with an installer* (a Java that was only unzipped is not
-  found), download the `.zip`, extract it and run `Openflexo <Package> 2.99SNAPSHOT.exe`. The
+  found), download the `.zip`, extract it and run `Openflexo <Package> 2.99.exe`. The
   variant ending with `- Console.exe` also opens a console showing the logs, useful when reporting
   a problem.
 * **macOS**: either use the `.dmg`, which needs Oracle's Java 8 and asks you to *control-click ▸

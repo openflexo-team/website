@@ -227,7 +227,7 @@ function Version(props) {
 
 const TEMURIN8_JRE_WINDOWS = 'https://adoptium.net/temurin/releases/?version=8&os=windows&arch=x64&package=jre'
 const TEMURIN8 = 'https://adoptium.net/temurin/releases/?version=8'
-const SNAPSHOTS = 'https://downloads.openflexo.org/openflexo/2.99SNAPSHOT/'
+const RELEASES = 'https://downloads.openflexo.org/openflexo/2.99/'
 
 function serverDownloadUrl() {
     for (const version of downloads_list.versions) {
@@ -236,7 +236,7 @@ function serverDownloadUrl() {
             return server.downloadUrl.linux
         }
     }
-    return SNAPSHOTS
+    return RELEASES
 }
 
 function InstallGuide() {
@@ -259,8 +259,8 @@ function InstallGuide() {
                 <li><b>Openflexo Server</b>: an HTTP server exposing the infrastructure, delivered as a Linux archive only (see below).</li>
             </ul>
             <p>
-                The download links above point to the snapshot packaged on the date shown. Every snapshot is
-                kept in <a href={SNAPSHOTS}>the snapshot directory</a>.
+                The download links above point to the installers of the 2.99 release, packaged on October 16, 2026.
+                They are all in <a href={RELEASES}>the release directory</a>.
             </p>
 
             <Tabs groupId="operating-system">
@@ -273,7 +273,7 @@ function InstallGuide() {
                         </li>
                         <li>Download the <code>.zip</code> package and extract it (right-click, <i>Extract All...</i>).</li>
                         <li>
-                            Run <code>Openflexo &lt;Package&gt; 2.99SNAPSHOT.exe</code>. The variant ending with
+                            Run <code>Openflexo &lt;Package&gt; 2.99.exe</code>. The variant ending with
                             {' '}<code>- Console.exe</code> also opens a console window showing the logs, useful when
                             reporting a problem.
                         </li>
@@ -299,7 +299,7 @@ function InstallGuide() {
                         </li>
                         <li>
                             Double-click the <code>.dmg</code>. The disk image mounts <b>silently</b>: no window
-                            opens. The volume, named <code>&lt;Package&gt;-2.99SNAPSHOT</code>, appears in the
+                            opens. The volume, named <code>&lt;Package&gt;-2.99</code>, appears in the
                             Finder sidebar.
                         </li>
                         <li>Drag the application from that volume to your <i>Applications</i> folder.</li>
@@ -314,7 +314,7 @@ function InstallGuide() {
                         </li>
                     </ol>
                     <p>Instead of control-clicking, the quarantine can also be removed from a terminal:</p>
-                    <CodeBlock language="bash">{`xattr -dr com.apple.quarantine "/Applications/Openflexo Designer 2.99SNAPSHOT.app"`}</CodeBlock>
+                    <CodeBlock language="bash">{`xattr -dr com.apple.quarantine "/Applications/Openflexo Designer 2.99.app"`}</CodeBlock>
 
                     <h3>Using the Linux archive in a terminal</h3>
                     <p>
@@ -323,7 +323,7 @@ function InstallGuide() {
                         silicon). Download the <b>Linux</b> package, then:
                     </p>
                     <CodeBlock language="bash">{`mkdir -p ~/Openflexo && cd ~/Openflexo
-tar -xzf ~/Downloads/"Openflexo Designer 2.99SNAPSHOT.tar.gz"
+tar -xzf ~/Downloads/"Openflexo Designer 2.99.tar.gz"
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export PATH="$JAVA_HOME/bin:$PATH"
 ./start.sh`}</CodeBlock>
@@ -348,7 +348,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
                     </ol>
                     <CodeBlock language="bash">{`java -version        # must print 1.8
 mkdir -p ~/Openflexo && cd ~/Openflexo
-tar -xzf ~/Downloads/"Openflexo Designer 2.99SNAPSHOT.tar.gz"
+tar -xzf ~/Downloads/"Openflexo Designer 2.99.tar.gz"
 ./start.sh`}</CodeBlock>
                 </TabItem>
             </Tabs>
@@ -393,8 +393,8 @@ export default function downloads() {
                     </li>
                     <li>
                         <b>The model federation core</b> (FML-Core), which runs FML. Its version is the version of
-                        the whole infrastructure: 2.0.1 is the last stable release, and 2.99 is the one under
-                        development.
+                        the whole infrastructure: 2.99 is the latest stable release, published in October 2026, and
+                        2.0.1 is the previous one.
                     </li>
                     <li>
                         <b>Technology adapters</b> (also called connectors). Each one handles a single technology:
