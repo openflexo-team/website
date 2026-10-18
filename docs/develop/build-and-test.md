@@ -24,7 +24,6 @@ repositories you have included.
 | `./gradlew clean` | cleans every module |
 | `./gradlew dep` | reports the dependencies across modules |
 | `./gradlew tasksAll` | lists the tasks of every module |
-| `./gradlew sableccParser` | generates the parsers from the SableCC grammars |
 
 To run a single test, name its module and filter by class:
 
@@ -56,11 +55,15 @@ in `test`.
 ## Generated parsers
 
 Several projects generate a parser from a SableCC grammar in `src/main/sablecc/*.sablecc`:
-`connie`, `openflexo-core` (`fml-parser` and `fml-cli`) and a few technology adapters. The generated
-sources land in `build/generated-sources/` and are neither committed nor edited: change the grammar,
-then regenerate. Run `./gradlew sableccParser` before the first build of such a project, or before
-importing it in an IDE, and again after changing a grammar: it is the reliable way to have the
-parsers in place, and without them the classes the rest of the code needs are missing.
+`connie`, `openflexo-core` (`fml-parser`, whose grammar also covers the `fml-cli` commands and
+scripts) and a few technology adapters. The generated sources land in `build/generated-sources/` and
+are neither committed nor edited: change the grammar, then regenerate.
+
+Generation is the `generateGrammarSource` task of each parser module, and Gradle runs it before
+compiling that module: `./gradlew compile` regenerates the parsers after a grammar change. An IDE
+import does not run it, so run it once before importing such a project, for instance
+`./gradlew :fml-parser:generateGrammarSource` from `openflexo-core`; without it the classes the rest
+of the code needs are missing.
 
 Not everything under a `parser/` directory is generated: the factories and analyzers committed
 there are hand-written code over the generated syntax tree, and they are yours to edit.

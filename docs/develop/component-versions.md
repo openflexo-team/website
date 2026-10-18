@@ -5,7 +5,7 @@ title: Component versions
 
 # Component versions
 
-<!-- Generated 2026-09-22 by scripts/generate_version_table.py from
+<!-- Generated 2026-10-18 by scripts/generate_version_table.py from
      openflexo-buildplugin's buildconfig (refs: origin/2.0.0, origin/2.0.1, origin/2.0.2, 2.99, 3.0, origin/1.8.1, origin/1.9.0, origin/1.9.1).
      Do not hand-edit -- re-run the script instead. -->
 
@@ -26,9 +26,9 @@ modelers all carry the version of the Openflexo platform itself; the generic fra
 | Component | 2.0.0 | 2.0.1 | 2.0.2 | 2.99 | 3.0 |
 |---|---|---|---|---|---|
 | Java version | Java 8 | Java 8 | Java 8 | Java 8 | Java 17+ |
-| Openflexo platform (core, technology adapters, modules, packaging, modelers, build plugin) | 2.0.0 | 2.0.1 | 2.0.2 | 2.99 | 3.0.0 |
+| Openflexo platform (core, technology adapters, modules, packaging, modelers, build plugin) | 2.0.0 | 2.0.1 | 2.0.2 | 2.99 | 3.0 |
 | Connie | 1.5 | 1.5.0.1 | 1.5.0.2 | 2.0.0 | 2.1.0 |
-| Pamela | 1.5 | 1.5.0.1 | 1.5.0.2 | 1.6 | 1.7 |
+| Pamela | 1.5 | 1.5.0.1 | 1.5.0.2 | 1.6 | 2.0 |
 | Gina | 2.2 | 2.2.0.1 | 2.2.0.2 | 2.3 | 2.4 |
 | Diana | 1.5 | 1.5.0.1 | 1.5.0.2 | 1.6 | 1.7 |
 | Utils | 1.5 | 1.5.0.1 | 1.5.0.2 | 1.6 | 1.7 |

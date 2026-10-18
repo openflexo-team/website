@@ -25,15 +25,15 @@ siblings of `openflexo-dev`; for a project whose line is commented out, un-comme
 project whose `includeBuild` line stays commented, or a project you never clone at all, is resolved
 as a published jar from the Openflexo Artifactory instead of local source.
 
-### 2. Generate the parsers, once, before the first compile
+### 2. Generate the parsers before an IDE import
 
-Several modules (`connie/*-parser`, `openflexo-core/fml-parser`, `openflexo-core/fml-cli`, the
-technology-adapter parser modules) are generated from SableCC grammars under
-`src/main/sablecc/*.sablecc`. Run this once, before the first build or IDE import, so that the
-generated classes exist, and again whenever a grammar changes:
+Several modules (`connie/*-parser`, `openflexo-core/fml-parser`, the technology-adapter parser
+modules) are generated from SableCC grammars under `src/main/sablecc/*.sablecc`, by the
+`generateGrammarSource` task of each such module. A Gradle build runs it on its own before
+compiling; an IDE import does not, so run it once before importing such a module, for instance:
 
 ```
-./gradlew sableccParser
+./gradlew :openflexo-core:fml-parser:generateGrammarSource
 ```
 
 Generated sources land in `build/generated-sources/` and are never committed or hand-edited.
@@ -63,8 +63,8 @@ The tasks, and the trap of a green build with failing tests, are detailed in [Bu
 * Clone and import each project you intend to work on the same way, then un-comment its
   `includeBuild` line in `openflexo-dev/settings.gradle` and right-click `openflexo-dev` ▸
   **Gradle ▸ Refresh Gradle Project**.
-* Run `./gradlew sableccParser` (step 2 above) *before* importing a project with a `*-parser`
-  module, or Eclipse will report the generated classes as missing.
+* Run the `generateGrammarSource` task of each `*-parser` module (step 2 above) *before*
+  importing its project, or Eclipse will report the generated classes as missing.
 * To run a packaged application from Eclipse: create a Run Configuration with main class
   `org.openflexo.Flexo`, module set to one of the existing packages under `openflexo-packaging`
   (`openflexo-designer`, `flexomaintainer`, `freemodelling`, …), and program argument `dev`.
@@ -81,7 +81,8 @@ The tasks, and the trap of a green build with failing tests, are detailed in [Bu
 * Clone each project you intend to work on the same way, check out the branch matching
   `openflexo-dev`, un-comment its `includeBuild` line in `openflexo-dev/settings.gradle`, and
   reload the Gradle project again.
-* Run `./gradlew sableccParser` before working on a project with a `*-parser` module.
+* Run the `generateGrammarSource` task of each `*-parser` module (step 2 above) before working
+  on its project.
 * To run a packaged application: *Add Configuration… ▸ Application*, JRE per the component's own
   requirement, module set to one of the existing packages under `openflexo-packaging`, main class
   `org.openflexo.Flexo`, program argument `dev`.
