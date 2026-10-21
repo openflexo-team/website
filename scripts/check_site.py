@@ -18,8 +18,9 @@ What it checks
                modules / adapters of each 2.99 package match openflexo-packaging
   snapshot     the snapshot date is the same everywhere in downloads.json, and is the latest one
                published on downloads.openflexo.org (a newer one is only a warning) (network)
-  generated    docs/develop/component-versions.md and repository-map.md are what their generators
-               would write today (needs the sibling openflexo-buildplugin / openflexo-dev clones)
+  generated    docs/develop/component-versions.md and repository-map.md, and the pages of
+               docs/guide/fml-specification/, are what their generators would write today (needs the
+               sibling openflexo-buildplugin / openflexo-dev / openflexo-core clones)
   placeholders leftover placeholder text and empty sections
   structure    number prefixes in file names, duplicate sidebar positions, invalid category files
   publications src/data/papers.js is what the build rebuilds from src/publis/
@@ -497,6 +498,28 @@ def check_generated(workspace, report):
             report.error("generated", f"docs/develop/{filename} is out of date: re-run scripts/{module.__name__}.py")
 
 
+def check_specification(workspace, report):
+    import generate_fml_specification
+
+    spec_dir = workspace / "openflexo-core" / "spec"
+    output_dir = generate_fml_specification.OUTPUT_DIR
+    if not spec_dir.is_dir():
+        report.warn("generated", "openflexo-core is not next to this repository: docs/guide/fml-specification not checked")
+        return
+    try:
+        expected = generate_fml_specification.build_pages(spec_dir)
+    except SystemExit as exc:
+        report.error("generated", f"the specification generator fails: {exc}")
+        return
+    for name, content in expected.items():
+        committed = output_dir / name
+        if not committed.is_file() or committed.read_text() != content:
+            report.error("generated", f"docs/guide/fml-specification/{name} is out of date: re-run scripts/generate_fml_specification.py")
+    for path in output_dir.iterdir():
+        if path.name not in expected:
+            report.error("generated", f"docs/guide/fml-specification/{path.name} is not generated any more: re-run scripts/generate_fml_specification.py")
+
+
 def check_publications(report):
     """The build rebuilds src/data/papers.js from src/publis/ (write_papers.js): they must agree."""
     def entries(text):
@@ -580,6 +603,7 @@ def main():
     by_id, by_name = load_registry(report)
     check_downloads(args.workspace, by_id, by_name, report)
     check_generated(args.workspace, report)
+    check_specification(args.workspace, report)
     check_placeholders(report)
     check_structure(report)
     check_publications(report)

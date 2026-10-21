@@ -9,6 +9,7 @@ the root of this repository.
 | `check_site.py` | consistency checks of the whole site; exit status 1 on any error | network (`--offline` to skip); sibling clones of `openflexo-packaging`, `openflexo-buildplugin`, `openflexo-dev` for two checks |
 | `generate_version_table.py` | rewrites `docs/develop/component-versions.md` from the `buildconfig` of `openflexo-buildplugin` | the sibling clone `openflexo-buildplugin` |
 | `generate_repository_map.py` | rewrites `docs/develop/repository-map.md` from the `settings.gradle` of `openflexo-dev` | the sibling clone `openflexo-dev` |
+| `generate_fml_specification.py` | rewrites `docs/guide/fml-specification/` from the `spec/` directory of `openflexo-core` | the sibling clone `openflexo-core` |
 | `update_publications.py` | refreshes the publications from HAL | network |
 | `update_publication_thumbnails.py` | first-page thumbnails of the publications | PDFs downloaded by hand, macOS (PDFKit through `osascript`), Pillow |
 

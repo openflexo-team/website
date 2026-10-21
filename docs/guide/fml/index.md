@@ -49,6 +49,9 @@ Two things set FML apart from a general-purpose language:
 - [FML-script](/docs/guide/fml/fml-script) covers driving the runtime from a script: loading
   resources, instantiating models, asserting values, and its traps.
 
+The complete reference of the language, with its grammar, is the
+[FML specification](/docs/guide/fml-specification/).
+
 ## FML and FML-script
 
 Two textual forms share the same grammar:

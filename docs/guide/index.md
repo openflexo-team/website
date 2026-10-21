@@ -15,6 +15,8 @@ describes it, and recipes for specific tasks.
   resource.
 - **[The FML language](/docs/guide/fml/)** — writing FML: from a first complete model to the
   language's structures, properties, behaviours, queries, expressions and annotations.
+- **[FML specification](/docs/guide/fml-specification/)** — the reference of the language: syntax,
+  types, declarations, expressions, actions, scripts and execution model.
 - **[Cookbook](/docs/guide/cookbook/resource-centers)** — short recipes for one task: setting up a resource center,
   translating the interface, importing an EMF metamodel.
 - **[Tutorials](/docs/guide/tutorials/first-free-model)** — step-by-step walkthroughs in the Openflexo application
