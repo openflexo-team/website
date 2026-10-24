@@ -468,11 +468,6 @@ task buildWebsite{
                         commandLine 'cp', '-r', connieRepo + 'connie-core/src/site/markdown/.', SITES + '/connie/versioned_docs/version-' + UPSTREAM + '/connie-core/'
                     }
 
-                    exec {
-                        println '\n [5/13] Copying connie-utils documentation markdown files \n'
-                        commandLine 'cp', '-r', connieRepo + 'connie-utils/src/site/markdown/.', SITES + '/connie/versioned_docs/version-' + UPSTREAM + '/connie-utils/'
-                    }
-
                     if (SNAPSHOT == UPSTREAM) {
                         exec {
                             println '\n [5.1/13] Copying root documentation markdown files \n'
@@ -484,10 +479,6 @@ task buildWebsite{
                             commandLine 'cp', '-r', connieRepo + 'connie-core/src/site/markdown/.', SITES + '/connie/docs/connie-core/'
                         }
 
-                        exec {
-                            println '\n [5.3/13] Copying connie-utils documentation markdown files \n'
-                            commandLine 'cp', '-r', connieRepo + 'connie-utils/src/site/markdown/.', SITES + '/connie/docs/connie-utils/'
-                        }
                     }
 
                     exec {
@@ -502,13 +493,6 @@ task buildWebsite{
                         println '\n [7/13] Building connie-parser javadoc \n'
                         workingDir connieRepo
                         commandLine 'javadoc', '-d', 'javadoc/' + UPSTREAM + '/connie-parser', '-sourcepath', 'connie-parser/src/main/java', '-subpackages', 'org', '-doctitle', 'connie-parser ' + UPSTREAM + ' API', '--ignore-source-errors'
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [8/13] Building connie-utils javadoc \n'
-                        workingDir connieRepo
-                        commandLine 'javadoc', '-d', 'javadoc/' + UPSTREAM + '/connie-utils', '-sourcepath', 'connie-utils/src/main/java', '-subpackages', 'org', '-doctitle', 'connie-utils ' + UPSTREAM + ' API', '--ignore-source-errors'
                     }
 
                     exec {
@@ -1295,11 +1279,6 @@ task buildWebsite{
                     }
 
                     exec {
-                        println '\n [4/14] Copying flexo-p2pp documentation markdown files \n'
-                        commandLine 'cp', '-r', utilsRepo + 'flexo-p2pp/src/site/markdown/.', SITES + '/openflexo-utils/versioned_docs/version-' + UPSTREAM + '/flexo-p2pp/'
-                    }
-
-                    exec {
                         println '\n [5/14] Copying flexo-utils documentation markdown files \n'
                         commandLine 'cp', '-r', utilsRepo + 'flexo-utils/src/site/markdown/.', SITES + '/openflexo-utils/versioned_docs/version-' + UPSTREAM + '/flexo-utils/'
                     }
@@ -1316,11 +1295,6 @@ task buildWebsite{
                         }
 
                         exec {
-                            println '\n [6.2/14] Copying flexo-p2pp documentation markdown files \n'
-                            commandLine 'cp', '-r', utilsRepo + 'flexo-p2pp/src/site/markdown/.', SITES + '/openflexo-utils/docs/flexo-p2pp/'
-                        }
-
-                        exec {
                             println '\n [6.3/14] Copying flexo-utils documentation markdown files \n'
                             commandLine 'cp', '-r', utilsRepo + 'flexo-utils/src/site/markdown/.', SITES + '/openflexo-utils/docs/flexo-utils/'
                         }
@@ -1329,13 +1303,6 @@ task buildWebsite{
                             println '\n [6.4/14] Copying flexohelp documentation markdown files \n'
                             commandLine 'cp', '-r', utilsRepo + 'flexohelp/src/site/markdown/.', SITES + '/openflexo-utils/docs/flexohelp/'
                         }
-                    }
-
-                    exec {
-                        ignoreExitValue true
-                        println '\n [7/14] Building flexo-p2pp javadoc \n'
-                        workingDir utilsRepo
-                        commandLine 'javadoc', '-d', 'javadoc/' + UPSTREAM + '/flexo-p2pp', '-sourcepath', 'flexo-p2pp/src/main/java', '-subpackages', 'org', '-doctitle', 'flexo-p2pp ' + UPSTREAM + ' API', '--ignore-source-errors'
                     }
 
                     exec {

@@ -14,8 +14,8 @@ Versions follow one of two schemes:
 
 where the qualifier is `-SNAPSHOT` for everyday development builds, or `-RCx` for a release
 candidate cut at the start of a QA cycle. A release is cut at the end of that cycle, once the
-candidate is considered stable. Components version independently — `connie`, `pamela`, `gina`,
-`diana` and the rest each carry their own version — and a `buildconfig` (in
+candidate is considered stable. Components version independently — `openflexo-utils`, `connie`, `pamela`, `gina`,
+`diana`, `p2pp` and the rest each carry their own version — and a `buildconfig` (in
 `openflexo-buildplugin`) ties a compatible set of them together under one platform version, such as
 2.99.
 
@@ -26,7 +26,7 @@ continuous/`SNAPSHOT` builds triggered on a push, manual release-candidate build
 release builds. Each publishes to the Openflexo Artifactory
 ([maven.openflexo.org](https://maven.openflexo.org/artifactory)); a release candidate or release
 also lands on the [download server](https://downloads.openflexo.org/openflexo/). Because components
-version independently, a release wave builds them in dependency order — the platform-wide packages
+version independently, a release wave builds them in dependency order, which follows the layers (the utilities first, then Connie, Pamela, Gina and Diana, then the core and everything above it) — the platform-wide packages
 (the editors, `openflexo-packaging`) come last, once everything they depend on has published.
 
 This page intentionally stops here rather than listing exact job names or a click-by-click

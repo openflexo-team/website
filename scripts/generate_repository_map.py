@@ -38,7 +38,9 @@ CORE_REPOS = {
     "gina": ("Generic user-interface framework: widgets, panels, inspectors", "Active"),
     "pamela": ("Modeling framework: annotated interfaces woven into stateful model objects", "Active"),
     "pamela-editor": ("Editor for Pamela metamodels", "Active"),
-    "openflexo-utils": ("Shared utility classes", "Active"),
+    "openflexo-utils": ("Bottom layer: resource locator, logging, toolbox and the test utilities shared by every repository", "Active"),
+    "gradle-sablecc-plugin": ("Gradle plugin that generates the SableCC parsers of the Openflexo grammars", "Active"),
+    "p2pp": ("Parser and pretty-printer framework, used by the FML parser and the FML editor", "Active"),
     "openflexo-core": ("Model federation engine and FML, the Flexo Modeling Language", "Active"),
     "openflexo-ui": ("Shared user-interface components of the Openflexo applications", "Active"),
     "modelers": ("BPMN, UML, statecharts and OWL modelers", "Active"),
@@ -168,8 +170,8 @@ each with its own history and its own version. They are listed below, grouped by
 
 ![The workspace](/img/architecture/14-workspace.png)
 
-Layering is strict, bottom-up: Connie, then Pamela, then Gina and Diana, then the core
-(`openflexo-core`), the user interface, the technology adapters, the server and finally the
+Layering is strict, bottom-up: the utilities (`openflexo-utils`), then Connie, then Pamela, then Gina
+and Diana, then P2PP and the core (`openflexo-core`), the user interface, the technology adapters, the server and finally the
 applications. A layer never depends on a higher one, and a technology adapter never depends on
 another one. See [Set up your workspace](./setup) to check them out and build them together, and
 [Component versions](/docs/develop/component-versions) for which version of each goes with a release.

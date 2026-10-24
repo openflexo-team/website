@@ -5,7 +5,7 @@ title: Component versions
 
 # Component versions
 
-<!-- Generated 2026-10-18 by scripts/generate_version_table.py from
+<!-- Generated 2026-10-23 by scripts/generate_version_table.py from
      openflexo-buildplugin's buildconfig (refs: origin/2.0.0, origin/2.0.1, origin/2.0.2, 2.99, 3.0, origin/1.8.1, origin/1.9.0, origin/1.9.1).
      Do not hand-edit -- re-run the script instead. -->
 
@@ -13,7 +13,9 @@ Each Openflexo release ties together a compatible set of component versions. The
 one place, the `buildconfig` of `openflexo-buildplugin`, and this page is generated from it, one
 column per release branch. The core, the technology adapters, the modules, the packaging and the
 modelers all carry the version of the Openflexo platform itself; the generic frameworks
-(Connie, Pamela, Gina, Diana) and the utilities are versioned independently.
+(Utils, Connie, Pamela, Gina, Diana) and the parser and pretty-printer framework (P2PP) are
+versioned independently. From 3.0 on, Utils is the bottom layer of the stack and P2PP lives in its own
+repository.
 
 ## Recent versions
 
@@ -27,11 +29,12 @@ modelers all carry the version of the Openflexo platform itself; the generic fra
 |---|---|---|---|---|---|
 | Java version | Java 8 | Java 8 | Java 8 | Java 8 | Java 17+ |
 | Openflexo platform (core, technology adapters, modules, packaging, modelers, build plugin) | 2.0.0 | 2.0.1 | 2.0.2 | 2.99 | 3.0 |
+| Utils | 1.5 | 1.5.0.1 | 1.5.0.2 | 1.6 | 2.0 |
 | Connie | 1.5 | 1.5.0.1 | 1.5.0.2 | 2.0.0 | 2.1.0 |
 | Pamela | 1.5 | 1.5.0.1 | 1.5.0.2 | 1.6 | 2.0 |
 | Gina | 2.2 | 2.2.0.1 | 2.2.0.2 | 2.3 | 2.4 |
 | Diana | 1.5 | 1.5.0.1 | 1.5.0.2 | 1.6 | 1.7 |
-| Utils | 1.5 | 1.5.0.1 | 1.5.0.2 | 1.6 | 1.7 |
+| P2PP | — | — | — | — | 1.0 |
 
 Openflexo 2.99 does not run on a Java newer than 8: it freezes at startup (see
 [Installing and running Openflexo](/downloads#install)).
@@ -46,8 +49,9 @@ Openflexo 2.99 does not run on a Java newer than 8: it freezes at startup (see
 |---|---|---|---|
 | Java version | Java 8 | Java 8 | Java 8 |
 | Openflexo platform (core, technology adapters, modules, packaging, modelers, build plugin) | 1.8.1 | 1.9.0 | 1.9.1 |
+| Utils | 1.4 | 1.4.1 | 1.4.2 |
 | Connie | 1.4 | 1.4.1 | 1.4.2 |
 | Pamela | 1.4 | 1.4.1 | 1.4.2 |
 | Gina | 2.1 | 2.1.1 | 2.1.2 |
 | Diana | 1.4 | 1.4.1 | 1.4.2 |
-| Utils | 1.4 | 1.4.1 | 1.4.2 |
+| P2PP | — | — | — |

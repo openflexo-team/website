@@ -5,7 +5,7 @@ title: Repository map
 
 # Repository map
 
-<!-- Generated 2026-09-22 by scripts/generate_repository_map.py.
+<!-- Generated 2026-10-23 by scripts/generate_repository_map.py.
      Do not hand-edit -- re-run the script instead. -->
 
 Openflexo is not a single repository: the infrastructure is made of independent repositories,
@@ -13,8 +13,8 @@ each with its own history and its own version. They are listed below, grouped by
 
 ![The workspace](/img/architecture/14-workspace.png)
 
-Layering is strict, bottom-up: Connie, then Pamela, then Gina and Diana, then the core
-(`openflexo-core`), the user interface, the technology adapters, the server and finally the
+Layering is strict, bottom-up: the utilities (`openflexo-utils`), then Connie, then Pamela, then Gina
+and Diana, then P2PP and the core (`openflexo-core`), the user interface, the technology adapters, the server and finally the
 applications. A layer never depends on a higher one, and a technology adapter never depends on
 another one. See [Set up your workspace](./setup) to check them out and build them together, and
 [Component versions](/docs/develop/component-versions) for which version of each goes with a release.
@@ -24,19 +24,19 @@ another one. See [Set up your workspace](./setup) to check them out and build th
 | Repository | Description | Status |
 |---|---|---|
 | [openflexo-buildplugin](https://github.com/openflexo-team/openflexo-buildplugin) | Gradle build plugin and version configuration shared by every repository | Active |
+| [gradle-sablecc-plugin](https://github.com/openflexo-team/gradle-sablecc-plugin) | Gradle plugin that generates the SableCC parsers of the Openflexo grammars | Active |
 | [connie](https://github.com/openflexo-team/connie) | Expression language and binding framework | Active |
 | [diana](https://github.com/openflexo-team/diana) | Diagramming and 2D drawing framework | Active |
 | [gina](https://github.com/openflexo-team/gina) | Generic user-interface framework: widgets, panels, inspectors | Active |
 | [pamela](https://github.com/openflexo-team/pamela) | Modeling framework: annotated interfaces woven into stateful model objects | Active |
 | [pamela-editor](https://github.com/openflexo-team/pamela-editor) | Editor for Pamela metamodels | Active |
-| [openflexo-utils](https://github.com/openflexo-team/openflexo-utils) | Shared utility classes | Active |
+| [openflexo-utils](https://github.com/openflexo-team/openflexo-utils) | Bottom layer: resource locator, logging, toolbox and the test utilities shared by every repository | Active |
+| [p2pp](https://github.com/openflexo-team/p2pp) | Parser and pretty-printer framework, used by the FML parser and the FML editor | Active |
 | [openflexo-core](https://github.com/openflexo-team/openflexo-core) | Model federation engine and FML, the Flexo Modeling Language | Active |
 | [openflexo-ui](https://github.com/openflexo-team/openflexo-ui) | Shared user-interface components of the Openflexo applications | Active |
 | [modelers](https://github.com/openflexo-team/modelers) | BPMN, UML, statecharts and OWL modelers | Active |
 | [openflexo-integration-tests](https://github.com/openflexo-team/openflexo-integration-tests) | Regression tests and example federation use cases | Active |
 | [openflexo-packaging](https://github.com/openflexo-team/openflexo-packaging) | Assembles modules and technology adapters into downloadable packages | Active |
-| pimca | Domain-specific systems modeling language for cyber threat analysis | Research prototype |
-| cta | Cyber Threat Application, built on Pimca (see [Research](/docs/research/projects/cta)) | Research prototype |
 | [formod](https://github.com/openflexo-team/formod) | Formose application: the B technology adapter, its module and its tests | Research prototype |
 
 ## Technology adapters
@@ -48,7 +48,6 @@ another one. See [Set up your workspace](./setup) to check them out and build th
 | [openflexo-docx](https://github.com/openflexo-team/openflexo-docx) | Microsoft Word documents (.doc, .docx) | Stabilised |
 | [openflexo-emf](https://github.com/openflexo-team/openflexo-emf) | EMF-based metamodels and models | Stabilised |
 | [openflexo-gina](https://github.com/openflexo-team/openflexo-gina) | GINA user-interface components, as a federated resource | Retired |
-| [openflexo-http](https://github.com/openflexo-team/openflexo-http) | Generic HTTP endpoints | Retired |
 | [openflexo-rest](https://github.com/openflexo-team/openflexo-rest) | REST web services | Migration in progress |
 | [openflexo-java](https://github.com/openflexo-team/openflexo-java) | Java source code | Limited support |
 | [openflexo-jdbc](https://github.com/openflexo-team/openflexo-jdbc) | Relational databases via JDBC | Migration in progress |
@@ -56,7 +55,6 @@ another one. See [Set up your workspace](./setup) to check them out and build th
 | [openflexo-owl](https://github.com/openflexo-team/openflexo-owl) | OWL2 ontologies | Stabilised |
 | [openflexo-opc-ua](https://github.com/openflexo-team/openflexo-opc-ua) | OPC-UA industrial automation servers | Active development |
 | [openflexo-capella](https://github.com/openflexo-team/openflexo-capella) | Capella / Arcadia system models | Active development |
-| [openflexo-obp2](https://github.com/openflexo-team/openflexo-obp2) | Connector for the OBP2 tool | Retired |
 | [openflexo-odt](https://github.com/openflexo-team/openflexo-odt) | OpenDocument Text documents (.odt) | Not yet classified |
 | [openflexo-oslc](https://github.com/openflexo-team/openflexo-oslc) | OSLC-linked resources | Retired |
 | [openflexo-pdf](https://github.com/openflexo-team/openflexo-pdf) | PDF documents | Limited support |

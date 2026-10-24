@@ -21,10 +21,11 @@ technology adapters built into the core.
 | Layer | Repositories | What it provides |
 |---|---|---|
 | Build | `openflexo-buildplugin` | the Gradle plugins every repository builds with, and the version of every component |
-| Foundations | `connie` | the expression language and the bindings (`connie-core`, the default and Java expression languages and their parsers) |
+| Foundations | `openflexo-utils` | the bottom layer, shared by every repository: the resource locator, the logging, the toolbox and the test utilities (from 3.0 on; they used to be split between `connie` and `openflexo-utils`) |
+| | `connie` | the expression language and the bindings (`connie-core`, the default and Java expression languages and their parsers) |
 | | `pamela` | the modeling framework: annotated interfaces turned into stateful model objects (`pamela-core`, `pamela-security-patterns`) |
-| | `openflexo-utils` | utility classes shared by the layers above |
 | | `gina`, `diana` | the framework for user interfaces (widgets, the `.fib` components and inspectors) and the framework for diagrams and 2D drawing |
+| | `p2pp` | the parser and pretty-printer framework used by the FML parser and the FML editor; it needs Connie, hence its own repository (from 3.0 on, it was part of `openflexo-utils` before) |
 | Core | `openflexo-core` | the federation engine and the FML language: `flexo-foundation` (resources, resource centers and the FML runtime model), `fml-parser` (the FML grammar), `fml-cli` (the command interpreter), `fml-lsp`, the ontology support |
 | User interface | `openflexo-ui` | the shared user interface of the applications, built on Gina and Diana |
 | Technology adapters | `openflexo-xml`, `openflexo-emf`, `openflexo-xlsx`, … | one repository per kind of resource |
@@ -46,7 +47,7 @@ resources) all depend on `fml-parser`, the textual FML ↔ model conversion, whi
 
 ## The rules that hold it together
 
-* **No dependency goes up.** `connie` and `pamela` know nothing of `openflexo-core`; the core knows
+* **No dependency goes up.** `openflexo-utils` knows nothing of the rest of the infrastructure, `connie` and `pamela` know nothing of `openflexo-core`; the core knows
   nothing of a technology adapter.
 * **A technology adapter never depends on another one.** It depends on the core and below. Code
   useful to several adapters belongs in the core or in a shared library, not in one of them.

@@ -8,8 +8,8 @@ title: Get involved
 Openflexo is built by a small team, and grows through outside contributions in several forms, not
 only code:
 
-* **Code** — the infrastructure spans about fifty repositories, from the expression language
-  (`connie`) up through the modeling framework, the GUI layers, `openflexo-core`, the technology
+* **Code** — the infrastructure spans about fifty repositories, from the shared utilities
+  (`openflexo-utils`) and the expression language (`connie`) up through the modeling framework, the GUI layers, `openflexo-core`, the technology
   adapters and the applications built on top of them. See [Develop](/docs/develop/setup) to set up a
   workspace, and [Write a technology adapter](/docs/develop/guides/write-a-technology-adapter) if
   you want to connect a new kind of resource — federating a new file format, protocol or external

@@ -53,12 +53,17 @@ JAVA_VERSIONS = {
 FIELDS = [
     ("Openflexo platform (core, technology adapters, modules, packaging, modelers, build plugin)",
      r'project\.openflexo\.openflexoVersion\s*=\s*"([^"]+)"'),
+    # Listed bottom-up. Utils is the bottom layer from 3.0 on (it holds what connie-utils held before).
+    ("Utils", r'project\.(?:ext|openflexo)\.utilsVersion\s*=\s*"([^"]+)"'),
     ("Connie", r'project\.(?:ext|openflexo)\.connieVersion\s*=\s*"([^"]+)"'),
     ("Pamela", r'project\.openflexo\.pamelaVersion\s*=\s*"([^"]+)"'),
     ("Gina", r'project\.openflexo\.ginaVersion\s*=\s*"([^"]+)"'),
     ("Diana", r'project\.openflexo\.dianaVersion\s*=\s*"([^"]+)"'),
-    ("Utils", r'project\.openflexo\.utilsVersion\s*=\s*"([^"]+)"'),
+    ("P2PP", r'project\.openflexo\.p2ppVersion\s*=\s*"([^"]+)"'),
 ]
+
+# Components that only exist from some release on: shown as an em dash where the branch has no such version.
+OPTIONAL_FIELDS = {"P2PP"}
 
 
 def read_plugin_groovy(buildplugin_dir: Path, ref: str) -> str:
@@ -75,6 +80,9 @@ def extract_versions(content: str, ref: str) -> dict:
     versions = {}
     for label, pattern in FIELDS:
         match = re.search(pattern, content)
+        if not match and label in OPTIONAL_FIELDS:
+            versions[label] = "—"
+            continue
         if not match:
             sys.exit(f"error: no version found for {label!r} at {ref!r} -- plugin.groovy's shape has changed, update FIELDS")
         # The bare version is written in the source; the "-SNAPSHOT"/release suffix is added at build
@@ -126,7 +134,9 @@ Each Openflexo release ties together a compatible set of component versions. The
 one place, the `buildconfig` of `openflexo-buildplugin`, and this page is generated from it, one
 column per release branch. The core, the technology adapters, the modules, the packaging and the
 modelers all carry the version of the Openflexo platform itself; the generic frameworks
-(Connie, Pamela, Gina, Diana) and the utilities are versioned independently.
+(Utils, Connie, Pamela, Gina, Diana) and the parser and pretty-printer framework (P2PP) are
+versioned independently. From 3.0 on, Utils is the bottom layer of the stack and P2PP lives in its own
+repository.
 
 ## Recent versions
 

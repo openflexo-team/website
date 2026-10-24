@@ -7,7 +7,7 @@ title: Set up your workspace
 
 Openflexo is built with **Gradle**, not Maven — stray `pom.xml` files you may find in some repos
 are not the build. There is no single top-level repository: the workspace is a set of
-independently-cloned git repos (`connie`, `pamela`, `gina`, `diana`, `openflexo-core`,
+independently-cloned git repos (`openflexo-utils`, `connie`, `pamela`, `gina`, `diana`, `p2pp`, `openflexo-core`,
 `openflexo-*`, the editors…), and cross-project development goes through the **`openflexo-dev`**
 composite build, which resolves each included project against local source instead of a published
 snapshot.
