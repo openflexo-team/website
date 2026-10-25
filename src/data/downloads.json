@@ -224,6 +224,122 @@
                     }
                 }
             ]
+        },
+        {
+            "version": "Infrastructure version 3.0 (snapshot)",
+            "label": "Development snapshot, built on October 24, 2026. Not a release: the installers are not signed and embed their own Java runtime",
+            "packages": [
+                {
+                    "name": "Openflexo Maintainer",
+                    "description": "This packaging contains all modules and all all technology adapters developed at Openflexo. The purpose of this packaging is to offer full features for developers of Openflexo model federation infrastructure. This packaging is configured to enable all developers tools.",
+                    "modules": [
+                        "FreeModellingEditor",
+                        "OpenflexoModeller",
+                        "EAModule"
+                    ],
+                    "ta": [
+                        "Diagram",
+                        "EMF",
+                        "XML/XSD",
+                        "OWL ontologies",
+                        "M/S Word",
+                        "M/S Excel",
+                        "M/S PowerPoint",
+                        "ODT",
+                        "PDF",
+                        "GINA",
+                        "JDBC",
+                        "Kafka",
+                        "Java",
+                        "OPC-UA",
+                        "REST",
+                        "OSLC",
+                        "JSON",
+                        "Rhapsody"
+                    ],
+                    "downloadUrl": {
+                        "mac": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Mac/Openflexo%20FlexoMaintainer-3.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Linux/openflexo-flexomaintainer_3.0-1_amd64.deb",
+                        "windows": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Windows/Openflexo%20FlexoMaintainer-3.0.exe"
+                    }
+                },
+                {
+                    "name": "FreeModellingEditor",
+                    "description": "This packaging contains only the  FreeModellingEditor module. This metamodelling tool is used to make concept emergence from a simple drawing or from a PowerPoint slide.",
+                    "modules": [
+                        "FreeModellingEditor"
+                    ],
+                    "ta": [
+                        "Diagram",
+                        "M/S PowerPoint"
+                    ],
+                    "downloadUrl": {
+                        "mac": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Mac/Openflexo%20FreeModelling-3.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Linux/openflexo-freemodelling_3.0-1_amd64.deb",
+                        "windows": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Windows/Openflexo%20FreeModelling-3.0.exe"
+                    }
+                },
+                {
+                    "name": "Openflexo Designer",
+                    "description": "This packaging contains the  OpenflexoModeller, the  FreeModellingEditor and the  EnterpriseArchitectureModule. This packaging also contains various technology adapters suitable for many contexts. The purpose of this packaging is to offer base features for most users of Openflexo model federation infrastructure. This packaging contains the  OpenflexoModeller, a modelling tool allowing to build model federation by using the FlexoModellingLanguage (FML), and to execute it with generic interfaces.",
+                    "modules": [
+                        "FreeModellingEditor",
+                        "OpenflexoModeller",
+                        "EAModule"
+                    ],
+                    "ta": [
+                        "Diagram",
+                        "EMF",
+                        "XML/XSD",
+                        "OWL ontologies",
+                        "M/S Word",
+                        "M/S Excel",
+                        "M/S PowerPoint",
+                        "ODT",
+                        "PDF",
+                        "GINA",
+                        "JDBC",
+                        "Kafka",
+                        "Java",
+                        "OPC-UA"
+                    ],
+                    "downloadUrl": {
+                        "mac": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Mac/Openflexo%20Designer-3.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Linux/openflexo-designer_3.0-1_amd64.deb",
+                        "windows": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Windows/Openflexo%20Designer-3.0.exe"
+                    }
+                },
+                {
+                    "name": "Openflexo Headless",
+                    "description": "This packaging contains the mode federation core framework packaged to be used headless. It contains command-line terminal as well as various technology adapters suitable for many contexts",
+                    "ta": [
+                        "Diagram",
+                        "EMF",
+                        "XML/XSD",
+                        "OWL ontologies",
+                        "M/S Word",
+                        "M/S Excel",
+                        "M/S PowerPoint",
+                        "ODT",
+                        "PDF",
+                        "GINA",
+                        "JDBC",
+                        "Kafka"
+                    ],
+                    "downloadUrl": {
+                        "mac": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Mac/Openflexo%20Headless-3.0.dmg",
+                        "linux": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Linux/openflexo-headless_3.0-1_amd64.deb",
+                        "windows": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Windows/Openflexo%20Headless-3.0.exe"
+                    }
+                },
+                {
+                    "name": "Openflexo Server",
+                    "description": "HTTP server exposing the Openflexo infrastructure through a REST API. Delivered as a Linux archive only.",
+                    "downloadUrl": {
+                        "linux": "https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/2026-10-24/Linux/openflexo-server-3.0-SNAPSHOT.tar.gz"
+                    }
+                }
+            ]
         }
     ]
 }

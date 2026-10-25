@@ -228,6 +228,7 @@ function Version(props) {
 const TEMURIN8_JRE_WINDOWS = 'https://adoptium.net/temurin/releases/?version=8&os=windows&arch=x64&package=jre'
 const TEMURIN8 = 'https://adoptium.net/temurin/releases/?version=8'
 const RELEASES = 'https://downloads.openflexo.org/openflexo/2.99/'
+const SNAPSHOTS = 'https://downloads.openflexo.org/openflexo/3.0-SNAPSHOT/'
 
 function serverDownloadUrl() {
     for (const version of downloads_list.versions) {
@@ -249,6 +250,11 @@ function InstallGuide() {
                 17 or 21 the application freezes at startup. None of the packages bundles a Java runtime, so
                 install a Java 8 first, as described below for your platform.
             </div>
+
+            <p>
+                This applies to the 2.99 release. The <a href="#snapshot">development snapshots of 3.0</a> are
+                installed differently: they embed their own Java.
+            </p>
 
             <h2>Which package?</h2>
             <ul>
@@ -366,6 +372,42 @@ tar -xzf ~/Downloads/"Openflexo Designer 2.99.tar.gz"
                 <li><code>--preload file</code>: a file listing resources to load at startup, one URI per line.</li>
                 <li><code>-v</code>: verbose mode; <code>-h</code>: help.</li>
             </ul>
+
+            <h2 id="snapshot">Development snapshots of 3.0</h2>
+            <p>
+                The 3.0 line is under development. Its snapshots are <b>not a release</b>: they are built from the
+                current state of the work and may change from one day to the next. Unlike 2.99 they need no Java
+                installed — each installer embeds its own Java 17 runtime. None of them is signed, so your system
+                warns you the first time you run one. Every build is in
+                {' '}<a href={SNAPSHOTS}>the snapshot directory</a>, under its date, with a <code>SHA256SUMS</code> file
+                per platform; the 3.0 section of the table above links to a recent build.
+            </p>
+            <ul>
+                <li>
+                    <b>Windows</b>: run the <code>.exe</code> installer. It lets you choose the folder and adds a Start
+                    menu entry and a desktop shortcut. Windows SmartScreen may warn about an unrecognised publisher:
+                    choose <i>More info</i>, then <i>Run anyway</i>.
+                </li>
+                <li>
+                    <b>macOS</b>: open the <code>.dmg</code> and drag the application to your <i>Applications</i>
+                    folder. As the application is not signed, <b>control-click</b> it and choose <i>Open</i> the first
+                    time.
+                </li>
+                <li>
+                    <b>Linux</b>: install the <code>.deb</code> (Debian, Ubuntu) or the <code>.rpm</code> (RPM-based distributions)
+                    of the package, which installs it under <code>/opt</code>.
+                </li>
+            </ul>
+            <CodeBlock language="bash">{`sudo apt install ./openflexo-designer_3.0-1_amd64.deb      # Debian, Ubuntu
+sudo dnf install ./openflexo-designer-3.0-1.x86_64.rpm     # Fedora and other RPM-based systems
+/opt/openflexo-designer/bin/"Openflexo Designer"`}</CodeBlock>
+            <p>
+                The Linux directory also holds a <b>portable archive</b> of each package (the jars in <code>lib/</code>
+                and a start script in <code>bin/</code>), for any distribution. It needs <b>Java 17 or later</b>
+                {' '}installed: extract it into a directory of its own and run the script of <code>bin/</code>. The
+                {' '}<b>Openflexo Server</b> is delivered this way; it listens on <code>localhost:9090</code> by default and takes the
+                same options as above.
+            </p>
         </div>
     )
 }
@@ -412,8 +454,8 @@ export default function downloads() {
                     Designer</b>.
                 </p>
                 <p>
-                    All packages need <b>Java 8</b>. Read <a href="#install">Installing and running Openflexo</a>
-                    {' '}before you start.
+                    The 2.99 packages need <b>Java 8</b>; the 3.0 snapshots embed their own Java. Read
+                    {' '}<a href="#install">Installing and running Openflexo</a> before you start.
                 </p>
               </div>
             </div>

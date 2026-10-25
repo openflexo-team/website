@@ -31,7 +31,7 @@ says plainly when the answer is no.
 * **Your sources have no adapter and you cannot write one.** An adapter is a Java component; the
   [guide to writing one](/docs/develop/guides/write-a-technology-adapter) is aimed at developers.
 * **You need Java 11 or later today.** Openflexo 2.99 runs on Java 8 only and freezes at startup on
-  newer versions; Java 17 or later is planned for 3.0 (see the [roadmap](./roadmap)).
+  newer versions; 3.0 requires Java 17 or later, and its snapshot installers embed their own (see the [roadmap](./roadmap)).
 * **You need a web application.** The applications are desktop applications. The
   [HTTP server](./tools) exposes the infrastructure through a REST API, but it is not a web
   interface.

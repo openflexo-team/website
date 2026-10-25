@@ -42,6 +42,13 @@ application freezes at startup. No package bundles a Java runtime, so install on
 The step-by-step instructions for each system, with the exact commands, are in
 [Installing and running Openflexo](/downloads#install) on the Downloads page.
 
+## Trying the 3.0 snapshot
+
+Snapshots of the next version, 3.0, are published on the [Downloads page](/downloads#snapshot). They
+are development builds, not a release, and unlike 2.99 they need no Java installed: each installer
+embeds its own Java 17 runtime. They are not signed, so Windows and macOS warn you the first time you
+run one; the [instructions](/downloads#snapshot) say what to click on each system.
+
 ## Next
 
 [Draw your first free model](./quickstart-free-model).

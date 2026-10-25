@@ -15,7 +15,7 @@ What it checks
   external     every external URL answers, including each download URL (network)
   registry     technology-adapters.json is well formed, its logos exist, ids are unique
   downloads    every technology adapter used by downloads.json is in the registry, and the
-               modules / adapters of each 2.99 package match openflexo-packaging
+               modules / adapters of each 2.99 and 3.0 package match openflexo-packaging (branch of the same number)
   snapshot     the snapshot date is the same everywhere in downloads.json, and is the latest one
                published on downloads.openflexo.org (a newer one is only a warning) (network)
   generated    docs/develop/component-versions.md and repository-map.md, and the pages of
@@ -338,17 +338,16 @@ def git_show(repo: Path, ref: str, path: str):
     return "\n".join(line for line in result.stdout.splitlines() if not line.lstrip().startswith("//"))
 
 
-def packaging_contents(workspace: Path, report):
-    """{package name: {"ta": {ids}, "modules": {names}}} of openflexo-packaging at branch 2.99."""
+def packaging_contents(workspace: Path, report, ref="2.99"):
+    """{package name: {"ta": {ids}, "modules": {names}}} of openflexo-packaging at the branch `ref`."""
     packaging = workspace / "openflexo-packaging"
     if not packaging.is_dir():
         report.warn("downloads", "openflexo-packaging is not next to this repository: packages not checked")
         return None
-    ref = "2.99"
     listing = subprocess.run(["git", "-C", str(packaging), "ls-tree", "-d", "--name-only", ref, "packages/"],
                              capture_output=True, text=True)
     if listing.returncode != 0:
-        report.warn("downloads", "openflexo-packaging has no branch 2.99: packages not checked")
+        report.warn("downloads", f"openflexo-packaging has no branch {ref}: packages not checked")
         return None
     directories = {line.split("/")[-1] for line in listing.stdout.split()}
 
@@ -362,7 +361,7 @@ def packaging_contents(workspace: Path, report):
                 report.error("downloads", f"packages/{directory}: {helper}Connector() is not mapped in check_site.py")
             else:
                 adapters.add(PACKAGING_TA_HELPERS[helper])
-        for module in re.findall(r'openflexo\("([\w-]+)"\)', text):
+        for module in re.findall(r'openflexo(?:Module)?\("([\w-]+)"\)', text):
             if module in PACKAGING_MODULES:
                 name, repo = PACKAGING_MODULES[module]
                 modules.add(name)
@@ -409,11 +408,16 @@ def check_downloads(workspace, by_id, by_name, report):
     def key(name):
         return by_name.get(name.lower(), name.lower())
 
-    contents = packaging_contents(workspace, report)
-    if contents is None:
-        return
+    contents_by_ref = {}
     for version in data["versions"]:
-        if "2.99" not in version["version"]:
+        # a version is checked against the branch of openflexo-packaging that carries its number
+        ref = next((r for r in ("2.99", "3.0") if r in version["version"]), None)
+        if ref is None:
+            continue
+        if ref not in contents_by_ref:
+            contents_by_ref[ref] = packaging_contents(workspace, report, ref)
+        contents = contents_by_ref[ref]
+        if contents is None:
             continue
         for package in version["packages"]:
             expected = contents.get(package["name"])

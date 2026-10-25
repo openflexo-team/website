@@ -17,14 +17,14 @@ platform version fixes a compatible set of them: the
 ## Where the project stands
 
 * **2.0.1** is the last stable release, published in March 2023. It needs Java 8.
-* **2.99** is the next release. It replaces the former XML serialization of virtual models with the
-  textual FML syntax, and it is the version the current work targets: the technology adapters are
-  being stabilised on it. It needs Java 8.
-* **3.0** follows 2.99. Snapshot builds of 3.0 are published on the download server. It requires
-  **Java 17 or later**.
+* **2.99** is the latest stable release, published in October 2026. It replaces the former XML
+  serialization of virtual models with the textual FML syntax. It needs Java 8.
+* **3.0** follows 2.99 and is under development. It requires **Java 17 or later** to build and run
+  from the sources. Its snapshot builds are published on the [Downloads page](/downloads#snapshot):
+  their installers embed their own Java runtime, so a snapshot needs no Java installed. They are
+  development builds, not signed.
 
-The order is therefore: 2.99 first, then 3.0. Once 2.99 is released, it becomes the stable version
-on the [Downloads page](/downloads), 2.0.1 moves to history, and snapshots of 3.0 appear.
+The order is therefore: 2.99, now released, then 3.0.
 
 ## What is not promised
 

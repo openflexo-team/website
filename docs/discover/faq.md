@@ -17,7 +17,8 @@ Download a current build from the [Downloads page](/downloads) — every link th
 points at a real, dated build — and run it. Packages are ready to run: a `.zip` on Windows, a
 `.dmg` on macOS and a `.tar.gz` on Linux. Openflexo 2.99 needs **Java 8** and does not bundle a
 Java runtime; the [installation guide](/downloads#install) explains how to set it up on each
-system.
+system. The development snapshots of 3.0 embed their own Java and come as installers (`.exe`,
+`.dmg`, `.deb`, `.rpm`); see [their instructions](/downloads#snapshot).
 
 ### What computer skills do I need?
 
@@ -39,4 +40,5 @@ Best effort, through GitHub and by email. There is no guaranteed response time; 
 ### Which version should I use?
 
 Take the version the [Downloads page](/downloads) marks as stable; snapshots are development
-builds. The 2.0.1 and 2.99 lines both need Java 8. See the [roadmap](./roadmap).
+builds. The 2.0.1 and 2.99 lines both need Java 8; the 3.0 snapshots embed their own Java. See the
+[roadmap](./roadmap).
