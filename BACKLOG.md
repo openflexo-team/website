@@ -206,8 +206,8 @@ examples without a technology adapter, in the repository of the adapter for one 
 * Batch 2 (written, under review): "Declaring models and concepts", "Properties", "Behaviours".
 * Batch 3 (written, under review): "Control flow and instructions".
 * Batch 4 (written, under review): "Queries with select" and "Matching and synchronisation" (with its
-  limits; the page follows `CORE-D-1`, `CORE-D-2`, `CORE-D-12` and `CORE-F-2` of `openflexo-core`, and
-  needs revising when they are fixed).
+  limits; the page follows `CORE-D-1`, `CORE-D-12` and `CORE-F-2` of `openflexo-core`, and needs revising
+  when they are fixed; revised for `CORE-D-2`, fixed: `unmatched:` calls the behaviour named, and is optional).
 * Batch 5 (written, under review): "Expressions", and a correction of "Behaviours" on `new` inside a concept.
 * Batch 6 (written, under review): "Annotations".
 * Batch 7 (written, under review): "FML-script".

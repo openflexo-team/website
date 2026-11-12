@@ -28,7 +28,7 @@ fml_action_exp =
   | "notify" expression in_clause?
   | "begin" "match" uidentifier from_clause where_clause?
   | "match" uidentifier in_clause? from_clause qualified_where_clause? "unmatched" ":" new_instance
-  | "end" "match" uidentifier in_clause "unmatched" ":" end_match_clause
+  | "end" "match" uidentifier in_clause ( "unmatched" ":" end_match_clause )?
   | "(" fml_action_exp ")"
 
 in_clause    = "in" expression
@@ -93,6 +93,12 @@ The search covers what the source **contains**, nested instances included. From 
 finds the parts of every crate; from one crate, the parts of that crate only. To fetch an instance of a model,
 `select MyModel from container`; to fetch a concept of another model, `select AnOtherModel$AConcept from
 instance`.
+
+:::note[Implementation note]
+From a concept instance, only the instances directly embedded in it are found, not those
+nested deeper (`CORE-D-53`). And the list returned by a `select` without condition is the internal index of the
+instances: modifying it hides instances from later queries (`CORE-D-54`). Never modify the result of a `select`.
+:::
 
 ### 10.2.3 Conditions
 
@@ -240,7 +246,10 @@ second instance.
 
 * In a `match`, `unmatched:` is followed by a `new` expression: `new Badge(m)` or the named form
   `new Badge::init(m)`. It is executed when no instance in the set satisfies the criteria.
-* In an `end match`, `unmatched:` is followed by `delete()`.
+* In an `end match`, `unmatched:` is followed by `delete()`, which runs the default deletion scheme of the concept, or by
+  a behaviour of the concept called by its name, `unmatched: release()` or `unmatched: purge(reason)` (a deletion
+  scheme other than the default one is called this way). Without `unmatched:`, `end match C in set;` runs nothing:
+  the instances left in the pool stay.
 
 `MatchingSet<T>` is a language type (§4.8); the set is typically held in a local variable. `set` is a keyword:
 do not name the variable `set`.
@@ -282,11 +291,11 @@ set per concept.
 Each gives a wrong result without any message; the pattern of §10.9 avoids all of them.
 
 * **The `where` of `begin match` is ignored** (`CORE-D-12`): the set holds every instance of the concept, and
-  an `end match … unmatched: delete()` then deletes those the condition meant to leave out. Filter in the `match`
-  instructions, by choosing what to iterate over.
-* **`unmatched:` of an `end match` must be `delete()`.** The grammar also accepts a call
-  `unmatched: someBehaviour()`, but that behaviour is not called: the first behaviour that the concept declares
-  runs on each leftover instance, which may be a deletion scheme (`CORE-D-2`).
+  an `end match … unmatched: delete()` then deletes those the condition meant to leave out. Filtering what the
+  `match` instructions iterate over does **not** protect them: an instance that no `match` claims is exactly what
+  the `end match` deletes. While this defect stands, close with `end match … unmatched: delete()` only a set whose
+  domain is every instance of the concept in that container; for a narrower domain, omit the `end match` and
+  delete the leftovers explicitly.
 * **`delete()` runs the first deletion scheme the concept declares.** A concept closed by an `end match` must
   declare exactly one deletion scheme, anonymous, whose body only releases its roles; otherwise the closing may
   write back destructively into the federated data.

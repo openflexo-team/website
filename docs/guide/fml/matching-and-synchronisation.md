@@ -26,7 +26,10 @@ A synchronisation is made of three instructions around a **matching set**:
    for the badge of `m`. If there is one, it is used and taken out of the pool of the unmatched.
    If not, the `unmatched:` part creates it. The instruction gives the badge, found or created.
 3. `end match Badge in badges unmatched: delete()` handles what is left in the pool, the badges that
-   no source claimed, and deletes them.
+   no source claimed, and deletes them. The `unmatched:` part says what runs on each of them:
+   `delete()` runs the deletion behaviour of the concept, and a behaviour of the concept can be
+   called by its name instead (`unmatched: archive()`). Without it, `end match Badge in badges;`
+   leaves them as they are.
 
 ```
 public int syncBadges() {
@@ -162,10 +165,6 @@ pattern above avoids all of them.
   the ones the condition was meant to leave out: with two marks, one of them satisfying the
   condition, both were deleted and none was left. Filter in the `match` instructions, by choosing
   what you iterate over.
-- **Write `unmatched: delete()` and nothing else in an `end match`.** The form
-  `unmatched: someBehaviour()` is accepted, but it does not call that behaviour: it runs on each
-  leftover instance the first behaviour the concept declares, which may be a deletion behaviour, so
-  the instances are deleted.
 - **`delete()` runs the first deletion behaviour the concept declares.** Give a concept that is
   closed by an `end match` exactly one deletion behaviour: with several, the first one is the one
   that runs, whatever it does to the federated data.
