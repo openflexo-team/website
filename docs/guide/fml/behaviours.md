@@ -119,8 +119,8 @@ instance.
 
 Inside a behaviour of a concept, `new` creates a concept **nested in that concept**, inside the
 current instance: `Shelf.newBook` creates a `Book`, declared in `Shelf`. A concept declared
-elsewhere, at the model level for instance, is created with `container.new`, and a bare `new` gives
-`null`:
+elsewhere, at the model level for instance, is created with `container.new`; a bare `new` of it is an
+invalid binding, reported when the model is loaded or validated, and gives `null`:
 
 ```
 public Tool bareTool(String name) {
@@ -262,9 +262,9 @@ offers is described with the [technology adapters](/docs/guide/concepts/technolo
 A behaviour has a name, arguments read through `parameters`, and a body; two behaviours can share a
 name when their arguments differ. Behaviours of the same instance are called on `this`. Creation and
 deletion are behaviours too, `create` and `delete`, and a model reacts to events with `listen`.
-Four silent traps to keep in mind: a bare parameter name, a bare call of a behaviour, a `new` of a
-concept that is not nested in the current one, and a creation call that omits an argument with a
-default value.
+Traps to keep in mind: a bare parameter name, a bare call of a behaviour and a creation call that
+omits an argument with a default value give `null` silently; a `new` of a concept that is not nested in
+the current one is reported as an invalid binding, and gives `null` too.
 
 The models and scripts on this page (`Talker.fml`, `NameLookup.fml`, `Depot.fml` and `Library.fml`) are tests of the
 platform, in the `openflexo-core` repository.
