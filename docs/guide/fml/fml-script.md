@@ -104,8 +104,8 @@ must instantiate it by name.
 ## Known limits
 
 - **A failed `load` or `new` stops the script**, with a message naming the failing command; nothing
-  after it runs, unlike inside an FML behaviour where the same mistake often gives a silent `null`
-  (see the [expressions page](/docs/guide/fml/expressions)).
+  after it runs. Inside an FML behaviour the same mistake stops the behaviour with an error (see the
+  [expressions page](/docs/guide/fml/expressions)).
 - **The whole script is checked before any command runs.** An unresolved binding anywhere, even on
   the last line, aborts the run before the first line executes: none of the `log` lines are
   printed, however early they are. When a script does not print what you expect, look at its last
@@ -118,7 +118,7 @@ must instantiate it by name.
 
 A script loads resources, instantiates models with `new … with (name=…)`, and checks the result
 with `assert`. It shares FML's expressions and types, adds its own commands and reserved words, and
-fails a mistaken `load` or `new` outright rather than giving a silent `null`. Reassigning a name and
+fails a mistaken `load` or `new` outright. Reassigning a name and
 querying without a behaviour are two things to avoid.
 
 The models and scripts on this page (`TaskList.fml`, `Journal.fml`) are tests of the platform, in

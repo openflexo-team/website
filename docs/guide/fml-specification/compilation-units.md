@@ -150,8 +150,8 @@ of `new`: after the import of `People.fml`, `Person` is a type of the importing 
 
 :::note[Implementation note]
 A missing import is not an error at load time. The concept is simply not in the
-typing space, a path that goes through it does not resolve, and in a behaviour the path evaluates to `null`
-(§13.6). Validation reports it.
+typing space, a path that goes through it does not resolve, and in a behaviour evaluating the path is an execution
+error (§13.6). Validation reports it.
 :::
 
 ### 3.5.3 URI expressions and references

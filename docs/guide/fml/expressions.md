@@ -70,8 +70,9 @@ assert calc.ternary(-1) == "neg";
 assert calc.ternary(0) == "zero";
 ```
 
-`&&` and `||` evaluate both operands, as the [control flow](/docs/guide/fml/control-flow) page
-shows.
+`&&` and `||` stop as soon as the left operand decides the result, as in Java: a null check such as
+`p != null && p.name == "Ann"` guards the rest of the expression (see the
+[control flow](/docs/guide/fml/control-flow) page).
 
 ## Numbers
 
@@ -210,8 +211,9 @@ assert calc.isNull();
 ```
 
 :::caution
-A method called directly on a string literal, `"hello".length()`, gives `null`, with no message.
-Put the literal in a variable first, as `upperLocal` does.
+A method called directly on a string literal, `"hello".length()`, does not resolve: it is an error when
+it runs (it gave `null`, with no message, before Openflexo 3.0). Put the literal in a variable first, as
+`upperLocal` does.
 :::
 
 ## Lists
@@ -248,8 +250,10 @@ assert calc.listContains();
 
 ## When a path does not resolve
 
-A path that cannot be resolved is not always an error: in a behaviour it gives `null`, and the
-behaviour goes on. Several mistakes end this way, and are covered on the pages where they arise:
+A path that cannot be resolved is reported by validation, and stops the behaviour with an error when it
+runs (before Openflexo 3.0 it gave `null` and the behaviour went on). So does a path that goes through a
+`null` value, in a condition too. Several mistakes end this way, and are covered on the pages where they
+arise:
 
 | The mistake | Instead |
 |---|---|
@@ -260,15 +264,15 @@ behaviour goes on. Several mistakes end this way, and are covered on the pages w
 | `super.name()` in a concept with several parents | a helper behaviour called on `this` |
 | a method called on a string literal | a variable |
 
-When a value is `null` and should not be, look for one of these first, and validate the model, which
-reports unresolved paths.
+When a behaviour fails on a path that does not resolve, look for one of these first; validating the model
+reports them before anything runs.
 
 ## What you have seen
 
 Expressions read like Java, with the usual precedence and a conditional operator. Division and
 remainder give decimal numbers, a string is never converted to a number, `+` with a string on the
-left concatenates, and both sides of `&&` and `||` are evaluated. A path that does not resolve gives
-`null` rather than an error, which is the first thing to suspect when a value is missing.
+left concatenates, and `&&` and `||` stop as soon as the result is known. A path that does not resolve, or
+goes through a `null` value, is an error when it runs; validation finds the first kind beforehand.
 
 The model and script (`Calc.fml` and `TestCalc.fmlscript`) are tests of the platform, in the
 `openflexo-core` repository.

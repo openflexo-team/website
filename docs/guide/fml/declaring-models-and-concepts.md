@@ -227,8 +227,8 @@ assert max.trick == "sit";
 ```
 
 :::caution
-With several parents, `super.<name>()` gives `null` instead of the parent's result, and nothing
-reports it. To reuse a parent's behaviour from a concept that has several parents, put the logic in
+With several parents, `super.<name>()` does not resolve: calling it stops the behaviour with an error
+(before Openflexo 3.0 it gave `null` and nothing reported it). To reuse a parent's behaviour from a concept that has several parents, put the logic in
 a separate behaviour of the parent and call it on `this`.
 :::
 

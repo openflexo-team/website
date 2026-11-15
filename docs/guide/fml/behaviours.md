@@ -54,7 +54,8 @@ public int add(int a, int b) {
 assert talker.add(2, 3) == 5;
 ```
 
-A bare parameter name, `who` instead of `parameters.who`, is not an error: it gives `null`.
+A bare parameter name, `who` instead of `parameters.who`, does not resolve: validation reports it, and
+running it stops the behaviour with an error. Before Openflexo 3.0 it gave `null`.
 
 ## Conditions and recursion
 
@@ -86,8 +87,8 @@ assert talker.fact(5) == 120;
 
 ## Calling a behaviour from a behaviour
 
-**A behaviour of the same instance is called on `this`.** A bare call does not resolve, and gives
-`null` without an error:
+**A behaviour of the same instance is called on `this`.** A bare call does not resolve: validation
+reports it, and calling it stops the behaviour with an error (before Openflexo 3.0 it gave `null`):
 
 ```
 public String twin() {
@@ -105,7 +106,7 @@ public String thisCall() {
 
 ```
 assert pen.thisCall() == "twin";
-assert pen.bareCall() == null;
+pen.bareCall();   // fails: twin() does not resolve
 ```
 
 This is the same rule as for `parameters`, and it also applies inside a model: a behaviour of the
@@ -120,7 +121,7 @@ instance.
 Inside a behaviour of a concept, `new` creates a concept **nested in that concept**, inside the
 current instance: `Shelf.newBook` creates a `Book`, declared in `Shelf`. A concept declared
 elsewhere, at the model level for instance, is created with `container.new`; a bare `new` of it is an
-invalid binding, reported when the model is loaded or validated, and gives `null`:
+invalid binding, reported when the model is loaded or validated, and an error when it runs:
 
 ```
 public Tool bareTool(String name) {
@@ -137,7 +138,7 @@ public Slot newSlot(String code) {
 ```
 
 ```
-assert bin.bareTool("saw") == null;
+bin.bareTool("saw");   // fails: Tool is not nested in Bin
 hammer = bin.containerTool("hammer");
 assert hammer.container == depot;
 ```
@@ -262,9 +263,9 @@ offers is described with the [technology adapters](/docs/guide/concepts/technolo
 A behaviour has a name, arguments read through `parameters`, and a body; two behaviours can share a
 name when their arguments differ. Behaviours of the same instance are called on `this`. Creation and
 deletion are behaviours too, `create` and `delete`, and a model reacts to events with `listen`.
-Traps to keep in mind: a bare parameter name, a bare call of a behaviour and a creation call that
-omits an argument with a default value give `null` silently; a `new` of a concept that is not nested in
-the current one is reported as an invalid binding, and gives `null` too.
+Traps to keep in mind: a bare parameter name, a bare call of a behaviour, a creation call that omits an
+argument with a default value, and a `new` of a concept that is not nested in the current one do not
+resolve: validation reports them, and they stop the behaviour with an error when they run.
 
 The models and scripts on this page (`Talker.fml`, `NameLookup.fml`, `Depot.fml` and `Library.fml`) are tests of the
 platform, in the `openflexo-core` repository.

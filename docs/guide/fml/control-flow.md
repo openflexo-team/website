@@ -70,10 +70,10 @@ assert flow.grade(60) == "B";
 assert flow.grade(10) == "C";
 ```
 
-:::caution
-`&&` and `||` evaluate **both** operands, even when the first one decides the result, as Java does
-not. In `if (false && this.touch() == 1)`, `touch()` is called. In a guard such as
-`x != null && x.foo == 1`, `x.foo` is evaluated even when `x` is null.
+:::note
+As in Java, `&&` and `||` stop as soon as the left operand decides the result. In
+`if (false && this.touch() == 1)`, `touch()` is not called, so a guard such as `x != null && x.foo == 1`
+is safe when `x` is null. Before Openflexo 3.0, both operands were evaluated.
 :::
 
 ```
@@ -87,8 +87,8 @@ public int andOperands() {
 ```
 
 ```
-assert flow.andOperands() == 1;
-assert flow.orOperands() == 101;
+assert flow.andOperands() == 0;
+assert flow.orOperands() == 100;
 ```
 
 ## Loops
@@ -189,13 +189,16 @@ These constructs are accepted by the language, and give a wrong result without a
   work in the update part of a `for`, as in `i++` above. Write `n = n + 1;`.
 - **A `for` loop without a condition**, `for (int i = 0; ; i++)`, makes the behaviour disappear.
   Write the condition, or `while (true)`.
-- **A condition that does not resolve**, for instance a misspelled variable, is taken as true by an
-  `if`: the `then` branch runs. Validate the model to get the error.
+- **A condition that does not resolve**, for instance a misspelled variable, or that is `null`, or that
+  goes through a `null` value (`p.age > 18` with `p` null), stops the behaviour with an error: it is never
+  taken as true or false. Guard it with a null check, `p != null && p.age > 18`, and validate the model to
+  find the names that do not resolve before running it.
 
 ## What you have seen
 
 A body is a sequence of statements: declarations, assignments, conditions, loops, returns and
-instructions. There is no `break` or `continue`, and the boolean operators evaluate both operands.
+instructions. There is no `break` or `continue`; `&&` and `||` stop as soon as the result is known, and a
+condition that is `null` is an error.
 A few constructs that look standard do not behave as in Java, and the list above says which.
 
 The model and script that check the values above (`Flow.fml` and `TestFlow.fmlscript`, and

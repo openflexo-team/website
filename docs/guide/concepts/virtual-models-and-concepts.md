@@ -207,7 +207,8 @@ limited to the model itself: technology adapters can offer events of their own, 
 federated resource changes, and a model listens to them the same way.
 
 A behaviour reads its arguments through `parameters`, as in `parameters.label`. Writing the bare
-name gives `null`, without an error (see the [language tour](/docs/guide/fml/language-tour)).
+name does not resolve, and stops the behaviour with an error when it runs (see the
+[language tour](/docs/guide/fml/language-tour)).
 
 ## Inheritance
 

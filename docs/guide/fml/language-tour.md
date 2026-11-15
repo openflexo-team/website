@@ -115,20 +115,20 @@ desk.guest = ann;
 assert desk.guestName() == "Ann";
 ```
 
-### A missing import gives null
+### A missing import is an error at run time
 
-Remove the `import` line from `Reception`, and keep everything else: the model still loads and the
-script runs to the end, with no error. But `Person` is no longer a type the unit knows, so the
-path `guest.name` gives nothing:
+Remove the `import` line from `Reception`, and keep everything else: the model still loads, and
+validating it reports that `guest.name` does not resolve, since `Person` is no longer a type the unit
+knows. Calling the behaviour stops it with an error (a *resolution error*) at the line of `guest.name`:
 
 ```
 oldDesk = new ReceptionWithoutImport() with (name="oldDesk");
 oldDesk.guest = ann;
-assert oldDesk.guestName() == null;
+oldDesk.guestName();   // fails: guest.name does not resolve
 ```
 
-When a path that should give a value gives `null`, check that the unit imports the model that
-declares the concepts on the path.
+Before Openflexo 3.0 the path gave `null` without any message. When a path does not resolve, check that
+the unit imports the model that declares the concepts on the path.
 
 ## The typing space
 
@@ -201,17 +201,19 @@ public model NameLookup {
 | `String name = "local"; return name;` | `"local"`: a local variable hides the property |
 | `String name = "local"; return name + "/" + this.name;` | `"local/Pen"`: `this` still reaches the property |
 | `parameter(String name)`: `return parameters.name + "/" + this.name;` | `"Arg/Pen"` when called with `"Arg"` |
-| `bareParameter(String other)`: `return other;` | `null`: a parameter is not read by its bare name |
-| `return twin();`, where `twin()` is another behaviour of `Item` | `null`: a behaviour is called on `this`, as `this.twin()`, which gives `"twin"` |
+| `bareParameter(String other)`: `return other;` | an error: a parameter is not read by its bare name |
+| `return twin();`, where `twin()` is another behaviour of `Item` | an error: a behaviour is called on `this`, as `this.twin()`, which gives `"twin"` |
 
 The last two lines are the ones to remember: a parameter must be read as `parameters.other`, and a
-behaviour of the same instance called on `this`. A bare parameter name, or a bare call, is not an
-error: it gives `null`.
+behaviour of the same instance called on `this`. A bare parameter name, or a bare call, does not resolve:
+validating the model reports it, and running it stops the behaviour with an error. Before Openflexo 3.0
+it gave `null` without any message.
 
 ## What you have seen
 
 A file holds one model, preceded by namespaces, `use` declarations and imports. Imports are what puts
-other models in the typing space, and a missing one gives `null` with no error. Inside a behaviour,
+other models in the typing space; without the import, a path through a concept of another model does not
+resolve, and is an error when it runs. Inside a behaviour,
 names are looked up from the innermost scope outward, and parameters are read through `parameters`.
 
 The models and scripts on this page are tests of the platform, in the `openflexo-core` repository.
