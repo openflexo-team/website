@@ -106,8 +106,8 @@ assert stock.named("leek") == leek;
 assert stock.named("zzz") == null;
 ```
 
-When several instances match, `unique` gives one of them, without an error. In the test below it is
-the first created, but the language does not promise which:
+When several instances match, `unique` fails with a cardinality error: it is meant for a query that
+finds at most one instance. Here only one vegetable is in stock:
 
 ```
 public Article firstOfKind(String kind) {
@@ -116,10 +116,11 @@ public Article firstOfKind(String kind) {
 ```
 
 ```
-assert stock.firstOfKind("fruit") == apple;
+assert stock.firstOfKind("vegetable") == leek;
 ```
 
-If several matches would be a mistake in your model, select the list and check its size.
+`stock.firstOfKind("fruit")` would fail, since two fruits match. If several matches are acceptable,
+select the list and take the element you need.
 
 ## The source
 
