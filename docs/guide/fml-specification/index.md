@@ -35,7 +35,7 @@ the cases in which the implementation does not do what the language intends are 
 | 5 | [Models, concepts, events, exceptions and enums](models-and-concepts.md) | The declarations that structure a program; containment; inheritance; invariants |
 | 6 | [Properties](properties.md) | Stored, role, expression, abstract and get/set properties |
 | 7 | [Behaviours](behaviours.md) | Methods, creation and deletion schemes, listeners, technology-specific behaviours |
-| 8 | [Statements](statements.md) | Blocks, declarations, conditions, loops, returns, throw, try / catch / finally |
+| 8 | [Statements](statements.md) | Blocks, declarations, conditions, loops, returns, throw, try / catch / finally, throws |
 | 9 | [Expressions](expressions.md) | Operators, precedence, paths, calls, `new`, name resolution |
 | 10 | [Edition actions](edition-actions.md) | `select`, `match`, `delete`, `fire`, `notify`, `connect`, `log`, technology actions |
 | 11 | [Annotations](annotations.md) | Syntax and the annotations the platform interprets |
