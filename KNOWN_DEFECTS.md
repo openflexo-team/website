@@ -2,7 +2,9 @@
 
 Prefix `WEB-D-<n>`, never reused. Status: `TODO` · `IN PROGRESS` · `BLOCKED` · `DONE` · `DEFERRED`.
 
-## WEB-D-1 — dead downloadable inputs on the EMF cookbook page
+## WEB-D-1 — dead downloadable inputs on the EMF cookbook page  ·  `TODO`
+
+**GitHub:** [openflexo-team/website#26](https://github.com/openflexo-team/website/issues/26)
 
 **Status:** TODO
 
@@ -12,7 +14,9 @@ Prefix `WEB-D-<n>`, never reused. Status: `TODO` · `IN PROGRESS` · `BLOCKED` �
 the source before this move. The walkthrough itself is otherwise accurate. **Fix:** re-host the two
 files (or produce fresh equivalents) and restore the links.
 
-## WEB-D-2 — mini-site pipeline: skeletons not in any repository
+## WEB-D-2 — mini-site pipeline: skeletons not in any repository  ·  `DEFERRED`
+
+**GitHub:** [openflexo-team/website#27](https://github.com/openflexo-team/website/issues/27)
 
 **Status:** DEFERRED (mini-sites are out of scope for the main-site rebuild)
 
@@ -22,7 +26,9 @@ repository. A rebuilt agent loses all 14 mini-sites (the main site is separately
 published `versioned_docs` for 1.5.0.1 and 1.6 exist nowhere else. Last located 2026-09-10 on
 `of-runner-1-vm`, which is no longer a Jenkins agent — whether they still exist is unverified.
 
-## WEB-D-3 — mini-site pipeline: 8 of 14 build cases copy from deleted source directories
+## WEB-D-3 — mini-site pipeline: 8 of 14 build cases copy from deleted source directories  ·  `DEFERRED`
+
+**GitHub:** [openflexo-team/website#28](https://github.com/openflexo-team/website/issues/28)
 
 **Status:** DEFERRED (same scope note as WEB-D-2)
 
@@ -31,7 +37,9 @@ The `openflexo-technology-adapters` case in the `website` job's switch copies fr
 `xmlconnector/`, `dsl-ta/` — that repository now contains exactly one module, `xx-ta`. The `-emf`,
 `-jdbc`, `-kafka`, `-pdf` cases point at source directories removed from their repos years ago.
 
-## WEB-D-4 — mini-site pipeline: hard-coded SNAPSHOT constants have drifted
+## WEB-D-4 — mini-site pipeline: hard-coded SNAPSHOT constants have drifted  ·  `DEFERRED`
+
+**GitHub:** [openflexo-team/website#29](https://github.com/openflexo-team/website/issues/29)
 
 **Status:** DEFERRED (same scope note as WEB-D-2)
 
@@ -40,7 +48,9 @@ in the unversioned `docs/`) no longer match any real Jenkins job version — e.g
 pamela, `2.1.0` for the technology adapters, while Jenkins actually builds those repos at other
 versions today.
 
-## WEB-D-5 — mini-site pipeline: publication is additive, deleted pages are immortal
+## WEB-D-5 — mini-site pipeline: publication is additive, deleted pages are immortal  ·  `DEFERRED`
+
+**GitHub:** [openflexo-team/website#30](https://github.com/openflexo-team/website/issues/30)
 
 **Status:** DEFERRED (same scope note as WEB-D-2)
 
@@ -48,7 +58,9 @@ The `website` job's `rsync -r` to `www-test` has no `--delete`; a page removed f
 staging forever and is then promoted to production by `website-production`, which does use
 `--delete` and faithfully copies the accumulated debris.
 
-## WEB-D-6 — reference-documentation generator's entry point does not exist
+## WEB-D-6 — reference-documentation generator's entry point does not exist  ·  `DEFERRED`
+
+**GitHub:** [openflexo-team/website#31](https://github.com/openflexo-team/website/issues/31)
 
 **Status:** DEFERRED (blocks per-component reference documentation, not the main site)
 
@@ -57,7 +69,9 @@ which is not in the module (only `GenerateReferenceDocumentation` and
 `GenerateLatexDocumentation` exist). `gradlew run` fails outright. `GenerateReferenceDocumentation`
 also wires exactly three technology adapters by hand, with several others commented out.
 
-## WEB-D-7 — dead links in the bibliography of the research overview
+## WEB-D-7 — dead links in the bibliography of the research overview  ·  `TODO`
+
+**GitHub:** [openflexo-team/website#32](https://github.com/openflexo-team/website/issues/32)
 
 **Status:** TODO
 
@@ -66,7 +80,9 @@ also wires exactly three technology adapters by hand, with several others commen
 browser and link its current address. (The CRC Press page and the INFORSID paper are fixed: ISBN only,
 and the HAL record.)
 
-## WEB-D-8 — dead sponsor links on the partners page
+## WEB-D-8 — dead sponsor links on the partners page  ·  `TODO`
+
+**GitHub:** [openflexo-team/website#33](https://github.com/openflexo-team/website/issues/33)
 
 **Status:** TODO
 
