@@ -56,11 +56,13 @@ CHAPTERS = [
      "The command and script surface: directives, resources, loading, instantiation and assertions."),
     ("13-execution-model.md", "execution-model.md", 13, "13. Execution model",
      "Instances, containment, how a behaviour runs, failure, change notification and validation."),
-    ("appendix-a-grammar.md", "appendix-a-grammar.md", 14, "A. Grammar summary",
+    ("14-instantiation-and-containment.md", "instantiation-and-containment.md", 14, "14. Instantiation and containment",
+     "Where new puts the instance it creates: the climb of the containment tree, for concepts, events, exceptions and virtual models."),
+    ("appendix-a-grammar.md", "appendix-a-grammar.md", 15, "A. Grammar summary",
      "The complete syntax of FML in EBNF."),
-    ("appendix-b-known-deviations.md", "appendix-b-known-deviations.md", 15, "B. Known deviations",
+    ("appendix-b-known-deviations.md", "appendix-b-known-deviations.md", 16, "B. Known deviations",
      "Where the implementation departs from the language, and what to write instead."),
-    ("appendix-c-example.md", "appendix-c-example.md", 16, "C. A complete example",
+    ("appendix-c-example.md", "appendix-c-example.md", 17, "C. A complete example",
      "One model and the script that runs it, with the place of each construct in the specification."),
 ]
 

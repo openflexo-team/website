@@ -122,10 +122,10 @@ one, only `=` and `+=` are supported by the expression grammar.
 
 ```
 public String grade(int score) {
-	if (parameters.score >= 90) {
+	if (score >= 90) {
 		return "A";
 	}
-	else if (parameters.score >= 50) {
+	else if (score >= 50) {
 		return "B";
 	}
 	else {
@@ -159,7 +159,7 @@ apart, §8.5).
 public int sumWhile(int n) {
 	int i = 0;
 	int total = 0;
-	while (i < parameters.n) {
+	while (i < n) {
 		i = i + 1;
 		total = total + i;
 	}
@@ -186,7 +186,7 @@ public int doWhileCount() {
 ```
 public int sumFor(int n) {
 	int total = 0;
-	for (int i = 1; i <= parameters.n; i++) {
+	for (int i = 1; i <= n; i++) {
 		total = total + i;
 	}
 	return total;
@@ -233,11 +233,11 @@ are visited in the order of the list; for a `select` this is the order of creati
 A method call, a `new`, or an edition action used for its effect is a statement:
 
 ```
-words.add(parameters.word);
+words.add(word);
 new Shelf("Fiction", 20);
-log "text is " + parameters.text;
-delete parameters.book;
-fire new ShelfCreated(parameters.label);
+log "text is " + text;
+delete book;
+fire new ShelfCreated(label);
 ```
 
 The value of such a statement is discarded.
@@ -245,14 +245,14 @@ The value of such a statement is discarded.
 ## 8.8 Return
 
 `return;` ends the behaviour. `return expression;` ends it and gives the value. `return fml_action_exp;` returns the result of an edition action, as in
-`return select unique Article from (this) where (selected.name == parameters.name);`.
+`return select unique Article from (this) where (selected.name == name);`.
 
 A `return` inside a loop ends the behaviour:
 
 ```
 public String firstLong(int size) {
 	for (String w : words) {
-		if (w.length() >= parameters.size) {
+		if (w.length() >= size) {
 			return w;
 		}
 	}
@@ -275,7 +275,7 @@ expects them.
 ### throw
 
 `throw expression;` raises the value of the expression, which is either a new instance of an exception
-(`throw new OutOfStock(parameters.n, quantity);`) or an error caught by an enclosing `catch` clause (`throw e;`). Thrown
+(`throw new OutOfStock(n, quantity);`) or an error caught by an enclosing `catch` clause (`throw e;`). Thrown
 again from the block of the clause that caught it, an error is the same error: it keeps its FML stack, which still names
 the statement where it was first raised. An exception kept and thrown again elsewhere is a new error, with its own stack. Throwing `null` is a null reference error; the validation reports a `throw` whose value is neither an exception
 nor an error type.
@@ -290,10 +290,10 @@ a `new` whose creation scheme, a `delete` whose deletion scheme, a `fire` whose 
 
 ```
 public take(int n) throws OutOfStock {
-	if (parameters.n > quantity) {
-		throw new OutOfStock(parameters.n, quantity);
+	if (n > quantity) {
+		throw new OutOfStock(n, quantity);
 	}
-	quantity = quantity - parameters.n;
+	quantity = quantity - n;
 }
 ```
 
@@ -314,8 +314,8 @@ checked.
 ```
 public int tryToTake(int n) {
 	try {
-		this.take(parameters.n);
-		return parameters.n;
+		this.take(n);
+		return n;
 	} catch (OutOfStock e) {
 		return 0 - e.requested;
 	} catch (FMLError e) {

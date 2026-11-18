@@ -1,5 +1,5 @@
 ---
-sidebar_position: 14
+sidebar_position: 15
 sidebar_label: "A. Grammar summary"
 title: "Appendix A. Grammar summary"
 description: "The complete syntax of FML in EBNF."
