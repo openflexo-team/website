@@ -260,7 +260,6 @@ arise:
 | a parameter read by its bare name, `who` | `parameters.who` |
 | a behaviour of the same instance called bare, `twin()` | `this.twin()` |
 | a concept of another model used without importing it | `import [uri];` |
-| a concept that is not nested created with a bare `new` | `container.new` |
 | `super.name()` in a concept with several parents | a helper behaviour called on `this` |
 | a method called on a string literal | a variable |
 

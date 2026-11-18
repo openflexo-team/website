@@ -114,14 +114,24 @@ model calls another one of the model with `this.chorus()`, not `chorus()`.
 
 ## Creating instances
 
-A `create` behaviour, a **creation scheme**, runs when an instance is created with `new`. Inside a
-behaviour of a model, `new Shelf(…)` creates an instance of the concept `Shelf` in the model
-instance.
+A `create` behaviour, a **creation scheme**, runs when an instance is created with `new`.
 
-Inside a behaviour of a concept, `new` creates a concept **nested in that concept**, inside the
-current instance: `Shelf.newBook` creates a `Book`, declared in `Shelf`. A concept declared
-elsewhere, at the model level for instance, is created with `container.new`; a bare `new` of it is an
-invalid binding, reported when the model is loaded or validated, and an error when it runs:
+`new` puts the instance in the nearest object that can hold it. Openflexo looks for it by **climbing the
+containment tree**, starting from the current instance: the instance itself, then its container, then the
+container of that one, up to the model instance.
+
+- Inside a behaviour of a model, `new Shelf(…)` creates an instance of the concept `Shelf` in the model
+  instance.
+- Inside a behaviour of a concept, `new` creates a concept **nested in that concept** in the current
+  instance: `Shelf.newBook` creates a `Book`, declared in `Shelf`.
+- A concept declared elsewhere, at the model level for instance, is created in the object that holds the
+  current one: `new Tool(…)` from a `Bin` creates the `Tool` in the model instance, as `container.new Tool(…)`
+  does. Likewise, `new Slot(…)` from a `Slot` creates another `Slot` beside the current one, in the same `Bin`.
+- `c.new X(…)` climbs from the instance designated by `c` instead of the current one.
+
+A concept that no object on the way up can hold, a `Slot` created from the model for instance, is an
+invalid binding, reported when the model is loaded or validated, and an error when it runs. The
+[specification](/docs/guide/fml-specification/instantiation-and-containment) gives the full rules.
 
 ```
 public Tool bareTool(String name) {
