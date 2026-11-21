@@ -18,11 +18,10 @@ chapter describes the declarations that give a program its structure.
 
 ```
 model_decl    = annotation* visibility? "abstract"? "model" uidentifier
-                super_clause? inside_clause?
+                super_clause?
                 "{" member* "}"
 
 super_clause  = "extends" composite_tident ( "," composite_tident )*
-inside_clause = "inside" composite_tident
 visibility    = "public" | "protected" | "private"
 member        = property_decl | behaviour_decl | concept_decl | event_decl | enum_decl | invariant_decl
 ```
@@ -79,18 +78,19 @@ public Catalog createCatalog() {
 
 At run time the instance of the contained model reports the instance of its container (§13.2).
 
-### 5.1.5 The inside clause
+### 5.1.5 Containment is declared by nesting
 
-`inside C` declares that the model (or concept, or event) lives **inside concept `C` declared in another
-compilation unit**, which lets a unit contribute to the containment structure of a model it does not own. The
-container must be resolvable and be a concept; otherwise the semantic issue "Container concept … not found" is
-reported on the type.
+The container of a concept (or event, exception, enum) is the declaration it is written in: the enclosing concept,
+or the model for a top-level declaration. There is no other way to declare a container: the `inside` clause of
+earlier versions is removed, and a concept cannot be contained in a concept of another compilation unit. A concept
+extending a nested concept must be declared in the container of its parent, or in a subtype of it; the validation
+reports a concept that extends a nested concept from another container.
 
 ## 5.2 Concepts
 
 ```
 concept_decl = annotation* visibility? "abstract"? "concept" uidentifier
-               super_clause? inside_clause?
+               super_clause?
                "{" member* "}"
 ```
 
@@ -259,7 +259,7 @@ binding: the enum type does not expose Java methods. Use concatenation.
 
 ```
 event_decl = annotation* visibility? "abstract"? "event" uidentifier
-             super_clause? inside_clause?
+             super_clause?
              "{" member* "}"
 ```
 
@@ -293,7 +293,7 @@ type of a `listen`.
 
 ```
 exception_decl = annotation* visibility? "abstract"? "exception" uidentifier
-                 super_clause? inside_clause?
+                 super_clause?
                  "{" member* "}"
 ```
 
