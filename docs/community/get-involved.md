@@ -21,7 +21,8 @@ only code:
   rebuilt; a practitioner's account of using Openflexo for a real case is exactly what is missing
   today.
 * **Testing and bug reports** — trying a current build (see [Downloads](/downloads)) and reporting
-  what breaks is useful on its own.
+  what breaks is useful on its own. How issues are written, labelled and planned is described in
+  [Issues and planning](/docs/develop/issue-workflow).
 
 To report an issue or start a conversation, use GitHub — either the
 [website repository](https://github.com/openflexo-team/website/issues) for anything about this
